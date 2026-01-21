@@ -19,7 +19,7 @@ author: "Camilla Green"
 - Provide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:
     - https://zapier.com/blog/how-to-use-api/#what 
     - https://guides.dataverse.org/en/6.8/api/getting-started.html
-- Use open sources tools whenever possible to facilitate user accessibility. Where this is not an option, explain why the tool is necessary and point to some possible alternatives
+- Use open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives
 
 --- 
 
@@ -35,14 +35,14 @@ author: "Camilla Green"
 - Any usage restrictions
 
 
-### 1.2 Who Is This Data For?
-- Intended audience (e.g., policymakers, researchers, advocates, journalists)
+### 1.2 Who Is This Data AND Tutorial For?
+- Intended audience 
 - Suggested skill level (beginner / intermediate / advanced)
 
 ---
 
 ## 2. Key Questions This Data Can Answer
-List 5–8 example questions users can explore, in addition to the key question that we will be exploring in this guide.
+List 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.
 
 - How has X changed over time?
 - Are there differences in X by region or demographic group?
@@ -141,3 +141,16 @@ Highlight the most important fields.
 ## 8. Analysis / Visualization
 
 ## 9. Conclusion / Summary / Further Steps
+
+--- 
+
+# TO DO 
+- Adapt Matt W's colab notebook that uses the roads dataset -> converts to a network -> calculates travel time 
+  - Need to work out fix to access ArcGIS WMS in python
+
+- Determine if we will use Astro or Quarto? -> Matt H. and Juan are doing some tests
+
+- Map out which user guides we will develop next
+  - Catchment areas from friction surface
+  - DRC Data layers
+  - Waterways
