@@ -1,0 +1,143 @@
+---
+title: "Data User Guide Template"
+output: html_document
+date: "2026-01-15"
+author: "Camilla Green"
+---
+# Data User Guide Template
+
+
+## Examples:
+- TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/
+  - Specific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html
+- Pytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples 
+- NASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/
+- GSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/
+
+## Tips and Pointers
+- Provide links to any relevant URLs including code packages, data documentation
+- Provide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:
+    - https://zapier.com/blog/how-to-use-api/#what 
+    - https://guides.dataverse.org/en/6.8/api/getting-started.html
+- Use open sources tools whenever possible to facilitate user accessibility. Where this is not an option, explain why the tool is necessary and point to some possible alternatives
+
+--- 
+
+## 1. Overview
+
+### 1.1 What Is This Dataset?
+- Brief, plain-language description of the dataset  
+- Links to our datahub, API  
+- Time period covered  
+- Geographic or population coverage  
+- License (e.g., CC BY 4.0)
+- Citation guidance
+- Any usage restrictions
+
+
+### 1.2 Who Is This Data For?
+- Intended audience (e.g., policymakers, researchers, advocates, journalists)
+- Suggested skill level (beginner / intermediate / advanced)
+
+---
+
+## 2. Key Questions This Data Can Answer
+List 5–8 example questions users can explore, in addition to the key question that we will be exploring in this guide.
+
+- How has X changed over time?
+- Are there differences in X by region or demographic group?
+- Which areas experience the highest or lowest values?
+
+Explain why this data set is appropriate to use to assess the key question. 
+
+---
+
+## 3. Data Access
+
+### 3.1 Where to Find the Data
+- Link(s) to download location (portal, GitHub, API, cloud storage)
+- File formats available (CSV, Excel, Parquet, API endpoint)
+
+### 3.2 How to Download
+Step-by-step instructions:
+1. Navigate to …
+2. Click …
+3. Select format …
+
+> Include screenshots if possible.
+
+
+---
+
+## 4. Dataset Structure
+
+### 4.1 Files Included
+| File Name | Description |
+|----------|-------------|
+| data.csv | Main cleaned dataset |
+| codebook.csv | Variable definitions |
+| metadata.json | Collection and methodology details |
+
+### 4.2 Unit of Analysis
+Clearly state what **one row represents**:
+
+- One road  
+- One ward  
+- One health facility 
+- Etc  
+
+---
+
+## 5. Variables & Definitions
+
+### 5.1 Key Variables
+Highlight the most important fields.
+
+| Variable | Description | Type | Example |
+|--------|-------------|------|---------|
+| county | County name | Categorical | Cook |
+| year | Calendar year | Integer | 2022 |
+| funding_usd | Total funding | Numeric | 125000 |
+
+### 5.2 Missing Data
+- How missing values are represented (e.g., `NA`, blank, `-999`)
+- Known gaps or limitations
+
+---
+
+## 6. Data Quality & Limitations
+
+
+- Known sources of bias
+- Data collection limitations
+- Changes in methodology over time
+- What the data **should not** be used for  
+
+
+---
+
+## 7. Getting Started: Quick Setup
+
+### 7.1 Tools You Can Use
+- R  (which packages?)
+- Python  (which packages?)
+- ArcGIS Pro / QGIS
+- Excel / Google Sheets
+- Local computing requirements (if any) - provide alternatives to local processing
+  - JupyterLab/CoLab
+
+  
+  
+
+### 7.2 Load the Data
+### 7.3 Clean / Filter Data
+- Subset to year or area of interest
+
+### 7.4 EDA
+- Calculate summary statistics
+
+---
+
+## 8. Analysis / Visualization
+
+## 9. Conclusion / Summary / Further Steps
