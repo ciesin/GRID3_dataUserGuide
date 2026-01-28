@@ -1,0 +1,58 @@
+ 
+
+/*-- scss:rules --*/
+
+
+/*   Right-side TOC list hidden by Bootstrap collapse
+   ========================================================= */
+
+/* On desktop, always show the TOC list */
+@media (min-width: 767px) {
+  nav#TOC > ul.collapse {
+    display: block !important;
+  }
+
+  nav#TOC .toc-actions > ul.collapse {
+    display: block !important;
+  }
+}
+
+
+
+
+/* Navigation bar */
+.navbar {
+  background-color: #b4a18b;
+}
+
+
+
+/* Page titles */
+h1, h2{
+  color: #5D6D7E;
+}
+
+h1 {
+  font-weight: 700;
+  border-bottom: 3px solid #a98b45;
+  padding-bottom: 0.3em; 
+}
+
+/* Subtitles */
+.quarto-title p.subtitle {
+  color: #5D6D7E;
+  font-style: italic;
+}
+
+/* Section headers */
+h2 {
+  border-left: 4px solid #775931;
+  padding-left: 0.5em;
+  margin-top: 1.5rem; 
+}
+
+/* Code blocks */
+pre {
+  border-left: 4px solid #2C3E50;
+  background-color: #f9fafb;
+}

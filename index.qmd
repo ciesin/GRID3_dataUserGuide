@@ -1,0 +1,89 @@
+---
+title: "GRID3 Data Science User Guide"
+subtitle: "Access, analyze, and visualize GRID3 data with Python" 
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+
+![GRID3 Logo](https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png){width=400px}
+
+# Welcome
+
+This site is a **data science–focused user guide** for working with **GRID3 datasets**.
+It combines **executable Jupyter notebooks** with structured documentation using **Quarto**.
+
+The guide is intended for:
+- Data scientists
+- GIS analysts
+- Researchers working with spatial data
+- Python users working with APIs and feature services
+
+---
+
+# How this guide is organized
+
+::: {.callout-note}
+**Source of truth:**  
+All examples are authored as **Jupyter notebooks** and rendered into this site using Quarto.
+:::
+
+- **User Guides** → step-by-step notebooks  
+- **Data Access** → APIs, Feature Services, metadata  
+- **Visualization** → maps, plots, spatial workflows  
+- **Reference** → reusable patterns and examples  
+
+## Video Overview 
+
+{{< video https://youtu.be/LM779rqUlvE?si=GRSOQd_pMsEAFzGD width="600" height="400" >}}
+
+
+
+---
+
+## 🚀 Getting started
+
+If you’re new, start here:
+
+👉 **[Jupyter Notebook User Guide: Querying and Mapping Data](notebooks/nb1.ipynb)** 
+
+This notebook walks through:
+- Querying a GRID3 Feature Service
+- Converting responses to GeoDataFrames
+- Visualizing results with Folium
+
+---
+
+
+::: {.grid}
+::: {.g-col-4}
+### 📡 Data Access
+Query Feature Services, download datasets, and work with APIs.
+
+[Get started →](notebooks/nb1.ipynb)
+
+### 📚 User Guide Template
+A template for creating GRID3 data user guides.
+
+[View the template →](notebooks/ures_guide_template.Rmd)
+
+:::
+
+::: {.g-col-4}
+### 📊 Analysis
+Common patterns for spatial and tabular analysis.
+
+[Explore analysis →](notebooks/analysis.ipynb)
+:::
+
+::: {.g-col-4}
+### 🗺️ Visualization
+Create interactive and static maps with Folium and GeoPandas.
+
+[View mapping guides →](notebooks/visualization.ipynb)
+:::
+:::
+
+ 
