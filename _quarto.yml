@@ -70,7 +70,7 @@ website:
       - section: "Data Access"
         contents:
           - notebooks/nb1.ipynb
-          # - notebooks/query-feature-services.ipynb
+          - notebooks/user_guide_template.qmd
           # - notebooks/catalog-metadata.ipynb
 
       - section: "Visualization"
