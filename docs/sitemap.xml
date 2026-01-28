@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://&lt;your-org&gt;.github.io/&lt;your-repo&gt;/notebooks/user_guide_template.html</loc>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/user_guide_template.html</loc>
     <lastmod>2026-01-28T18:17:10.702Z</lastmod>
   </url>
   <url>
-    <loc>https://&lt;your-org&gt;.github.io/&lt;your-repo&gt;/index.html</loc>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/index.html</loc>
     <lastmod>2026-01-28T18:34:33.969Z</lastmod>
   </url>
   <url>
-    <loc>https://&lt;your-org&gt;.github.io/&lt;your-repo&gt;/notebooks/nb1.html</loc>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/nb1.html</loc>
     <lastmod>2026-01-22T19:09:43.560Z</lastmod>
   </url>
 </urlset>

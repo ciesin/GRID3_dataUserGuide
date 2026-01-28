@@ -11,8 +11,8 @@ execute:
 website: 
     
   description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
-  site-url: https://<your-org>.github.io/<your-repo>/
-  repo-url: https://github.com/<your-org>/<your-repo>
+  site-url: https://ciesin.github.io/GRID3_dataUserGuide/
+  repo-url: https://github.com/ciesin/GRID3_dataUserGuide
   repo-actions: [edit, issue]
 
   
