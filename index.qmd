@@ -67,7 +67,7 @@ Query Feature Services, download datasets, and work with APIs.
 ### 📚 User Guide Template
 A template for creating GRID3 data user guides.
 
-[View the template →](notebooks/ures_guide_template.Rmd)
+[View the template →](notebooks/user_guide_template.qmd)
 
 :::
 

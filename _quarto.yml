@@ -30,12 +30,12 @@ website:
             href: notebooks/nb1.ipynb
 
           - text: "User Guide Template"
-            href: notebooks/ures_guide_template.Rmd
+            href: notebooks/user_guide_template.qmd
 
       - text: "Analysis"
         menu:      
           - text: "Analysis 1"
-            href: notebooks/ures_guide_template.Rmd
+            href: notebooks/user_guide_template.qmd
       - text: "Visualization"
         menu:
           - text: "Visualization 1"
