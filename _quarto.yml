@@ -111,6 +111,7 @@ format:
       float: false
       width: 300px 
     favicon: https://grid3.org/content/themes/grid3/img/logos/favicon.ico 
+    include-in-header: google-analytics.html
       
 
 
