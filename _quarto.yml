@@ -15,6 +15,8 @@ website:
   repo-url: https://github.com/<your-org>/<your-repo>
   repo-actions: [edit, issue]
 
+  
+
   navbar:
     logo: https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png
 
@@ -82,6 +84,10 @@ website:
         contents:
           # - notebooks/api-reference.ipynb
 
+  google-analytics: 
+    tracking-id: "G-45WWDMVLWW"
+    anonymize-ip: true
+
 
 
 format:
@@ -107,6 +113,6 @@ format:
     favicon: https://grid3.org/content/themes/grid3/img/logos/favicon.ico 
       
 
-google-analytics: "G-45WWDMVLWW"
+
 
          
