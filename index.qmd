@@ -75,7 +75,7 @@ A template for creating GRID3 data user guides.
 ### 📊 Analysis
 Common patterns for spatial and tabular analysis.
 
-[Explore analysis →](notebooks/analysis.ipynb)
+[API Nigeria Road Network Analysis](notebooks/api_nga_network.ipynb)
 :::
 
 ::: {.g-col-4}

@@ -27,7 +27,7 @@ website:
         href: index.qmd
 
       - text: "Data Access" 
-        menu:
+        menu: 
           - text: "Notebook 1" 
             href: notebooks/nb1.ipynb
 
@@ -36,8 +36,8 @@ website:
 
       - text: "Analysis"
         menu:      
-          - text: "Analysis 1"
-            href: notebooks/user_guide_template.qmd
+          - text: "GRID3 Nigeria Road Network Analysis"
+            href: notebooks/api_nga_network.ipynb
       - text: "Visualization"
         menu:
           - text: "Visualization 1"
@@ -77,6 +77,7 @@ website:
 
       - section: "Visualization"
         contents:
+          - notebooks/api_nga_network.ipynb 
           # - notebooks/folium-maps.ipynb
           # - notebooks/geopandas-plots.ipynb
 
