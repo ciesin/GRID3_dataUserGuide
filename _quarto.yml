@@ -1,12 +1,17 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!notebooks/*.ipynb"
 
 execute:
-  freeze: auto
-  echo: true
-  warning: false
-  message: false
+  enabled: false
+  # freeze: auto
+  # echo: true
+  # warning: false
+  # message: false
+  
 
 website: 
     
@@ -101,8 +106,9 @@ format:
     smooth-scroll: true
     code-copy: true
     number-sections: true
-    fig-width: 800
-    fig-height: 600
+    fig-width: 10
+    fig-height: 6
+    fig-dpi: 150
     fig-alt-text: true
     lightbox: true
     navbar:
