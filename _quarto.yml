@@ -77,13 +77,13 @@ website:
           - notebooks/user_guide_template.qmd
           # - notebooks/catalog-metadata.ipynb
 
-      - section: "Visualization"
+      - section: "Analysis"
         contents:
           - notebooks/api_nga_network.ipynb 
           # - notebooks/folium-maps.ipynb
           # - notebooks/geopandas-plots.ipynb
 
-      - section: "Reference"
+      - section: "Visualization"
         contents:
           # - notebooks/api-reference.ipynb
 
