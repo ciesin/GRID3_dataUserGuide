@@ -8,12 +8,12 @@ format:
 ---
 
 
-![GRID3 Logo](https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png){width=400px}
+![](https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png){width=400px}
 
-# Welcome
+# Welcome to the GRID3 Data Science User Guide!
 
 This site is a **data science–focused user guide** for working with **GRID3 datasets**.
-It combines **executable Jupyter notebooks** with structured documentation using **Quarto**.
+It combines Jupyter notebooks with structured documentationn.
 
 The guide is intended for:
 - Data scientists
@@ -25,16 +25,17 @@ The guide is intended for:
 
 # How this guide is organized
 
-::: {.callout-note}
-**Source of truth:**  
-All examples are authored as **Jupyter notebooks** and rendered into this site using Quarto.
-:::
+
 
 - **User Guides** → step-by-step notebooks  
 - **Data Access** → APIs, Feature Services, metadata  
 - **Visualization** → maps, plots, spatial workflows  
 - **Reference** → reusable patterns and examples  
 
+::: {.callout-note}
+**Source of truth:**  
+All examples are authored as **Jupyter notebooks** and rendered into this site using Quarto.
+:::
 ## Video Overview 
 
 {{< video https://youtu.be/LM779rqUlvE?si=GRSOQd_pMsEAFzGD width="600" height="400" >}}
@@ -45,14 +46,14 @@ All examples are authored as **Jupyter notebooks** and rendered into this site u
 
 ## 🚀 Getting started
 
-If you’re new, start here:
+If you’re new, start here. This is the full catalog of notebooks in the guide.
 
-👉 **[Jupyter Notebook User Guide: Querying and Mapping Data](notebooks/nb1.ipynb)** 
-
-This notebook walks through:
+These notebooks walk through:
 - Querying a GRID3 Feature Service
 - Converting responses to GeoDataFrames
 - Visualizing results with Folium
+- Analyzing road networks with OSMnx
+- Much more!
 
 ---
 

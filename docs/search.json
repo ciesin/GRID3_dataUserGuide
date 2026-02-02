@@ -132,18 +132,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "GRID3 Data Science User Guide",
-    "section": "",
-    "text": "GRID3 Logo",
-    "crumbs": [
-      "Home",
-      "Getting Started",
-      "GRID3 Data Science User Guide"
-    ]
-  },
-  {
     "objectID": "index.html#video-overview",
     "href": "index.html#video-overview",
     "title": "GRID3 Data Science User Guide",
@@ -160,7 +148,7 @@
     "href": "index.html#getting-started",
     "title": "GRID3 Data Science User Guide",
     "section": "2.2 🚀 Getting started",
-    "text": "2.2 🚀 Getting started\nIf you’re new, start here:\n👉 Jupyter Notebook User Guide: Querying and Mapping Data\nThis notebook walks through: - Querying a GRID3 Feature Service - Converting responses to GeoDataFrames - Visualizing results with Folium\n\n\n\n\n2.2.1 📡 Data Access\nQuery Feature Services, download datasets, and work with APIs.\nGet started →\n\n\n2.2.2 📚 User Guide Template\nA template for creating GRID3 data user guides.\nView the template →\n\n\n\n2.2.3 📊 Road Network Analysis\nCommon patterns for spatial and tabular analysis.\nAPI Nigeria Road Network Analysis\n\n\n2.2.4 🗺️ Visualization\nCreate interactive and static maps with Folium and GeoPandas.\nView mapping guides →",
+    "text": "2.2 🚀 Getting started\nIf you’re new, start here. This is the full catalog of notebooks in the guide.\nThese notebooks walk through: - Querying a GRID3 Feature Service - Converting responses to GeoDataFrames - Visualizing results with Folium - Analyzing road networks with OSMnx - Much more!\n\n\n\n\n2.2.1 📡 Data Access\nQuery Feature Services, download datasets, and work with APIs.\nGet started →\n\n\n2.2.2 📚 User Guide Template\nA template for creating GRID3 data user guides.\nView the template →\n\n\n\n2.2.3 📊 Road Network Analysis\nCommon patterns for spatial and tabular analysis.\nAPI Nigeria Road Network Analysis\n\n\n2.2.4 🗺️ Visualization\nCreate interactive and static maps with Folium and GeoPandas.\nView mapping guides →",
     "crumbs": [
       "Home",
       "Getting Started",
