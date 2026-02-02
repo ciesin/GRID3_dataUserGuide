@@ -103,9 +103,9 @@ format:
     smooth-scroll: true
     code-copy: true
     number-sections: true
-    fig-width: 10
-    fig-height: 6
-    fig-dpi: 150
+    fig-width: 6
+    fig-height: 4
+    fig-dpi: 120
     fig-alt-text: true
     lightbox: true
     navbar:
