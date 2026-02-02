@@ -6,6 +6,10 @@ author: "Camilla Green"
 ---
 # Data User Guide Template
 
+<a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/nb1.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 
 ## Examples:
 - TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/

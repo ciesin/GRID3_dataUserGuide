@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GRID3 Nigeria Road Network Analysis</title>
+<title>api_nga_network</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -76,6 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0dd56decf68ff337bf2129f7d0ab3b13.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,6 +133,9 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   gtag('config', 'G-45WWDMVLWW');
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.css">
@@ -323,496 +329,1544 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#grid3-nigeria-road-network-analysis" id="toc-grid3-nigeria-road-network-analysis" class="nav-link active" data-scroll-target="#grid3-nigeria-road-network-analysis"><span class="header-section-number">1</span> GRID3 Nigeria Road Network Analysis</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">Analysis</a></li><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">GRID3 Nigeria Road Network Analysis</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">GRID3 Nigeria Road Network Analysis</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">Analysis</a></li><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">GRID3 Nigeria Road Network Analysis</a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="grid3-nigeria-road-network-analysis" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> GRID3 Nigeria Road Network Analysis</h1>
 <p>The CIESIN GRID3 data provides high-resolution geospatial data that can be used to analyze various aspects of infrastructure and services in Nigeria. One practical application of this data is to find optimal routes between schools and health facilities. Below is an example of how to achieve this using Python and relevant libraries.</p>
-<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8801d447-43f6-4fe0-8c93-cbf59ae29309" data-execution_count="1">
+<p><a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/api_nga_network.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8801d447-43f6-4fe0-8c93-cbf59ae29309">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install neccessary packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install osmnx</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mapclassify</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install folium</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install momepy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install osmnx</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install mapclassify</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install folium</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install momepy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: osmnx in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (2.0.7)
+Requirement already satisfied: geopandas&gt;=1.0.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (1.1.1)
+Requirement already satisfied: networkx&gt;=2.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (3.4.2)
+Requirement already satisfied: numpy&gt;=1.22 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (1.26.4)
+Requirement already satisfied: pandas&gt;=1.4 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (2.2.3)
+Requirement already satisfied: requests&gt;=2.27 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (2.32.3)
+Requirement already satisfied: shapely&gt;=2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from osmnx) (2.1.2)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=1.0.1-&gt;osmnx) (0.11.1)
+Requirement already satisfied: packaging in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=1.0.1-&gt;osmnx) (24.2)
+Requirement already satisfied: pyproj&gt;=3.5.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=1.0.1-&gt;osmnx) (3.7.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from pandas&gt;=1.4-&gt;osmnx) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages\pytz-2025.1-py3.11.egg (from pandas&gt;=1.4-&gt;osmnx) (2025.1)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.27-&gt;osmnx) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.27-&gt;osmnx) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.27-&gt;osmnx) (2.6.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.27-&gt;osmnx) (2026.1.4)
+Requirement already satisfied: six&gt;=1.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.4-&gt;osmnx) (1.16.0)
+Requirement already satisfied: mapclassify in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (2.10.0)
+Requirement already satisfied: networkx&gt;=3.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from mapclassify) (3.4.2)
+Requirement already satisfied: numpy&gt;=1.26 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from mapclassify) (1.26.4)
+Requirement already satisfied: pandas&gt;=2.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from mapclassify) (2.2.3)
+Requirement already satisfied: scikit-learn&gt;=1.4 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from mapclassify) (1.8.0)
+Requirement already satisfied: scipy&gt;=1.12 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from mapclassify) (1.14.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from pandas&gt;=2.1-&gt;mapclassify) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages\pytz-2025.1-py3.11.egg (from pandas&gt;=2.1-&gt;mapclassify) (2025.1)
+Requirement already satisfied: joblib&gt;=1.3.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from scikit-learn&gt;=1.4-&gt;mapclassify) (1.5.3)
+Requirement already satisfied: threadpoolctl&gt;=3.2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from scikit-learn&gt;=1.4-&gt;mapclassify) (3.6.0)
+Requirement already satisfied: six&gt;=1.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.1-&gt;mapclassify) (1.16.0)
+Requirement already satisfied: folium in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (0.20.0)
+Requirement already satisfied: branca&gt;=0.6.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from folium) (0.8.2)
+Requirement already satisfied: jinja2&gt;=2.9 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from folium) (3.1.5)
+Requirement already satisfied: numpy in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from folium) (1.26.4)
+Requirement already satisfied: requests in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from folium) (2.32.3)
+Requirement already satisfied: xyzservices in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from folium) (2025.11.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from jinja2&gt;=2.9-&gt;folium) (3.0.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests-&gt;folium) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests-&gt;folium) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests-&gt;folium) (2.6.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests-&gt;folium) (2026.1.4)
+Requirement already satisfied: momepy in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (0.11.0)
+Requirement already satisfied: geopandas&gt;=0.14.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (1.1.1)
+Requirement already satisfied: libpysal&gt;=4.12.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (4.14.1)
+Requirement already satisfied: networkx&gt;=3.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (3.4.2)
+Requirement already satisfied: packaging in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (24.2)
+Requirement already satisfied: pandas&gt;=2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (2.2.3)
+Requirement already satisfied: shapely&gt;=2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (2.1.2)
+Requirement already satisfied: tqdm&gt;=4.65 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from momepy) (4.67.1)
+Requirement already satisfied: numpy&gt;=1.24 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=0.14.0-&gt;momepy) (1.26.4)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=0.14.0-&gt;momepy) (0.11.1)
+Requirement already satisfied: pyproj&gt;=3.5.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from geopandas&gt;=0.14.0-&gt;momepy) (3.7.2)
+Requirement already satisfied: beautifulsoup4&gt;=4.13.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (4.14.3)
+Requirement already satisfied: jinja2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (3.1.5)
+Requirement already satisfied: platformdirs&gt;=3.11.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (4.5.1)
+Requirement already satisfied: requests&gt;=2.32.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (2.32.3)
+Requirement already satisfied: scikit-learn&gt;=1.4.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (1.8.0)
+Requirement already satisfied: scipy&gt;=1.12.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from libpysal&gt;=4.12.0-&gt;momepy) (1.14.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from pandas&gt;=2.0-&gt;momepy) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages\pytz-2025.1-py3.11.egg (from pandas&gt;=2.0-&gt;momepy) (2025.1)
+Requirement already satisfied: colorama in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from tqdm&gt;=4.65-&gt;momepy) (0.4.6)
+Requirement already satisfied: soupsieve&gt;=1.6.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from beautifulsoup4&gt;=4.13.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (2.5)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from beautifulsoup4&gt;=4.13.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (4.15.0)
+Requirement already satisfied: certifi in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas&gt;=0.14.0-&gt;momepy) (2026.1.4)
+Requirement already satisfied: six&gt;=1.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.0-&gt;momepy) (1.16.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.32.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.32.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from requests&gt;=2.32.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (2.6.3)
+Requirement already satisfied: joblib&gt;=1.3.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from scikit-learn&gt;=1.4.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (1.5.3)
+Requirement already satisfied: threadpoolctl&gt;=3.2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from scikit-learn&gt;=1.4.0-&gt;libpysal&gt;=4.12.0-&gt;momepy) (3.6.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (from jinja2-&gt;libpysal&gt;=4.12.0-&gt;momepy) (3.0.2)</code></pre>
 </div>
-<div id="cell-3" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mapclassify</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="11f992b1-4783-4fad-e6ef-fbf4bdb55e9d" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install arcgis API for accessing data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check that arcgis is installed </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install arcgis</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mapclassify</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import arcgis</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arcgis.gis <span class="im">import</span> GIS </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="11f992b1-4783-4fad-e6ef-fbf4bdb55e9d">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install arcgis API for accessing data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check that arcgis is installed </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install arcgis</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: arcgis in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (2.4.1.1)</code></pre>
 </div>
-<div id="cell-6" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymously authenticate arcgis API</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gis <span class="op">=</span> GIS()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_nga_roads(bbox, crs, record_limit, url):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    bbox : dict</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">        Bounding box with keys xmin, ymin, xmax, ymax (in EPSG:3857).</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    crs : str, optional</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">        CRS for the output GeoDataFrame (default: EPSG:3857).</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    record_limit : int, optional</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Maximum number of records per request (default: 200000).</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">    url : str, optional</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">        ArcGIS FeatureServer query URL.</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">    geopandas.GeoDataFrame</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">        GeoDataFrame containing all fetched road features.</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"f"</span>: <span class="st">"geojson"</span>,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"where"</span>: <span class="st">"1=1"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"geometry"</span>: json.dumps({</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">**</span>bbox,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"spatialReference"</span>: {<span class="st">"wkid"</span>: <span class="bu">int</span>(crs.split(<span class="st">":"</span>)[<span class="dv">1</span>])},</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        }),</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"geometryType"</span>: <span class="st">"esriGeometryEnvelope"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"spatialRel"</span>: <span class="st">"esriSpatialRelContains"</span>,</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"outFields"</span>: <span class="st">"*"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"returnGeometry"</span>: <span class="st">"true"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"resultRecordCount"</span>: record_limit,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    all_features <span class="op">=</span> []</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        paged_params <span class="op">=</span> params <span class="op">|</span> {<span class="st">"resultOffset"</span>: offset}</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, params<span class="op">=</span>paged_params)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> r.json()</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        features <span class="op">=</span> data.get(<span class="st">"features"</span>, [])</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> features:</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        all_features.extend(features)</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>        offset <span class="op">+=</span> <span class="bu">len</span>(features)</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    valid_features <span class="op">=</span> [</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>        f <span class="cf">for</span> f <span class="kw">in</span> all_features</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f.get(<span class="st">"geometry"</span>) <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpd.GeoDataFrame.from_features(valid_features, crs<span class="op">=</span>crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-6" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import arcgis</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arcgis.gis <span class="im">import</span> GIS </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in service for NGA roads</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>boundbox <span class="op">=</span>  {</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xmin"</span>: <span class="fl">360102.4944</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ymin"</span>: <span class="fl">725614.4996</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xmax"</span>: <span class="fl">381199.1042</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ymax"</span>: <span class="fl">746837.3928</span>  }</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> fetch_nga_roads(boundbox, crs<span class="op">=</span><span class="st">"EPSG:3857"</span>, record_limit<span class="op">=</span><span class="dv">1000</span>, url<span class="op">=</span>url)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>gdf </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-7" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymously authenticate arcgis API</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gis <span class="op">=</span> GIS()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:447}}" data-outputid="bae961d3-046e-4d4a-b171-3a930b50f638" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot roads</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-8" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_nga_roads(bbox, crs, record_limit, url):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    bbox : dict</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">        Bounding box with keys xmin, ymin, xmax, ymax (in EPSG:3857).</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    crs : str, optional</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">        CRS for the output GeoDataFrame (default: EPSG:3857).</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">    record_limit : int, optional</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Maximum number of records per request (default: 200000).</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    url : str, optional</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">        ArcGIS FeatureServer query URL.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">    geopandas.GeoDataFrame</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">        GeoDataFrame containing all fetched road features.</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"f"</span>: <span class="st">"geojson"</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"where"</span>: <span class="st">"1=1"</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"geometry"</span>: json.dumps({</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">**</span>bbox,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"spatialReference"</span>: {<span class="st">"wkid"</span>: <span class="bu">int</span>(crs.split(<span class="st">":"</span>)[<span class="dv">1</span>])},</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        }),</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"geometryType"</span>: <span class="st">"esriGeometryEnvelope"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"spatialRel"</span>: <span class="st">"esriSpatialRelContains"</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"outFields"</span>: <span class="st">"*"</span>,</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"returnGeometry"</span>: <span class="st">"true"</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"resultRecordCount"</span>: record_limit,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    all_features <span class="op">=</span> []</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        paged_params <span class="op">=</span> params <span class="op">|</span> {<span class="st">"resultOffset"</span>: offset}</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, params<span class="op">=</span>paged_params)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> r.json()</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        features <span class="op">=</span> data.get(<span class="st">"features"</span>, [])</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> features:</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        all_features.extend(features)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>        offset <span class="op">+=</span> <span class="bu">len</span>(features)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    valid_features <span class="op">=</span> [</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        f <span class="cf">for</span> f <span class="kw">in</span> all_features</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f.get(<span class="st">"geometry"</span>) <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>]</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpd.GeoDataFrame.from_features(valid_features, crs<span class="op">=</span>crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6a317c0d-4167-4991-84eb-b975c0d59b94" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> gdf.copy()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.set_crs(epsg<span class="op">=</span><span class="dv">4326</span>, allow_override<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.to_crs(<span class="st">'EPSG:3857'</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.explode(index_parts<span class="op">=</span><span class="va">True</span>) </span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<div id="cell-9" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in service for NGA roads</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>boundbox <span class="op">=</span>  {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xmin"</span>: <span class="fl">360102.4944</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ymin"</span>: <span class="fl">725614.4996</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xmax"</span>: <span class="fl">381199.1042</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ymax"</span>: <span class="fl">746837.3928</span>  }</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf[<span class="st">'length_meters'</span>] <span class="op">=</span> exploded_road_gdf.geometry.length </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Build network</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>Gs <span class="op">=</span> momepy.gdf_to_nx(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    exploded_road_gdf,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    directed<span class="op">=</span><span class="st">'MultiDiGraph'</span>,           </span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    approach<span class="op">=</span><span class="st">'primal'</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    integer_labels<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    preserve_index<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    length<span class="op">=</span><span class="st">'length_meters'</span>        </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 🔧 OSMnx compatibility: alias length_meters → length</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, _, data <span class="kw">in</span> Gs.edges(data<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"length"</span>] <span class="op">=</span> data[<span class="st">"length_meters"</span>] </span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># # Back to GeoDataFrames</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>nodes, edges <span class="op">=</span> momepy.nx_to_gdf(Gs, points<span class="op">=</span><span class="va">True</span>, lines<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co"># # Try roundabout simplification</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> momepy.roundabout_simplification(edges)</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>edges</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> fetch_nga_roads(boundbox, crs<span class="op">=</span><span class="st">"EPSG:3857"</span>, record_limit<span class="op">=</span><span class="dv">1000</span>, url<span class="op">=</span>url)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">iso3</th>
+<th data-quarto-table-cell-role="th">source_id</th>
+<th data-quarto-table-cell-role="th">class</th>
+<th data-quarto-table-cell-role="th">speed_estimate</th>
+<th data-quarto-table-cell-role="th">speed_estimate_method</th>
+<th data-quarto-table-cell-role="th">road_surface</th>
+<th data-quarto-table-cell-role="th">names</th>
+<th data-quarto-table-cell-role="th">subclass</th>
+<th data-quarto-table-cell-role="th">speed_limits</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">source_acronym</th>
+<th data-quarto-table-cell-role="th">Shape__Length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>LINESTRING (3.353 6.561, 3.352 6.564, 3.351 6....</td>
+<td>375</td>
+<td>0825887fffffffff047f4f4e7c46bb8d</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>unclassified</td>
+<td>40</td>
+<td>literature review</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>660.977176</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>LINESTRING (3.394 6.653, 3.395 6.653, 3.396 6....</td>
+<td>2121</td>
+<td>0835882fffffffff046f5d76209c94af</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td></td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4708.736787</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>LINESTRING (3.375 6.664, 3.375 6.665)</td>
+<td>2129</td>
+<td>0835882fffffffff046ffcc2abaf4fde</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>residential</td>
+<td>20</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>65.118153</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>LINESTRING (3.39 6.68, 3.39 6.68, 3.39 6.679, ...</td>
+<td>2130</td>
+<td>0835882fffffffff046fff468b9d4a49</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>track</td>
+<td>10</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>1929.374551</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>LINESTRING (3.414 6.689, 3.413 6.688, 3.413 6....</td>
+<td>2152</td>
+<td>0835882fffffffff047f5f6082b04656</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td></td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4815.947415</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div id="cell-11" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check simplification group</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">'simplification_group'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:830}}" data-outputid="1984d517-ec3c-41f3-9cb9-54bb07b0ac5f" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot nodes and edges</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> edges.plot(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>), color<span class="op">=</span><span class="st">"gray"</span>, lw<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nodes.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"green"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:602}}" data-outputid="ff69bd51-dd38-4270-d2f6-b4eed621fc63" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate time to traverse a road segment in minutes using the speed estimate and length</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">"travel_time_mins"</span>] <span class="op">=</span> ((edges[<span class="st">"length_meters"</span>]<span class="op">/</span><span class="dv">1000</span>) <span class="op">/</span> (edges[<span class="st">"speed_estimate"</span>])) <span class="op">*</span> <span class="dv">60</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># drop if travel_time_mins is infinite or NaN or less than equal to zero</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges.replace([np.inf, <span class="op">-</span>np.inf], np.nan)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges.dropna(subset<span class="op">=</span>[<span class="st">'travel_time_mins'</span>])</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges[edges[<span class="st">'travel_time_mins'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]    </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>edges.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:447}}" data-outputid="bae961d3-046e-4d4a-b171-3a930b50f638" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot roads</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="api_nga_network_files/figure-html/cell-9-output-1.png" width="798" height="758" class="figure-img"></a></p>
+</figure>
 </div>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:759}}" data-outputid="ef043eb0-2a8f-4c1d-f4bb-3c83993b9ab4" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot speed estimate</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> edges.plot(column<span class="op">=</span><span class="st">"speed_estimate"</span>, legend<span class="op">=</span><span class="va">True</span>,ax<span class="op">=</span>ax1, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Speed (Km/h)'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot travel time</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> edges.plot(column<span class="op">=</span><span class="st">"travel_time_mins"</span>, legend<span class="op">=</span><span class="va">True</span>,ax<span class="op">=</span>ax2, cmap<span class="op">=</span><span class="st">'inferno'</span>,scheme<span class="op">=</span><span class="st">'natural_breaks'</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Travel Time (Minutes)'</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bf091e16-3dc8-4256-dbe6-83f4da6efc1f" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Geocode an origin and destination address</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Origin</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>orig_address <span class="op">=</span> <span class="st">"Oshitelu St, Lagos, Nigeria"</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>orig_y, orig_x <span class="op">=</span> ox.geocode(orig_address)  <span class="co"># notice the coordinate order (y, x)!</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Destination</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>dest_address <span class="op">=</span> <span class="st">"Obafemi Awolowo Wy, Lagos, Nigeria"</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>dest_y, dest_x <span class="op">=</span> ox.geocode(dest_address) </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformer: lon/lat → graph CRS</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"EPSG:4326"</span>,</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    Gs.graph[<span class="st">"crs"</span>],</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    always_xy<span class="op">=</span><span class="va">True</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print coordinates</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origin coords:"</span>, orig_x, orig_y)</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Destination coords:"</span>, dest_x, dest_y)</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>orig_x_p, orig_y_p <span class="op">=</span> transformer.transform(orig_x, orig_y)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>dest_x_p, dest_y_p <span class="op">=</span> transformer.transform(dest_x, dest_y)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Snap to graph</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>orig_node_id, dist_to_orig <span class="op">=</span> ox.distance.nearest_nodes(</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    Gs, X<span class="op">=</span>orig_x_p, Y<span class="op">=</span>orig_y_p, return_dist<span class="op">=</span><span class="va">True</span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>dest_node_id, dist_to_dest <span class="op">=</span> ox.distance.nearest_nodes(</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    Gs, X<span class="op">=</span>dest_x_p, Y<span class="op">=</span>dest_y_p, return_dist<span class="op">=</span><span class="va">True</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Print distance to nearest node</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origin node-id:"</span>, orig_node_id, <span class="st">"and distance:"</span>, dist_to_orig, <span class="st">"meters."</span>)</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Destination node-id:"</span>, dest_node_id, <span class="st">"and distance:"</span>, dist_to_dest, <span class="st">"meters."</span>)</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate shortest path between origin and destionation nodes and the length</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> nx.shortest_path(Gs, source<span class="op">=</span>orig_node_id, target<span class="op">=</span>dest_node_id, weight<span class="op">=</span><span class="st">'travel_time_mins'</span>)</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> nx.shortest_path_length(Gs, source<span class="op">=</span>orig_node_id, target<span class="op">=</span>dest_node_id, weight<span class="op">=</span><span class="st">'travel_time_mins'</span>)</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6a317c0d-4167-4991-84eb-b975c0d59b94" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> gdf.copy()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.set_crs(epsg<span class="op">=</span><span class="dv">4326</span>, allow_override<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.to_crs(<span class="st">'EPSG:3857'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.explode(index_parts<span class="op">=</span><span class="va">True</span>) </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf[<span class="st">'length_meters'</span>] <span class="op">=</span> exploded_road_gdf.geometry.length </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Build network</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>Gs <span class="op">=</span> momepy.gdf_to_nx(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    exploded_road_gdf,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    directed<span class="op">=</span><span class="st">'MultiDiGraph'</span>,           </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    approach<span class="op">=</span><span class="st">'primal'</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    integer_labels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    preserve_index<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    length<span class="op">=</span><span class="st">'length_meters'</span>        </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 🔧 OSMnx compatibility: alias length_meters → length</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, _, data <span class="kw">in</span> Gs.edges(data<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"length"</span>] <span class="op">=</span> data[<span class="st">"length_meters"</span>] </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co"># # Back to GeoDataFrames</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>nodes, edges <span class="op">=</span> momepy.nx_to_gdf(Gs, points<span class="op">=</span><span class="va">True</span>, lines<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co"># # Try roundabout simplification</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> momepy.roundabout_simplification(edges)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>edges.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">iso3</th>
+<th data-quarto-table-cell-role="th">source_id</th>
+<th data-quarto-table-cell-role="th">class</th>
+<th data-quarto-table-cell-role="th">speed_estimate</th>
+<th data-quarto-table-cell-role="th">speed_estimate_method</th>
+<th data-quarto-table-cell-role="th">road_surface</th>
+<th data-quarto-table-cell-role="th">names</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">speed_limits</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">source_acronym</th>
+<th data-quarto-table-cell-role="th">Shape__Length</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">length_meters</th>
+<th data-quarto-table-cell-role="th">length</th>
+<th data-quarto-table-cell-role="th">node_start</th>
+<th data-quarto-table-cell-role="th">node_end</th>
+<th data-quarto-table-cell-role="th">simplification_group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(0, 0)</th>
+<td>375</td>
+<td>0825887fffffffff047f4f4e7c46bb8d</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>unclassified</td>
+<td>40</td>
+<td>literature review</td>
+<td></td>
+<td></td>
+<td>...</td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>660.977176</td>
+<td>LINESTRING (373284.209 731941.259, 373142.699 ...</td>
+<td>660.977176</td>
+<td>660.977176</td>
+<td>0</td>
+<td>1</td>
+<td>&lt;NA&gt;</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">(1, 0)</th>
+<td>2121</td>
+<td>0835882fffffffff046f5d76209c94af</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td>...</td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4708.736787</td>
+<td>LINESTRING (377835.061 742222.484, 377903.879 ...</td>
+<td>4708.736787</td>
+<td>4708.736787</td>
+<td>2</td>
+<td>3</td>
+<td>&lt;NA&gt;</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(2, 0)</th>
+<td>2129</td>
+<td>0835882fffffffff046ffcc2abaf4fde</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>residential</td>
+<td>20</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td>...</td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>65.118153</td>
+<td>LINESTRING (375667.815 743564.588, 375679.303 ...</td>
+<td>65.118153</td>
+<td>65.118153</td>
+<td>4</td>
+<td>5</td>
+<td>&lt;NA&gt;</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">(3, 0)</th>
+<td>2130</td>
+<td>0835882fffffffff046fff468b9d4a49</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>track</td>
+<td>10</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td>...</td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>1929.374551</td>
+<td>LINESTRING (377331.652 745306.289, 377349.007 ...</td>
+<td>1929.374551</td>
+<td>1929.374551</td>
+<td>6</td>
+<td>7</td>
+<td>&lt;NA&gt;</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(4, 0)</th>
+<td>2152</td>
+<td>0835882fffffffff047f5f6082b04656</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td>...</td>
+<td></td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4815.947415</td>
+<td>LINESTRING (380005.724 746285.084, 379966.54 7...</td>
+<td>4815.947415</td>
+<td>4815.947415</td>
+<td>8</td>
+<td>9</td>
+<td>&lt;NA&gt;</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 21 columns</p>
 </div>
-<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:670}}" data-outputid="c43040d4-5d60-4571-e1a9-59822ffd2794" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shortest path based on distance</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> ox.plot_graph_route(Gs, path)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the travel time as title</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Shortest path is </span><span class="sc">{t: .1f}</span><span class="st"> minutes."</span>.<span class="bu">format</span>(t<span class="op">=</span>length))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="f0c7553e-ab04-4a5a-f62e-2b5faf564436" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore graph edges and route together in a single map</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>route_edges <span class="op">=</span> ox.routing.route_to_gdf(Gs, path, weight<span class="op">=</span><span class="st">'length'</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> edges.explore(color<span class="op">=</span><span class="st">"black"</span>, tiles<span class="op">=</span><span class="st">"cartodbdarkmatter"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> route_edges.explore(m<span class="op">=</span>m, color<span class="op">=</span><span class="st">"maroon"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
+</div>
+<div id="cell-12" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check simplification group</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">'simplification_group'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>simplification_group
+60    16
+84    16
+39    16
+47    14
+81    14
+      ..
+21     2
+57     2
+63     2
+23     2
+31     2
+Name: count, Length: 98, dtype: Int64</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:830}}" data-outputid="1984d517-ec3c-41f3-9cb9-54bb07b0ac5f" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot nodes and edges</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> edges.plot(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>), color<span class="op">=</span><span class="st">"gray"</span>, lw<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nodes.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"green"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="api_nga_network_files/figure-html/cell-12-output-1.png" width="1272" height="1220" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:602}}" data-outputid="ff69bd51-dd38-4270-d2f6-b4eed621fc63" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate time to traverse a road segment in minutes using the speed estimate and length</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">"travel_time_mins"</span>] <span class="op">=</span> ((edges[<span class="st">"length_meters"</span>]<span class="op">/</span><span class="dv">1000</span>) <span class="op">/</span> (edges[<span class="st">"speed_estimate"</span>])) <span class="op">*</span> <span class="dv">60</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># drop if travel_time_mins is infinite or NaN or less than equal to zero</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges.replace([np.inf, <span class="op">-</span>np.inf], np.nan)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges.dropna(subset<span class="op">=</span>[<span class="st">'travel_time_mins'</span>])</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> edges[edges[<span class="st">'travel_time_mins'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]    </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>edges.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">iso3</th>
+<th data-quarto-table-cell-role="th">source_id</th>
+<th data-quarto-table-cell-role="th">class</th>
+<th data-quarto-table-cell-role="th">speed_estimate</th>
+<th data-quarto-table-cell-role="th">speed_estimate_method</th>
+<th data-quarto-table-cell-role="th">road_surface</th>
+<th data-quarto-table-cell-role="th">names</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">source_acronym</th>
+<th data-quarto-table-cell-role="th">Shape__Length</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">length_meters</th>
+<th data-quarto-table-cell-role="th">length</th>
+<th data-quarto-table-cell-role="th">node_start</th>
+<th data-quarto-table-cell-role="th">node_end</th>
+<th data-quarto-table-cell-role="th">simplification_group</th>
+<th data-quarto-table-cell-role="th">travel_time_mins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(0, 0)</th>
+<td>375</td>
+<td>0825887fffffffff047f4f4e7c46bb8d</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>unclassified</td>
+<td>40</td>
+<td>literature review</td>
+<td></td>
+<td></td>
+<td>...</td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>660.977176</td>
+<td>LINESTRING (373284.209 731941.259, 373142.699 ...</td>
+<td>660.977176</td>
+<td>660.977176</td>
+<td>0</td>
+<td>1</td>
+<td>&lt;NA&gt;</td>
+<td>0.991466</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">(1, 0)</th>
+<td>2121</td>
+<td>0835882fffffffff046f5d76209c94af</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td>...</td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4708.736787</td>
+<td>LINESTRING (377835.061 742222.484, 377903.879 ...</td>
+<td>4708.736787</td>
+<td>4708.736787</td>
+<td>2</td>
+<td>3</td>
+<td>&lt;NA&gt;</td>
+<td>3.531553</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(2, 0)</th>
+<td>2129</td>
+<td>0835882fffffffff046ffcc2abaf4fde</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>residential</td>
+<td>20</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td>...</td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>65.118153</td>
+<td>LINESTRING (375667.815 743564.588, 375679.303 ...</td>
+<td>65.118153</td>
+<td>65.118153</td>
+<td>4</td>
+<td>5</td>
+<td>&lt;NA&gt;</td>
+<td>0.195354</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">(3, 0)</th>
+<td>2130</td>
+<td>0835882fffffffff046fff468b9d4a49</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>track</td>
+<td>10</td>
+<td>literature review</td>
+<td>unpaved</td>
+<td></td>
+<td>...</td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>1929.374551</td>
+<td>LINESTRING (377331.652 745306.289, 377349.007 ...</td>
+<td>1929.374551</td>
+<td>1929.374551</td>
+<td>6</td>
+<td>7</td>
+<td>&lt;NA&gt;</td>
+<td>11.576247</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">(4, 0)</th>
+<td>2152</td>
+<td>0835882fffffffff047f5f6082b04656</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Overture / OSM</td>
+<td>motorway</td>
+<td>80</td>
+<td>GPS</td>
+<td>paved</td>
+<td>Lagos-Ibadan Expressway</td>
+<td>...</td>
+<td>2025</td>
+<td>OVERTURE_OSM_001</td>
+<td>4815.947415</td>
+<td>LINESTRING (380005.724 746285.084, 379966.54 7...</td>
+<td>4815.947415</td>
+<td>4815.947415</td>
+<td>8</td>
+<td>9</td>
+<td>&lt;NA&gt;</td>
+<td>3.611961</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:759}}" data-outputid="ef043eb0-2a8f-4c1d-f4bb-3c83993b9ab4" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot speed estimate</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> edges.plot(column<span class="op">=</span><span class="st">"speed_estimate"</span>, legend<span class="op">=</span><span class="va">True</span>,ax<span class="op">=</span>ax1, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Speed (Km/h)'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot travel time</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> edges.plot(column<span class="op">=</span><span class="st">"travel_time_mins"</span>, legend<span class="op">=</span><span class="va">True</span>,ax<span class="op">=</span>ax2, cmap<span class="op">=</span><span class="st">'inferno'</span>,scheme<span class="op">=</span><span class="st">'natural_breaks'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Travel Time (Minutes)'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-14-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="api_nga_network_files/figure-html/cell-14-output-1.png" width="1485" height="730" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bf091e16-3dc8-4256-dbe6-83f4da6efc1f" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Geocode an origin and destination address</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Origin</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>orig_address <span class="op">=</span> <span class="st">"Oshitelu St, Lagos, Nigeria"</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the Esri World Imagery tile layer</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>folium.TileLayer(</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="sc">{z}</span><span class="st">/</span><span class="sc">{y}</span><span class="st">/</span><span class="sc">{x}</span><span class="st">'</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">'Esri'</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Esri Satellite'</span>,</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    control<span class="op">=</span><span class="va">True</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a layer control to toggle between tile layers</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>orig_y, orig_x <span class="op">=</span> ox.geocode(orig_address)  <span class="co"># notice the coordinate order (y, x)!</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Destination</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>dest_address <span class="op">=</span> <span class="st">"Obafemi Awolowo Wy, Lagos, Nigeria"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>dest_y, dest_x <span class="op">=</span> ox.geocode(dest_address) </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformer: lon/lat → graph CRS</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"EPSG:4326"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    Gs.graph[<span class="st">"crs"</span>],</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    always_xy<span class="op">=</span><span class="va">True</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print coordinates</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origin coords:"</span>, orig_x, orig_y)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Destination coords:"</span>, dest_x, dest_y)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>orig_x_p, orig_y_p <span class="op">=</span> transformer.transform(orig_x, orig_y)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>dest_x_p, dest_y_p <span class="op">=</span> transformer.transform(dest_x, dest_y)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Snap to graph</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>orig_node_id, dist_to_orig <span class="op">=</span> ox.distance.nearest_nodes(</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    Gs, X<span class="op">=</span>orig_x_p, Y<span class="op">=</span>orig_y_p, return_dist<span class="op">=</span><span class="va">True</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>dest_node_id, dist_to_dest <span class="op">=</span> ox.distance.nearest_nodes(</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    Gs, X<span class="op">=</span>dest_x_p, Y<span class="op">=</span>dest_y_p, return_dist<span class="op">=</span><span class="va">True</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Print distance to nearest node</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origin node-id:"</span>, orig_node_id, <span class="st">"and distance:"</span>, dist_to_orig, <span class="st">"meters."</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Destination node-id:"</span>, dest_node_id, <span class="st">"and distance:"</span>, dist_to_dest, <span class="st">"meters."</span>)</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate shortest path between origin and destionation nodes and the length</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> nx.shortest_path(Gs, source<span class="op">=</span>orig_node_id, target<span class="op">=</span>dest_node_id, weight<span class="op">=</span><span class="st">'travel_time_mins'</span>)</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> nx.shortest_path_length(Gs, source<span class="op">=</span>orig_node_id, target<span class="op">=</span>dest_node_id, weight<span class="op">=</span><span class="st">'travel_time_mins'</span>)</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Origin coords: 3.339861 6.5943937
+Destination coords: 3.3511002 6.6082757
+Origin node-id: 15790 and distance: 69.41404267339831 meters.
+Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 </div>
-<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:516}}" data-outputid="886fcbd0-ef41-48d5-cad2-6321d451c181" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria health facilities layer</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_health_facilities_v2_0/FeatureServer/0/query"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bounding box</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>query_extent <span class="op">=</span> {</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmin"</span>: <span class="fl">3.328171</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymin"</span>: <span class="fl">6.582383</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmax"</span>: <span class="fl">3.383102</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymax"</span>: <span class="fl">6.633909</span>}</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>health_fac <span class="op">=</span> fetch_nga_roads(query_extent, crs<span class="op">=</span><span class="st">"EPSG:4326"</span>, record_limit<span class="op">=</span><span class="dv">200000</span>, url<span class="op">=</span>layer_url)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>health_fac.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:550}}" data-outputid="a1e9a06b-eb20-499d-8e48-b636d5ff0282" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria schools layer</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/Schools_in_Nigeria/FeatureServer/0/query"</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># feature_layer = FeatureLayer(layer_url)</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bounding box</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>query_extent <span class="op">=</span> {</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmin"</span>: <span class="fl">3.328171</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymin"</span>: <span class="fl">6.582383</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmax"</span>: <span class="fl">3.383102</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymax"</span>: <span class="fl">6.633909</span>,</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> fetch_nga_roads(query_extent, crs<span class="op">=</span><span class="st">"EPSG:4326"</span>, record_limit<span class="op">=</span><span class="dv">200000</span>, url<span class="op">=</span>layer_url)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>schools.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:670}}" data-outputid="c43040d4-5d60-4571-e1a9-59822ffd2794">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shortest path based on distance</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> ox.plot_graph_route(Gs, path)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the travel time as title</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Shortest path is </span><span class="sc">{t: .1f}</span><span class="st"> minutes."</span>.<span class="bu">format</span>(t<span class="op">=</span>length))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#show plot</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-16-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="api_nga_network_files/figure-html/cell-16-output-1.png" width="948" height="954" class="figure-img"></a></p>
+</figure>
 </div>
-<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="d06fe49e-fc14-4fad-c985-b879b22332ef" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set same crs as graph</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> schools.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>health_fac <span class="op">=</span> health_fac.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">"longitude"</span>] <span class="op">=</span> schools.geometry.x</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">"latitude"</span>] <span class="op">=</span> schools.geometry.y</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">"longitude"</span>] <span class="op">=</span> health_fac.geometry.x</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">"latitude"</span>] <span class="op">=</span> health_fac.geometry.y</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Caclulate shortest route between every school and health facility using the travel_time_mins variable as the weight</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># this can take a few minutes</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>weight_attribute <span class="op">=</span> <span class="st">'travel_time_mins'</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Find nearest nodes to each school and health facility</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>orig_node_id, dist_to_orig <span class="op">=</span> ox.distance.nearest_nodes(</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    Gs, </span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>schools.geometry.x, Y<span class="op">=</span>schools.geometry.y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>dest_node_id, dist_to_dest <span class="op">=</span> ox.distance.nearest_nodes(Gs, X<span class="op">=</span>health_fac.geometry.x, Y<span class="op">=</span>health_fac.geometry.y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>shortest_paths <span class="op">=</span> {}</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> source <span class="kw">in</span> orig_node_id:</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> target <span class="kw">in</span> dest_node_id:</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get the actual path</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>            path <span class="op">=</span> nx.shortest_path(Gs, source<span class="op">=</span>source, target<span class="op">=</span>target, weight<span class="op">=</span>weight_attribute)</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get the path length</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>            length <span class="op">=</span> nx.shortest_path_length(Gs, source<span class="op">=</span>source, target<span class="op">=</span>target, weight<span class="op">=</span>weight_attribute)</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>            shortest_paths[(source, target)] <span class="op">=</span> {<span class="st">'path'</span>: path, <span class="st">'length'</span>: length}</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> nx.NetworkXNoPath:</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>          <span class="co"># build dictionary with shortest routes</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>            shortest_paths[(source, target)] <span class="op">=</span> {<span class="st">'path'</span>: <span class="va">None</span>, <span class="st">'length'</span>: <span class="bu">float</span>(<span class="st">'inf'</span>)}</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shortest_paths)</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique school nodes:"</span>, <span class="bu">len</span>(<span class="bu">set</span>(orig_node_id)))</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique facility nodes:"</span>, <span class="bu">len</span>(<span class="bu">set</span>(dest_node_id)))</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Snap distances (schools):"</span>, dist_to_orig.<span class="bu">min</span>(), dist_to_orig.<span class="bu">max</span>())</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Snap distances (facilities):"</span>, dist_to_dest.<span class="bu">min</span>(), dist_to_dest.<span class="bu">max</span>())</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:478}}" data-outputid="f99cc26a-03e3-46eb-898e-8f492d513971" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of shortest paths between every school and health facility and drop school/health facility combinations that aren't the closest</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># build dataframe</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(shortest_paths).T</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'level_0'</span>: <span class="st">'school_node'</span>, <span class="st">'level_1'</span>: <span class="st">'health_facility_node'</span>})</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace([np.inf, <span class="op">-</span>np.inf], np.nan)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sort by length and keep only the shortest routes for each school</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(by<span class="op">=</span>[<span class="st">'school_node'</span>, <span class="st">'length'</span>], ascending<span class="op">=</span>[<span class="va">True</span>, <span class="va">True</span>])</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'school_node'</span>], keep<span class="op">=</span><span class="st">'first'</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>Text(0.5, 89.08333333333331, 'Shortest path is  26.0 minutes.')</code></pre>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-outputid="311e34d6-c523-4667-d0e0-c1965087e874" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge nearest node ID back to schools and health facitility geodataframes</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set node ids</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">'node_id'</span>] <span class="op">=</span> orig_node_id</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">'node_id'</span>] <span class="op">=</span> dest_node_id</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get only columns needed for merge</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>school_merge <span class="op">=</span> schools[[<span class="st">'node_id'</span>, <span class="st">'name'</span>,<span class="st">'latitude'</span>,<span class="st">'longitude'</span>]]</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>health_merge <span class="op">=</span> health_fac[[<span class="st">'node_id'</span>, <span class="st">'facility_name'</span>]]</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># merge nearest routes with school and health facility information</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>nearest_df <span class="op">=</span> df.merge(school_merge, left_on<span class="op">=</span><span class="st">'school_node'</span>, right_on<span class="op">=</span><span class="st">'node_id'</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>nearest_df <span class="op">=</span> nearest_df.merge(health_merge, left_on<span class="op">=</span><span class="st">'health_facility_node'</span>, right_on<span class="op">=</span><span class="st">'node_id'</span>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># drop duplicates</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>nearest_df1 <span class="op">=</span> nearest_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'school_node'</span>, <span class="st">'length'</span>])</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>nearest_df1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:622}}" data-outputid="4da1f0e0-1e4b-45f5-a9a7-41d95a10677b" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize all nearest routes</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.colors <span class="im">as</span> mcolors</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># drop routes with nans</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>nearest_df1 <span class="op">=</span> nearest_df1.dropna(subset<span class="op">=</span>[<span class="st">'path'</span>])</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to list</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>routes <span class="op">=</span> nearest_df1[<span class="st">'path'</span>].tolist()</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># set route colors</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>num_paths <span class="op">=</span> <span class="bu">len</span>(routes)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>color_pool <span class="op">=</span> <span class="bu">list</span>(mcolors.CSS4_COLORS.values()) <span class="co"># 148+ colors</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>path_colors <span class="op">=</span> random.choices(color_pool, k<span class="op">=</span>num_paths)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot map</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:3857"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>xmin, ymin <span class="op">=</span> transformer.transform(<span class="fl">3.328171</span>, <span class="fl">6.582383</span>)</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>xmax, ymax <span class="op">=</span> transformer.transform(<span class="fl">3.383102</span>, <span class="fl">6.633909</span>)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>bbox_3857 <span class="op">=</span> (xmin, ymin, xmax, ymax)</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> ox.plot_graph_routes(Gs, routes,route_colors<span class="op">=</span>path_colors, route_linewidth<span class="op">=</span><span class="dv">6</span>, node_size<span class="op">=</span><span class="dv">0</span>, bbox<span class="op">=</span>bbox_3857)</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="f0c7553e-ab04-4a5a-f62e-2b5faf564436" data-execute="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore graph edges and route together in a single map</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>route_edges <span class="op">=</span> ox.routing.route_to_gdf(Gs, path, weight<span class="op">=</span><span class="st">'length'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> edges.explore(color<span class="op">=</span><span class="st">"black"</span>, tiles<span class="op">=</span><span class="st">"cartodbdarkmatter"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> route_edges.explore(m<span class="op">=</span>m, color<span class="op">=</span><span class="st">"maroon"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the Esri World Imagery tile layer</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>folium.TileLayer(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="sc">{z}</span><span class="st">/</span><span class="sc">{y}</span><span class="st">/</span><span class="sc">{x}</span><span class="st">'</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">'Esri'</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Esri Satellite'</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    control<span class="op">=</span><span class="va">True</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a layer control to toggle between tile layers</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="dad51c60-4248-4487-cf30-8f992695ae78" data-execution_count="24">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore a route interactively</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select school to view</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>nearest_df1_s <span class="op">=</span> nearest_df1[nearest_df1[<span class="st">'name'</span>] <span class="op">==</span> <span class="st">'Saint Joseph Secondary School'</span>]</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>route_edges <span class="op">=</span> ox.routing.route_to_gdf(Gs, nearest_df1_s.iloc[<span class="dv">0</span>].path, weight<span class="op">=</span><span class="st">'length'</span>)</span>
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:516}}" data-outputid="886fcbd0-ef41-48d5-cad2-6321d451c181" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria health facilities layer</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_health_facilities_v2_0/FeatureServer/0/query"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bounding box</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>query_extent <span class="op">=</span> {</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmin"</span>: <span class="fl">3.328171</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymin"</span>: <span class="fl">6.582383</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmax"</span>: <span class="fl">3.383102</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymax"</span>: <span class="fl">6.633909</span>}</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>health_fac <span class="op">=</span> fetch_nga_roads(query_extent, crs<span class="op">=</span><span class="st">"EPSG:4326"</span>, record_limit<span class="op">=</span><span class="dv">200000</span>, url<span class="op">=</span>layer_url)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>health_fac.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">globalid</th>
+<th data-quarto-table-cell-role="th">nhfr_uid</th>
+<th data-quarto-table-cell-role="th">nhfr_facility_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">iso</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">lga</th>
+<th data-quarto-table-cell-role="th">lga_name_disagreement</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">facility_name</th>
+<th data-quarto-table-cell-role="th">facility_name_source</th>
+<th data-quarto-table-cell-role="th">ownership</th>
+<th data-quarto-table-cell-role="th">ownership_type</th>
+<th data-quarto-table-cell-role="th">facility_level</th>
+<th data-quarto-table-cell-role="th">facility_level_option</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">geocoordinates_source</th>
+<th data-quarto-table-cell-role="th">last_updated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>POINT (3.34985 6.59825)</td>
+<td>151</td>
+<td>d34b8933-7c5c-45e6-a59e-f8108b3a8e58</td>
+<td>62363642.0</td>
+<td>24/11/1/1/2/0020</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Lagos</td>
+<td>Ikeja</td>
+<td>0</td>
+<td>...</td>
+<td>Life Health Care Clinic</td>
+<td>NHFR_2024</td>
+<td>Private</td>
+<td>Unknown</td>
+<td>Primary</td>
+<td>Primary Health Center</td>
+<td>6.598250</td>
+<td>3.349850</td>
+<td>GRID3_EHEALTH</td>
+<td>2024-11-11</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>POINT (3.36239 6.58945)</td>
+<td>589</td>
+<td>3854bf39-0017-4008-8095-dd6ac833cbe9</td>
+<td>39876675.0</td>
+<td>24/11/1/1/1/0022</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Lagos</td>
+<td>Ikeja</td>
+<td>0</td>
+<td>...</td>
+<td>Opebi Primary Health Center</td>
+<td>NHFR_2024</td>
+<td>Public</td>
+<td>Unknown</td>
+<td>Primary</td>
+<td>Primary Health Center</td>
+<td>6.589447</td>
+<td>3.362393</td>
+<td>GRID3_EHEALTH</td>
+<td>2024-11-11</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>POINT (3.36413 6.60097)</td>
+<td>594</td>
+<td>3167880d-17be-4b24-ba45-d5a61abe160a</td>
+<td>52365838.0</td>
+<td>24/11/1/1/1/0018</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Lagos</td>
+<td>Ikeja</td>
+<td>0</td>
+<td>...</td>
+<td>Oregun Primary Health Center</td>
+<td>NHFR_2024</td>
+<td>Public</td>
+<td>Unknown</td>
+<td>Primary</td>
+<td>Primary Health Center</td>
+<td>6.600967</td>
+<td>3.364128</td>
+<td>GRID3_EHEALTH</td>
+<td>2024-11-11</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>POINT (3.33843 6.59715)</td>
+<td>596</td>
+<td>4c0b8011-af9c-4d55-bbc4-4f9aa2fbe04a</td>
+<td>13500518.0</td>
+<td>24/11/1/1/1/0009</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Lagos</td>
+<td>Ikeja</td>
+<td>0</td>
+<td>...</td>
+<td>Ikeja Primary Health Center</td>
+<td>NHFR_2024</td>
+<td>Public</td>
+<td>Local Government</td>
+<td>Primary</td>
+<td>Primary Health Center</td>
+<td>6.597150</td>
+<td>3.338432</td>
+<td>GRID3_EHEALTH</td>
+<td>2024-11-11</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>POINT (3.3423 6.63057)</td>
+<td>670</td>
+<td>4eef270b-e351-4cf2-bf60-ff31051dd22b</td>
+<td>77159777.0</td>
+<td>24/11/1/1/1/0011</td>
+<td>Nigeria</td>
+<td>NGA</td>
+<td>Lagos</td>
+<td>Ikeja</td>
+<td>0</td>
+<td>...</td>
+<td>Ogba Primary Health Center</td>
+<td>NHFR_2024</td>
+<td>Public</td>
+<td>Local Government</td>
+<td>Primary</td>
+<td>Primary Health Center</td>
+<td>6.630571</td>
+<td>3.342302</td>
+<td>GRID3_EHEALTH</td>
+<td>2024-11-11</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:550}}" data-outputid="a1e9a06b-eb20-499d-8e48-b636d5ff0282" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria schools layer</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/Schools_in_Nigeria/FeatureServer/0/query"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># feature_layer = FeatureLayer(layer_url)</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bounding box</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>query_extent <span class="op">=</span> {</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmin"</span>: <span class="fl">3.328171</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymin"</span>: <span class="fl">6.582383</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xmax"</span>: <span class="fl">3.383102</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ymax"</span>: <span class="fl">6.633909</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> fetch_nga_roads(query_extent, crs<span class="op">=</span><span class="st">"EPSG:4326"</span>, record_limit<span class="op">=</span><span class="dv">200000</span>, url<span class="op">=</span>layer_url)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>schools.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">FID</th>
+<th data-quarto-table-cell-role="th">globalid</th>
+<th data-quarto-table-cell-role="th">uniq_id</th>
+<th data-quarto-table-cell-role="th">timestamp</th>
+<th data-quarto-table-cell-role="th">editor</th>
+<th data-quarto-table-cell-role="th">wardname</th>
+<th data-quarto-table-cell-role="th">wardcode</th>
+<th data-quarto-table-cell-role="th">lganame</th>
+<th data-quarto-table-cell-role="th">lgacode</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">secondary_</th>
+<th data-quarto-table-cell-role="th">student_ct</th>
+<th data-quarto-table-cell-role="th">teacher_ct</th>
+<th data-quarto-table-cell-role="th">poi_type</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">management</th>
+<th data-quarto-table-cell-role="th">subtype</th>
+<th data-quarto-table-cell-role="th">category</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>POINT (3.34134 6.6304)</td>
+<td>61</td>
+<td>7a4b0b1e-3732-4674-b129-f6048d8a0ec0</td>
+<td>842635</td>
+<td>1607644800000</td>
+<td>najib.adam</td>
+<td>Ogba / Oluwole</td>
+<td>LASIKA07</td>
+<td>Ikeja</td>
+<td>25011</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td>School</td>
+<td>Formal</td>
+<td>Public</td>
+<td>Standard</td>
+<td>Mixed</td>
+<td>Ogba Primary and Secondary School</td>
+<td>OSGOF</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>POINT (3.33565 6.60116)</td>
+<td>345</td>
+<td>77b5417d-df45-4e3f-b850-8e5eb1762a25</td>
+<td>842947</td>
+<td>1607644800000</td>
+<td>najib.adam</td>
+<td>Anifowoshe</td>
+<td>LASIKA05</td>
+<td>Ikeja</td>
+<td>25011</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td>School</td>
+<td>Formal</td>
+<td>Private</td>
+<td>Standard</td>
+<td>Primary</td>
+<td>Olufunmilayo Nursery And Primary School</td>
+<td>GRID</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>POINT (3.33294 6.62794)</td>
+<td>377</td>
+<td>b89c364f-d3fa-4c92-9de0-ee1c13cab316</td>
+<td>842979</td>
+<td>1607644800000</td>
+<td>najib.adam</td>
+<td>Ijaiye / Ifako</td>
+<td>LASIOE10</td>
+<td>Ifako/Ijaye</td>
+<td>25010</td>
+<td>...</td>
+<td></td>
+<td>85</td>
+<td>6</td>
+<td>School</td>
+<td>Formal</td>
+<td>Private</td>
+<td>Standard</td>
+<td>Primary</td>
+<td>Great Talents Nursery And Primary School</td>
+<td>GRID</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>POINT (3.33544 6.62886)</td>
+<td>2178</td>
+<td>a4ce123c-53b2-4a53-9be2-9994cd826e22</td>
+<td>844889</td>
+<td>1607644800000</td>
+<td>najib.adam</td>
+<td>Ijaiye / Ifako</td>
+<td>LASIOE10</td>
+<td>Ifako/Ijaye</td>
+<td>25010</td>
+<td>...</td>
+<td></td>
+<td>80</td>
+<td>8</td>
+<td>School</td>
+<td>Formal</td>
+<td>Private</td>
+<td>Standard</td>
+<td>Primary</td>
+<td>Jnissi Nursery And Primary School Lsdpc Estate</td>
+<td>GRID</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>POINT (3.35361 6.63257)</td>
+<td>2200</td>
+<td>5e9dd4d0-8bbd-47c2-bc58-3e14bc8cd81d</td>
+<td>844910</td>
+<td>1607644800000</td>
+<td>najib.adam</td>
+<td>Ogba / Oluwole</td>
+<td>LASIKA07</td>
+<td>Ikeja</td>
+<td>25011</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td>School</td>
+<td>Formal</td>
+<td>Private</td>
+<td>Standard</td>
+<td>Primary</td>
+<td>Md Nursery And Primary School</td>
+<td>GRID</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="d06fe49e-fc14-4fad-c985-b879b22332ef" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set same crs as graph</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> schools.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>health_fac <span class="op">=</span> health_fac.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">"longitude"</span>] <span class="op">=</span> schools.geometry.x</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">"latitude"</span>] <span class="op">=</span> schools.geometry.y</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># map facilities, roads, and routes</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> edges.explore(color<span class="op">=</span><span class="st">"black"</span>, tiles<span class="op">=</span><span class="st">"cartodbdarkmatter"</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> route_edges.explore(m<span class="op">=</span>m, color<span class="op">=</span><span class="st">"yellow"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> schools.explore(m<span class="op">=</span>m, color <span class="op">=</span> <span class="st">"blue"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> health_fac.explore(m<span class="op">=</span>m, color <span class="op">=</span> <span class="st">"red"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># add the Esri World Imagery tile layer to interactive map</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>folium.TileLayer(</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="sc">{z}</span><span class="st">/</span><span class="sc">{y}</span><span class="st">/</span><span class="sc">{x}</span><span class="st">'</span>,</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">'Esri'</span>,</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Esri Satellite'</span>,</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    control<span class="op">=</span><span class="va">True</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># add a layer control to toggle between tile layers</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">"longitude"</span>] <span class="op">=</span> health_fac.geometry.x</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">"latitude"</span>] <span class="op">=</span> health_fac.geometry.y</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Caclulate shortest route between every school and health facility using the travel_time_mins variable as the weight</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># this can take a few minutes</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>weight_attribute <span class="op">=</span> <span class="st">'travel_time_mins'</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Find nearest nodes to each school and health facility</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>orig_node_id, dist_to_orig <span class="op">=</span> ox.distance.nearest_nodes(</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    Gs, </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>schools.geometry.x, Y<span class="op">=</span>schools.geometry.y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>dest_node_id, dist_to_dest <span class="op">=</span> ox.distance.nearest_nodes(Gs, X<span class="op">=</span>health_fac.geometry.x, Y<span class="op">=</span>health_fac.geometry.y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>shortest_paths <span class="op">=</span> {}</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> source <span class="kw">in</span> orig_node_id:</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> target <span class="kw">in</span> dest_node_id:</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get the actual path</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>            path <span class="op">=</span> nx.shortest_path(Gs, source<span class="op">=</span>source, target<span class="op">=</span>target, weight<span class="op">=</span>weight_attribute)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get the path length</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>            length <span class="op">=</span> nx.shortest_path_length(Gs, source<span class="op">=</span>source, target<span class="op">=</span>target, weight<span class="op">=</span>weight_attribute)</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>            shortest_paths[(source, target)] <span class="op">=</span> {<span class="st">'path'</span>: path, <span class="st">'length'</span>: length}</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> nx.NetworkXNoPath:</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>          <span class="co"># build dictionary with shortest routes</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>            shortest_paths[(source, target)] <span class="op">=</span> {<span class="st">'path'</span>: <span class="va">None</span>, <span class="st">'length'</span>: <span class="bu">float</span>(<span class="st">'inf'</span>)}</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique school nodes:"</span>, <span class="bu">len</span>(<span class="bu">set</span>(orig_node_id)))</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique facility nodes:"</span>, <span class="bu">len</span>(<span class="bu">set</span>(dest_node_id)))</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Snap distances (schools):"</span>, dist_to_orig.<span class="bu">min</span>(), dist_to_orig.<span class="bu">max</span>())</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Snap distances (facilities):"</span>, dist_to_dest.<span class="bu">min</span>(), dist_to_dest.<span class="bu">max</span>())</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unique school nodes: 224
+Unique facility nodes: 153
+Snap distances (schools): 1.0962485485910776 116.9630130515727
+Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
-<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:435}}" data-outputid="788dc2bc-b9e1-415f-b9d7-fbfefc90ac28" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the travel time from each school to the nearset health facility - darker dots are closer to a health facility, red dots are health facilities</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># construct geodataframe</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>geometry <span class="op">=</span> gpd.points_from_xy(nearest_df1[<span class="st">'longitude'</span>], nearest_df1[<span class="st">'latitude'</span>])</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>nearest_gdf <span class="op">=</span> gpd.GeoDataFrame(nearest_df1, geometry<span class="op">=</span>geometry, crs<span class="op">=</span><span class="st">'EPSG:4326'</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>edges_plot <span class="op">=</span> edges.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>health_plot <span class="op">=</span> health_fac.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with length column for travel time</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>edges.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'grey'</span>, alpha<span class="op">=</span><span class="fl">.1</span>, zorder<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>health_fac.plot(marker<span class="op">=</span><span class="st">'+'</span>, color<span class="op">=</span><span class="st">'red'</span>, legend<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">5</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>nearest_gdf.plot(column<span class="op">=</span><span class="st">'length'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>, legend<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">25</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Time from school to nearest health facility"</span>)</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(bbox_3857[<span class="dv">0</span>], bbox_3857[<span class="dv">2</span>])</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(bbox_3857[<span class="dv">1</span>], bbox_3857[<span class="dv">3</span>]  )</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:478}}" data-outputid="f99cc26a-03e3-46eb-898e-8f492d513971" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of shortest paths between every school and health facility and drop school/health facility combinations that aren't the closest</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># build dataframe</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(shortest_paths).T</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'level_0'</span>: <span class="st">'school_node'</span>, <span class="st">'level_1'</span>: <span class="st">'health_facility_node'</span>})</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace([np.inf, <span class="op">-</span>np.inf], np.nan)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sort by length and keep only the shortest routes for each school</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(by<span class="op">=</span>[<span class="st">'school_node'</span>, <span class="st">'length'</span>], ascending<span class="op">=</span>[<span class="va">True</span>, <span class="va">True</span>])</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'school_node'</span>], keep<span class="op">=</span><span class="st">'first'</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">school_node</th>
+<th data-quarto-table-cell-role="th">health_facility_node</th>
+<th data-quarto-table-cell-role="th">path</th>
+<th data-quarto-table-cell-role="th">length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">33384</th>
+<td>83</td>
+<td>30027</td>
+<td>[83, 84, 124, 160, 13322, 47675, 42536, 13314,...</td>
+<td>18.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">624</th>
+<td>116</td>
+<td>116</td>
+<td>[116]</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1057</th>
+<td>221</td>
+<td>15747</td>
+<td>[221, 222, 3836, 3837, 15788, 15747]</td>
+<td>5.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17962</th>
+<td>643</td>
+<td>183</td>
+<td>[643, 17917, 5788, 661, 5793, 13140, 183]</td>
+<td>6.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28450</th>
+<td>712</td>
+<td>712</td>
+<td>[712]</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-outputid="311e34d6-c523-4667-d0e0-c1965087e874" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge nearest node ID back to schools and health facitility geodataframes</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set node ids</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">'node_id'</span>] <span class="op">=</span> orig_node_id</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>health_fac[<span class="st">'node_id'</span>] <span class="op">=</span> dest_node_id</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get only columns needed for merge</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>school_merge <span class="op">=</span> schools[[<span class="st">'node_id'</span>, <span class="st">'name'</span>,<span class="st">'latitude'</span>,<span class="st">'longitude'</span>]]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>health_merge <span class="op">=</span> health_fac[[<span class="st">'node_id'</span>, <span class="st">'facility_name'</span>]]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># merge nearest routes with school and health facility information</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>nearest_df <span class="op">=</span> df.merge(school_merge, left_on<span class="op">=</span><span class="st">'school_node'</span>, right_on<span class="op">=</span><span class="st">'node_id'</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>nearest_df <span class="op">=</span> nearest_df.merge(health_merge, left_on<span class="op">=</span><span class="st">'health_facility_node'</span>, right_on<span class="op">=</span><span class="st">'node_id'</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co"># drop duplicates</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>nearest_df1 <span class="op">=</span> nearest_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'school_node'</span>, <span class="st">'length'</span>])</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>nearest_df1.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">school_node</th>
+<th data-quarto-table-cell-role="th">health_facility_node</th>
+<th data-quarto-table-cell-role="th">path</th>
+<th data-quarto-table-cell-role="th">length</th>
+<th data-quarto-table-cell-role="th">node_id_x</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">node_id_y</th>
+<th data-quarto-table-cell-role="th">facility_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>83</td>
+<td>30027</td>
+<td>[83, 84, 124, 160, 13322, 47675, 42536, 13314,...</td>
+<td>18.0</td>
+<td>83</td>
+<td>Prime Achievers Academy</td>
+<td>740135.670587</td>
+<td>374852.800503</td>
+<td>30027</td>
+<td>Ikosi Isheri Mutual Health Plan</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>116</td>
+<td>116</td>
+<td>[116]</td>
+<td>0.0</td>
+<td>116</td>
+<td>Md Nursery And Primary School</td>
+<td>739988.537463</td>
+<td>373322.421393</td>
+<td>116</td>
+<td>The Brighthope Hospital Specialist</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>221</td>
+<td>15747</td>
+<td>[221, 222, 3836, 3837, 15788, 15747]</td>
+<td>5.0</td>
+<td>221</td>
+<td>Anifowoshe Primary School Ikeja</td>
+<td>736429.645181</td>
+<td>371129.163511</td>
+<td>15747</td>
+<td>God'S Love Hospital</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>643</td>
+<td>183</td>
+<td>[643, 17917, 5788, 661, 5793, 13140, 183]</td>
+<td>6.0</td>
+<td>643</td>
+<td>Eden Montessori School</td>
+<td>739945.318972</td>
+<td>374112.520483</td>
+<td>183</td>
+<td>Amazing Grace Medical Center</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>712</td>
+<td>712</td>
+<td>[712]</td>
+<td>0.0</td>
+<td>712</td>
+<td>Stepping Stone Montessori</td>
+<td>736576.783257</td>
+<td>373368.577763</td>
+<td>712</td>
+<td>Ageless Physio Clinic</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:622}}" data-outputid="4da1f0e0-1e4b-45f5-a9a7-41d95a10677b" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize all nearest routes</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.colors <span class="im">as</span> mcolors</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># drop routes with nans</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>nearest_df1 <span class="op">=</span> nearest_df1.dropna(subset<span class="op">=</span>[<span class="st">'path'</span>])</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to list</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>routes <span class="op">=</span> nearest_df1[<span class="st">'path'</span>].tolist()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># set route colors</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>num_paths <span class="op">=</span> <span class="bu">len</span>(routes)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>color_pool <span class="op">=</span> <span class="bu">list</span>(mcolors.CSS4_COLORS.values()) <span class="co"># 148+ colors</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>path_colors <span class="op">=</span> random.choices(color_pool, k<span class="op">=</span>num_paths)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot map</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:3857"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>xmin, ymin <span class="op">=</span> transformer.transform(<span class="fl">3.328171</span>, <span class="fl">6.582383</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>xmax, ymax <span class="op">=</span> transformer.transform(<span class="fl">3.383102</span>, <span class="fl">6.633909</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>bbox_3857 <span class="op">=</span> (xmin, ymin, xmax, ymax)</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> ox.plot_graph_routes(Gs, routes,route_colors<span class="op">=</span>path_colors, route_linewidth<span class="op">=</span><span class="dv">6</span>, node_size<span class="op">=</span><span class="dv">0</span>, bbox<span class="op">=</span>bbox_3857)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-23-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="api_nga_network_files/figure-html/cell-23-output-1.png" width="960" height="908" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="dad51c60-4248-4487-cf30-8f992695ae78" data-execute="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore a route interactively</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select school to view</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>nearest_df1_s <span class="op">=</span> nearest_df1[nearest_df1[<span class="st">'name'</span>] <span class="op">==</span> <span class="st">'Saint Joseph Secondary School'</span>]</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>route_edges <span class="op">=</span> ox.routing.route_to_gdf(Gs, nearest_df1_s.iloc[<span class="dv">0</span>].path, weight<span class="op">=</span><span class="st">'length'</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># map facilities, roads, and routes</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> edges.explore(color<span class="op">=</span><span class="st">"black"</span>, tiles<span class="op">=</span><span class="st">"cartodbdarkmatter"</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> route_edges.explore(m<span class="op">=</span>m, color<span class="op">=</span><span class="st">"yellow"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> schools.explore(m<span class="op">=</span>m, color <span class="op">=</span> <span class="st">"blue"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> health_fac.explore(m<span class="op">=</span>m, color <span class="op">=</span> <span class="st">"red"</span>, style_kwds<span class="op">=</span>{<span class="st">"weight"</span>: <span class="dv">5</span>})</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># add the Esri World Imagery tile layer to interactive map</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>folium.TileLayer(</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="sc">{z}</span><span class="st">/</span><span class="sc">{y}</span><span class="st">/</span><span class="sc">{x}</span><span class="st">'</span>,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">'Esri'</span>,</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Esri Satellite'</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    control<span class="op">=</span><span class="va">True</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># add a layer control to toggle between tile layers</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:435}}" data-outputid="788dc2bc-b9e1-415f-b9d7-fbfefc90ac28" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the travel time from each school to the nearset health facility - darker dots are closer to a health facility, red dots are health facilities</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># construct geodataframe</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>geometry <span class="op">=</span> gpd.points_from_xy(nearest_df1[<span class="st">'longitude'</span>], nearest_df1[<span class="st">'latitude'</span>])</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>nearest_gdf <span class="op">=</span> gpd.GeoDataFrame(nearest_df1, geometry<span class="op">=</span>geometry, crs<span class="op">=</span><span class="st">'EPSG:4326'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>edges_plot <span class="op">=</span> edges.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>health_plot <span class="op">=</span> health_fac.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with length column for travel time</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>edges.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'grey'</span>, alpha<span class="op">=</span><span class="fl">.1</span>, zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>health_fac.plot(marker<span class="op">=</span><span class="st">'+'</span>, color<span class="op">=</span><span class="st">'red'</span>, legend<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">5</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>nearest_gdf.plot(column<span class="op">=</span><span class="st">'length'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>, legend<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">25</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Time from school to nearest health facility"</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(bbox_3857[<span class="dv">0</span>], bbox_3857[<span class="dv">2</span>])</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(bbox_3857[<span class="dv">1</span>], bbox_3857[<span class="dv">3</span>]  )</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="api_nga_network_files/figure-html/cell-25-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="api_nga_network_files/figure-html/cell-25-output-1.png" width="688" height="620" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-27" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#export notebook to html </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>jupyter nbconvert <span class="op">--</span>to html api_nga_network.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1216,9 +2270,41 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -3,11 +3,11 @@ project:
   output-dir: docs 
 
 execute:
-  enabled: false
-  # freeze: auto
-  # echo: true
-  # warning: false
-  # message: false
+  #enabled: false
+  freeze: auto
+  echo: true
+  warning: false
+  message: false
   
 
 website: 
