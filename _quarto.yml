@@ -116,6 +116,10 @@ format:
       width: 300px 
     favicon: https://grid3.org/content/themes/grid3/img/logos/favicon.ico 
     include-in-header: google-analytics.html
+    footer: |
+      **(c) 2026 CIESIN - Center for International Earth Science Information Network (CIESIN), Columbia University.** <br>
+      [info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu) | [ciesin.columbia.edu](https://ciesin.columbia.edu) | [grid3.org](https://grid3.org)
+
       
 
 
