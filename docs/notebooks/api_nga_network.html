@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>api_nga_network</title>
+<title>GRID3 Nigeria Road Network Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -329,33 +329,41 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#grid3-nigeria-road-network-analysis" id="toc-grid3-nigeria-road-network-analysis" class="nav-link active" data-scroll-target="#grid3-nigeria-road-network-analysis"><span class="header-section-number">1</span> GRID3 Nigeria Road Network Analysis</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">Analysis</a></li><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">GRID3 Nigeria Road Network Analysis</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">Analysis</a></li><li class="breadcrumb-item"><a href="../notebooks/api_nga_network.html">GRID3 Nigeria Road Network Analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">GRID3 Nigeria Road Network Analysis</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="grid3-nigeria-road-network-analysis" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> GRID3 Nigeria Road Network Analysis</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>The CIESIN GRID3 data provides high-resolution geospatial data that can be used to analyze various aspects of infrastructure and services in Nigeria. One practical application of this data is to find optimal routes between schools and health facilities. Below is an example of how to achieve this using Python and relevant libraries.</p>
 <p><a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/api_nga_network.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
-<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8801d447-43f6-4fe0-8c93-cbf59ae29309">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8801d447-43f6-4fe0-8c93-cbf59ae29309">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install neccessary packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install osmnx</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install mapclassify</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install folium</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install momepy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="52">
+<div id="cell-5" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
@@ -373,7 +381,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.colors <span class="im">as</span> mcolors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="11f992b1-4783-4fad-e6ef-fbf4bdb55e9d">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="11f992b1-4783-4fad-e6ef-fbf4bdb55e9d">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install arcgis API for accessing data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check that arcgis is installed </span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install arcgis</span></span>
@@ -382,15 +390,15 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <pre><code>Requirement already satisfied: arcgis in c:\users\jfm2205\appdata\local\esri\conda\envs\jfm-py2\lib\site-packages (2.4.1.1)</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import arcgis</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arcgis.gis <span class="im">import</span> GIS </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymously authenticate arcgis API</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gis <span class="op">=</span> GIS()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="6">
+<div id="cell-9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_nga_roads(bbox, crs, record_limit, url):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.</span></span>
@@ -449,7 +457,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpd.GeoDataFrame.from_features(valid_features, crs<span class="op">=</span>crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="7">
+<div id="cell-10" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in service for NGA roads</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -592,7 +600,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:447}}" data-outputid="bae961d3-046e-4d4a-b171-3a930b50f638" data-execution_count="9">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:447}}" data-outputid="bae961d3-046e-4d4a-b171-3a930b50f638" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot roads</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># size </span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">120</span>)</span>
@@ -608,7 +616,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6a317c0d-4167-4991-84eb-b975c0d59b94" data-execution_count="10">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6a317c0d-4167-4991-84eb-b975c0d59b94" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> gdf.copy()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>exploded_road_gdf <span class="op">=</span> exploded_road_gdf.set_crs(epsg<span class="op">=</span><span class="dv">4326</span>, allow_override<span class="op">=</span><span class="va">True</span>)</span>
@@ -806,7 +814,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="12">
+<div id="cell-13" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check simplification group</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">'simplification_group'</span>].value_counts()</span>
@@ -827,7 +835,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 Name: count, Length: 98, dtype: Int64</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:830}}" data-outputid="1984d517-ec3c-41f3-9cb9-54bb07b0ac5f" data-execution_count="18">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:830}}" data-outputid="1984d517-ec3c-41f3-9cb9-54bb07b0ac5f" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">120</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>edges.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"gray"</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
@@ -842,7 +850,7 @@ Name: count, Length: 98, dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:602}}" data-outputid="ff69bd51-dd38-4270-d2f6-b4eed621fc63" data-execution_count="19">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:602}}" data-outputid="ff69bd51-dd38-4270-d2f6-b4eed621fc63" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate time to traverse a road segment in minutes using the speed estimate and length</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>edges[<span class="st">"travel_time_mins"</span>] <span class="op">=</span> ((edges[<span class="st">"length_meters"</span>]<span class="op">/</span><span class="dv">1000</span>) <span class="op">/</span> (edges[<span class="st">"speed_estimate"</span>])) <span class="op">*</span> <span class="dv">60</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1011,7 +1019,7 @@ Name: count, Length: 98, dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:759}}" data-outputid="ef043eb0-2a8f-4c1d-f4bb-3c83993b9ab4" data-execution_count="42">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:759}}" data-outputid="ef043eb0-2a8f-4c1d-f4bb-3c83993b9ab4" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1060,7 +1068,7 @@ Name: count, Length: 98, dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bf091e16-3dc8-4256-dbe6-83f4da6efc1f" data-execution_count="43">
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bf091e16-3dc8-4256-dbe6-83f4da6efc1f" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Geocode an origin and destination address</span></span>
@@ -1116,7 +1124,7 @@ Origin node-id: 15790 and distance: 69.41404267339831 meters.
 Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:670}}" data-outputid="c43040d4-5d60-4571-e1a9-59822ffd2794" data-execution_count="44">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:670}}" data-outputid="c43040d4-5d60-4571-e1a9-59822ffd2794" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shortest path based on distance</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> ox.plot_graph_route(Gs, path, figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>), dpi<span class="op">=</span><span class="dv">120</span>  )</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1133,7 +1141,7 @@ Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="f0c7553e-ab04-4a5a-f62e-2b5faf564436" data-execute="false">
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="f0c7553e-ab04-4a5a-f62e-2b5faf564436" data-execute="false">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore graph edges and route together in a single map</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>route_edges <span class="op">=</span> ox.routing.route_to_gdf(Gs, path, weight<span class="op">=</span><span class="st">'length'</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1153,7 +1161,7 @@ Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:516}}" data-outputid="886fcbd0-ef41-48d5-cad2-6321d451c181" data-execution_count="45">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:516}}" data-outputid="886fcbd0-ef41-48d5-cad2-6321d451c181" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria health facilities layer</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_health_facilities_v2_0/FeatureServer/0/query"</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> </span>
@@ -1331,7 +1339,7 @@ Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:550}}" data-outputid="a1e9a06b-eb20-499d-8e48-b636d5ff0282" data-execution_count="46">
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:550}}" data-outputid="a1e9a06b-eb20-499d-8e48-b636d5ff0282" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Nigeria schools layer</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>layer_url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/Schools_in_Nigeria/FeatureServer/0/query"</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># feature_layer = FeatureLayer(layer_url)</span></span>
@@ -1507,7 +1515,7 @@ Destination node-id: 30133 and distance: 49.45782604997911 meters.</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="d06fe49e-fc14-4fad-c985-b879b22332ef" data-execution_count="50">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="d06fe49e-fc14-4fad-c985-b879b22332ef" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set same crs as graph</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> schools.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>health_fac <span class="op">=</span> health_fac.to_crs(Gs.graph[<span class="st">"crs"</span>])</span>
@@ -1557,7 +1565,7 @@ Snap distances (schools): 1.0962485485910776 116.9630130515727
 Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:478}}" data-outputid="f99cc26a-03e3-46eb-898e-8f492d513971" data-execution_count="53">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:478}}" data-outputid="f99cc26a-03e3-46eb-898e-8f492d513971" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of shortest paths between every school and health facility and drop school/health facility combinations that aren't the closest</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># build dataframe</span></span>
@@ -1626,7 +1634,7 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-outputid="311e34d6-c523-4667-d0e0-c1965087e874" data-execution_count="54">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:545}}" data-outputid="311e34d6-c523-4667-d0e0-c1965087e874" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge nearest node ID back to schools and health facitility geodataframes</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set node ids</span></span>
@@ -1736,7 +1744,7 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:622}}" data-outputid="4da1f0e0-1e4b-45f5-a9a7-41d95a10677b" data-execution_count="55">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:622}}" data-outputid="4da1f0e0-1e4b-45f5-a9a7-41d95a10677b" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize all nearest routes</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># drop routes with nans</span></span>
@@ -1770,7 +1778,7 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="dad51c60-4248-4487-cf30-8f992695ae78" data-execute="false">
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:821}}" data-outputid="dad51c60-4248-4487-cf30-8f992695ae78" data-execute="false">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore a route interactively</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select school to view</span></span>
@@ -1796,7 +1804,7 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 <span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
 <span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:435}}" data-outputid="788dc2bc-b9e1-415f-b9d7-fbfefc90ac28" data-execution_count="56">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:435}}" data-outputid="788dc2bc-b9e1-415f-b9d7-fbfefc90ac28" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the travel time from each school to the nearset health facility - darker dots are closer to a health facility, red dots are health facilities</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># construct geodataframe</span></span>
@@ -1826,7 +1834,6 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -2230,7 +2237,7 @@ Snap distances (facilities): 0.0 118.8161232238598</code></pre>
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/ciesin/GRID3_dataUserGuide/blob/main/notebooks/api_nga_network.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
