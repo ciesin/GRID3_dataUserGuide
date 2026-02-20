@@ -29,12 +29,12 @@ website:
         href: index.qmd
 
       - text: "Data Access" 
-        menu: 
-          - text: "Notebook 1" 
-            href: notebooks/nb1.ipynb
+        menu:
 
           - text: "User Guide Template"
             href: notebooks/user_guide_template.qmd
+          - text: "Friction Surface by LGA"
+            href: notebooks/accessing_friction_surface_by_lga.qmd
 
       - text: "Analysis"
         menu:      
@@ -72,10 +72,9 @@ website:
           - index.qmd
 
       - section: "Data Access"
-        contents:
-          - notebooks/nb1.ipynb
+        contents: 
           - notebooks/user_guide_template.qmd
-          # - notebooks/catalog-metadata.ipynb
+          - notebooks/accessing_friction_surface_by_lga.qmd
 
       - section: "Analysis"
         contents:

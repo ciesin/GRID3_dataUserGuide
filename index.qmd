@@ -59,16 +59,17 @@ These notebooks walk through:
 
 
 ::: {.grid}
-::: {.g-col-4}
-### 📡 Data Access
-Query Feature Services, download datasets, and work with APIs.
-
-[Get started →](notebooks/nb1.ipynb)
+::: {.g-col-4} 
 
 ### 📚 User Guide Template
 A template for creating GRID3 data user guides.
 
 [View the template →](notebooks/user_guide_template.qmd)
+
+### 🛣️ Friction Surface by LGA
+Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
+
+[View the guide →](notebooks/accessing_friction_surface_by_lga.qmd)
 
 :::
 
