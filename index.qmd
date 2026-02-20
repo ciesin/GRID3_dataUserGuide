@@ -69,7 +69,7 @@ A template for creating GRID3 data user guides.
 ### 🛣️ Friction Surface by LGA
 Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
 
-[View the guide →](notebooks/accessing_friction_surface_by_lga.qmd)
+[View the guide →](notebooks/accessing_friction_surface_by_LGA.qmd)
 
 :::
 

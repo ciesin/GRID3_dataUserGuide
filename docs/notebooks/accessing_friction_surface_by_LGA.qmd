@@ -1,0 +1,56 @@
+---
+title: "Mapping GRID3 Friction Surfaces by LGA in Nigeria"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+# Mapping GRID3 Friction Surfaces by LGA in Nigeria
+
+## Overview
+
+This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.
+
+<a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/friction_surface_by_lga.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+## Data
+
+The lesson uses:
+
+- GRID3 high-resolution friction surfaces (walking and mixed-mode)
+- Administrative boundaries for Nigerian states and LGAs
+
+Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.
+
+## Workflow (Google Colab)
+
+Implemented in **Google Colab**, the notebook shows how to:
+
+1. Query state and LGA boundaries from ArcGIS FeatureLayers  
+2. Select a state and LGA interactively  
+3. Download and extract GRID3 friction rasters  
+4. Clip the raster to the selected LGA  
+5. Export a GeoTIFF and create publication-ready plots  
+
+Clear helper functions and comments make it easy to adapt for other regions or batch processing.
+
+## Learning Outcomes
+
+By the end, users will be able to:
+
+- Understand GRID3 friction datasets  
+- Extract and crop friction rasters to an LGA  
+- Generate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis  
+
+Common issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.
+
+---
+
+## Run in Google Colab
+
+Open the lesson in Google Colab to execute the code and follow along with the analysis:
+<a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/friction_surface_by_lga.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
