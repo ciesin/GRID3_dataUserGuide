@@ -1,6 +1,9 @@
 ---
 title: "Mapping GRID3 Friction Surfaces by LGA in Nigeria"
-format: html
+format:
+  html:
+    toc: true
+    toc-depth: 2
 ---
 # Mapping GRID3 Friction Surfaces by LGA in Nigeria
 
