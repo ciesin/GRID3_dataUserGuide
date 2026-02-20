@@ -1,11 +1,10 @@
 ---
 title: "Mapping GRID3 Friction Surfaces by LGA in Nigeria"
-format:
-  html:
-    toc: true
-    toc-depth: 2
+output: html_document
+date: "2026-02-20"
+author: "Matthew Walter"
 ---
-# Mapping GRID3 Friction Surfaces by LGA in Nigeria
+# Mapping GRID3 Friction Surfaces by LGA 
 
 ## Overview
 

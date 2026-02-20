@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/user_guide_template.html</loc>
-    <lastmod>2026-02-02T18:17:20.588Z</lastmod>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/friction_surface_by_LGA.html</loc>
+    <lastmod>2026-02-20T19:39:58.367Z</lastmod>
   </url>
   <url>
-    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/api_nga_network.html</loc>
-    <lastmod>2026-02-03T15:18:21.885Z</lastmod>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/user_guide_template.html</loc>
+    <lastmod>2026-02-02T18:17:20.588Z</lastmod>
   </url>
   <url>
     <loc>https://ciesin.github.io/GRID3_dataUserGuide/index.html</loc>
@@ -14,10 +14,10 @@
   </url>
   <url>
     <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/accessing_friction_surface_by_LGA.html</loc>
-    <lastmod>2026-02-20T20:06:55.235Z</lastmod>
+    <lastmod>2026-02-20T20:15:44.130Z</lastmod>
   </url>
   <url>
-    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/friction_surface_by_LGA.html</loc>
-    <lastmod>2026-02-20T20:01:30.925Z</lastmod>
+    <loc>https://ciesin.github.io/GRID3_dataUserGuide/notebooks/api_nga_network.html</loc>
+    <lastmod>2026-02-03T15:18:21.885Z</lastmod>
   </url>
 </urlset>

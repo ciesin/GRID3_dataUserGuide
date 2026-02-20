@@ -1,6 +1,12 @@
 project:
   type: website
   output-dir: docs 
+  render: 
+  
+    - "*.qmd"
+    
+    - "*.ipynb"
+    - "!notebooks/friction_surface_by_lga.ipynb"
 
 execute:
   #enabled: false
@@ -34,7 +40,7 @@ website:
           - text: "User Guide Template"
             href: notebooks/user_guide_template.qmd
           - text: "Friction Surface by LGA"
-            href: notebooks/accessing_friction_surface_by_LGA.qmd
+            href: notebooks/accessing_friction_surface_by_lga.qmd
 
       - text: "Analysis"
         menu:      
@@ -43,7 +49,7 @@ website:
       - text: "Visualization"
         menu:
           - text: "Visualization 1"
-            href: notebooks/visualization.ipynb
+             
        
 
 
@@ -74,7 +80,7 @@ website:
       - section: "Data Access"
         contents: 
           - notebooks/user_guide_template.qmd
-          - notebooks/accessing_friction_surface_by_LGA.qmd
+          - notebooks/accessing_friction_surface_by_lga.qmd
 
       - section: "Analysis"
         contents:
