@@ -1,12 +1,12 @@
 project:
   type: website
   output-dir: docs 
-  render: 
-  
+  render:   
     - "*.qmd"
-    
-    - "*.ipynb"
-    - "!notebooks/friction_surface_by_lga.ipynb"
+    - "notebooks/*.ipynb"
+    - "!notebooks/colab/"
+
+
 
 execute:
   #enabled: false
