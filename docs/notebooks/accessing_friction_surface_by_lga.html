@@ -293,11 +293,14 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a></li>
-  <li><a href="#workflow-google-colab" id="toc-workflow-google-colab" class="nav-link" data-scroll-target="#workflow-google-colab"><span class="header-section-number">3</span> Workflow (Google Colab)</a></li>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">4</span> Learning Outcomes</a></li>
-  <li><a href="#run-in-google-colab" id="toc-run-in-google-colab" class="nav-link" data-scroll-target="#run-in-google-colab"><span class="header-section-number">5</span> Run in Google Colab</a></li>
+  <li><a href="#mapping-grid3-friction-surfaces-by-lga-in-nigeria" id="toc-mapping-grid3-friction-surfaces-by-lga-in-nigeria" class="nav-link active" data-scroll-target="#mapping-grid3-friction-surfaces-by-lga-in-nigeria"><span class="header-section-number">1</span> Mapping GRID3 Friction Surfaces by LGA in Nigeria</a>
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">1.1</span> Overview</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.2</span> Data</a></li>
+  <li><a href="#workflow-google-colab" id="toc-workflow-google-colab" class="nav-link" data-scroll-target="#workflow-google-colab"><span class="header-section-number">1.3</span> Workflow (Google Colab)</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">1.4</span> Learning Outcomes</a></li>
+  <li><a href="#run-in-google-colab" id="toc-run-in-google-colab" class="nav-link" data-scroll-target="#run-in-google-colab"><span class="header-section-number">1.5</span> Run in Google Colab</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/edit/main/notebooks/accessing_friction_surface_by_lga.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -323,13 +326,15 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<section id="overview" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<section id="mapping-grid3-friction-surfaces-by-lga-in-nigeria" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Mapping GRID3 Friction Surfaces by LGA in Nigeria</h1>
+<section id="overview" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
 <p>This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.</p>
 <p><a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/friction_surface_by_lga.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 </section>
-<section id="data" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="data"><span class="header-section-number">2</span> Data</h2>
+<section id="data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="data"><span class="header-section-number">1.2</span> Data</h2>
 <p>The lesson uses:</p>
 <ul>
 <li>GRID3 high-resolution friction surfaces (walking and mixed-mode)</li>
@@ -337,8 +342,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </ul>
 <p>Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.</p>
 </section>
-<section id="workflow-google-colab" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="workflow-google-colab"><span class="header-section-number">3</span> Workflow (Google Colab)</h2>
+<section id="workflow-google-colab" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="workflow-google-colab"><span class="header-section-number">1.3</span> Workflow (Google Colab)</h2>
 <p>Implemented in <strong>Google Colab</strong>, the notebook shows how to:</p>
 <ol type="1">
 <li>Query state and LGA boundaries from ArcGIS FeatureLayers<br>
@@ -353,8 +358,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </ol>
 <p>Clear helper functions and comments make it easy to adapt for other regions or batch processing.</p>
 </section>
-<section id="learning-outcomes" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">4</span> Learning Outcomes</h2>
+<section id="learning-outcomes" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">1.4</span> Learning Outcomes</h2>
 <p>By the end, users will be able to:</p>
 <ul>
 <li>Understand GRID3 friction datasets<br>
@@ -366,11 +371,12 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <p>Common issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.</p>
 <hr>
 </section>
-<section id="run-in-google-colab" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="run-in-google-colab"><span class="header-section-number">5</span> Run in Google Colab</h2>
+<section id="run-in-google-colab" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="run-in-google-colab"><span class="header-section-number">1.5</span> Run in Google Colab</h2>
 <p>Open the lesson in Google Colab to execute the code and follow along with the analysis: <a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/friction_surface_by_lga.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
