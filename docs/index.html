@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GRID3 Data Science User Guide</title>
+<title>CIESIN GRID3 Data Science User Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,8 +111,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png" alt="" class="navbar-logo light-content">
-    <img src="https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png" alt="" class="navbar-logo dark-content">
+    <img src="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" alt="" class="navbar-logo light-content">
+    <img src="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -137,6 +137,10 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         <li>
     <a class="dropdown-item" href="./notebooks/accessing_friction_surface_by_lga.html">
  <span class="dropdown-text">Friction Surface by LGA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/Roads_DRN_MD.html">
+ <span class="dropdown-text">GRID3 COD - Roads v1.0 Data Release Notes</span></a>
   </li>  
     </ul>
   </li>
@@ -202,7 +206,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./index.html">GRID3 Data Science User Guide</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./index.html">CIESIN GRID3 Data Science User Guide</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,7 +238,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">GRID3 Data Science User Guide</span></a>
+ <span class="menu-text">CIESIN GRID3 Data Science User Guide</span></a>
   </div>
 </li>
       </ul>
@@ -258,6 +262,12 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   <div class="sidebar-item-container"> 
   <a href="./notebooks/accessing_friction_surface_by_lga.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mapping GRID3 Friction Surfaces by LGA in Nigeria</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/Roads_DRN_MD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GRID3 COD - Roads v1.0 Data Release Notes</span></a>
   </div>
 </li>
       </ul>
@@ -293,11 +303,10 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#welcome-to-the-grid3-data-science-user-guide" id="toc-welcome-to-the-grid3-data-science-user-guide" class="nav-link active" data-scroll-target="#welcome-to-the-grid3-data-science-user-guide"><span class="header-section-number">1</span> Welcome to the GRID3 Data Science User Guide!</a></li>
+  <li><a href="#welcome-to-the-ciesin-grid3-data-science-user-guide" id="toc-welcome-to-the-ciesin-grid3-data-science-user-guide" class="nav-link active" data-scroll-target="#welcome-to-the-ciesin-grid3-data-science-user-guide"><span class="header-section-number">1</span> Welcome to the CIESIN GRID3 Data Science User Guide!</a></li>
   <li><a href="#how-this-guide-is-organized" id="toc-how-this-guide-is-organized" class="nav-link" data-scroll-target="#how-this-guide-is-organized"><span class="header-section-number">2</span> How this guide is organized</a>
   <ul class="collapse">
-  <li><a href="#video-overview" id="toc-video-overview" class="nav-link" data-scroll-target="#video-overview"><span class="header-section-number">2.1</span> Video Overview</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">2.2</span> 🚀 Getting started</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">2.1</span> 🚀 Getting started</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -305,9 +314,9 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./index.html">GRID3 Data Science User Guide</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./index.html">CIESIN GRID3 Data Science User Guide</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">GRID3 Data Science User Guide</h1>
+<h1 class="title">CIESIN GRID3 Data Science User Guide</h1>
 <p class="subtitle lead">Access, analyze, and visualize GRID3 data with Python</p>
 </div>
 
@@ -325,11 +334,10 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<p><a href="https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png" class="img-fluid" width="400"></a></p>
-<section id="welcome-to-the-grid3-data-science-user-guide" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Welcome to the GRID3 Data Science User Guide!</h1>
-<p>This site is a <strong>data science–focused user guide</strong> for working with <strong>GRID3 datasets</strong>. It combines Jupyter notebooks with structured documentationn.</p>
-<p>The guide is intended for: - Data scientists - GIS analysts - Researchers working with spatial data - Python users working with APIs and feature services</p>
+<p><a href="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" class="img-fluid" width="400"></a></p>
+<section id="welcome-to-the-ciesin-grid3-data-science-user-guide" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Welcome to the CIESIN GRID3 Data Science User Guide!</h1>
+<p>This site is a collection of <strong>user guides</strong> for working with <strong>GRID3 datasets</strong>. The CIESIN GRID3 team has developed these datasets to increase ease of access and use of spatial data for researchers, practitioners, and policymakers. This guide provides step-by-step instructions for accessing, analyzing, and visualizing CIESIN GRID3 datasets using a wide range of tools and techniques.</p>
 <hr>
 </section>
 <section id="how-this-guide-is-organized" class="level1" data-number="2">
@@ -343,50 +351,38 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </li>
 <li><strong>Reference</strong> → reusable patterns and examples</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Source of truth:</strong><br>
-All examples are authored as <strong>Jupyter notebooks</strong> and rendered into this site using Quarto.</p>
-</div>
-</div>
-<section id="video-overview" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="video-overview"><span class="header-section-number">2.1</span> Video Overview</h2>
-<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/LM779rqUlvE?si=GRSOQd_pMsEAFzGD" width="600" height="400" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <hr>
-</section>
-<section id="getting-started" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.2</span> 🚀 Getting started</h2>
+<section id="getting-started" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.1</span> 🚀 Getting started</h2>
 <p>If you’re new, start here. This is the full catalog of notebooks in the guide.</p>
 <p>These notebooks walk through: - Querying a GRID3 Feature Service - Converting responses to GeoDataFrames - Visualizing results with Folium - Analyzing road networks with OSMnx - Much more!</p>
 <hr>
 <div class="grid">
 <div class="g-col-4">
-<section id="user-guide-template" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="user-guide-template"><span class="header-section-number">2.2.1</span> 📚 User Guide Template</h3>
+<section id="user-guide-template" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="user-guide-template"><span class="header-section-number">2.1.1</span> 📚 User Guide Template</h3>
 <p>A template for creating GRID3 data user guides.</p>
 <p><a href="./notebooks/user_guide_template.html">View the template →</a></p>
 </section>
-<section id="friction-surface-by-lga" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="friction-surface-by-lga"><span class="header-section-number">2.2.2</span> 🛣️ Friction Surface by LGA</h3>
+<section id="friction-surface-by-lga" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="friction-surface-by-lga"><span class="header-section-number">2.1.2</span> 🛣️ Friction Surface by LGA</h3>
 <p>Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.</p>
 <p><a href="notebooks/accessing_friction_surface_by_LGA.qmd">View the guide →</a></p>
 </section>
 </div>
-<section id="road-network-analysis" class="level3 g-col-4" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="road-network-analysis"><span class="header-section-number">2.2.3</span> 📊 Road Network Analysis</h3>
+<div class="g-col-4">
+<section id="accessing-grid3-road-networks" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="accessing-grid3-road-networks"><span class="header-section-number">2.1.3</span> 🛣️ Accessing GRID3 Road Networks</h3>
+<p>Learn how to access and analyze GRID3 road network datasets using the ArcGIS API for Python. <a href="./notebooks/Roads_DRN_MD.html">GRID3 COD - Roads v1.0 Data Release Notes</a></p>
+</section>
+<section id="road-network-analysis" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="road-network-analysis"><span class="header-section-number">2.1.4</span> 📊 Road Network Analysis</h3>
 <p>Common patterns for spatial and tabular analysis.</p>
 <p><a href="./notebooks/api_nga_network.html">API Nigeria Road Network Analysis</a></p>
 </section>
-<section id="visualization" class="level3 g-col-4" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="visualization"><span class="header-section-number">2.2.4</span> 🗺️ Visualization</h3>
+</div>
+<section id="visualization" class="level3 g-col-4" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="visualization"><span class="header-section-number">2.1.5</span> 🗺️ Visualization</h3>
 <p>Create interactive and static maps with Folium and GeoPandas.</p>
 <p><a href="notebooks/visualization.ipynb">View mapping guides →</a></p>
 </section>

@@ -1,43 +1,31 @@
 ---
+title: "GRID3 COD - Roads v1.0 Data Release Notes"
+format:
+  html:
+    toc: true
+    number-sections: true
 ---
----
+ 
 
-CIESIN LOGO
+| Field | Value |
+|---|---|
+| Name of the dataset | GRID3 COD - Roads v1.0 |
+| Name of the file | GRID3_COD_roads_v1_0.gpkg |
+| Date of data release | January 08, 2026 |
+| File format | OGC Geopackage |
+| Dataset version | v1.0 |
+| Abstract | This document outlines the methodology and data sources used to produce the GRID3 COD - Roads v1.0 dataset. The spatial dataset consists of road and path locations in the Democratic Republic of the Congo. |
+| Dataset citation | Center for Integrated Earth System Information (CIESIN), Columbia University. 2026. *GRID3 COD - Roads v1.0*. New York: Columbia University. <https://doi.org/10.7916/00gb-e164>. Accessed \<DAY MONTH YEAR\>. |
+| Terms of use | Users are free to download, store, access, use, copy, adapt, transform, alter, arrange, build upon, distribute and transmit this work and any derivative works. Attribution of the source must be provided, and further distribution of this work or derived work must maintain the same terms of data use and license as set forth in this Terms of Use. Copyright 2026. The Trustees of Columbia University in the City of New York. |
+| Data license | The data and accompanying document are licensed under a Creative Commons Attribution-ShareAlike 4.0 International, CC BY-SA 4.0 (<https://creativecommons.org/licenses/by-sa/4.0/>) and specified in legal code (<https://creativecommons.org/licenses/by-sa/4.0/legalcode>). |
+| Contacts and data queries | The authors of this dataset appreciate feedback regarding the data, including suggestions, discovery of errors, difficulties in using the data, and format preferences. For dataset-related questions, please send an email to: **info@ciesin.columbia.edu** |
 
-# Data Release Notes
 
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Name of the dataset       | GRID3 COD - Roads v1.0                                                                                                                                                                                                                                                                                                                                                                                                                 |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Name of the file          | GRID3_COD_roads_v1_0.gpkg                                                                                                                                                                                                                                                                                                                                                                                                              |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Date of data release      | January 08, 2026                                                                                                                                                                                                                                                                                                                                                                                                                       |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| File format               | OGC Geopackage                                                                                                                                                                                                                                                                                                                                                                                                                         |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Dataset version           | v1.0                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Abstract                  | This document outlines the methodology and data sources used to produce the GRID3 COD - Roads v1.0 dataset. The spatial dataset consists of road and path locations in Democratic Republic of the Congo.                                                                                                                                                                                                                               |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Dataset citation          | Center for Integrated Earth System Information (CIESIN), Columbia University. 2026. GRID3 COD - Roads v1.0. New York: Columbia University.\                                                                                                                                                                                                                                                                                            |
-|                           | <https://doi.org/10.7916/00gb-e164>. Accessed <DAY MONTH YEAR>.                                                                                                                                                                                                                                                                                                                                                                        |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Terms of use              | Users are free to download, store, access, use, copy, adapt, transform, alter, arrange, build upon, distribute and transmit this work and any derivative works. Attribution of the source must be provided, and further distribution of this work or derived work must maintain the same terms of data use and license as set forth in this Terms of Use. Copyright 2026. The Trustees of Columbia University in the City of New York. |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Data license              | The data and accompanying document are licensed under a Creative Commons Attribution-ShareAlike 4.0 International, CC BY-SA 4.0 ([https://creativecommons.org/licenses/by-sa/4.0)](https://creativecommons.org/licenses/by-sa/4.0)) and specified in legal code ([https://creativecommons.org/licenses/by-sa/4.0/legalcode).](https://creativecommons.org/licenses/by-sa/4.0/legalcode).)                                              |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Contacts and data queries | The authors of this dataset appreciate feedback regarding the data, including suggestions, discovery of errors, diﬃculties in using the data, and format preferences. For dataset-related questions, please send an email to:                                                                                                                                                                                                          |
-|                           |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|                           | info\@ciesin.columbia.edu                                                                                                                                                                                                                                                                                                                                                                                                              |
-+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-## 
-
-# I. Input datasets
+# Input datasets
 
 Multiple input data were used to create the GRID3 COD - Roads v1.0, see table 1 below.
 
-### Table 1. Data inputs
+### Table. Data inputs
 
 +-------------------------------------------------------------------------------------------------+----------------------------------------------+--------------+-----------------+----------------+
 | Name                                                                                            | Data Type/Format                             | Release Year | Input Data Year | Source Acronym |
@@ -61,9 +49,9 @@ Multiple input data were used to create the GRID3 COD - Roads v1.0, see table 1 
 
 **NEED TO ADD LINKS TO TABLE ENTRIES**
 
-------------------------------------------------------------------------
 
-# II. Methodology
+
+# Methodology
 
 ## Road Data Integration and Cleaning
 
@@ -79,11 +67,11 @@ To create a more connected road network, an additional segment type was derived 
 
 A unique subset of tracks representing travel along water were identified as tracks that overlapped more than 70% with OSM water polygons. While these water tracks do not represent traditional roads, they represent paths which were traveled at least once to visit hard-to-reach settlements within water bodies. Thus, we retained water tracks to connect island settlements to other roads in the dataset. Water tracks are often small and scattered within close proximity to each other so they were cleaned using a 1-km buffer which was dissolved and converted to singlepart features. These buffer features were used to create centerlines which were aligned to other road segments within 200-m (Figure 4). An additional “water_track” classification was created in the class attribute to easily identify these water paths.
 
-------------------------------------------------------------------------
+--- 
 
 INSERT FIGURE 1-4 HERE
 
-------------------------------------------------------------------------
+--- 
 
 ## Deriving Travel Speeds from Field-Collected GPS Tracks
 
@@ -101,7 +89,7 @@ INSERT FIGURE 5,6
 
 ------------------------------------------------------------------------
 
-## Table 2: Road speeds
+## Table: Road speeds
 
 +-----------------+----------------------+------------------------+------------------------+
 | Class           | Travel Mode          | Estimated_speed (km/h) | Estimated_speed_method |
@@ -141,47 +129,33 @@ INSERT FIGURE 5,6
 
 ------------------------------------------------------------------------
 
-# III. Dataset Description
+# Dataset Description
 
 The GRID3 COD - Roads v1.0 dataset is a spatial data layer in OGC Geopackage format. The metadata file is included in xml format. The codebook is shown below.
 
-## Table 3: Codebook
 
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| column_name           | column_type          | Description                                                                                                                                                                                                   |
-+=======================+======================+===============================================================================================================================================================================================================+
-| grid3_id              | text                 | A unique feature ID                                                                                                                                                                                           |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| gers                  | text                 | Overture's Global Entity Reference System (GERS) ID assigned to each Overture road segment.                                                                                                                   |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| country               | text                 | Country name                                                                                                                                                                                                  |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| iso                   | text                 | Country three letter ISO code                                                                                                                                                                                 |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| source_id             | text                 | Unique identifier referring to each specific data input. The source_id allows users to link each data record with the corresponding source reference in the Data Sources table (included as a separate file). |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| class                 | text                 | Captures the kind of road and its position in the road network hierarchy.                                                                                                                                     |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| speed_estimate        | numeric              | Estimated travel speed for this segment of road                                                                                                                                                               |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| speed_estimate_method | text                 | GPS: max speeds from GPS tracks collected during field work : literature review: speed estimates derived from literature review of travel times                                                               |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| road_surface          | text                 | Defines the surface material on a road such as paved, asphalt, or unpaved.                                                                                                                                    |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| names                 | text                 | Names of the road segment.                                                                                                                                                                                    |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| subclass              | text                 | Specifies the usage of a length of road.                                                                                                                                                                      |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| speed_limit           | numeric              | Defines the speed limit of the road segment.                                                                                                                                                                  |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| date                  | text                 | Year of data collection or last edit/modification                                                                                                                                                             |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| source_acronym        | text                 | Source of the geometry for the road segment. Acronyms of the organizations, institutions or programs who were involved in the creation of the data input.                                                     |
-+-----------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Table 3: Codebook
 
-------------------------------------------------------------------------
+| column_name | column_type | Description |
+|---|---|---|
+| grid3_id | text | A unique feature ID |
+| gers | text | Overture's Global Entity Reference System (GERS) ID assigned to each Overture road segment. |
+| country | text | Country name |
+| iso | text | Country three-letter ISO code |
+| source_id | text | Unique identifier referring to each specific data input. The `source_id` allows users to link each data record with the corresponding source reference in the Data Sources table (included as a separate file). |
+| class | text | Captures the kind of road and its position in the road network hierarchy. |
+| speed_estimate | numeric | Estimated travel speed for this segment of road. |
+| speed_estimate_method | text | GPS: max speeds from GPS tracks collected during field work; literature review: speed estimates derived from literature review of travel times. |
+| road_surface | text | Defines the surface material on a road such as paved, asphalt, or unpaved. |
+| names | text | Names of the road segment. |
+| subclass | text | Specifies the usage of a length of road. |
+| speed_limit | numeric | Defines the speed limit of the road segment. |
+| date | text | Year of data collection or last edit/modification. |
+| source_acronym | text | Source of the geometry for the road segment. Acronyms of the organizations, institutions, or programs involved in the creation of the data input. |
 
-# IV. Known Data Limitations and Disclaimer
+---
+
+# Known Data Limitations and Disclaimer
 
 Only minimal topological cleaning was performed during the production of this road dataset. As a result, users should anticipate the presence of gaps between road segments or instances of overlapping geometries. No ground-truthing or independent validation was conducted to verify the accuracy or completeness of the road network.
 
@@ -195,13 +169,13 @@ CIESIN, Columbia University, its co-authors, and their sponsors do not guarantee
 
 ------------------------------------------------------------------------
 
-# V. Acknowledgements
+# Acknowledgements
 
 Funding for the development and dissemination of this dataset was provided by GRID3 Inc under the Gates Foundation’s project INV-044979.
 
 ------------------------------------------------------------------------
 
-# VI. References
+# References
 
 Huerta Munoz, U., & Källestål, C. (2012). Geographical accessibility and spatial coverage modeling of the primary health care network in the Western Province of Rwanda. *International Journal of Health Geographics*, 11(1), 1–11. <https://doi.org/10.1186/1476-072X-11-40/TABLES/2>
 
@@ -213,23 +187,19 @@ OSM. (2025b). Key:highway. <https://wiki.openstreetmap.org/wiki/Key:highway>
 
 Ray, N., & Ebener, S. (2008). AccessMod 3.0: Computing geographic coverage and accessibility to health care services using anisotropic movement of patients. *International Journal of Health Geographics*, 7(1), 1–17. <https://doi.org/10.1186/1476-072X-7-63>
 
-------------------------------------------------------------------------
+---
 
 # Annex 1
 
-## Data Sources Table
+## Data sources table
 
-+----------------------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| source_id            | source_acronym       | Description                                                                                                                              |
-+======================+======================+==========================================================================================================================================+
-| Overture / OSM       | Overture_OSM_001     | Roads from Overture Maps Foundation, overturemaps.org © OpenStreetMap contributors, Overture Maps Foundation, downloaded on October 2025 |
-+----------------------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| CIESIN / Meta        | CIESIN_Meta_002      | Roads from Meta/ Facebook downloaded on 12/01/2023, edited by CIESIN.                                                                    |
-+----------------------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| CIESIN               | CIESIN_001           | Roads from GPS and optimal tracks                                                                                                        |
-+----------------------+----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| source_id | source_acronym | Description |
+|---|---|---|
+| Overture / OSM | Overture_OSM_001 | Roads from Overture Maps Foundation, overturemaps.org © OpenStreetMap contributors, Overture Maps Foundation, downloaded October 2025. |
+| CIESIN / Meta | CIESIN_Meta_002 | Roads from Meta/Facebook downloaded 12/01/2023, edited by CIESIN. |
+| CIESIN | CIESIN_001 | Roads from GPS and optimal tracks. |
 
-------------------------------------------------------------------------
+---
 
 # Accessing and Using the Data
 
@@ -249,20 +219,21 @@ If you would prefer to access the Roads dataset from the command line, you can d
     
 ```
 
-```{python}
-#| eval: false
+```{python} 
 # import arcgis
 from arcgis.gis import GIS 
+import json
+import requests
+import geopandas as gpd
+import matplotlib.pyplot as plt
 ```
 
-```{python}
-#| eval: false
+```{python} 
 # Anonymously authenticate arcgis API
 gis = GIS()
 ```
 
-```{python}
-#| eval: false
+```{python} 
 def fetch_nga_roads(bbox, crs, record_limit, url):
     """
     Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.
@@ -324,8 +295,7 @@ def fetch_nga_roads(bbox, crs, record_limit, url):
 
 The URL that you set here can be found by scrolling down on the dataset landing page until you find the right sidebar that reads "I want to..." One option reads "View API Resources." Once you click here, the webpage provides the link to access the REST Endpoint where you can query the dataset, downloading all or just a subset of the data. In this case, we will set a bounding box.
 
-```{python}
-#| eval: false
+```{python} 
 # Read in service for NGA roads
 url = "https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"
 
@@ -338,15 +308,14 @@ boundbox =  {
 
 
 
-gdf = fetch_nga_roads(boundbox, crs="EPSG:3857", record_limit=1000, url=url)
+gdf = fetch_nga_roads(boundbox, crs="EPSG:3857", record_limit=500, url=url)
 
 gdf.head()
 ```
 
 Confirm that the Roads look as you expect with a basic plot.
 
-```{python}
-#| eval: false
+```{python} 
 # Plot roads
 # size 
 plt.figure(figsize=(6, 4), dpi=120)

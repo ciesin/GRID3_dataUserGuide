@@ -26,8 +26,7 @@ website:
   
 
   navbar:
-    logo: https://grid3.org/content/themes/grid3/img/logos/GRID3_FullColor.png
-
+    logo: https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png
      
 
     left:
@@ -41,6 +40,8 @@ website:
             href: notebooks/user_guide_template.qmd
           - text: "Friction Surface by LGA"
             href: notebooks/accessing_friction_surface_by_lga.qmd
+          - text: "GRID3 COD - Roads v1.0 Data Release Notes"
+            href: notebooks/Roads_DRN_MD.qmd
 
       - text: "Analysis"
         menu:      
@@ -81,6 +82,7 @@ website:
         contents: 
           - notebooks/user_guide_template.qmd
           - notebooks/accessing_friction_surface_by_lga.qmd
+          - notebooks/Roads_DRN_MD.qmd
 
       - section: "Analysis"
         contents:
