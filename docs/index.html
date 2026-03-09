@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0dd56decf68ff337bf2129f7d0ab3b13.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fa247ec318f2520a6436b5102ec3abae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -337,11 +337,14 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <p><a href="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png" class="img-fluid" width="400"></a></p>
 <section id="welcome-to-the-ciesin-grid3-data-science-user-guide" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Welcome to the CIESIN GRID3 Data Science User Guide!</h1>
-<p>This site is a collection of <strong>user guides</strong> for working with <strong>GRID3 datasets</strong>. The CIESIN GRID3 team has developed these datasets to increase ease of access and use of spatial data for researchers, practitioners, and policymakers. This guide provides step-by-step instructions for accessing, analyzing, and visualizing CIESIN GRID3 datasets using a wide range of tools and techniques.</p>
+<p>This website is a collection of <strong>user guides</strong> demonstrating ways to access, analyze, and visualize CIESIN <strong>GRID3 datasets</strong>!!!</p>
+<p>These guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.</p>
+<p>For more information, please visit the <a href="https://data.grid3.org/">GRID3 Data Catalog</a> and the <a href="https://ciesin.columbia.edu/">CIESIN, Columbia Climate School</a> websites.</p>
 <hr>
 </section>
 <section id="how-this-guide-is-organized" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> How this guide is organized</h1>
+<p>This Data User Guide is organized into four main sections:</p>
 <ul>
 <li><strong>User Guides</strong> → step-by-step notebooks<br>
 </li>
@@ -355,37 +358,45 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <section id="getting-started" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.1</span> 🚀 Getting started</h2>
 <p>If you’re new, start here. This is the full catalog of notebooks in the guide.</p>
-<p>These notebooks walk through: - Querying a GRID3 Feature Service - Converting responses to GeoDataFrames - Visualizing results with Folium - Analyzing road networks with OSMnx - Much more!</p>
-<hr>
-<div class="grid">
-<div class="g-col-4">
+<div class="container-lg">
+<div class="row">
+<div class="column" style="width:30%;">
 <section id="user-guide-template" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="user-guide-template"><span class="header-section-number">2.1.1</span> 📚 User Guide Template</h3>
 <p>A template for creating GRID3 data user guides.</p>
 <p><a href="./notebooks/user_guide_template.html">View the template →</a></p>
 </section>
+</div>
+<div class="column" style="width:30%;">
 <section id="friction-surface-by-lga" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="friction-surface-by-lga"><span class="header-section-number">2.1.2</span> 🛣️ Friction Surface by LGA</h3>
 <p>Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.</p>
 <p><a href="notebooks/accessing_friction_surface_by_LGA.qmd">View the guide →</a></p>
 </section>
 </div>
-<div class="g-col-4">
+<div class="column" style="width:30%;">
 <section id="accessing-grid3-road-networks" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="accessing-grid3-road-networks"><span class="header-section-number">2.1.3</span> 🛣️ Accessing GRID3 Road Networks</h3>
 <p>Learn how to access and analyze GRID3 road network datasets using the ArcGIS API for Python. <a href="./notebooks/Roads_DRN_MD.html">GRID3 COD - Roads v1.0 Data Release Notes</a></p>
 </section>
+</div>
+</div>
+<div class="row">
+<div class="column" style="width:30%;">
 <section id="road-network-analysis" class="level3" data-number="2.1.4">
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="road-network-analysis"><span class="header-section-number">2.1.4</span> 📊 Road Network Analysis</h3>
 <p>Common patterns for spatial and tabular analysis.</p>
 <p><a href="./notebooks/api_nga_network.html">API Nigeria Road Network Analysis</a></p>
 </section>
 </div>
-<section id="visualization" class="level3 g-col-4" data-number="2.1.5">
+<div class="column" style="width:30%;">
+<section id="visualization" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="visualization"><span class="header-section-number">2.1.5</span> 🗺️ Visualization</h3>
 <p>Create interactive and static maps with Folium and GeoPandas.</p>
 <p><a href="notebooks/visualization.ipynb">View mapping guides →</a></p>
 </section>
+</div>
+</div>
 </div>
 
 
@@ -794,7 +805,55 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 CIESIN — Center for International Earth Science Information Network (CIESIN), Columbia University.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:info@ciesin.columbia.edu">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://ciesin.columbia.edu">
+<p>CIESIN</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://data.grid3.org">
+<p>GRID3 Data</p>
+</a>
+  </li>  
+</ul>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ciesin/GRID3_dataUserGuide/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ciesin/GRID3_dataUserGuide">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://ciesin.columbia.edu/grid3">
+      <i class="bi bi-globe" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -56,3 +56,64 @@ pre {
   border-left: 4px solid #2C3E50;
   background-color: #f9fafb;
 }
+
+
+/* footer */
+
+/* ---------- Force footer visible and on top ---------- */
+/* Broad selectors to catch Quarto/footer variants */
+.q-footer,
+.quarto-footer,
+.site-footer,
+footer,
+.page-footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* place normally in flow, but ensure no overlap */
+  position: relative !important;
+  z-index: 9999 !important;
+
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 1.25rem 1rem !important;
+  margin-top: 2rem !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* Make links legible */
+.q-footer a,
+.site-footer a,
+footer a,
+.quarto-footer a {
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+
+/* ---------- Ensure page content doesn't get covered by fixed sidebars/navbars ---------- */
+/* If your site has a fixed/docked sidebar or a fixed navbar, give the page bottom padding */
+body > .page, /* common Quarto page wrapper */
+body > .site, 
+.main, 
+#main, 
+.content {
+  /* increase bottom padding so footer can appear below fixed elements */
+  padding-bottom: 6rem !important;
+}
+
+/* If your theme uses a fixed sidebar with class .sidebar (or nav#sidebar), ensure it doesn't overlap */
+.sidebar,
+nav.sidebar,
+#sidebar,
+.sidebar-wrapper {
+  z-index: 10; /* keep sidebar below the footer z-index */
+}
+
+/* Optional: styling for the footer */
+.site-footer {
+  border-top: 1px solid rgba(0,0,0,0.08) !important;
+  text-align: center !important;
+  font-size: 0.95rem !important;
+}
