@@ -100,15 +100,14 @@ website:
 
   # body-footer: _footer.html
   page-footer:
-    left: "© 2026 CIESIN — Center for Integrated Earth System Information, Columbia University."
-    center:
-      - text: "Contact"
-        href: "mailto:info@ciesin.columbia.edu"
-      - text: "CIESIN"
-        href: "https://ciesin.columbia.edu"
-      - text: "GRID3 Data"
-        href: "https://data.grid3.org"
-    right:  
+    left: 
+      - "© 2026 <a href='https://ciesin.columbia.edu'>CIESIN — Center for Integrated Earth System Information</a>, Columbia University."
+ 
+    right:
+      - icon: envelope-fill
+        href: mailto:info@ciesin.columbia.edu
+      - icon: database-fill
+        href: https://data.grid3.org
       - icon: github
         href: https://github.com/ciesin/GRID3_dataUserGuide 
       - icon: linkedin
