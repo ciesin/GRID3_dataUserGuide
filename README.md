@@ -1,4 +1,16 @@
 # CIESIN GRID3 Data User Guide
-This repository contains a user guide for accessing and utilizing the GRID3 datasets provided by CIESIN. The guide includes instructions on how to access the data via API, examples of data analysis, and best practices for working with the datasets.
 
 ** Repository Under Development **
+
+This repository contains a user guide for accessing and utilizing the CIESIN's GRID3 datasets under different use cases. The guide includes instructions on how to access the data via Python or API; it has examples of data analysis, and best practices for working with the GRID3 datasets.
+
+The Data Use Guide can be accessed by visiting our Data User Guide GitHub io pages: [https://ciesin.github.io/GRID3_dataUserGuide/](https://ciesin.github.io/GRID3_dataUserGuide/).
+
+## Contact and Resources
+
+[📧: info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu) 
+[🌐: https://ciesin.columbia.edu/grid3](https://ciesin.columbia.edu/grid3)
+[📊: https://data.grid3.org](https://data.grid3.org)
+ 
+ 
+
