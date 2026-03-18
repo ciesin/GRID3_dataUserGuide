@@ -22,7 +22,7 @@
 
 /* Navigation bar */
 .navbar {
-  background-color: #b4a18b;
+  background-color: #2d4377;
 }
 
 
@@ -34,7 +34,7 @@ h1, h2{
 
 h1 {
   font-weight: 700;
-  border-bottom: 3px solid #a98b45;
+  border-bottom: 3px solid #2d4377;
   padding-bottom: 0.3em; 
 }
 

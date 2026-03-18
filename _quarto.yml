@@ -26,7 +26,7 @@ website:
   
 
   navbar:
-    logo: https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png
+    logo: images/CIESIN_TransparentBackground_WhiteText.png
      
 
     left:
@@ -55,18 +55,16 @@ website:
 
 
     right:
+      - icon: envelope-fill
+        href: mailto:info@ciesin.columbia.edu
+      - icon: database-fill
+        href: https://data.grid3.org
       - icon: github
-        href: https://github.com/<your-org>/<your-repo>
-      - icon: twitter
-        href: https://twitter.com/grid3_org
+        href: https://github.com/ciesin/GRID3_dataUserGuide 
       - icon: linkedin
-        href: https://www.linkedin.com/company/grid3-org/
-      - icon: facebook
-        href: https://www.facebook.com/grid3org/
-      - icon: youtube
-        href: https://www.youtube.com/@grid3org
+        href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
       - icon: globe
-        href: https://grid3.org
+        href: https://ciesin.columbia.edu/grid3
 
 
 
@@ -138,7 +136,7 @@ format:
       collapse-level: 2
       float: false
       width: 300px 
-    favicon: https://grid3.org/content/themes/grid3/img/logos/favicon.ico 
+    favicon: images/favicon.ico
     include-in-header: google-analytics.html
   
 
