@@ -100,7 +100,7 @@ website:
 
   # body-footer: _footer.html
   page-footer:
-    left: "© 2026 CIESIN — Center for International Earth Science Information Network (CIESIN), Columbia University."
+    left: "© 2026 CIESIN — Center for Integrated Earth System Information, Columbia University."
     center:
       - text: "Contact"
         href: "mailto:info@ciesin.columbia.edu"
