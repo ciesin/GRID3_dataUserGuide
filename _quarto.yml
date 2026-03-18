@@ -22,6 +22,7 @@ website:
   site-url: https://ciesin.github.io/GRID3_dataUserGuide/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
   repo-actions: [edit, issue]
+  favicon: images/favicon.ico
 
   
 
@@ -136,7 +137,7 @@ format:
       collapse-level: 2
       float: false
       width: 300px 
-    favicon: images/favicon.ico
+
     include-in-header: google-analytics.html
   
 
