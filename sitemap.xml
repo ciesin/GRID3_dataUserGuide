@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tiles.ciesin.app/notebooks/api_nga_network.html</loc>
-    <lastmod>2026-03-26T21:08:04.764Z</lastmod>
+    <lastmod>2026-03-26T21:37:11.961Z</lastmod>
   </url>
   <url>
     <loc>https://tiles.ciesin.app/notebooks/visualization-pmtiles.html</loc>
-    <lastmod>2026-03-26T21:08:04.767Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/glossary.html</loc>
-    <lastmod>2026-03-26T21:08:04.767Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/Roads_DRN_MD.html</loc>
-    <lastmod>2026-03-26T21:08:04.755Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/index.html</loc>
-    <lastmod>2026-03-26T21:08:04.754Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/accessing_friction_surface_by_lga.html</loc>
-    <lastmod>2026-03-26T21:08:04.756Z</lastmod>
+    <lastmod>2026-03-26T21:37:11.964Z</lastmod>
   </url>
   <url>
     <loc>https://tiles.ciesin.app/notebooks/user_guide_template.html</loc>
-    <lastmod>2026-03-26T21:08:04.767Z</lastmod>
+    <lastmod>2026-03-26T21:37:11.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/accessing_friction_surface_by_lga.html</loc>
+    <lastmod>2026-03-26T21:37:11.952Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/index.html</loc>
+    <lastmod>2026-03-26T21:37:11.950Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/Roads_DRN_MD.html</loc>
+    <lastmod>2026-03-26T21:37:11.951Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/glossary.html</loc>
+    <lastmod>2026-03-26T21:37:11.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/visualization-pmtiles-intro.html</loc>
+    <lastmod>2026-03-26T21:37:11.964Z</lastmod>
   </url>
   <url>
     <loc>https://tiles.ciesin.app/notebooks/visualization-qgis.html</loc>
-    <lastmod>2026-03-26T21:08:04.767Z</lastmod>
+    <lastmod>2026-03-26T21:37:11.964Z</lastmod>
   </url>
 </urlset>
