@@ -21,38 +21,20 @@ website:
   description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
   site-url: https://ciesin.github.io/GRID3_dataUserGuide/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
-  repo-actions: [edit, issue]
+  # repo-actions: [edit, issue]
   favicon: images/favicon.ico
+  bread-crumbs: false
 
   
 
   navbar:
-    logo: images/CIESIN_TransparentBackground_WhiteText.png
+    logo: images/Columbia_University_Logo-Crown_white.png
+    href: index.qmd
      
 
-    left:
-      - text: "Home"
-        href: index.qmd
-
-      - text: "Data Access" 
-        menu:
-
-          - text: "User Guide Template"
-            href: notebooks/user_guide_template.qmd
-          - text: "Friction Surface by LGA"
-            href: notebooks/accessing_friction_surface_by_lga.qmd
-          - text: "GRID3 COD - Roads v1.0 Data Release Notes"
-            href: notebooks/Roads_DRN_MD.qmd
-
-      - text: "Analysis"
-        menu:      
-          - text: "GRID3 Nigeria Road Network Analysis"
-            href: notebooks/api_nga_network.ipynb
-      - text: "Visualization"
-        menu:
-          - text: "Visualization 1"
-             
-       
+    # left:
+    #   - text: "Home"
+    #     href: index.qmd
 
 
     right:
@@ -79,7 +61,6 @@ website:
 
       - section: "Data Access"
         contents: 
-          - notebooks/user_guide_template.qmd
           - notebooks/accessing_friction_surface_by_lga.qmd
           - notebooks/Roads_DRN_MD.qmd
 
@@ -93,6 +74,12 @@ website:
         contents:
           # - notebooks/api-reference.ipynb
 
+      - section: "Appendix"
+        contents: 
+          - notebooks/user_guide_template.qmd
+          - notebooks/glossary.qmd
+
+
   google-analytics: 
     tracking-id: "G-45WWDMVLWW"
     anonymize-ip: true
@@ -100,7 +87,7 @@ website:
   # body-footer: _footer.html
   page-footer:
     left: 
-      - "© 2026 <a href='https://ciesin.columbia.edu'>CIESIN — Center for Integrated Earth System Information</a>, Columbia University."
+      - "© 2026 <a href='https://ciesin.columbia.edu'>Center for Integrated Earth System Information</a> (CIESIN), Columbia University."
  
     right:
       - icon: envelope-fill
@@ -125,7 +112,7 @@ format:
     toc-depth: 4
     smooth-scroll: true
     code-copy: true
-    number-sections: true
+    number-sections: false
     fig-width: 6
     fig-height: 4
     fig-dpi: 120

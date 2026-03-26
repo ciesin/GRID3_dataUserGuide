@@ -1,18 +1,17 @@
 ---
-title: "CIESIN GRID3 Data Science User Guide"
-subtitle: "Access, analyze, and visualize GRID3 data with Python" 
+title: "Introduction"
+# subtitle: "Access, analyze, and visualize GRID3 data with Python" 
 format:
   html:
-    toc: true
-    toc-depth: 2
+    toc: false
+    toc-depth: 0
 ---
 
 
 ![](https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png){width=400px}
 
-# Welcome to the CIESIN GRID3 Data Science User Guide!
  
-This website is a collection of **user guides** demonstrating ways to access, analyze, and visualize CIESIN **GRID3 datasets**!!!
+This website is a collection of **user guides** demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.
 
 These guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.
  
@@ -25,49 +24,38 @@ For more information, please visit the [GRID3 Data Catalog](https://data.grid3.o
 
 # How this guide is organized
 
-This Data User Guide is organized into four main sections:
+This Data User Guide is organized into three main sections:
 
-- **User Guides** → step-by-step notebooks  
-- **Data Access** → APIs, Feature Services, metadata  
-- **Visualization** → maps, plots, spatial workflows  
-- **Reference** → reusable patterns and examples  
+- **Data Access** → Where to find and access GRID3 datasets, and how to load them into GIS software and Python environments
+- **Analysis** → Tutorials for applying GRID3 datasets to spatial data workflows  
+- **Visualization** → Styling and mapping GRID3 for static and interactive use cases
  
 
 ---
 
-## 🚀 Getting started
-
-If you’re new, start here. This is the full catalog of notebooks in the guide.
+## Getting started
   
-
 
 ::: {.container-lg}
 
 ::: {.row}
 
-::: {.column width="30%"}
+::: {.column width="25%"}
 
-### 📚 User Guide Template
-A template for creating GRID3 data user guides.
 
-[View the template →](notebooks/user_guide_template.qmd)
-
-:::
-
-::: {.column width="30%"}
-
-### 🛣️ Friction Surface by LGA
+### Friction Surface by LGA
 Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
 
 [View the guide →](notebooks/accessing_friction_surface_by_LGA.qmd)
 
 :::
 
-::: {.column width="30%"}
+::: {.column width="25%"}
 
-### 🛣️ Accessing GRID3 Road Networks
+### Accessing GRID3 Road Networks
 Learn how to access and analyze GRID3 road network datasets using the ArcGIS API for Python.
-[GRID3 COD - Roads v1.0 Data Release Notes](notebooks/Roads_DRN_MD.qmd)
+
+[GRID3 COD - Roads v1.0 Data Release Notes →](notebooks/Roads_DRN_MD.qmd)
 
 :::
 
@@ -75,19 +63,19 @@ Learn how to access and analyze GRID3 road network datasets using the ArcGIS API
 
 ::: {.row}
 
-::: {.column width="30%"}
+::: {.column width="25%"}
 
-### 📊 Road Network Analysis
+### Road Network Analysis
 Common patterns for spatial and tabular analysis.
 
-[API Nigeria Road Network Analysis](notebooks/api_nga_network.ipynb)
+[API Nigeria Road Network Analysis →](notebooks/api_nga_network.ipynb)
 
 :::
 
-::: {.column width="30%"}
+::: {.column width="25%"}
 
-### 🗺️ Visualization
-Create interactive and static maps with Folium and GeoPandas.
+### Visualization
+Use GRID3 data to create interactive and static maps.
 
 [View mapping guides →](notebooks/visualization.ipynb)
 
