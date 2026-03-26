@@ -55,7 +55,7 @@ Analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nige
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/visualization-pmtiles.ipynb)
+[{{< placeholder 400 400 format=svg >}}](notebooks/visualization-pmtiles-intro.qmd)
 Use GRID3 data to create an interactive map.
 :::
 
