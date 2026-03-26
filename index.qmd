@@ -5,13 +5,20 @@ format:
   html:
     toc: false
     toc-depth: 0
+    include-in-header:
+      text: |
+        <style>
+        .quarto-title {
+          display: none;
+        }
+        </style>
 ---
 
 
 ![](https://grid3.org/content/uploads/2024/11/CIESIN_TransparentBackground_BlueText.png){width=400px}
 
  
-This website is a collection of **user guides** demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.
+This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.
 
 These guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.
  
@@ -34,59 +41,29 @@ This Data User Guide is organized into three main sections:
 ---
 
 ## Getting started
-  
 
-::: {.container-lg}
+::: {.cards-grid}
 
-::: {.row}
-
-::: {.column width="25%"}
-
-
-### Friction Surface by LGA
+::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/accessing_friction_surface_by_lga.qmd)
 Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
-
-[View the guide →](notebooks/accessing_friction_surface_by_LGA.qmd)
-
 :::
 
-::: {.column width="25%"}
+::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
+Accessing GRID3 Road Networks
+:::
 
-### Accessing GRID3 Road Networks
-Learn how to access and analyze GRID3 road network datasets using the ArcGIS API for Python.
+::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
+Road Network Analysis
+:::
 
-[GRID3 COD - Roads v1.0 Data Release Notes →](notebooks/Roads_DRN_MD.qmd)
-
+::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/visualization-pmtiles.ipynb)
+Use GRID3 data to create an interactive map.
 :::
 
 :::
-
-::: {.row}
-
-::: {.column width="25%"}
-
-### Road Network Analysis
-Common patterns for spatial and tabular analysis.
-
-[API Nigeria Road Network Analysis →](notebooks/api_nga_network.ipynb)
-
-:::
-
-::: {.column width="25%"}
-
-### Visualization
-Use GRID3 data to create interactive and static maps.
-
-[View mapping guides →](notebooks/visualization.ipynb)
-
-::: 
-
-:::
-
-::: 
-
-
-
-
 
  

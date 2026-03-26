@@ -19,7 +19,7 @@ execute:
 website: 
     
   description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
-  site-url: https://ciesin.github.io/GRID3_dataUserGuide/
+  site-url: https://tiles.ciesin.app/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
   # repo-actions: [edit, issue]
   favicon: images/favicon.ico
@@ -33,9 +33,6 @@ website:
      
 
     # left:
-    #   - text: "Home"
-    #     href: index.qmd
-
 
     right:
       - icon: envelope-fill
@@ -54,10 +51,9 @@ website:
   sidebar:
     style: "docked"
     search: true
+    collapse-level: 1
     contents:
-      - section: "Getting Started"
-        contents:
-          - index.qmd
+      - index.qmd
 
       - section: "Data Access"
         contents: 
@@ -72,7 +68,8 @@ website:
 
       - section: "Visualization"
         contents:
-          # - notebooks/api-reference.ipynb
+          - notebooks/visualization-qgis.qmd
+          - notebooks/visualization-pmtiles.qmd
 
       - section: "Appendix"
         contents: 
