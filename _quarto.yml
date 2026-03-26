@@ -69,7 +69,11 @@ website:
       - section: "Visualization"
         contents:
           - notebooks/visualization-qgis.qmd
-          - notebooks/visualization-pmtiles.qmd
+
+          - section: "Visualization with PMTiles"
+            contents: 
+            - notebooks/visualization-pmtiles-intro.qmd
+            - notebooks/visualization-pmtiles.qmd
 
       - section: "Appendix"
         contents: 

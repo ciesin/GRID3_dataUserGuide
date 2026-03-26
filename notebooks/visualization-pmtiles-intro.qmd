@@ -1,5 +1,5 @@
 ---
-title: "Customizing a stylesheet"
+title: "What are vector tiles?"
 output: html_document
 ---
 # Visualization Tutorial Overview

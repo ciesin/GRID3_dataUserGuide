@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Home"
 # subtitle: "Access, analyze, and visualize GRID3 data with Python" 
 format:
   html:
@@ -45,18 +45,13 @@ This Data User Guide is organized into three main sections:
 ::: {.cards-grid}
 
 ::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
+Access GRID3 Road Network data
+:::
+
+::: {.card}
 [{{< placeholder 400 400 format=svg >}}](notebooks/accessing_friction_surface_by_lga.qmd)
-Access and analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
-:::
-
-::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
-Accessing GRID3 Road Networks
-:::
-
-::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
-Road Network Analysis
+Analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
 :::
 
 ::: {.card}
