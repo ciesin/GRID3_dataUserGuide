@@ -201,7 +201,21 @@
     "href": "notebooks/about.html",
     "title": "About",
     "section": "",
-    "text": "Back to top"
+    "text": "Lorem ipsum"
+  },
+  {
+    "objectID": "notebooks/about.html#test",
+    "href": "notebooks/about.html#test",
+    "title": "About",
+    "section": "Test",
+    "text": "Test\nLa la la"
+  },
+  {
+    "objectID": "notebooks/about.html#test-1",
+    "href": "notebooks/about.html#test-1",
+    "title": "About",
+    "section": "Test",
+    "text": "Test\nOk"
   },
   {
     "objectID": "notebooks/appendix/glossary.html",
