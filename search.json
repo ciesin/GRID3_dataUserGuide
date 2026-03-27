@@ -134,6 +134,98 @@
     ]
   },
   {
+    "objectID": "notebooks/contact.html",
+    "href": "notebooks/contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "notebooks/appendix/index.html",
+    "href": "notebooks/appendix/index.html",
+    "title": "Appendix",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Appendix",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/index.html#test",
+    "href": "notebooks/appendix/index.html#test",
+    "title": "Appendix",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Appendix",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "notebooks/analysis/index.html",
+    "href": "notebooks/analysis/index.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "notebooks/analysis/index.html#guides-in-this-section",
+    "href": "notebooks/analysis/index.html#guides-in-this-section",
+    "title": "Analysis",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Home",
+    "section": "Getting started",
+    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nAppendix\nReference materials.\nView appendix →"
+  },
+  {
+    "objectID": "notebooks/about.html",
+    "href": "notebooks/about.html",
+    "title": "About",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "notebooks/appendix/glossary.html",
+    "href": "notebooks/appendix/glossary.html",
+    "title": "Glossary",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Appendix",
+      "Glossary"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/glossary.html#test",
+    "href": "notebooks/appendix/glossary.html#test",
+    "title": "Glossary",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Appendix",
+      "Glossary"
+    ]
+  },
+  {
     "objectID": "notebooks/appendix/user_guide_template.html",
     "href": "notebooks/appendix/user_guide_template.html",
     "title": "Data User Guide Template",
@@ -241,91 +333,6 @@
     "crumbs": [
       "Appendix",
       "Data User Guide Template"
-    ]
-  },
-  {
-    "objectID": "notebooks/appendix/glossary.html",
-    "href": "notebooks/appendix/glossary.html",
-    "title": "Glossary",
-    "section": "",
-    "text": "Test",
-    "crumbs": [
-      "Appendix",
-      "Glossary"
-    ]
-  },
-  {
-    "objectID": "notebooks/appendix/glossary.html#test",
-    "href": "notebooks/appendix/glossary.html#test",
-    "title": "Glossary",
-    "section": "",
-    "text": "Test",
-    "crumbs": [
-      "Appendix",
-      "Glossary"
-    ]
-  },
-  {
-    "objectID": "notebooks/about.html",
-    "href": "notebooks/about.html",
-    "title": "About",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "Home",
-    "section": "Getting started",
-    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nAppendix\nReference materials.\nView appendix →"
-  },
-  {
-    "objectID": "notebooks/analysis/index.html",
-    "href": "notebooks/analysis/index.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/analysis/index.html#guides-in-this-section",
-    "href": "notebooks/analysis/index.html#guides-in-this-section",
-    "title": "Analysis",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/appendix/index.html",
-    "href": "notebooks/appendix/index.html",
-    "title": "Appendix",
-    "section": "",
-    "text": "Test",
-    "crumbs": [
-      "Appendix",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/appendix/index.html#test",
-    "href": "notebooks/appendix/index.html#test",
-    "title": "Appendix",
-    "section": "",
-    "text": "Test",
-    "crumbs": [
-      "Appendix",
-      "Overview"
     ]
   },
   {
