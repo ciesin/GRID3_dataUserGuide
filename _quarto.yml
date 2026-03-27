@@ -165,7 +165,7 @@ format:
     number-sections: false
     fig-width: 6
     fig-height: 4
-    fig-dpi: 120
+    fig-dpi: 300
     fig-alt-text: true
     lightbox: true
     navbar:

@@ -181,7 +181,8 @@ pre, code {
 
 .card {
   position: relative;
-  height: 220px;
+  width: 100%;
+  height: 18rem;
   border-radius: 8px;
   overflow: hidden;
   background-color: #1D4F91;
@@ -200,7 +201,7 @@ pre, code {
   box-shadow: 0 10px 24px rgba(29, 79, 145, 0.28);
 }
 
-/* full-bleed image behind gradient */
+/* full-bleed image — always behind the overlay */
 .card-img {
   position: absolute;
   inset: 0;
@@ -208,9 +209,25 @@ pre, code {
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
 }
 
-/* text overlay — bottom anchor gradient */
+.card > p {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+.card > p > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* text overlay — always above the image */
 .card-overlay {
   position: absolute;
   inset: 0;
@@ -224,6 +241,7 @@ pre, code {
     rgba(8, 20, 45, 0.30) 55%,
     transparent 100%
   );
+  z-index: 2;
 }
 
 .card-overlay h3 {

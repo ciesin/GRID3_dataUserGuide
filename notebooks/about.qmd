@@ -1,4 +1,26 @@
 ---
 title: "About"
-output: html_document
+about:
+  template: jolla
+#   image: profile.jpg
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: Github
+      href: https://github.com
+format: 
+    html:
+        toc: false
 ---
+
+Lorem ipsum
+
+## Test
+
+La la la
+
+## Test
+
+Ok

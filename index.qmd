@@ -37,7 +37,8 @@ For more information, please visit the [GRID3 Data Catalog](https://data.grid3.o
 ::: {.cards-grid}
 
 ::: {.card}
-<!-- img: <img class="card-img" src="images/card-data-access.jpg" alt="Data Access"> -->
+<img class="card-img" src="images/access-preview.jpg" alt="Data Access">
+
 ::: {.card-overlay}
 ### Data Access
 Find, download, and initialize GRID3 datasets.
@@ -47,7 +48,8 @@ Find, download, and initialize GRID3 datasets.
 :::
 
 ::: {.card}
-<!-- img: <img class="card-img" src="images/card-analysis.jpg" alt="Analysis"> -->
+<img class="card-img" src="images/analysis-preview.jpg" alt="Analysis">
+
 ::: {.card-overlay}
 ### Analysis
 Apply GRID3 data to spatial workflows.
@@ -57,7 +59,8 @@ Apply GRID3 data to spatial workflows.
 :::
 
 ::: {.card}
-<!-- img: <img class="card-img" src="images/card-visualization.jpg" alt="Visualization"> -->
+<img class="card-img" src="images/visualization-preview.jpg" alt="Visualization">
+
 ::: {.card-overlay}
 ### Visualization
 Map and style GRID3 data.
@@ -67,7 +70,8 @@ Map and style GRID3 data.
 :::
 
 ::: {.card}
-<!-- img: <img class="card-img" src="images/card-appendix.jpg" alt="Appendix"> -->
+<img class="card-img" src="images/appendix-preview.jpg" alt="Appendix">
+
 ::: {.card-overlay}
 ### Appendix
 Reference materials.
