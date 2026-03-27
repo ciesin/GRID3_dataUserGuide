@@ -3,13 +3,13 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
-    - "notebooks/*.qmd"
-    - "notebooks/data-access/*.qmd"
-    - "notebooks/analysis/*.qmd"
-    - "notebooks/analysis/*.ipynb"
-    - "notebooks/visualization/*.qmd"
-    - "notebooks/appendix/*.qmd"
-    - "!notebooks/analysis/colab/"
+    - "pages/*.qmd"
+    - "pages/data-access/*.qmd"
+    - "pages/analysis/*.qmd"
+    - "pages/analysis/*.ipynb"
+    - "pages/visualization/*.qmd"
+    - "pages/appendix/*.qmd"
+    - "!pages/analysis/colab/"
 
 
 execute:
@@ -46,27 +46,27 @@ website:
       - text: "Guides"
         menu:
           - text: "Data Access"
-            href: notebooks/data-access/index.qmd
+            href: pages/data-access/index.qmd
           - text: "Analysis"
-            href: notebooks/analysis/index.qmd
+            href: pages/analysis/index.qmd
           - text: "Visualization"
-            href: notebooks/visualization/index.qmd
+            href: pages/visualization/index.qmd
       - text: "Appendix"
-        href: notebooks/appendix/index.qmd
+        href: pages/appendix/index.qmd
 
 
     right:
       - icon: envelope-fill
-        href: notebooks/contact.qmd
+        href: pages/contact.qmd
       - text: "About"
-        href: notebooks/about.qmd
+        href: pages/about.qmd
 
 
 
 
   # one named sidebar per section
   # to auto-populate a sidebar from a folder, replace the explicit file list
-  # with the folder path (e.g. "notebooks/visualization/")
+  # with the folder path (e.g. "pages/visualization/")
   # notebook entries sorted by frontmatter "order" property
 
   sidebar:
@@ -78,9 +78,9 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/data-access/index.qmd
-        - notebooks/data-access/Roads_DRN_MD.qmd
-        - notebooks/data-access/accessing_friction_surface_by_lga.qmd
+          href: pages/data-access/index.qmd
+        - pages/data-access/Roads_DRN_MD.qmd
+        - pages/data-access/accessing_friction_surface_by_lga.qmd
 
     - id: analysis
       title: "Analysis"
@@ -89,8 +89,8 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/analysis/index.qmd
-        - notebooks/analysis/api_nga_network.ipynb
+          href: pages/analysis/index.qmd
+        - pages/analysis/api_nga_network.ipynb
 
     - id: visualization
       title: "Visualization"
@@ -99,16 +99,16 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/visualization/index.qmd
+          href: pages/visualization/index.qmd
         - section: "Visualization with QGIS"
           contents:
-          - notebooks/visualization/qgis-intro.qmd
-          - notebooks/visualization/qgis.qmd
+          - pages/visualization/qgis-intro.qmd
+          - pages/visualization/qgis.qmd
         - section: "Creating an interactive webmap"
           contents:
-            - notebooks/visualization/pmtiles-intro.qmd
-            - notebooks/visualization/pmtiles-sources.qmd
-            - notebooks/visualization/pmtiles-style.qmd
+            - pages/visualization/pmtiles-intro.qmd
+            - pages/visualization/pmtiles-sources.qmd
+            - pages/visualization/pmtiles-style.qmd
 
 
     - id: appendix
@@ -118,9 +118,9 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/appendix/index.qmd
-        - notebooks/appendix/glossary.qmd
-        - notebooks/appendix/user_guide_template.qmd
+          href: pages/appendix/index.qmd
+        - pages/appendix/glossary.qmd
+        - pages/appendix/user_guide_template.qmd
 
 
   search:

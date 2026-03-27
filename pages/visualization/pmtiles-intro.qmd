@@ -1,11 +1,11 @@
 ---
-title: "Visualizing GRID3 Data with QGIS"
-order: 1
+title: "What are vector tiles?"
+order: 3
 output: html_document
 ---
 # Visualization Tutorial Overview
 
-<!-- <a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/notebooks/nb1.ipynb">
+<!-- <a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/master/pages/nb1.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a> -->
 

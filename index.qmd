@@ -1,7 +1,7 @@
 ---
 title: "Home"
-# subtitle: "Access, analyze, and visualize GRID3 data with Python"
 sidebar: false
+# title-block-banner: images/CIESIN_TransparentBackground_BlueText.png
 format:
   html:
     page-layout: full
@@ -43,7 +43,7 @@ For more information, please visit the [GRID3 Data Catalog](https://data.grid3.o
 ### Data Access
 Find, download, and initialize GRID3 datasets.
 
-[View guides →](notebooks/data-access/index.qmd){.stretched-link}
+[View guides →](pages/data-access/index.qmd){.stretched-link}
 :::
 :::
 
@@ -54,7 +54,7 @@ Find, download, and initialize GRID3 datasets.
 ### Analysis
 Apply GRID3 data to spatial workflows.
 
-[View guides →](notebooks/analysis/index.qmd){.stretched-link}
+[View guides →](pages/analysis/index.qmd){.stretched-link}
 :::
 :::
 
@@ -65,7 +65,7 @@ Apply GRID3 data to spatial workflows.
 ### Visualization
 Map and style GRID3 data.
 
-[View guides →](notebooks/visualization/index.qmd){.stretched-link}
+[View guides →](pages/visualization/index.qmd){.stretched-link}
 :::
 :::
 
@@ -76,7 +76,7 @@ Map and style GRID3 data.
 ### Appendix
 Reference materials.
 
-[View appendix →](notebooks/appendix/index.qmd){.stretched-link}
+[View appendix →](pages/appendix/index.qmd){.stretched-link}
 :::
 :::
 

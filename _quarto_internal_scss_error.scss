@@ -11438,7 +11438,7 @@ figure .quarto-notebook-link {
 .toc-actions i.bi,
 .quarto-code-links i.bi,
 .quarto-other-links i.bi,
-.quarto-alternate-notebooks i.bi,
+.quarto-alternate-pages i.bi,
 .quarto-alternate-formats i.bi {
   margin-right: 0.4em;
   font-size: $toc-tools-font-size;
@@ -11458,7 +11458,7 @@ figure .quarto-notebook-link {
 .toc-actions i.bi.empty,
 .quarto-code-links i.bi.empty,
 .quarto-other-links i.bi.empty,
-.quarto-alternate-notebooks i.bi.empty,
+.quarto-alternate-pages i.bi.empty,
 .quarto-alternate-formats i.bi.empty {
   padding-left: 1em;
 }
@@ -11497,14 +11497,14 @@ figure .quarto-notebook-link {
 .quarto-alternate-formats,
 .quarto-other-links,
 .quarto-code-links,
-.quarto-alternate-notebooks {
+.quarto-alternate-pages {
   padding-left: 0em;
 }
 .sidebar .toc-actions a,
 .sidebar .quarto-alternate-formats a,
 .sidebar .quarto-other-links a,
 .sidebar .quarto-code-links a,
-.sidebar .quarto-alternate-notebooks a,
+.sidebar .quarto-alternate-pages a,
 .sidebar nav[role="doc-toc"] a {
   text-decoration: none;
 }
@@ -11513,14 +11513,14 @@ figure .quarto-notebook-link {
 .sidebar .quarto-other-links a:hover,
 .sidebar .quarto-code-links a:hover,
 .sidebar .quarto-alternate-formats a:hover,
-.sidebar .quarto-alternate-notebooks a:hover {
+.sidebar .quarto-alternate-pages a:hover {
   color: $link-color;
 }
 
 .sidebar .toc-actions h2,
 .sidebar .quarto-code-links h2,
 .sidebar .quarto-other-links h2,
-.sidebar .quarto-alternate-notebooks h2,
+.sidebar .quarto-alternate-pages h2,
 .sidebar .quarto-alternate-formats h2,
 .sidebar nav[role="doc-toc"] > h2 {
   font-weight: 500;
@@ -11535,7 +11535,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions > h2,
 .sidebar .quarto-code-links > h2,
 .sidebar .quarto-other-links > h2,
-.sidebar .quarto-alternate-notebooks > h2,
+.sidebar .quarto-alternate-pages > h2,
 .sidebar .quarto-alternate-formats > h2 {
   font-size: $toc-tools-font-size;
 }
@@ -11552,7 +11552,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions h2 > ul a,
 .sidebar .quarto-code-links h2 > ul a,
 .sidebar .quarto-other-links h2 > ul a,
-.sidebar .quarto-alternate-notebooks h2 > ul a,
+.sidebar .quarto-alternate-pages h2 > ul a,
 .sidebar .quarto-alternate-formats h2 > ul a {
   border-left: none;
   padding-left: 0.6rem;
@@ -11561,7 +11561,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul a:empty,
 .sidebar .quarto-code-links ul a:empty,
 .sidebar .quarto-other-links ul a:empty,
-.sidebar .quarto-alternate-notebooks ul a:empty,
+.sidebar .quarto-alternate-pages ul a:empty,
 .sidebar .quarto-alternate-formats ul a:empty,
 .sidebar nav[role="doc-toc"] > ul a:empty {
   display: none;
@@ -11570,7 +11570,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul,
 .sidebar .quarto-code-links ul,
 .sidebar .quarto-other-links ul,
-.sidebar .quarto-alternate-notebooks ul,
+.sidebar .quarto-alternate-pages ul,
 .sidebar .quarto-alternate-formats ul {
   padding-left: 0;
   list-style: none;
@@ -11593,7 +11593,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions > ul,
 .sidebar .quarto-code-links > ul,
 .sidebar .quarto-other-links > ul,
-.sidebar .quarto-alternate-notebooks > ul,
+.sidebar .quarto-alternate-pages > ul,
 .sidebar .quarto-alternate-formats > ul {
   font-size: $toc-tools-font-size;
 }
@@ -11605,7 +11605,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul li a,
 .sidebar .quarto-code-links ul li a,
 .sidebar .quarto-other-links ul li a,
-.sidebar .quarto-alternate-notebooks ul li a,
+.sidebar .quarto-alternate-pages ul li a,
 .sidebar .quarto-alternate-formats ul li a,
 .sidebar nav[role="doc-toc"] > ul li a {
   line-height: 1.1rem;
