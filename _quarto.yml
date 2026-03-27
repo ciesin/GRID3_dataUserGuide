@@ -165,7 +165,7 @@ format:
     toc-title: "On this page"
     toccolor: "#1D4F91"
     linkcolor: "#1D4F91"
-    link-external-icon: true
+    link-external-icon: false
     link-external-newwindow: true
     smooth-scroll: true
     code-copy: true
