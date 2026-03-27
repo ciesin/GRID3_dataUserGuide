@@ -71,7 +71,7 @@ Map and style GRID3 data.
 
 ::: {.card-overlay}
 ### Resources
-Reference materials.
+Links and other reference materials.
 
 [View resources →](pages/resources/index.qmd){.stretched-link}
 :::

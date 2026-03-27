@@ -2,25 +2,14 @@
 title: "About"
 about:
   template: jolla
-#   image: profile.jpg
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/ciesin
 format: 
     html:
         toc: false
 ---
-
-Lorem ipsum
-
-## Test
-
-La la la
-
-## Test
-
-Ok

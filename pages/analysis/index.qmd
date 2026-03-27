@@ -4,6 +4,7 @@ subtitle: "Apply GRID3 data to spatial workflows"
 format:
   html:
     toc: false
+    back-to-top-navigation: false
 ---
 
 This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.

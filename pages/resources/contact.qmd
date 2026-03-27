@@ -1,0 +1,24 @@
+---
+title: "Get in touch"
+html:
+    toc: false
+    back-to-top-navigation: false
+    page-layout: full
+
+---
+
+<div id="contact" class="container">
+
+<i class="bi bi-envelope-fill"></i> **Email**
+: [info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu)
+
+<i class="bi bi-globe"></i> **CIESIN Website**
+: [ciesin.columbia.edu](https://ciesin.columbia.edu){target="_blank" rel="noopener"}
+
+<i class="bi bi-database-fill"></i> **GRID3 Project**
+: [grid3.org](https://grid3.org/){target="_blank" rel="noopener"}
+
+<i class="bi bi-linkedin"></i> **LinkedIn**
+: [Center for Integrated Earth System Information](https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/){target="_blank" rel="noopener"}
+
+</div>
