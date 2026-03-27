@@ -56,20 +56,11 @@ website:
 
 
     right:
-      - text: "Contact"
-        menu:
-        - icon: envelope-fill
-          href: mailto:info@ciesin.columbia.edu
-        - icon: database-fill
-          href: https://data.grid3.org
-        - icon: github
-          href: https://github.com/ciesin/GRID3_dataUserGuide
-        - icon: linkedin
-          href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
-        - icon: globe
-          href: https://ciesin.columbia.edu
+      - icon: envelope-fill
+        href: notebooks/contact.qmd
       - text: "About"
         href: notebooks/about.qmd
+
 
 
 
