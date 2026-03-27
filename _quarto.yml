@@ -53,8 +53,6 @@ website:
             href: notebooks/visualization/index.qmd
       - text: "Appendix"
         href: notebooks/appendix/index.qmd
-      - text: "About"
-        href: notebooks/about.qmd
 
 
     right:
@@ -70,6 +68,9 @@ website:
           href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
         - icon: globe
           href: https://ciesin.columbia.edu
+      - text: "About"
+        href: notebooks/about.qmd
+
 
 
   # one named sidebar per section
