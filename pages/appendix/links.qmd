@@ -1,0 +1,23 @@
+---
+title: "Links"
+output: html_document
+order: 3
+format:
+  html:
+    toc: true
+---
+## Data downloads
+
+- [GRID3 on Columbia Academic Commons](https://academiccommons.columbia.edu/search?f%5Bseries_ssim%5D%5B%5D=GRID3&only_path=true)
+- [GRID3 Data Hub](https://data.grid3.org/)
+- [CIESIN STAC Index](https://ciesin.github.io/stac-browser/#/)
+
+## Maps
+
+- [CIESIN Map Tiles (Alpha)](https://tiles.ciesin.app/)
+
+## Other documentation & resources
+
+- [Protomaps vector tile documentation](https://docs.protomaps.com/)
+- [PMTiles data viewer](https://pmtiles.io/)
+- [IPCC Data Distribution Centre](https://ipcc-data.climate.columbia.edu/content/data/)

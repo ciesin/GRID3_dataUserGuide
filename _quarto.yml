@@ -121,8 +121,8 @@ website:
       contents:
         - text: "Overview"
           href: pages/appendix/index.qmd
-        - text: "STAC Index"
-          href: https://ciesin.github.io/stac-browser/#/grid3-catalog/catalog.json
+        - text: "Links"
+          href: pages/appendix/links.qmd
         - pages/appendix/glossary.qmd
         - pages/appendix/user_guide_template.qmd
 

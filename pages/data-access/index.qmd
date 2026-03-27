@@ -17,3 +17,7 @@ This section covers how to locate GRID3 datasets, access them programmatically o
 
 - [Mapping GRID3 Friction Surfaces by LGA](accessing_friction_surface_by_lga.qmd)
   Access GRID3 raster friction surface and administrative boundary data for Nigeria.
+
+---
+
+[Click here to download data](../appendix/links.qmd){.btn .btn-primary}
