@@ -1,6 +1,6 @@
 ---
-title: "Visualizing GRID3 Data with QGIS"
-order: 1
+title: "Publishing your map online"
+order: 4
 output: html_document
 ---
 # Visualization Tutorial Overview

@@ -28,9 +28,6 @@ These guides support CIESIN’s effort to strengthen GRID3 sustainability by mak
 
 For more information, please visit the [GRID3 Data Catalog](https://data.grid3.org/) and the [CIESIN, Columbia Climate School](https://ciesin.columbia.edu/) websites.
 
- 
-
----
 
 ## Getting started
 

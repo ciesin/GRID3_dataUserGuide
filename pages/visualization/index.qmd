@@ -9,12 +9,11 @@ format:
 
 This section covers methods for rendering GRID3 spatial data — from desktop GIS styling in QGIS to web-based interactive maps using PMTiles and Leaflet.
 
----
 
 ## Guides in this section
 
-- [Visualizing GRID3 Data with QGIS](qgis-intro.qmd)
+- [Visualizing GRID3 Data with QGIS](qgis/qgis.qmd)
   Design a static map with GRID3 layers in QGIS.
 
-- [Creating a dynamic webmap](pmtiles-intro.qmd)
+- [Creating a dynamic webmap](pmtiles/intro.qmd)
   Build a browser-based interactive mapsusing GRID3 PMTiles data.

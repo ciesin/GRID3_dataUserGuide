@@ -1,5 +1,5 @@
 ---
-title: "What are vector tiles?"
+title: "Customizing a stylesheet"
 order: 3
 output: html_document
 ---

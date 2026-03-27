@@ -80,6 +80,15 @@ h2 {
   font-size: 1rem;
 }
 
+/* md section breaks */
+hr {
+  border-top: 1px solid #1D4F91; /* Adds a new top border */
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+}
+
+
 p {
   margin-bottom: 1rem;
 }

@@ -1,6 +1,6 @@
 ---
-title: "Adding PMTiles sources to a map project"
-order: 4
+title: "Creating a print layout"
+order: 3
 output: html_document
 ---
 # Visualization Tutorial Overview
