@@ -163,60 +163,70 @@
     "text": "Back to top"
   },
   {
-    "objectID": "pages/appendix/index.html",
-    "href": "pages/appendix/index.html",
-    "title": "Appendix",
+    "objectID": "pages/appendix/links.html",
+    "href": "pages/appendix/links.html",
+    "title": "Links",
+    "section": "",
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index",
+    "crumbs": [
+      "Appendix",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/links.html#data-downloads",
+    "href": "pages/appendix/links.html#data-downloads",
+    "title": "Links",
+    "section": "",
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index",
+    "crumbs": [
+      "Appendix",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/links.html#maps",
+    "href": "pages/appendix/links.html#maps",
+    "title": "Links",
+    "section": "Maps",
+    "text": "Maps\n\nCIESIN Map Tiles (Alpha)",
+    "crumbs": [
+      "Appendix",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/links.html#other-documentation-resources",
+    "href": "pages/appendix/links.html#other-documentation-resources",
+    "title": "Links",
+    "section": "Other documentation & resources",
+    "text": "Other documentation & resources\n\nProtomaps vector tile documentation\nPMTiles data viewer\nIPCC Data Distribution Centre",
+    "crumbs": [
+      "Appendix",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/glossary.html",
+    "href": "pages/appendix/glossary.html",
+    "title": "Glossary",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Appendix",
-      "Overview"
+      "Glossary"
     ]
   },
   {
-    "objectID": "pages/appendix/index.html#test",
-    "href": "pages/appendix/index.html#test",
-    "title": "Appendix",
+    "objectID": "pages/appendix/glossary.html#test",
+    "href": "pages/appendix/glossary.html#test",
+    "title": "Glossary",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Appendix",
-      "Overview"
+      "Glossary"
     ]
-  },
-  {
-    "objectID": "pages/analysis/index.html",
-    "href": "pages/analysis/index.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "pages/analysis/index.html#guides-in-this-section",
-    "href": "pages/analysis/index.html#guides-in-this-section",
-    "title": "Analysis",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "Home",
-    "section": "Getting started",
-    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nAppendix\nReference materials.\nView appendix →"
   },
   {
     "objectID": "pages/about.html",
@@ -240,25 +250,59 @@
     "text": "Test\nOk"
   },
   {
-    "objectID": "pages/appendix/glossary.html",
-    "href": "pages/appendix/glossary.html",
-    "title": "Glossary",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
     "section": "",
-    "text": "Test",
+    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Home",
+    "section": "Getting started",
+    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nAppendix\nReference materials.\nView appendix →"
+  },
+  {
+    "objectID": "pages/analysis/index.html",
+    "href": "pages/analysis/index.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
     "crumbs": [
-      "Appendix",
-      "Glossary"
+      "Overview"
     ]
   },
   {
-    "objectID": "pages/appendix/glossary.html#test",
-    "href": "pages/appendix/glossary.html#test",
-    "title": "Glossary",
+    "objectID": "pages/analysis/index.html#guides-in-this-section",
+    "href": "pages/analysis/index.html#guides-in-this-section",
+    "title": "Analysis",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/index.html",
+    "href": "pages/appendix/index.html",
+    "title": "Appendix",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Appendix",
-      "Glossary"
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/appendix/index.html#test",
+    "href": "pages/appendix/index.html#test",
+    "title": "Appendix",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Appendix",
+      "Overview"
     ]
   },
   {
@@ -446,7 +490,7 @@
     "href": "pages/data-access/index.html#guides-in-this-section",
     "title": "Data Access",
     "section": "Guides in this section",
-    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nMapping GRID3 Friction Surfaces by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.",
+    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nMapping GRID3 Friction Surfaces by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.\n\n\nClick here to download data",
     "crumbs": [
       "Overview"
     ]
