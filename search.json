@@ -10,47 +10,69 @@
     ]
   },
   {
-    "objectID": "pages/visualization/qgis-intro.html",
-    "href": "pages/visualization/qgis-intro.html",
-    "title": "Visualizing GRID3 Data with QGIS",
+    "objectID": "pages/visualization/qgis/map.html",
+    "href": "pages/visualization/qgis/map.html",
+    "title": "Setting up a map project",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Visualization with QGIS",
-      "Visualizing GRID3 Data with QGIS"
+      "Setting up a map project"
     ]
   },
   {
-    "objectID": "pages/visualization/qgis-intro.html#test",
-    "href": "pages/visualization/qgis-intro.html#test",
-    "title": "Visualizing GRID3 Data with QGIS",
+    "objectID": "pages/visualization/qgis/map.html#test",
+    "href": "pages/visualization/qgis/map.html#test",
+    "title": "Setting up a map project",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Visualization with QGIS",
-      "Visualizing GRID3 Data with QGIS"
+      "Setting up a map project"
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-sources.html",
-    "href": "pages/visualization/pmtiles-sources.html",
-    "title": "Adding PMTiles sources to a map project",
+    "objectID": "pages/visualization/pmtiles/styling.html",
+    "href": "pages/visualization/pmtiles/styling.html",
+    "title": "Customizing a stylesheet",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "Adding PMTiles sources to a map project"
+      "Customizing a stylesheet"
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-sources.html#test",
-    "href": "pages/visualization/pmtiles-sources.html#test",
-    "title": "Adding PMTiles sources to a map project",
+    "objectID": "pages/visualization/pmtiles/styling.html#test",
+    "href": "pages/visualization/pmtiles/styling.html#test",
+    "title": "Customizing a stylesheet",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "Adding PMTiles sources to a map project"
+      "Customizing a stylesheet"
+    ]
+  },
+  {
+    "objectID": "pages/visualization/pmtiles/publish.html",
+    "href": "pages/visualization/pmtiles/publish.html",
+    "title": "Publishing your map online",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Creating an interactive webmap",
+      "Publishing your map online"
+    ]
+  },
+  {
+    "objectID": "pages/visualization/pmtiles/publish.html#test",
+    "href": "pages/visualization/pmtiles/publish.html#test",
+    "title": "Publishing your map online",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Creating an interactive webmap",
+      "Publishing your map online"
     ]
   },
   {
@@ -242,111 +264,111 @@
   {
     "objectID": "pages/appendix/user_guide_template.html",
     "href": "pages/appendix/user_guide_template.html",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/\n\n\n\n\n\nProvide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives\n\n\n\n\n\n\n\n\nBrief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)\n\n\n\n\n\n\nList 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.\n\n\n\n\n\n\n\nLink(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.\n\n\n\n\n\n\n\n\n\n\n\nFile Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc\n\n\n\n\n\n\n\n\nHighlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations\n\n\n\n\n\n\n\nKnown sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for\n\n\n\n\n\n\n\n\nR (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#examples",
     "href": "pages/appendix/user_guide_template.html#examples",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#tips-and-pointers",
     "href": "pages/appendix/user_guide_template.html#tips-and-pointers",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "Provide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#overview",
     "href": "pages/appendix/user_guide_template.html#overview",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "Brief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#key-questions-this-data-can-answer",
     "href": "pages/appendix/user_guide_template.html#key-questions-this-data-can-answer",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "List 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#data-access",
     "href": "pages/appendix/user_guide_template.html#data-access",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "Link(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#dataset-structure",
     "href": "pages/appendix/user_guide_template.html#dataset-structure",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "File Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#variables-definitions",
     "href": "pages/appendix/user_guide_template.html#variables-definitions",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "Highlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#data-quality-limitations",
     "href": "pages/appendix/user_guide_template.html#data-quality-limitations",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "Known sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
     "objectID": "pages/appendix/user_guide_template.html#getting-started-quick-setup",
     "href": "pages/appendix/user_guide_template.html#getting-started-quick-setup",
-    "title": "Data User Guide Template",
+    "title": "Sample Page Template",
     "section": "",
     "text": "R (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
     "crumbs": [
       "Appendix",
-      "Data User Guide Template"
+      "Sample Page Template"
     ]
   },
   {
@@ -430,69 +452,91 @@
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-intro.html",
-    "href": "pages/visualization/pmtiles-intro.html",
-    "title": "What are vector tiles?",
+    "objectID": "pages/visualization/pmtiles/pmtiles.html",
+    "href": "pages/visualization/pmtiles/pmtiles.html",
+    "title": "Introduction",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "What are vector tiles?"
+      "Introduction"
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-intro.html#test",
-    "href": "pages/visualization/pmtiles-intro.html#test",
-    "title": "What are vector tiles?",
+    "objectID": "pages/visualization/pmtiles/pmtiles.html#test",
+    "href": "pages/visualization/pmtiles/pmtiles.html#test",
+    "title": "Introduction",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "What are vector tiles?"
+      "Introduction"
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-style.html",
-    "href": "pages/visualization/pmtiles-style.html",
-    "title": "Customizing a stylesheet",
+    "objectID": "pages/visualization/pmtiles/sources.html",
+    "href": "pages/visualization/pmtiles/sources.html",
+    "title": "Adding PMTiles sources to a map project",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "Customizing a stylesheet"
+      "Adding PMTiles sources to a map project"
     ]
   },
   {
-    "objectID": "pages/visualization/pmtiles-style.html#test",
-    "href": "pages/visualization/pmtiles-style.html#test",
-    "title": "Customizing a stylesheet",
+    "objectID": "pages/visualization/pmtiles/sources.html#test",
+    "href": "pages/visualization/pmtiles/sources.html#test",
+    "title": "Adding PMTiles sources to a map project",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Creating an interactive webmap",
-      "Customizing a stylesheet"
+      "Adding PMTiles sources to a map project"
     ]
   },
   {
-    "objectID": "pages/visualization/qgis.html",
-    "href": "pages/visualization/qgis.html",
-    "title": "Setting up a map project",
+    "objectID": "pages/visualization/qgis/layout.html",
+    "href": "pages/visualization/qgis/layout.html",
+    "title": "Creating a print layout",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Visualization with QGIS",
-      "Setting up a map project"
+      "Creating a print layout"
     ]
   },
   {
-    "objectID": "pages/visualization/qgis.html#test",
-    "href": "pages/visualization/qgis.html#test",
-    "title": "Setting up a map project",
+    "objectID": "pages/visualization/qgis/layout.html#test",
+    "href": "pages/visualization/qgis/layout.html#test",
+    "title": "Creating a print layout",
     "section": "",
     "text": "Test",
     "crumbs": [
       "Visualization with QGIS",
-      "Setting up a map project"
+      "Creating a print layout"
+    ]
+  },
+  {
+    "objectID": "pages/visualization/qgis/qgis.html",
+    "href": "pages/visualization/qgis/qgis.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Visualization with QGIS",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "pages/visualization/qgis/qgis.html#test",
+    "href": "pages/visualization/qgis/qgis.html#test",
+    "title": "Introduction",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Visualization with QGIS",
+      "Introduction"
     ]
   }
 ]
