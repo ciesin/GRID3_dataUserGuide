@@ -8,11 +8,11 @@ The Data Use Guide can be accessed by visiting our Data User Guide GitHub io pag
 
 ## Contact and Resources
 
-[📧: info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu) 
+[info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu) 
 
-[🌐: https://ciesin.columbia.edu](https://ciesin.columbia.edu)
+[https://ciesin.columbia.edu](https://ciesin.columbia.edu)
 
-[📊: https://data.grid3.org](https://data.grid3.org)
+[https://data.grid3.org](https://data.grid3.org)
  
  
 
