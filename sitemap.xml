@@ -1,55 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/api_nga_network.html</loc>
-    <lastmod>2026-03-27T15:15:41.278Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/analysis/api_nga_network.html</loc>
+    <lastmod>2026-03-27T15:42:20.797Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/visualization/visualization-pmtiles.html</loc>
-    <lastmod>2026-03-27T15:15:41.282Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/visualization/qgis-intro.html</loc>
+    <lastmod>2026-03-27T15:42:20.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/visualization/pmtiles-sources.html</loc>
+    <lastmod>2026-03-27T15:42:20.802Z</lastmod>
   </url>
   <url>
     <loc>https://tiles.ciesin.app/notebooks/visualization/index.html</loc>
-    <lastmod>2026-03-27T15:15:41.281Z</lastmod>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/data-access.html</loc>
-    <lastmod>2026-03-27T15:15:41.281Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/data-access/accessing_friction_surface_by_lga.html</loc>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/analysis.html</loc>
-    <lastmod>2026-03-27T15:15:41.270Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/about.html</loc>
-    <lastmod>2026-03-27T15:15:41.270Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/index.html</loc>
-    <lastmod>2026-03-27T15:15:41.269Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/Roads_DRN_MD.html</loc>
-    <lastmod>2026-03-27T15:15:41.270Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiles.ciesin.app/notebooks/accessing_friction_surface_by_lga.html</loc>
-    <lastmod>2026-03-27T15:15:41.270Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/appendix/user_guide_template.html</loc>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
   </url>
   <url>
     <loc>https://tiles.ciesin.app/notebooks/appendix/glossary.html</loc>
-    <lastmod>2026-03-27T15:15:41.278Z</lastmod>
+    <lastmod>2026-03-27T15:42:20.800Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/user_guide_template.html</loc>
-    <lastmod>2026-03-27T15:15:41.281Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/about.html</loc>
+    <lastmod>2026-03-27T15:42:20.789Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/visualization/visualization-pmtiles-intro.html</loc>
-    <lastmod>2026-03-27T15:15:41.282Z</lastmod>
+    <loc>https://tiles.ciesin.app/index.html</loc>
+    <lastmod>2026-03-27T15:42:20.788Z</lastmod>
   </url>
   <url>
-    <loc>https://tiles.ciesin.app/notebooks/visualization/visualization-qgis.html</loc>
-    <lastmod>2026-03-27T15:15:41.282Z</lastmod>
+    <loc>https://tiles.ciesin.app/notebooks/analysis/index.html</loc>
+    <lastmod>2026-03-27T15:42:20.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/appendix/index.html</loc>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/data-access/Roads_DRN_MD.html</loc>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/data-access/index.html</loc>
+    <lastmod>2026-03-27T15:42:20.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/visualization/pmtiles-intro.html</loc>
+    <lastmod>2026-03-27T15:42:20.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/visualization/pmtiles-style.html</loc>
+    <lastmod>2026-03-27T15:42:20.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiles.ciesin.app/notebooks/visualization/qgis.html</loc>
+    <lastmod>2026-03-27T15:42:20.802Z</lastmod>
   </url>
 </urlset>

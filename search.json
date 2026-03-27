@@ -1,7 +1,7 @@
 [
   {
-    "objectID": "notebooks/api_nga_network.html",
-    "href": "notebooks/api_nga_network.html",
+    "objectID": "notebooks/analysis/api_nga_network.html",
+    "href": "notebooks/analysis/api_nga_network.html",
     "title": "GRID3 Nigeria Road Network Analysis",
     "section": "",
     "text": "The CIESIN GRID3 data provides high-resolution geospatial data that can be used to analyze various aspects of infrastructure and services in Nigeria. One practical application of this data is to find optimal routes between schools and health facilities. Below is an example of how to achieve this using Python and relevant libraries.\n  \n\n# install neccessary packages\n# !pip install osmnx\n# !pip install mapclassify\n# !pip install folium\n# !pip install momepy\n\n\n# import\nimport geopandas as gpd\nimport networkx as nx\nimport momepy\nimport osmnx as ox\nimport matplotlib.pyplot as plt\nfrom itertools import product\nimport numpy as np\nimport mapclassify\nimport folium\nimport json\nimport pandas as pd\nimport momepy \nimport requests \nimport random\nimport matplotlib.colors as mcolors\n\n\n# install arcgis API for accessing data\n# check that arcgis is installed \n# !pip install arcgis\n    \n\nRequirement already satisfied: arcgis in c:\\users\\jfm2205\\appdata\\local\\esri\\conda\\envs\\jfm-py2\\lib\\site-packages (2.4.1.1)\n\n\n\n# import arcgis\nfrom arcgis.gis import GIS \n\n\n# Anonymously authenticate arcgis API\ngis = GIS()\n\n\ndef fetch_nga_roads(bbox, crs, record_limit, url):\n    \"\"\"\n    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.\n\n    Parameters\n    ----------\n    bbox : dict\n        Bounding box with keys xmin, ymin, xmax, ymax (in EPSG:3857).\n    crs : str, optional\n        CRS for the output GeoDataFrame (default: EPSG:3857).\n    record_limit : int, optional\n        Maximum number of records per request (default: 200000).\n    url : str, optional\n        ArcGIS FeatureServer query URL.\n\n    Returns\n    -------\n    geopandas.GeoDataFrame\n        GeoDataFrame containing all fetched road features.\n    \"\"\"\n\n    params = {\n        \"f\": \"geojson\",\n        \"where\": \"1=1\",\n        \"geometry\": json.dumps({\n            **bbox,\n            \"spatialReference\": {\"wkid\": int(crs.split(\":\")[1])},\n        }),\n        \"geometryType\": \"esriGeometryEnvelope\",\n        \"spatialRel\": \"esriSpatialRelContains\",\n        \"outFields\": \"*\",\n        \"returnGeometry\": \"true\",\n        \"resultRecordCount\": record_limit,\n    }\n\n    all_features = []\n    offset = 0\n\n    while True:\n        paged_params = params | {\"resultOffset\": offset}\n        r = requests.get(url, params=paged_params)\n        r.raise_for_status()\n\n        data = r.json()\n        features = data.get(\"features\", [])\n\n        if not features:\n            break\n\n        all_features.extend(features)\n        offset += len(features)\n        \n    valid_features = [\n        f for f in all_features\n        if f.get(\"geometry\") is not None]\n\n    return gpd.GeoDataFrame.from_features(valid_features, crs=crs)\n\n\n# Read in service for NGA roads\nurl = \"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query\"\n\nboundbox =  {\n        \"xmin\": 360102.4944,\n        \"ymin\": 725614.4996,\n        \"xmax\": 381199.1042,\n        \"ymax\": 746837.3928  }\n\n\n\ngdf = fetch_nga_roads(boundbox, crs=\"EPSG:3857\", record_limit=1000, url=url)\n\ngdf.head()\n\n\n\n\n\n\n\n\ngeometry\nOBJECTID\nid\ncountry\niso3\nsource_id\nclass\nspeed_estimate\nspeed_estimate_method\nroad_surface\nnames\nsubclass\nspeed_limits\ndate\nsource_acronym\nShape__Length\n\n\n\n\n0\nLINESTRING (3.353 6.561, 3.352 6.564, 3.351 6....\n375\n0825887fffffffff047f4f4e7c46bb8d\nNigeria\nNGA\nOverture / OSM\nunclassified\n40\nliterature review\n\n\n\n\n2025\nOVERTURE_OSM_001\n660.977176\n\n\n1\nLINESTRING (3.394 6.653, 3.395 6.653, 3.396 6....\n2121\n0835882fffffffff046f5d76209c94af\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n\n\n2025\nOVERTURE_OSM_001\n4708.736787\n\n\n2\nLINESTRING (3.375 6.664, 3.375 6.665)\n2129\n0835882fffffffff046ffcc2abaf4fde\nNigeria\nNGA\nOverture / OSM\nresidential\n20\nliterature review\nunpaved\n\n\n\n2025\nOVERTURE_OSM_001\n65.118153\n\n\n3\nLINESTRING (3.39 6.68, 3.39 6.68, 3.39 6.679, ...\n2130\n0835882fffffffff046fff468b9d4a49\nNigeria\nNGA\nOverture / OSM\ntrack\n10\nliterature review\nunpaved\n\n\n\n2025\nOVERTURE_OSM_001\n1929.374551\n\n\n4\nLINESTRING (3.414 6.689, 3.413 6.688, 3.413 6....\n2152\n0835882fffffffff047f5f6082b04656\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n\n\n2025\nOVERTURE_OSM_001\n4815.947415\n\n\n\n\n\n\n\n\n# Plot roads\n# size \nplt.figure(figsize=(6, 4), dpi=120)\ngdf.plot()\n\n&lt;Figure size 720x480 with 0 Axes&gt;\n\n\n\n\n\n\n\n\n\n\nexploded_road_gdf = gdf.copy()\n\nexploded_road_gdf = exploded_road_gdf.set_crs(epsg=4326, allow_override=True)\n    \nexploded_road_gdf = exploded_road_gdf.to_crs('EPSG:3857')\n\nexploded_road_gdf = exploded_road_gdf.explode(index_parts=True) \n\n\nexploded_road_gdf['length_meters'] = exploded_road_gdf.geometry.length \n\n# Build network\nGs = momepy.gdf_to_nx(\n    exploded_road_gdf,\n    directed='MultiDiGraph',           \n    approach='primal',\n    integer_labels=True,\n    preserve_index=True,\n    length='length_meters'        \n)\n\n\n# 🔧 OSMnx compatibility: alias length_meters → length\nfor _, _, data in Gs.edges(data=True):\n    data[\"length\"] = data[\"length_meters\"] \n\n\n\n\n# # Back to GeoDataFrames\nnodes, edges = momepy.nx_to_gdf(Gs, points=True, lines=True)\n \n\n# # Try roundabout simplification\nedges = momepy.roundabout_simplification(edges)\n \n \nedges.head()\n\n\n\n\n\n\n\n\nOBJECTID\nid\ncountry\niso3\nsource_id\nclass\nspeed_estimate\nspeed_estimate_method\nroad_surface\nnames\n...\nspeed_limits\ndate\nsource_acronym\nShape__Length\ngeometry\nlength_meters\nlength\nnode_start\nnode_end\nsimplification_group\n\n\n\n\n(0, 0)\n375\n0825887fffffffff047f4f4e7c46bb8d\nNigeria\nNGA\nOverture / OSM\nunclassified\n40\nliterature review\n\n\n...\n\n2025\nOVERTURE_OSM_001\n660.977176\nLINESTRING (373284.209 731941.259, 373142.699 ...\n660.977176\n660.977176\n0\n1\n&lt;NA&gt;\n\n\n(1, 0)\n2121\n0835882fffffffff046f5d76209c94af\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n...\n\n2025\nOVERTURE_OSM_001\n4708.736787\nLINESTRING (377835.061 742222.484, 377903.879 ...\n4708.736787\n4708.736787\n2\n3\n&lt;NA&gt;\n\n\n(2, 0)\n2129\n0835882fffffffff046ffcc2abaf4fde\nNigeria\nNGA\nOverture / OSM\nresidential\n20\nliterature review\nunpaved\n\n...\n\n2025\nOVERTURE_OSM_001\n65.118153\nLINESTRING (375667.815 743564.588, 375679.303 ...\n65.118153\n65.118153\n4\n5\n&lt;NA&gt;\n\n\n(3, 0)\n2130\n0835882fffffffff046fff468b9d4a49\nNigeria\nNGA\nOverture / OSM\ntrack\n10\nliterature review\nunpaved\n\n...\n\n2025\nOVERTURE_OSM_001\n1929.374551\nLINESTRING (377331.652 745306.289, 377349.007 ...\n1929.374551\n1929.374551\n6\n7\n&lt;NA&gt;\n\n\n(4, 0)\n2152\n0835882fffffffff047f5f6082b04656\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n...\n\n2025\nOVERTURE_OSM_001\n4815.947415\nLINESTRING (380005.724 746285.084, 379966.54 7...\n4815.947415\n4815.947415\n8\n9\n&lt;NA&gt;\n\n\n\n\n5 rows × 21 columns\n\n\n\n\n\n# check simplification group\nedges['simplification_group'].value_counts()\n \n\nsimplification_group\n60    16\n84    16\n39    16\n47    14\n81    14\n      ..\n21     2\n57     2\n63     2\n23     2\n31     2\nName: count, Length: 98, dtype: Int64\n\n\n\nfig, ax = plt.subplots(figsize=(6, 4), dpi=120)\n\nedges.plot(ax=ax, color=\"gray\", lw=0.5)\nnodes.plot(ax=ax, color=\"green\", markersize=0.5)\n\nplt.show()\n\n\n\n\n\n\n\n\n\n# Calculate time to traverse a road segment in minutes using the speed estimate and length\nedges[\"travel_time_mins\"] = ((edges[\"length_meters\"]/1000) / (edges[\"speed_estimate\"])) * 60\n\n# drop if travel_time_mins is infinite or NaN or less than equal to zero\nedges = edges.replace([np.inf, -np.inf], np.nan)\nedges = edges.dropna(subset=['travel_time_mins'])\nedges = edges[edges['travel_time_mins'] &gt; 0]    \n\nedges.head()\n\n\n\n\n\n\n\n\nOBJECTID\nid\ncountry\niso3\nsource_id\nclass\nspeed_estimate\nspeed_estimate_method\nroad_surface\nnames\n...\ndate\nsource_acronym\nShape__Length\ngeometry\nlength_meters\nlength\nnode_start\nnode_end\nsimplification_group\ntravel_time_mins\n\n\n\n\n(0, 0)\n375\n0825887fffffffff047f4f4e7c46bb8d\nNigeria\nNGA\nOverture / OSM\nunclassified\n40\nliterature review\n\n\n...\n2025\nOVERTURE_OSM_001\n660.977176\nLINESTRING (373284.209 731941.259, 373142.699 ...\n660.977176\n660.977176\n0\n1\n&lt;NA&gt;\n0.991466\n\n\n(1, 0)\n2121\n0835882fffffffff046f5d76209c94af\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n...\n2025\nOVERTURE_OSM_001\n4708.736787\nLINESTRING (377835.061 742222.484, 377903.879 ...\n4708.736787\n4708.736787\n2\n3\n&lt;NA&gt;\n3.531553\n\n\n(2, 0)\n2129\n0835882fffffffff046ffcc2abaf4fde\nNigeria\nNGA\nOverture / OSM\nresidential\n20\nliterature review\nunpaved\n\n...\n2025\nOVERTURE_OSM_001\n65.118153\nLINESTRING (375667.815 743564.588, 375679.303 ...\n65.118153\n65.118153\n4\n5\n&lt;NA&gt;\n0.195354\n\n\n(3, 0)\n2130\n0835882fffffffff046fff468b9d4a49\nNigeria\nNGA\nOverture / OSM\ntrack\n10\nliterature review\nunpaved\n\n...\n2025\nOVERTURE_OSM_001\n1929.374551\nLINESTRING (377331.652 745306.289, 377349.007 ...\n1929.374551\n1929.374551\n6\n7\n&lt;NA&gt;\n11.576247\n\n\n(4, 0)\n2152\n0835882fffffffff047f5f6082b04656\nNigeria\nNGA\nOverture / OSM\nmotorway\n80\nGPS\npaved\nLagos-Ibadan Expressway\n...\n2025\nOVERTURE_OSM_001\n4815.947415\nLINESTRING (380005.724 746285.084, 379966.54 7...\n4815.947415\n4815.947415\n8\n9\n&lt;NA&gt;\n3.611961\n\n\n\n\n5 rows × 22 columns\n\n\n\n\n\nfig, (ax1, ax2) = plt.subplots(ncols=2, figsize=(7, 4), dpi=100)\n\n# --- Plot speed estimate ---\nedges.plot(\n    column=\"speed_estimate\",\n    legend=True,\n    ax=ax1,\n    cmap=\"viridis\",\n)\nax1.set_title(\"Speed (km/h)\", fontsize=9)\nax1.tick_params(labelsize=7)\n\nleg1 = ax1.get_legend()\nif leg1:\n    leg1.set_loc(\"lower left\")\n    leg1.set_title(\"Speed (km/h)\", prop={\"size\": 8})\n    for txt in leg1.get_texts():\n        txt.set_fontsize(7)\n\n# --- Plot travel time ---\nedges.plot(\n    column=\"travel_time_mins\",\n    legend=True,\n    ax=ax2,\n    cmap=\"inferno\",\n    scheme=\"natural_breaks\",\n)\nax2.set_title(\"Travel Time (Minutes)\", fontsize=9)\nax2.tick_params(labelsize=7)\n\nleg2 = ax2.get_legend()\nif leg2:\n    leg2.set_loc(\"lower right\")\n    leg2.set_title(\"Minutes\", prop={\"size\": 8})\n    for txt in leg2.get_texts():\n        txt.set_fontsize(7)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\nfrom pyproj import Transformer\n\n# Geocode an origin and destination address\n# Origin\norig_address = \"Oshitelu St, Lagos, Nigeria\"\n\norig_y, orig_x = ox.geocode(orig_address)  # notice the coordinate order (y, x)!\n\n# Destination\ndest_address = \"Obafemi Awolowo Wy, Lagos, Nigeria\"\ndest_y, dest_x = ox.geocode(dest_address) \n\n\n# Transformer: lon/lat → graph CRS\ntransformer = Transformer.from_crs(\n    \"EPSG:4326\",\n    Gs.graph[\"crs\"],\n    always_xy=True\n)\n\n# Print coordinates\nprint(\"Origin coords:\", orig_x, orig_y)\nprint(\"Destination coords:\", dest_x, dest_y)\n\norig_x_p, orig_y_p = transformer.transform(orig_x, orig_y)\ndest_x_p, dest_y_p = transformer.transform(dest_x, dest_y)\n\n# Snap to graph\norig_node_id, dist_to_orig = ox.distance.nearest_nodes(\n    Gs, X=orig_x_p, Y=orig_y_p, return_dist=True\n)\ndest_node_id, dist_to_dest = ox.distance.nearest_nodes(\n    Gs, X=dest_x_p, Y=dest_y_p, return_dist=True\n)\n\n# Print distance to nearest node\nprint(\"Origin node-id:\", orig_node_id, \"and distance:\", dist_to_orig, \"meters.\")\nprint(\"Destination node-id:\", dest_node_id, \"and distance:\", dist_to_dest, \"meters.\")\n\n\n\n\n# Calculate shortest path between origin and destionation nodes and the length\npath = nx.shortest_path(Gs, source=orig_node_id, target=dest_node_id, weight='travel_time_mins')\nlength = nx.shortest_path_length(Gs, source=orig_node_id, target=dest_node_id, weight='travel_time_mins')\n\n\n\n\nOrigin coords: 3.339861 6.5943937\nDestination coords: 3.3511002 6.6082757\nOrigin node-id: 15790 and distance: 69.41404267339831 meters.\nDestination node-id: 30133 and distance: 49.45782604997911 meters.\n\n\n\n# Shortest path based on distance\nfig, ax = ox.plot_graph_route(Gs, path, figsize=(5,5), dpi=120  )\n\n# Add the travel time as title\nax.set_xlabel(\"Shortest path is {t: .1f} minutes.\".format(t=length))\n\n#show plot\nplt.show()\n\n\n\n\n\n\n\n\n\n# Explore graph edges and route together in a single map\nroute_edges = ox.routing.route_to_gdf(Gs, path, weight='length')\n\nm = edges.explore(color=\"black\", tiles=\"cartodbdarkmatter\")\nm = route_edges.explore(m=m, color=\"maroon\", style_kwds={\"weight\": 5})\n\n# Add the Esri World Imagery tile layer\nfolium.TileLayer(\n    tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',\n    attr='Esri',\n    name='Esri Satellite',\n    overlay=False,\n    control=True\n).add_to(m)\n\n# Add a layer control to toggle between tile layers\nfolium.LayerControl().add_to(m)\nm\n\n\n# Read in Nigeria health facilities layer\nlayer_url = \"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_health_facilities_v2_0/FeatureServer/0/query\"\n \n\n# Create bounding box\nquery_extent = {\n    \"xmin\": 3.328171,\n    \"ymin\": 6.582383,\n    \"xmax\": 3.383102,\n    \"ymax\": 6.633909}\n\n\n\nhealth_fac = fetch_nga_roads(query_extent, crs=\"EPSG:4326\", record_limit=200000, url=layer_url)\n\n \n\nhealth_fac.head(5)\n\n\n\n\n\n\n\n\ngeometry\nOBJECTID\nglobalid\nnhfr_uid\nnhfr_facility_code\ncountry\niso\nstate\nlga\nlga_name_disagreement\n...\nfacility_name\nfacility_name_source\nownership\nownership_type\nfacility_level\nfacility_level_option\nlatitude\nlongitude\ngeocoordinates_source\nlast_updated\n\n\n\n\n0\nPOINT (3.34985 6.59825)\n151\nd34b8933-7c5c-45e6-a59e-f8108b3a8e58\n62363642.0\n24/11/1/1/2/0020\nNigeria\nNGA\nLagos\nIkeja\n0\n...\nLife Health Care Clinic\nNHFR_2024\nPrivate\nUnknown\nPrimary\nPrimary Health Center\n6.598250\n3.349850\nGRID3_EHEALTH\n2024-11-11\n\n\n1\nPOINT (3.36239 6.58945)\n589\n3854bf39-0017-4008-8095-dd6ac833cbe9\n39876675.0\n24/11/1/1/1/0022\nNigeria\nNGA\nLagos\nIkeja\n0\n...\nOpebi Primary Health Center\nNHFR_2024\nPublic\nUnknown\nPrimary\nPrimary Health Center\n6.589447\n3.362393\nGRID3_EHEALTH\n2024-11-11\n\n\n2\nPOINT (3.36413 6.60097)\n594\n3167880d-17be-4b24-ba45-d5a61abe160a\n52365838.0\n24/11/1/1/1/0018\nNigeria\nNGA\nLagos\nIkeja\n0\n...\nOregun Primary Health Center\nNHFR_2024\nPublic\nUnknown\nPrimary\nPrimary Health Center\n6.600967\n3.364128\nGRID3_EHEALTH\n2024-11-11\n\n\n3\nPOINT (3.33843 6.59715)\n596\n4c0b8011-af9c-4d55-bbc4-4f9aa2fbe04a\n13500518.0\n24/11/1/1/1/0009\nNigeria\nNGA\nLagos\nIkeja\n0\n...\nIkeja Primary Health Center\nNHFR_2024\nPublic\nLocal Government\nPrimary\nPrimary Health Center\n6.597150\n3.338432\nGRID3_EHEALTH\n2024-11-11\n\n\n4\nPOINT (3.3423 6.63057)\n670\n4eef270b-e351-4cf2-bf60-ff31051dd22b\n77159777.0\n24/11/1/1/1/0011\nNigeria\nNGA\nLagos\nIkeja\n0\n...\nOgba Primary Health Center\nNHFR_2024\nPublic\nLocal Government\nPrimary\nPrimary Health Center\n6.630571\n3.342302\nGRID3_EHEALTH\n2024-11-11\n\n\n\n\n5 rows × 22 columns\n\n\n\n\n# Read in Nigeria schools layer\nlayer_url = \"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/Schools_in_Nigeria/FeatureServer/0/query\"\n# feature_layer = FeatureLayer(layer_url)\n\n# Create bounding box\nquery_extent = {\n    \"xmin\": 3.328171,\n    \"ymin\": 6.582383,\n    \"xmax\": 3.383102,\n    \"ymax\": 6.633909,\n     \n}\n \nschools = fetch_nga_roads(query_extent, crs=\"EPSG:4326\", record_limit=200000, url=layer_url)\n\nschools.head(5)\n\n\n\n\n\n\n\n\ngeometry\nFID\nglobalid\nuniq_id\ntimestamp\neditor\nwardname\nwardcode\nlganame\nlgacode\n...\nsecondary_\nstudent_ct\nteacher_ct\npoi_type\neducation\nmanagement\nsubtype\ncategory\nname\nsource\n\n\n\n\n0\nPOINT (3.34134 6.6304)\n61\n7a4b0b1e-3732-4674-b129-f6048d8a0ec0\n842635\n1607644800000\nnajib.adam\nOgba / Oluwole\nLASIKA07\nIkeja\n25011\n...\n\n\n\nSchool\nFormal\nPublic\nStandard\nMixed\nOgba Primary and Secondary School\nOSGOF\n\n\n1\nPOINT (3.33565 6.60116)\n345\n77b5417d-df45-4e3f-b850-8e5eb1762a25\n842947\n1607644800000\nnajib.adam\nAnifowoshe\nLASIKA05\nIkeja\n25011\n...\n\n\n\nSchool\nFormal\nPrivate\nStandard\nPrimary\nOlufunmilayo Nursery And Primary School\nGRID\n\n\n2\nPOINT (3.33294 6.62794)\n377\nb89c364f-d3fa-4c92-9de0-ee1c13cab316\n842979\n1607644800000\nnajib.adam\nIjaiye / Ifako\nLASIOE10\nIfako/Ijaye\n25010\n...\n\n85\n6\nSchool\nFormal\nPrivate\nStandard\nPrimary\nGreat Talents Nursery And Primary School\nGRID\n\n\n3\nPOINT (3.33544 6.62886)\n2178\na4ce123c-53b2-4a53-9be2-9994cd826e22\n844889\n1607644800000\nnajib.adam\nIjaiye / Ifako\nLASIOE10\nIfako/Ijaye\n25010\n...\n\n80\n8\nSchool\nFormal\nPrivate\nStandard\nPrimary\nJnissi Nursery And Primary School Lsdpc Estate\nGRID\n\n\n4\nPOINT (3.35361 6.63257)\n2200\n5e9dd4d0-8bbd-47c2-bc58-3e14bc8cd81d\n844910\n1607644800000\nnajib.adam\nOgba / Oluwole\nLASIKA07\nIkeja\n25011\n...\n\n\n\nSchool\nFormal\nPrivate\nStandard\nPrimary\nMd Nursery And Primary School\nGRID\n\n\n\n\n5 rows × 22 columns\n\n\n\n\n#set same crs as graph\nschools = schools.to_crs(Gs.graph[\"crs\"])\nhealth_fac = health_fac.to_crs(Gs.graph[\"crs\"])\n\nschools[\"longitude\"] = schools.geometry.x\nschools[\"latitude\"] = schools.geometry.y\n\nhealth_fac[\"longitude\"] = health_fac.geometry.x\nhealth_fac[\"latitude\"] = health_fac.geometry.y\n\n\n# Caclulate shortest route between every school and health facility using the travel_time_mins variable as the weight\n# this can take a few minutes\n\nweight_attribute = 'travel_time_mins'\n\n# Find nearest nodes to each school and health facility\norig_node_id, dist_to_orig = ox.distance.nearest_nodes(\n    Gs, \n    X=schools.geometry.x, Y=schools.geometry.y, return_dist=True)\ndest_node_id, dist_to_dest = ox.distance.nearest_nodes(Gs, X=health_fac.geometry.x, Y=health_fac.geometry.y, return_dist=True)\n\nshortest_paths = {}\n\nfor source in orig_node_id:\n    for target in dest_node_id:\n        try:\n            # Get the actual path\n            path = nx.shortest_path(Gs, source=source, target=target, weight=weight_attribute)\n            # Get the path length\n            length = nx.shortest_path_length(Gs, source=source, target=target, weight=weight_attribute)\n            shortest_paths[(source, target)] = {'path': path, 'length': length}\n        except nx.NetworkXNoPath:\n          # build dictionary with shortest routes\n            shortest_paths[(source, target)] = {'path': None, 'length': float('inf')}\n \n\nprint(\"Unique school nodes:\", len(set(orig_node_id)))\nprint(\"Unique facility nodes:\", len(set(dest_node_id)))\nprint(\"Snap distances (schools):\", dist_to_orig.min(), dist_to_orig.max())\nprint(\"Snap distances (facilities):\", dist_to_dest.min(), dist_to_dest.max())\n\n\nUnique school nodes: 224\nUnique facility nodes: 153\nSnap distances (schools): 1.0962485485910776 116.9630130515727\nSnap distances (facilities): 0.0 118.8161232238598\n\n\n\n# create dataframe of shortest paths between every school and health facility and drop school/health facility combinations that aren't the closest\n \n# build dataframe\ndf = pd.DataFrame(shortest_paths).T\ndf = df.reset_index()\ndf = df.rename(columns={'level_0': 'school_node', 'level_1': 'health_facility_node'})\ndf = df.replace([np.inf, -np.inf], np.nan)\n\n# sort by length and keep only the shortest routes for each school\ndf = df.sort_values(by=['school_node', 'length'], ascending=[True, True])\ndf = df.drop_duplicates(subset=['school_node'], keep='first')\ndf.head(5)\n\n\n\n\n\n\n\n\nschool_node\nhealth_facility_node\npath\nlength\n\n\n\n\n33384\n83\n30027\n[83, 84, 124, 160, 13322, 47675, 42536, 13314,...\n18.0\n\n\n624\n116\n116\n[116]\n0.0\n\n\n1057\n221\n15747\n[221, 222, 3836, 3837, 15788, 15747]\n5.0\n\n\n17962\n643\n183\n[643, 17917, 5788, 661, 5793, 13140, 183]\n6.0\n\n\n28450\n712\n712\n[712]\n0.0\n\n\n\n\n\n\n\n\n# merge nearest node ID back to schools and health facitility geodataframes\n\n# set node ids\nschools['node_id'] = orig_node_id\nhealth_fac['node_id'] = dest_node_id\n\n# get only columns needed for merge\nschool_merge = schools[['node_id', 'name','latitude','longitude']]\nhealth_merge = health_fac[['node_id', 'facility_name']]\n\n# merge nearest routes with school and health facility information\nnearest_df = df.merge(school_merge, left_on='school_node', right_on='node_id')\nnearest_df = nearest_df.merge(health_merge, left_on='health_facility_node', right_on='node_id')\n\n# drop duplicates\nnearest_df1 = nearest_df.drop_duplicates(subset=['school_node', 'length'])\nnearest_df1.head()\n\n\n\n\n\n\n\n\nschool_node\nhealth_facility_node\npath\nlength\nnode_id_x\nname\nlatitude\nlongitude\nnode_id_y\nfacility_name\n\n\n\n\n0\n83\n30027\n[83, 84, 124, 160, 13322, 47675, 42536, 13314,...\n18.0\n83\nPrime Achievers Academy\n740135.670587\n374852.800503\n30027\nIkosi Isheri Mutual Health Plan\n\n\n1\n116\n116\n[116]\n0.0\n116\nMd Nursery And Primary School\n739988.537463\n373322.421393\n116\nThe Brighthope Hospital Specialist\n\n\n2\n221\n15747\n[221, 222, 3836, 3837, 15788, 15747]\n5.0\n221\nAnifowoshe Primary School Ikeja\n736429.645181\n371129.163511\n15747\nGod'S Love Hospital\n\n\n3\n643\n183\n[643, 17917, 5788, 661, 5793, 13140, 183]\n6.0\n643\nEden Montessori School\n739945.318972\n374112.520483\n183\nAmazing Grace Medical Center\n\n\n5\n712\n712\n[712]\n0.0\n712\nStepping Stone Montessori\n736576.783257\n373368.577763\n712\nAgeless Physio Clinic\n\n\n\n\n\n\n\n\n# visualize all nearest routes\n\n# drop routes with nans\nnearest_df1 = nearest_df1.dropna(subset=['path'])\n\n# convert to list\nroutes = nearest_df1['path'].tolist()\n\n# set route colors\nnum_paths = len(routes)\ncolor_pool = list(mcolors.CSS4_COLORS.values()) # 148+ colors\npath_colors = random.choices(color_pool, k=num_paths)\n\n# plot map\n\ntransformer = Transformer.from_crs(\"EPSG:4326\", \"EPSG:3857\", always_xy=True)\n\nxmin, ymin = transformer.transform(3.328171, 6.582383)\nxmax, ymax = transformer.transform(3.383102, 6.633909)\n\nbbox_3857 = (xmin, ymin, xmax, ymax)\n    \nfig, ax = ox.plot_graph_routes(Gs, routes,route_colors=path_colors, route_linewidth=6, node_size=0, bbox=bbox_3857, figsize=(6,4), dpi=120)\n\nplt.show()\n\n\n\n\n\n\n\n\n\n# Explore a route interactively\n\n# select school to view\nnearest_df1_s = nearest_df1[nearest_df1['name'] == 'Saint Joseph Secondary School']\n\nroute_edges = ox.routing.route_to_gdf(Gs, nearest_df1_s.iloc[0].path, weight='length')\n\n# map facilities, roads, and routes\nm = edges.explore(color=\"black\", tiles=\"cartodbdarkmatter\")\nm = route_edges.explore(m=m, color=\"yellow\", style_kwds={\"weight\": 5})\nm = schools.explore(m=m, color = \"blue\", style_kwds={\"weight\": 5})\nm = health_fac.explore(m=m, color = \"red\", style_kwds={\"weight\": 5})\n# add the Esri World Imagery tile layer to interactive map\nfolium.TileLayer(\n    tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',\n    attr='Esri',\n    name='Esri Satellite',\n    overlay=False,\n    control=True\n).add_to(m)\n\n# add a layer control to toggle between tile layers\nfolium.LayerControl().add_to(m)\nm\n\n\n# Map the travel time from each school to the nearset health facility - darker dots are closer to a health facility, red dots are health facilities\n\n# construct geodataframe\ngeometry = gpd.points_from_xy(nearest_df1['longitude'], nearest_df1['latitude'])\nnearest_gdf = gpd.GeoDataFrame(nearest_df1, geometry=geometry, crs='EPSG:4326')\n\nedges_plot = edges.to_crs(epsg=4326)\nhealth_plot = health_fac.to_crs(epsg=4326)\n\n\n# Plot with length column for travel time\nfig, ax = plt.subplots(1, 1, figsize=(5, 5), dpi=120)\nedges.plot(ax=ax, color='grey', alpha=.1, zorder=1)\nhealth_fac.plot(marker='+', color='red', legend=True, ax=ax, markersize=5, zorder=3)\nnearest_gdf.plot(column='length', cmap='inferno', legend=True, ax=ax, markersize=25, zorder=2)\nplt.title(\"Time from school to nearest health facility\")\nax.set_xlim(bbox_3857[0], bbox_3857[2])\nax.set_ylim(bbox_3857[1], bbox_3857[3]  )\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
@@ -10,25 +10,47 @@
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-pmtiles.html",
-    "href": "notebooks/visualization/visualization-pmtiles.html",
-    "title": "Customizing a stylesheet",
+    "objectID": "notebooks/visualization/qgis-intro.html",
+    "href": "notebooks/visualization/qgis-intro.html",
+    "title": "Visualizing GRID3 Data with QGIS",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualization with PMTiles",
-      "Customizing a stylesheet"
+      "Visualization with QGIS",
+      "Visualizing GRID3 Data with QGIS"
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-pmtiles.html#test",
-    "href": "notebooks/visualization/visualization-pmtiles.html#test",
-    "title": "Customizing a stylesheet",
+    "objectID": "notebooks/visualization/qgis-intro.html#test",
+    "href": "notebooks/visualization/qgis-intro.html#test",
+    "title": "Visualizing GRID3 Data with QGIS",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualization with PMTiles",
-      "Customizing a stylesheet"
+      "Visualization with QGIS",
+      "Visualizing GRID3 Data with QGIS"
+    ]
+  },
+  {
+    "objectID": "notebooks/visualization/pmtiles-sources.html",
+    "href": "notebooks/visualization/pmtiles-sources.html",
+    "title": "Adding PMTiles sources to a map project",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Creating an interactive webmap",
+      "Adding PMTiles sources to a map project"
+    ]
+  },
+  {
+    "objectID": "notebooks/visualization/pmtiles-sources.html#test",
+    "href": "notebooks/visualization/pmtiles-sources.html#test",
+    "title": "Adding PMTiles sources to a map project",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Creating an interactive webmap",
+      "Adding PMTiles sources to a map project"
     ]
   },
   {
@@ -46,135 +68,14 @@
     "href": "notebooks/visualization/index.html#guides-in-this-section",
     "title": "Visualization",
     "section": "Guides in this section",
-    "text": "Guides in this section\n\nVisualizing GRID3 Data with QGIS Styling and symbolizing GRID3 layers in QGIS.\nWhat are Vector Tiles? An introduction to PMTiles and the vector tile format.\nInteractive Maps with PMTiles Building browser-based interactive maps using GRID3 PMTiles data.",
+    "text": "Guides in this section\n\nVisualizing GRID3 Data with QGIS Design a static map with GRID3 layers in QGIS.\nCreating a dynamic webmap Build a browser-based interactive mapsusing GRID3 PMTiles data.",
     "crumbs": [
       "Overview"
     ]
   },
   {
-    "objectID": "notebooks/data-access.html",
-    "href": "notebooks/data-access.html",
-    "title": "Data Access",
-    "section": "",
-    "text": "This section covers how to locate GRID3 datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/data-access.html#guides-in-this-section",
-    "href": "notebooks/data-access.html#guides-in-this-section",
-    "title": "Data Access",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nMapping GRID3 Friction Surfaces by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/analysis.html",
-    "href": "notebooks/analysis.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/analysis.html#guides-in-this-section",
-    "href": "notebooks/analysis.html#guides-in-this-section",
-    "title": "Analysis",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "notebooks/about.html",
-    "href": "notebooks/about.html",
-    "title": "About",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "Home",
-    "section": "Getting started",
-    "text": "Getting started\n\n\n Access GRID3 Road Network data\n\n\n Analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.\n\n\n Use GRID3 data to create an interactive map."
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html",
-    "href": "notebooks/Roads_DRN_MD.html",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "",
-    "text": "Field\nValue\n\n\n\n\nName of the dataset\nGRID3 COD - Roads v1.0\n\n\nName of the file\nGRID3_COD_roads_v1_0.gpkg\n\n\nDate of data release\nJanuary 08, 2026\n\n\nFile format\nOGC Geopackage\n\n\nDataset version\nv1.0\n\n\nAbstract\nThis document outlines the methodology and data sources used to produce the GRID3 COD - Roads v1.0 dataset. The spatial dataset consists of road and path locations in the Democratic Republic of the Congo.\n\n\nDataset citation\nCenter for Integrated Earth System Information (CIESIN), Columbia University. 2026. GRID3 COD - Roads v1.0. New York: Columbia University. https://doi.org/10.7916/00gb-e164. Accessed &lt;DAY MONTH YEAR&gt;.\n\n\nTerms of use\nUsers are free to download, store, access, use, copy, adapt, transform, alter, arrange, build upon, distribute and transmit this work and any derivative works. Attribution of the source must be provided, and further distribution of this work or derived work must maintain the same terms of data use and license as set forth in this Terms of Use. Copyright 2026. The Trustees of Columbia University in the City of New York.\n\n\nData license\nThe data and accompanying document are licensed under a Creative Commons Attribution-ShareAlike 4.0 International, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) and specified in legal code (https://creativecommons.org/licenses/by-sa/4.0/legalcode).\n\n\nContacts and data queries\nThe authors of this dataset appreciate feedback regarding the data, including suggestions, discovery of errors, difficulties in using the data, and format preferences. For dataset-related questions, please send an email to: info@ciesin.columbia.edu",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html#road-data-integration-and-cleaning",
-    "href": "notebooks/Roads_DRN_MD.html#road-data-integration-and-cleaning",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "2.1 Road Data Integration and Cleaning",
-    "text": "2.1 Road Data Integration and Cleaning\nThe GRID3 COD roads dataset integrates three primary sources: Overture Roads data (derived from OpenStreetMap), road feature extractions from satellite imagery conducted by Meta (formally Facebook) in 2020, and GPS track data collected during field campaigns and GRID3 fieldwork. The Overture data serve as the foundational layer of the dataset and were incorporated in full, without any modifications to the geometries. In cases where Meta or GPS tracks overlapped with Overture, Overture was preferred, and in cases where GPS tracks overlapped with Meta, Meta was preferred. Both Meta and roads derived from GPS tracks were used to fill the gaps, complementing the dataset in areas not covered by Overture.\nTo incorporate Meta and GPS track data into a usable road network, topological corrections were necessary. Road network models require a specific topology that defines how the line segments (roads) connect to each other and to the nodes (intersections or endpoints). First, Meta roads were merged with Overture roads by snapping to the nearest Overture segments within a 1-meter tolerance. Next, Meta segments were snapped to other Meta segments within a 3-meter tolerance.\nGPS track points were used to construct travel paths based on the temporal information and device ID associated with a track (Figure 1). To remove noise created by GPS error, track data was cleaned to drop any consecutive points where travel speed was faster than 100 km/h, ping time was greater than 30 minutes, or the distance travelled was greater than 1,000-m. Track points were then converted to linear track segments. Next, we removed track segments that were close to each other, but disconnected by creating 100-m buffers around segments which were dissolved and converted from multipart to singlepart features. For each buffer feature, we created a centerline. To remove track segments that duplicated existing roads, the resulting centerlines were discarded if they overlapped more than 70% with a 300 m buffer created around Overture/Meta roads. The remaining line features were aligned with both Overture and Meta roads with a tolerance of 250-m. To enable node creation, vertices were added to the Meta road and GPS track segments using the Integrate tool. These segments were then split at the nodes using dissolve and converted back to singlepart features.\nWe found several cases where Meta’s extractions were misclassified–likely due to interference from clouds or other natural features (Figure 2). Additionally, track roads contained noise due to GPS error. To filter out erroneous road segments, the remaining Meta roads and GPS tracks were further cleaned by creating a settlement-network connecting GRID3 Settlement polygons along Overture, Meta, and track roads (Figure 3). Lines generated to connect settlements along the road network were done so using the Optimal Region Connections tool in ArcGIS Pro and are referred to as optimal paths. Meta roads that were not either within a settlement or useful in connecting a settlement to other roads in the network were removed. GPS tracks were also removed if they were not within a settlement, useful for connecting a settlement, or did not connect two segments of Overture/Meta roads. This settlement-network cleaning was conducted based on the assumption that roads should connect populated areas, thus unconnected, stand-alone segments may be less likely to represent an actual road. Even when removed road segments were valid roads, many were used to get to fields and not for navigation between populated areas.\nTo create a more connected road network, an additional segment type was derived from optimal paths created in the settlement-network. Optimal segments were kept if they were necessary for connecting the endpoints of two previously unconnected road segments. Optimal segments were aligned with the other roads using a 10-m tolerance. Roads created from optimal paths can be identified through the source_id attribute and are labelled as “CIESIN”. The class assigned to these road segments is derived from the connected Meta, Overture, or GPS track segments. The classes of Overture and Meta were retained from the source data and GPS track classes were set to unknown except for those identified as “water tracks”.\nA unique subset of tracks representing travel along water were identified as tracks that overlapped more than 70% with OSM water polygons. While these water tracks do not represent traditional roads, they represent paths which were traveled at least once to visit hard-to-reach settlements within water bodies. Thus, we retained water tracks to connect island settlements to other roads in the dataset. Water tracks are often small and scattered within close proximity to each other so they were cleaned using a 1-km buffer which was dissolved and converted to singlepart features. These buffer features were used to create centerlines which were aligned to other road segments within 200-m (Figure 4). An additional “water_track” classification was created in the class attribute to easily identify these water paths.\n\nINSERT FIGURE 1-4 HERE",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html#deriving-travel-speeds-from-field-collected-gps-tracks",
-    "href": "notebooks/Roads_DRN_MD.html#deriving-travel-speeds-from-field-collected-gps-tracks",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "2.2 Deriving Travel Speeds from Field-Collected GPS Tracks",
-    "text": "2.2 Deriving Travel Speeds from Field-Collected GPS Tracks\nTravel speeds represent a practical travel speed for the fastest mode of transportation (walking, motorcycle, or motorized vehicle) for a given road class under low traffic conditions. Travel speeds were assigned in two ways, either as a standardized speed by road type determined from travel speed literature, or as the observed travel speed from the GPS tracks. Observed travel speeds were assigned only to roads derived from GPS tracks and major Overture/Meta roads that had a class of primary, secondary, tertiary, or trunk. In the Democratic Republic of the Congo, we observed that GPS travel speeds were not closely related to road class, and were instead spatially variable due to varying road and environmental conditions across the country. The Northern half of the country, predominately covered in dense forest tended to have slower road speeds, while the Southern half comprising savannahs had faster speeds (Figure 5). Due to the nature of the GPS track collection, large regions of the country do not have GPS tracks. We leveraged the spatial patterns observed in the travel speeds to model speed for major roads without GPS track data.\nWe trained a tree-based machine learning model, XGBoost, to predict travel speeds based on elevation, road class, road length, Settlement Extents, land cover, and location. The Copernicus 30-m Digital Elevation Model (DEM) was used to calculate the mean and standard deviation of the DEM, slope and aspect within a 10-m buffer of each road. ESRI’s 10-m land cover product was used to calculate the majority land cover within a 10-m buffer of each road. GRID3’s Settlement extent layer was used to calculate the percentage overlap of a road segment’s 10-m buffer and Built-up Areas (BUA), Small Settlement Areas (SSA), and Hamlets, and the distance between a road segment and the nearest Settlement Extent (BUA, SSA, and Hamlet). Finally, location was calculated as the latitude and longitude of a road segment’s midpoint. Categorical data including the majority land cover and road class were converted to dummy variables.\nThe dependent variable was the maximum GPS-derived speed along a road segment. To calculate speed from GPS tracking data, track paths were created between points with a similar device ID that were collected on the same day. Using the time taken to travel between two consecutive points and the distance between points, travel speed was calculated. Track data contained significant noise due to device and human error. Several filters were applied to remove inaccurate speeds including tracks faster than 100 km/h or slower than 5 km/h, distances greater than 1,000-m, and consecutive ping times longer than 30 minutes. Once track paths were cleaned, they were snapped to roads using the Snap Tracks GeoAnalytics tool in ArcGIS Pro with a threshold of 250-m. Before assigning speeds to major roads, long roads with lengths greater than 20-km were split up into 10-km sections to create more localized speed data. A spatial join was used to assign the maximum travel speed to each road segment.\nData without missing speed information (n=5,464) was split into training and testing subsets using a 70/30 percent split. XGBoost hyperparameters were optimized using the GridSearchCV Python package and were set to 300 for n_estimators, 0.1 for base_score, 0.04 for learning_rate, 10 for max_depth, and 0.95 for subsample. A linear regression XGBoost model was used to predict the continuous maximum speed variable. The resulting R² was 0.80 and Root Mean Square Error (RMSE) was 14.75 km/h. Using this model, travel speeds were predicted for the remaining major roads without speed data (n=9,488). The most important independent variables in the model were the percentage overlap with BUAs, latitude and longitude (Figure 6). Observed road speeds (including model predictions) were rounded up into bins every 5-km from 0-30 and then every 10-km from 40-100. GPS track-derived roads (either unknown or water tracks) were also assigned the maximum speed from intersecting GPS tracks.\nSpeeds for all other roads (Table 2) were determined from the literature and OSM’s road class descriptions which typically define road speeds ranging from 10 to 120 km/h depending on a road’s classification (Keller et al., 2020; Munoz & Källestål, 2012; OSM, 2025a; Ray & Ebener, 2008). Residential and living street speeds were kept slower (20 km/h) because they are smaller roads primarily geared towards pedestrians (OSM, 2025b). Track roads are informal, often unpaved agricultural/forest paths where motorized travel is difficult and thus speeds were set slower than residential (10 km/h). As we could not discern any additional information about unclassified roads, speeds were set in the middle range at 40 km/h. Finally, motorways are paved multi-lane highways and were given faster speeds (80 km/h).\nINSERT FIGURE 5,6",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html#table-road-speeds",
-    "href": "notebooks/Roads_DRN_MD.html#table-road-speeds",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "2.3 Table: Road speeds",
-    "text": "2.3 Table: Road speeds\n\n\n\n\n\n\n\n\n\nClass\nTravel Mode\nEstimated_speed (km/h)\nEstimated_speed_method\n\n\n\n\nmotorway\nMotorized vehicle\n80\nGPS/Modeled\n\n\ntrunk\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nprimary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nsecondary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\ntertiary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nunclassified\nMotorized vehicle\n40\nLiterature review\n\n\nliving_street\nMotorized vehicle\n20\nLiterature review\n\n\nresidential\nMotorized vehicle\n20\nLiterature review\n\n\ntrack\nMotorcycle / Walking\n10\nLiterature review\n\n\nfootway\nWalking\n4.5\nLiterature review\n\n\npath\nWalking\n4.5\nLiterature review\n\n\npedestrian\nWalking\n4.5\nLiterature review\n\n\nservice\nMotorized vehicle\n4.5\nLiterature review\n\n\nsteps\nWalking\n4\nLiterature review\n\n\nunknown\nWalking\nVariable\nLiterature review/GPS\n\n\nwater_track\nBoat\nVariable\nGPS",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html#data-sources-table",
-    "href": "notebooks/Roads_DRN_MD.html#data-sources-table",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "7.1 Data sources table",
-    "text": "7.1 Data sources table\n\n\n\n\n\n\n\n\nsource_id\nsource_acronym\nDescription\n\n\n\n\nOverture / OSM\nOverture_OSM_001\nRoads from Overture Maps Foundation, overturemaps.org © OpenStreetMap contributors, Overture Maps Foundation, downloaded October 2025.\n\n\nCIESIN / Meta\nCIESIN_Meta_002\nRoads from Meta/Facebook downloaded 12/01/2023, edited by CIESIN.\n\n\nCIESIN\nCIESIN_001\nRoads from GPS and optimal tracks.",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/Roads_DRN_MD.html#footnotes",
-    "href": "notebooks/Roads_DRN_MD.html#footnotes",
-    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nproduced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved↩︎",
-    "crumbs": [
-      "GRID3 COD - Roads v1.0 Data Release Notes"
-    ]
-  },
-  {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html",
-    "href": "notebooks/accessing_friction_surface_by_lga.html",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.\n  \n\n\n\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode)\nAdministrative boundaries for Nigerian states and LGAs\n\nFriction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\n\n\n\nImplemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 friction rasters\n\nClip the raster to the selected LGA\n\nExport a GeoTIFF and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.\n\n\n\nBy the end, users will be able to:\n\nUnderstand GRID3 friction datasets\n\nExtract and crop friction rasters to an LGA\n\nGenerate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.\n\n\n\n\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
@@ -183,8 +84,8 @@
     ]
   },
   {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html#overview",
-    "href": "notebooks/accessing_friction_surface_by_lga.html#overview",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html#overview",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html#overview",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.",
@@ -193,8 +94,8 @@
     ]
   },
   {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html#data",
-    "href": "notebooks/accessing_friction_surface_by_lga.html#data",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html#data",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html#data",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "The lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode)\nAdministrative boundaries for Nigerian states and LGAs\n\nFriction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.",
@@ -203,8 +104,8 @@
     ]
   },
   {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html#workflow-google-colab",
-    "href": "notebooks/accessing_friction_surface_by_lga.html#workflow-google-colab",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html#workflow-google-colab",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html#workflow-google-colab",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "Implemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 friction rasters\n\nClip the raster to the selected LGA\n\nExport a GeoTIFF and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
@@ -213,8 +114,8 @@
     ]
   },
   {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html#learning-outcomes",
-    "href": "notebooks/accessing_friction_surface_by_lga.html#learning-outcomes",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html#learning-outcomes",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html#learning-outcomes",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "By the end, users will be able to:\n\nUnderstand GRID3 friction datasets\n\nExtract and crop friction rasters to an LGA\n\nGenerate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
@@ -223,13 +124,113 @@
     ]
   },
   {
-    "objectID": "notebooks/accessing_friction_surface_by_lga.html#run-in-google-colab",
-    "href": "notebooks/accessing_friction_surface_by_lga.html#run-in-google-colab",
+    "objectID": "notebooks/data-access/accessing_friction_surface_by_lga.html#run-in-google-colab",
+    "href": "notebooks/data-access/accessing_friction_surface_by_lga.html#run-in-google-colab",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
     "section": "",
     "text": "Open the lesson in Google Colab to execute the code and follow along with the analysis:",
     "crumbs": [
       "Mapping GRID3 Friction Surfaces by LGA in Nigeria"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html",
+    "href": "notebooks/appendix/user_guide_template.html",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/\n\n\n\n\n\nProvide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives\n\n\n\n\n\n\n\n\nBrief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)\n\n\n\n\n\n\nList 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.\n\n\n\n\n\n\n\nLink(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.\n\n\n\n\n\n\n\n\n\n\n\nFile Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc\n\n\n\n\n\n\n\n\nHighlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations\n\n\n\n\n\n\n\nKnown sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for\n\n\n\n\n\n\n\n\nR (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#examples",
+    "href": "notebooks/appendix/user_guide_template.html#examples",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#tips-and-pointers",
+    "href": "notebooks/appendix/user_guide_template.html#tips-and-pointers",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "Provide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#overview",
+    "href": "notebooks/appendix/user_guide_template.html#overview",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "Brief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#key-questions-this-data-can-answer",
+    "href": "notebooks/appendix/user_guide_template.html#key-questions-this-data-can-answer",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "List 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#data-access",
+    "href": "notebooks/appendix/user_guide_template.html#data-access",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "Link(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#dataset-structure",
+    "href": "notebooks/appendix/user_guide_template.html#dataset-structure",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "File Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#variables-definitions",
+    "href": "notebooks/appendix/user_guide_template.html#variables-definitions",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "Highlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#data-quality-limitations",
+    "href": "notebooks/appendix/user_guide_template.html#data-quality-limitations",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "Known sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for",
+    "crumbs": [
+      "Data User Guide Template"
+    ]
+  },
+  {
+    "objectID": "notebooks/appendix/user_guide_template.html#getting-started-quick-setup",
+    "href": "notebooks/appendix/user_guide_template.html#getting-started-quick-setup",
+    "title": "Data User Guide Template",
+    "section": "",
+    "text": "R (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
+    "crumbs": [
+      "Data User Guide Template"
     ]
   },
   {
@@ -253,145 +254,204 @@
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html",
-    "href": "notebooks/user_guide_template.html",
-    "title": "Data User Guide Template",
+    "objectID": "notebooks/about.html",
+    "href": "notebooks/about.html",
+    "title": "About",
     "section": "",
-    "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/\n\n\n\n\n\nProvide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives\n\n\n\n\n\n\n\n\nBrief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)\n\n\n\n\n\n\nList 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.\n\n\n\n\n\n\n\nLink(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.\n\n\n\n\n\n\n\n\n\n\n\nFile Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc\n\n\n\n\n\n\n\n\nHighlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations\n\n\n\n\n\n\n\nKnown sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for\n\n\n\n\n\n\n\n\nR (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Home",
+    "section": "Getting started",
+    "text": "Getting started\n\n\n Data access\n\n\n Data analysis\n\n\n Visualization and mapping\n\n\n Other resources"
+  },
+  {
+    "objectID": "notebooks/analysis/index.html",
+    "href": "notebooks/analysis/index.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
     "crumbs": [
-      "Data User Guide Template"
+      "Overview"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#examples",
-    "href": "notebooks/user_guide_template.html#examples",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "TOPST SCHOOL project: https://ciesin-geospatial.github.io/TOPSTSCHOOL-SPHINX/\n\nSpecific lesson: NRT Water Lesson: https://ciesin-geospatial.github.io/TOPSTSCHOOL-water/m102-lance-modis-nrt-global-flood.html\n\nPytidycensus examples page: https://github.com/mmann1123/pytidycensus/tree/main/examples\nNASA Earthdata Cloud Cookbook: https://nasa-openscapes.github.io/earthdata-cloud-cookbook/tutorials/\nGSAPP Smorgasbord: https://cdp.arch.columbia.edu/smorgasbord/modules/5-computational-design-modeling-in-grasshopper/5-7_Design-Space/",
+    "objectID": "notebooks/analysis/index.html#guides-in-this-section",
+    "href": "notebooks/analysis/index.html#guides-in-this-section",
+    "title": "Analysis",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.",
     "crumbs": [
-      "Data User Guide Template"
+      "Overview"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#tips-and-pointers",
-    "href": "notebooks/user_guide_template.html#tips-and-pointers",
-    "title": "Data User Guide Template",
+    "objectID": "notebooks/appendix/index.html",
+    "href": "notebooks/appendix/index.html",
+    "title": "Appendix",
     "section": "",
-    "text": "Provide links to any relevant URLs including code packages, data documentation\nProvide links to other help/guides when relevant instead of DIY. For example, link to a guide on accessing REST APIs instead of writing a whole section yourself. Two options for this:\n\nhttps://zapier.com/blog/how-to-use-api/#what\nhttps://guides.dataverse.org/en/6.8/api/getting-started.html\n\nUse open source tools whenever possible to facilitate user accessibility. Where an open tool is not available, explain why the tool is necessary and point to some possible alternatives",
+    "text": "Test"
+  },
+  {
+    "objectID": "notebooks/appendix/index.html#test",
+    "href": "notebooks/appendix/index.html#test",
+    "title": "Appendix",
+    "section": "",
+    "text": "Test"
+  },
+  {
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html",
+    "href": "notebooks/data-access/Roads_DRN_MD.html",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nName of the dataset\nGRID3 COD - Roads v1.0\n\n\nName of the file\nGRID3_COD_roads_v1_0.gpkg\n\n\nDate of data release\nJanuary 08, 2026\n\n\nFile format\nOGC Geopackage\n\n\nDataset version\nv1.0\n\n\nAbstract\nThis document outlines the methodology and data sources used to produce the GRID3 COD - Roads v1.0 dataset. The spatial dataset consists of road and path locations in the Democratic Republic of the Congo.\n\n\nDataset citation\nCenter for Integrated Earth System Information (CIESIN), Columbia University. 2026. GRID3 COD - Roads v1.0. New York: Columbia University. https://doi.org/10.7916/00gb-e164. Accessed &lt;DAY MONTH YEAR&gt;.\n\n\nTerms of use\nUsers are free to download, store, access, use, copy, adapt, transform, alter, arrange, build upon, distribute and transmit this work and any derivative works. Attribution of the source must be provided, and further distribution of this work or derived work must maintain the same terms of data use and license as set forth in this Terms of Use. Copyright 2026. The Trustees of Columbia University in the City of New York.\n\n\nData license\nThe data and accompanying document are licensed under a Creative Commons Attribution-ShareAlike 4.0 International, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) and specified in legal code (https://creativecommons.org/licenses/by-sa/4.0/legalcode).\n\n\nContacts and data queries\nThe authors of this dataset appreciate feedback regarding the data, including suggestions, discovery of errors, difficulties in using the data, and format preferences. For dataset-related questions, please send an email to: info@ciesin.columbia.edu",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#overview",
-    "href": "notebooks/user_guide_template.html#overview",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "Brief, plain-language description of the dataset\n\nLinks to our datahub, API\n\nTime period covered\n\nGeographic or population coverage\n\nLicense (e.g., CC BY 4.0)\nCitation guidance\nAny usage restrictions\n\n\n\n\n\nIntended audience\nSuggested skill level (beginner / intermediate / advanced)",
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html#road-data-integration-and-cleaning",
+    "href": "notebooks/data-access/Roads_DRN_MD.html#road-data-integration-and-cleaning",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "2.1 Road Data Integration and Cleaning",
+    "text": "2.1 Road Data Integration and Cleaning\nThe GRID3 COD roads dataset integrates three primary sources: Overture Roads data (derived from OpenStreetMap), road feature extractions from satellite imagery conducted by Meta (formally Facebook) in 2020, and GPS track data collected during field campaigns and GRID3 fieldwork. The Overture data serve as the foundational layer of the dataset and were incorporated in full, without any modifications to the geometries. In cases where Meta or GPS tracks overlapped with Overture, Overture was preferred, and in cases where GPS tracks overlapped with Meta, Meta was preferred. Both Meta and roads derived from GPS tracks were used to fill the gaps, complementing the dataset in areas not covered by Overture.\nTo incorporate Meta and GPS track data into a usable road network, topological corrections were necessary. Road network models require a specific topology that defines how the line segments (roads) connect to each other and to the nodes (intersections or endpoints). First, Meta roads were merged with Overture roads by snapping to the nearest Overture segments within a 1-meter tolerance. Next, Meta segments were snapped to other Meta segments within a 3-meter tolerance.\nGPS track points were used to construct travel paths based on the temporal information and device ID associated with a track (Figure 1). To remove noise created by GPS error, track data was cleaned to drop any consecutive points where travel speed was faster than 100 km/h, ping time was greater than 30 minutes, or the distance travelled was greater than 1,000-m. Track points were then converted to linear track segments. Next, we removed track segments that were close to each other, but disconnected by creating 100-m buffers around segments which were dissolved and converted from multipart to singlepart features. For each buffer feature, we created a centerline. To remove track segments that duplicated existing roads, the resulting centerlines were discarded if they overlapped more than 70% with a 300 m buffer created around Overture/Meta roads. The remaining line features were aligned with both Overture and Meta roads with a tolerance of 250-m. To enable node creation, vertices were added to the Meta road and GPS track segments using the Integrate tool. These segments were then split at the nodes using dissolve and converted back to singlepart features.\nWe found several cases where Meta’s extractions were misclassified–likely due to interference from clouds or other natural features (Figure 2). Additionally, track roads contained noise due to GPS error. To filter out erroneous road segments, the remaining Meta roads and GPS tracks were further cleaned by creating a settlement-network connecting GRID3 Settlement polygons along Overture, Meta, and track roads (Figure 3). Lines generated to connect settlements along the road network were done so using the Optimal Region Connections tool in ArcGIS Pro and are referred to as optimal paths. Meta roads that were not either within a settlement or useful in connecting a settlement to other roads in the network were removed. GPS tracks were also removed if they were not within a settlement, useful for connecting a settlement, or did not connect two segments of Overture/Meta roads. This settlement-network cleaning was conducted based on the assumption that roads should connect populated areas, thus unconnected, stand-alone segments may be less likely to represent an actual road. Even when removed road segments were valid roads, many were used to get to fields and not for navigation between populated areas.\nTo create a more connected road network, an additional segment type was derived from optimal paths created in the settlement-network. Optimal segments were kept if they were necessary for connecting the endpoints of two previously unconnected road segments. Optimal segments were aligned with the other roads using a 10-m tolerance. Roads created from optimal paths can be identified through the source_id attribute and are labelled as “CIESIN”. The class assigned to these road segments is derived from the connected Meta, Overture, or GPS track segments. The classes of Overture and Meta were retained from the source data and GPS track classes were set to unknown except for those identified as “water tracks”.\nA unique subset of tracks representing travel along water were identified as tracks that overlapped more than 70% with OSM water polygons. While these water tracks do not represent traditional roads, they represent paths which were traveled at least once to visit hard-to-reach settlements within water bodies. Thus, we retained water tracks to connect island settlements to other roads in the dataset. Water tracks are often small and scattered within close proximity to each other so they were cleaned using a 1-km buffer which was dissolved and converted to singlepart features. These buffer features were used to create centerlines which were aligned to other road segments within 200-m (Figure 4). An additional “water_track” classification was created in the class attribute to easily identify these water paths.\n\nINSERT FIGURE 1-4 HERE",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#key-questions-this-data-can-answer",
-    "href": "notebooks/user_guide_template.html#key-questions-this-data-can-answer",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "List 5–6 example questions users can explore, in addition to the key question that we will be exploring in this guide.\n\nHow has X changed over time?\nAre there differences in X by region or demographic group?\nWhich areas experience the highest or lowest values?\n\nExplain why this data set is appropriate to use to assess the key question.",
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html#deriving-travel-speeds-from-field-collected-gps-tracks",
+    "href": "notebooks/data-access/Roads_DRN_MD.html#deriving-travel-speeds-from-field-collected-gps-tracks",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "2.2 Deriving Travel Speeds from Field-Collected GPS Tracks",
+    "text": "2.2 Deriving Travel Speeds from Field-Collected GPS Tracks\nTravel speeds represent a practical travel speed for the fastest mode of transportation (walking, motorcycle, or motorized vehicle) for a given road class under low traffic conditions. Travel speeds were assigned in two ways, either as a standardized speed by road type determined from travel speed literature, or as the observed travel speed from the GPS tracks. Observed travel speeds were assigned only to roads derived from GPS tracks and major Overture/Meta roads that had a class of primary, secondary, tertiary, or trunk. In the Democratic Republic of the Congo, we observed that GPS travel speeds were not closely related to road class, and were instead spatially variable due to varying road and environmental conditions across the country. The Northern half of the country, predominately covered in dense forest tended to have slower road speeds, while the Southern half comprising savannahs had faster speeds (Figure 5). Due to the nature of the GPS track collection, large regions of the country do not have GPS tracks. We leveraged the spatial patterns observed in the travel speeds to model speed for major roads without GPS track data.\nWe trained a tree-based machine learning model, XGBoost, to predict travel speeds based on elevation, road class, road length, Settlement Extents, land cover, and location. The Copernicus 30-m Digital Elevation Model (DEM) was used to calculate the mean and standard deviation of the DEM, slope and aspect within a 10-m buffer of each road. ESRI’s 10-m land cover product was used to calculate the majority land cover within a 10-m buffer of each road. GRID3’s Settlement extent layer was used to calculate the percentage overlap of a road segment’s 10-m buffer and Built-up Areas (BUA), Small Settlement Areas (SSA), and Hamlets, and the distance between a road segment and the nearest Settlement Extent (BUA, SSA, and Hamlet). Finally, location was calculated as the latitude and longitude of a road segment’s midpoint. Categorical data including the majority land cover and road class were converted to dummy variables.\nThe dependent variable was the maximum GPS-derived speed along a road segment. To calculate speed from GPS tracking data, track paths were created between points with a similar device ID that were collected on the same day. Using the time taken to travel between two consecutive points and the distance between points, travel speed was calculated. Track data contained significant noise due to device and human error. Several filters were applied to remove inaccurate speeds including tracks faster than 100 km/h or slower than 5 km/h, distances greater than 1,000-m, and consecutive ping times longer than 30 minutes. Once track paths were cleaned, they were snapped to roads using the Snap Tracks GeoAnalytics tool in ArcGIS Pro with a threshold of 250-m. Before assigning speeds to major roads, long roads with lengths greater than 20-km were split up into 10-km sections to create more localized speed data. A spatial join was used to assign the maximum travel speed to each road segment.\nData without missing speed information (n=5,464) was split into training and testing subsets using a 70/30 percent split. XGBoost hyperparameters were optimized using the GridSearchCV Python package and were set to 300 for n_estimators, 0.1 for base_score, 0.04 for learning_rate, 10 for max_depth, and 0.95 for subsample. A linear regression XGBoost model was used to predict the continuous maximum speed variable. The resulting R² was 0.80 and Root Mean Square Error (RMSE) was 14.75 km/h. Using this model, travel speeds were predicted for the remaining major roads without speed data (n=9,488). The most important independent variables in the model were the percentage overlap with BUAs, latitude and longitude (Figure 6). Observed road speeds (including model predictions) were rounded up into bins every 5-km from 0-30 and then every 10-km from 40-100. GPS track-derived roads (either unknown or water tracks) were also assigned the maximum speed from intersecting GPS tracks.\nSpeeds for all other roads (Table 2) were determined from the literature and OSM’s road class descriptions which typically define road speeds ranging from 10 to 120 km/h depending on a road’s classification (Keller et al., 2020; Munoz & Källestål, 2012; OSM, 2025a; Ray & Ebener, 2008). Residential and living street speeds were kept slower (20 km/h) because they are smaller roads primarily geared towards pedestrians (OSM, 2025b). Track roads are informal, often unpaved agricultural/forest paths where motorized travel is difficult and thus speeds were set slower than residential (10 km/h). As we could not discern any additional information about unclassified roads, speeds were set in the middle range at 40 km/h. Finally, motorways are paved multi-lane highways and were given faster speeds (80 km/h).\nINSERT FIGURE 5,6",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#data-access",
-    "href": "notebooks/user_guide_template.html#data-access",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "Link(s) to download location (portal, GitHub, API, cloud storage)\nFile formats available (CSV, Excel, Parquet, API endpoint)\n\n\n\n\nStep-by-step instructions: 1. Navigate to … 2. Click … 3. Select format …\n\nInclude screenshots if possible.",
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html#table-road-speeds",
+    "href": "notebooks/data-access/Roads_DRN_MD.html#table-road-speeds",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "2.3 Table: Road speeds",
+    "text": "2.3 Table: Road speeds\n\n\n\n\n\n\n\n\n\nClass\nTravel Mode\nEstimated_speed (km/h)\nEstimated_speed_method\n\n\n\n\nmotorway\nMotorized vehicle\n80\nGPS/Modeled\n\n\ntrunk\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nprimary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nsecondary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\ntertiary\nMotorized vehicle\nVariable\nGPS/Modeled\n\n\nunclassified\nMotorized vehicle\n40\nLiterature review\n\n\nliving_street\nMotorized vehicle\n20\nLiterature review\n\n\nresidential\nMotorized vehicle\n20\nLiterature review\n\n\ntrack\nMotorcycle / Walking\n10\nLiterature review\n\n\nfootway\nWalking\n4.5\nLiterature review\n\n\npath\nWalking\n4.5\nLiterature review\n\n\npedestrian\nWalking\n4.5\nLiterature review\n\n\nservice\nMotorized vehicle\n4.5\nLiterature review\n\n\nsteps\nWalking\n4\nLiterature review\n\n\nunknown\nWalking\nVariable\nLiterature review/GPS\n\n\nwater_track\nBoat\nVariable\nGPS",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#dataset-structure",
-    "href": "notebooks/user_guide_template.html#dataset-structure",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "File Name\nDescription\n\n\n\n\ndata.csv\nMain cleaned dataset\n\n\ncodebook.csv\nVariable definitions\n\n\nmetadata.json\nCollection and methodology details\n\n\n\n\n\n\nClearly state what one row represents:\n\nOne road\n\nOne ward\n\nOne health facility\nEtc",
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html#data-sources-table",
+    "href": "notebooks/data-access/Roads_DRN_MD.html#data-sources-table",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "7.1 Data sources table",
+    "text": "7.1 Data sources table\n\n\n\n\n\n\n\n\nsource_id\nsource_acronym\nDescription\n\n\n\n\nOverture / OSM\nOverture_OSM_001\nRoads from Overture Maps Foundation, overturemaps.org © OpenStreetMap contributors, Overture Maps Foundation, downloaded October 2025.\n\n\nCIESIN / Meta\nCIESIN_Meta_002\nRoads from Meta/Facebook downloaded 12/01/2023, edited by CIESIN.\n\n\nCIESIN\nCIESIN_001\nRoads from GPS and optimal tracks.",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#variables-definitions",
-    "href": "notebooks/user_guide_template.html#variables-definitions",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "Highlight the most important fields.\n\n\n\nVariable\nDescription\nType\nExample\n\n\n\n\ncounty\nCounty name\nCategorical\nCook\n\n\nyear\nCalendar year\nInteger\n2022\n\n\nfunding_usd\nTotal funding\nNumeric\n125000\n\n\n\n\n\n\n\nHow missing values are represented (e.g., NA, blank, -999)\nKnown gaps or limitations",
+    "objectID": "notebooks/data-access/Roads_DRN_MD.html#footnotes",
+    "href": "notebooks/data-access/Roads_DRN_MD.html#footnotes",
+    "title": "GRID3 COD - Roads v1.0 Data Release Notes",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nproduced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved↩︎",
     "crumbs": [
-      "Data User Guide Template"
+      "GRID3 COD - Roads v1.0 Data Release Notes"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#data-quality-limitations",
-    "href": "notebooks/user_guide_template.html#data-quality-limitations",
-    "title": "Data User Guide Template",
+    "objectID": "notebooks/data-access/index.html",
+    "href": "notebooks/data-access/index.html",
+    "title": "Data Access",
     "section": "",
-    "text": "Known sources of bias\nData collection limitations\nChanges in methodology over time\nWhat the data should not be used for",
+    "text": "This section covers how to locate GRID3 datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.",
     "crumbs": [
-      "Data User Guide Template"
+      "Overview"
     ]
   },
   {
-    "objectID": "notebooks/user_guide_template.html#getting-started-quick-setup",
-    "href": "notebooks/user_guide_template.html#getting-started-quick-setup",
-    "title": "Data User Guide Template",
-    "section": "",
-    "text": "R (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics",
+    "objectID": "notebooks/data-access/index.html#guides-in-this-section",
+    "href": "notebooks/data-access/index.html#guides-in-this-section",
+    "title": "Data Access",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nMapping GRID3 Friction Surfaces by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.",
     "crumbs": [
-      "Data User Guide Template"
+      "Overview"
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-pmtiles-intro.html",
-    "href": "notebooks/visualization/visualization-pmtiles-intro.html",
+    "objectID": "notebooks/visualization/pmtiles-intro.html",
+    "href": "notebooks/visualization/pmtiles-intro.html",
     "title": "What are vector tiles?",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualization with PMTiles",
+      "Creating an interactive webmap",
       "What are vector tiles?"
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-pmtiles-intro.html#test",
-    "href": "notebooks/visualization/visualization-pmtiles-intro.html#test",
+    "objectID": "notebooks/visualization/pmtiles-intro.html#test",
+    "href": "notebooks/visualization/pmtiles-intro.html#test",
     "title": "What are vector tiles?",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualization with PMTiles",
+      "Creating an interactive webmap",
       "What are vector tiles?"
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-qgis.html",
-    "href": "notebooks/visualization/visualization-qgis.html",
-    "title": "Visualizing GRID3 Data with QGIS",
+    "objectID": "notebooks/visualization/pmtiles-style.html",
+    "href": "notebooks/visualization/pmtiles-style.html",
+    "title": "Customizing a stylesheet",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualizing GRID3 Data with QGIS"
+      "Creating an interactive webmap",
+      "Customizing a stylesheet"
     ]
   },
   {
-    "objectID": "notebooks/visualization/visualization-qgis.html#test",
-    "href": "notebooks/visualization/visualization-qgis.html#test",
-    "title": "Visualizing GRID3 Data with QGIS",
+    "objectID": "notebooks/visualization/pmtiles-style.html#test",
+    "href": "notebooks/visualization/pmtiles-style.html#test",
+    "title": "Customizing a stylesheet",
     "section": "",
     "text": "Test",
     "crumbs": [
-      "Visualizing GRID3 Data with QGIS"
+      "Creating an interactive webmap",
+      "Customizing a stylesheet"
+    ]
+  },
+  {
+    "objectID": "notebooks/visualization/qgis.html",
+    "href": "notebooks/visualization/qgis.html",
+    "title": "Setting up a map project",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Visualization with QGIS",
+      "Setting up a map project"
+    ]
+  },
+  {
+    "objectID": "notebooks/visualization/qgis.html#test",
+    "href": "notebooks/visualization/qgis.html#test",
+    "title": "Setting up a map project",
+    "section": "",
+    "text": "Test",
+    "crumbs": [
+      "Visualization with QGIS",
+      "Setting up a map project"
     ]
   }
 ]
