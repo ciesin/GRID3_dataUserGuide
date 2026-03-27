@@ -1,6 +1,7 @@
 ---
 title: "Home"
-# subtitle: "Access, analyze, and visualize GRID3 data with Python" 
+# subtitle: "Access, analyze, and visualize GRID3 data with Python"
+sidebar: false
 format:
   html:
     toc: false

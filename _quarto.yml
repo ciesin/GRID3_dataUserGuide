@@ -1,22 +1,25 @@
 project:
   type: website
-  output-dir: docs 
-  render:   
+  output-dir: docs
+  render:
     - "*.qmd"
+    - "notebooks/*.qmd"
     - "notebooks/*.ipynb"
+    - "notebooks/visualization/*.qmd"
+    - "notebooks/appendix/*.qmd"
     - "!notebooks/colab/"
 
 
 execute:
-  #enabled: false
+  enabled: false
   freeze: auto
   echo: true
   warning: false
   message: false
-  
 
-website: 
-    
+
+website:
+
   description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
   site-url: https://tiles.ciesin.app/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
@@ -34,15 +37,24 @@ website:
     logo-href: /index.qmd
 
     collapse-below: "sm"
-     
+
     left:
+      - text: "Home"
+        href: index.qmd
       - text: "Guides"
         menu:
-        - notebooks/accessing_friction_surface_by_lga.qmd
-        - notebooks/api_nga_network.ipynb
+          - text: "Data Access"
+            href: notebooks/data-access.qmd
+          - text: "Analysis"
+            href: notebooks/analysis.qmd
+          - text: "Visualization"
+            href: notebooks/visualization/index.qmd
       - text: "Appendix"
         menu:
-        - notebooks/user_guide_template.qmd
+          - text: "Guide Template"
+            href: notebooks/user_guide_template.qmd
+          - text: "Glossary"
+            href: notebooks/appendix/glossary.qmd
       - text: "About"
         href: notebooks/about.qmd
 
@@ -55,78 +67,85 @@ website:
         - icon: database-fill
           href: https://data.grid3.org
         - icon: github
-          href: https://github.com/ciesin/GRID3_dataUserGuide 
+          href: https://github.com/ciesin/GRID3_dataUserGuide
         - icon: linkedin
           href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
         - icon: globe
           href: https://ciesin.columbia.edu
 
-    #   - icon: envelope-fill
-    #     href: mailto:info@ciesin.columbia.edu
-    #   - icon: database-fill
-    #     href: https://data.grid3.org
-    #   - icon: github
-    #     href: https://github.com/ciesin/GRID3_dataUserGuide 
-    #   - icon: linkedin
-    #     href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
-    #   - icon: globe
-    #     href: https://ciesin.columbia.edu
+
+  # one named sidebar per section
+  # to auto-populate a sidebar from a folder, replace the explicit file list
+  # with the folder path (e.g. "notebooks/visualization/")
+  # notebook entries sorted by frontmatter "order" property
 
   sidebar:
-    style: "docked"
-    search: true
-    collapse-level: 1
 
-    contents:
-      - index.qmd
-      - section: "Data Access"
-        contents: 
-          - notebooks/accessing_friction_surface_by_lga.qmd
-          - notebooks/Roads_DRN_MD.qmd
+    - id: data-access
+      title: "Data Access"
+      style: "docked"
+      search: true
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: notebooks/data-access.qmd
+        - notebooks/Roads_DRN_MD.qmd
+        - notebooks/accessing_friction_surface_by_lga.qmd
 
-      - section: "Analysis"
-        contents:
-          - notebooks/api_nga_network.ipynb 
-          # - notebooks/folium-maps.ipynb
-          # - notebooks/geopandas-plots.ipynb
+    - id: analysis
+      title: "Analysis"
+      style: "docked"
+      search: true
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: notebooks/analysis.qmd
+        - notebooks/api_nga_network.ipynb
 
-      - section: "Visualization"
-        contents:
-          - notebooks/visualization/visualization-qgis.qmd
-
-          - section: "Visualization with PMTiles"
-            contents: 
+    - id: visualization
+      title: "Visualization"
+      style: "docked"
+      search: true
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: notebooks/visualization/index.qmd
+        - notebooks/visualization/visualization-qgis.qmd
+        - section: "Visualization with PMTiles"
+          contents:
             - notebooks/visualization/visualization-pmtiles-intro.qmd
             - notebooks/visualization/visualization-pmtiles.qmd
 
-      - section: "Appendix"
-        contents: 
-          - notebooks/user_guide_template.qmd
-          - notebooks/appendix/glossary.qmd
-
-
+    - id: appendix
+      title: "Appendix"
+      style: "docked"
+      search: true
+      collapse-level: 1
+      contents:
+        - notebooks/user_guide_template.qmd
+        - notebooks/appendix/glossary.qmd
 
 
   search:
     location: sidebar
     type: textbox
 
-  google-analytics: 
+  google-analytics:
     tracking-id: "G-45WWDMVLWW"
     anonymize-ip: true
 
   # body-footer: _footer.html
   page-footer:
-    left: 
+    left:
       - "© 2026 <a href='https://ciesin.columbia.edu'>Center for Integrated Earth System Information</a> (CIESIN), Columbia University."
- 
+
     right:
       - icon: envelope-fill
         href: mailto:info@ciesin.columbia.edu
       - icon: database-fill
         href: https://data.grid3.org
       - icon: github
-        href: https://github.com/ciesin/GRID3_dataUserGuide 
+        href: https://github.com/ciesin/GRID3_dataUserGuide
       - icon: linkedin
         href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
       - icon: globe
@@ -157,11 +176,6 @@ format:
     sidebar:
       collapse-level: 2
       float: false
-      width: 300px 
+      width: 300px
 
     include-in-header: google-analytics.html
-  
-
-
-
-         

@@ -1,0 +1,19 @@
+---
+title: "Data Access"
+subtitle: "Find, download, and load GRID3 datasets"
+format:
+  html:
+    toc: false
+---
+
+This section covers how to locate GRID3 datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.
+
+---
+
+## Guides in this section
+
+- [GRID3 COD Roads v1.0 — Data Release Notes](Roads_DRN_MD.qmd)
+  Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.
+
+- [Mapping GRID3 Friction Surfaces by LGA](accessing_friction_surface_by_lga.qmd)
+  Access GRID3 raster friction surface and administrative boundary data for Nigeria.

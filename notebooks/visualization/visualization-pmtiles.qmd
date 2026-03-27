@@ -1,5 +1,6 @@
 ---
 title: "Customizing a stylesheet"
+order: 3
 output: html_document
 ---
 # Visualization Tutorial Overview

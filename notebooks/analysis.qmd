@@ -1,0 +1,16 @@
+---
+title: "Analysis"
+subtitle: "Apply GRID3 data to spatial workflows"
+format:
+  html:
+    toc: false
+---
+
+This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.
+
+---
+
+## Guides in this section
+
+- [Nigeria Road Network API](api_nga_network.ipynb)
+  Query and analyze the GRID3 Nigeria road network via API using Python.

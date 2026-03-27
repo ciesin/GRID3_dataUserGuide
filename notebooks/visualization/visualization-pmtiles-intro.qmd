@@ -1,5 +1,6 @@
 ---
 title: "What are vector tiles?"
+order: 2
 output: html_document
 ---
 # Visualization Tutorial Overview
