@@ -1040,6 +1040,21 @@ $theme-name: null !default;
 // quarto-scss-analysis-annotation { "origin": "Defaults from user-defined SCSS" }
 
 
+// Bootstrap Sass variable overrides — light mode, colors only.
+// These compile into Bootstrap's generated CSS for Quarto elements
+// (TOC, sidebar, search, callouts, tables, etc.)
+
+$body-bg:        #ffffff;
+$body-color:     #212529;
+$headings-color: #1D4F91;
+$link-color:     #1D4F91;
+$link-hover-color: darken(#1D4F91, 10%);
+$border-color:   #dee2e6;
+$code-color:     #495057;
+$secondary:      #5D6D7E;
+
+
+
 // Heading font size customization
 $h1-font-size: 2rem !default;
 $h2-font-size: 1.65rem !default;
@@ -1107,8 +1122,6 @@ $tbl-cap-location: top !default;
 $footer-border: true !default;
 $sidebar-border: true !default;
 $sidebar-bg: if(variable-exists(body-bg), $body-bg, #fff) !default;
-$navbar-fg: # !default;
-$navbar-bg: #1D4F91 !default;
 // Default the theme name
 $theme-name: if(variable-exists(theme), $theme, "");
 
@@ -3220,7 +3233,7 @@ $nested-kbd-font-weight:            null !default; // Deprecated in v5.2.0, remo
 $pre-bg:                            $code-bg  !default;
 $pre-color:                         $body-emphasis-color !default;
 $pre-line-height:                   $line-height-base !default;
-
+$link-color: #1D4F91;
 
 
 
@@ -8009,7 +8022,7 @@ $valuebox-colors: (
     flex-direction: column;
   }
 
-  #quarto-resources {
+  #quarto-appendix {
     display: none;
   }
 
@@ -11438,7 +11451,7 @@ figure .quarto-notebook-link {
 .toc-actions i.bi,
 .quarto-code-links i.bi,
 .quarto-other-links i.bi,
-.quarto-alternate-pages i.bi,
+.quarto-alternate-notebooks i.bi,
 .quarto-alternate-formats i.bi {
   margin-right: 0.4em;
   font-size: $toc-tools-font-size;
@@ -11458,7 +11471,7 @@ figure .quarto-notebook-link {
 .toc-actions i.bi.empty,
 .quarto-code-links i.bi.empty,
 .quarto-other-links i.bi.empty,
-.quarto-alternate-pages i.bi.empty,
+.quarto-alternate-notebooks i.bi.empty,
 .quarto-alternate-formats i.bi.empty {
   padding-left: 1em;
 }
@@ -11497,14 +11510,14 @@ figure .quarto-notebook-link {
 .quarto-alternate-formats,
 .quarto-other-links,
 .quarto-code-links,
-.quarto-alternate-pages {
+.quarto-alternate-notebooks {
   padding-left: 0em;
 }
 .sidebar .toc-actions a,
 .sidebar .quarto-alternate-formats a,
 .sidebar .quarto-other-links a,
 .sidebar .quarto-code-links a,
-.sidebar .quarto-alternate-pages a,
+.sidebar .quarto-alternate-notebooks a,
 .sidebar nav[role="doc-toc"] a {
   text-decoration: none;
 }
@@ -11513,14 +11526,14 @@ figure .quarto-notebook-link {
 .sidebar .quarto-other-links a:hover,
 .sidebar .quarto-code-links a:hover,
 .sidebar .quarto-alternate-formats a:hover,
-.sidebar .quarto-alternate-pages a:hover {
+.sidebar .quarto-alternate-notebooks a:hover {
   color: $link-color;
 }
 
 .sidebar .toc-actions h2,
 .sidebar .quarto-code-links h2,
 .sidebar .quarto-other-links h2,
-.sidebar .quarto-alternate-pages h2,
+.sidebar .quarto-alternate-notebooks h2,
 .sidebar .quarto-alternate-formats h2,
 .sidebar nav[role="doc-toc"] > h2 {
   font-weight: 500;
@@ -11535,7 +11548,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions > h2,
 .sidebar .quarto-code-links > h2,
 .sidebar .quarto-other-links > h2,
-.sidebar .quarto-alternate-pages > h2,
+.sidebar .quarto-alternate-notebooks > h2,
 .sidebar .quarto-alternate-formats > h2 {
   font-size: $toc-tools-font-size;
 }
@@ -11552,7 +11565,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions h2 > ul a,
 .sidebar .quarto-code-links h2 > ul a,
 .sidebar .quarto-other-links h2 > ul a,
-.sidebar .quarto-alternate-pages h2 > ul a,
+.sidebar .quarto-alternate-notebooks h2 > ul a,
 .sidebar .quarto-alternate-formats h2 > ul a {
   border-left: none;
   padding-left: 0.6rem;
@@ -11561,7 +11574,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul a:empty,
 .sidebar .quarto-code-links ul a:empty,
 .sidebar .quarto-other-links ul a:empty,
-.sidebar .quarto-alternate-pages ul a:empty,
+.sidebar .quarto-alternate-notebooks ul a:empty,
 .sidebar .quarto-alternate-formats ul a:empty,
 .sidebar nav[role="doc-toc"] > ul a:empty {
   display: none;
@@ -11570,7 +11583,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul,
 .sidebar .quarto-code-links ul,
 .sidebar .quarto-other-links ul,
-.sidebar .quarto-alternate-pages ul,
+.sidebar .quarto-alternate-notebooks ul,
 .sidebar .quarto-alternate-formats ul {
   padding-left: 0;
   list-style: none;
@@ -11593,7 +11606,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions > ul,
 .sidebar .quarto-code-links > ul,
 .sidebar .quarto-other-links > ul,
-.sidebar .quarto-alternate-pages > ul,
+.sidebar .quarto-alternate-notebooks > ul,
 .sidebar .quarto-alternate-formats > ul {
   font-size: $toc-tools-font-size;
 }
@@ -11605,7 +11618,7 @@ figure .quarto-notebook-link {
 .sidebar .toc-actions ul li a,
 .sidebar .quarto-code-links ul li a,
 .sidebar .quarto-other-links ul li a,
-.sidebar .quarto-alternate-pages ul li a,
+.sidebar .quarto-alternate-notebooks ul li a,
 .sidebar .quarto-alternate-formats ul li a,
 .sidebar nav[role="doc-toc"] > ul li a {
   line-height: 1.1rem;
@@ -11650,11 +11663,11 @@ kbd,
 }
 
 // tweak pandoc default hanging indent
-.quarto-resources-contents div.hanging-indent {
+.quarto-appendix-contents div.hanging-indent {
   margin-left: 0em;
 }
 
-.quarto-resources-contents div.hanging-indent div.csl-entry {
+.quarto-appendix-contents div.hanging-indent div.csl-entry {
   margin-left: 1em;
   text-indent: -1em;
 }
@@ -12113,18 +12126,18 @@ nav[role="doc-toc"].slow > * {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#{colorToRGBA(theme-dim($body-color, 20%))}" class="bi bi-toggle-on" viewBox="0 0 16 16"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>');
 }
 
-// Quarto Resources Treatment
-#quarto-resources.default {
+// Quarto Appendix Treatment
+#quarto-appendix.default {
   border-top: 1px solid $border-color;
 }
 
-#quarto-resources.default {
+#quarto-appendix.default {
   background-color: $body-bg;
   padding-top: 1.5em;
   margin-top: 2em;
   z-index: $zindex-pagelayout;
 
-  .quarto-resources-heading {
+  .quarto-appendix-heading {
     margin-top: 0;
     line-height: 1.4em;
     font-weight: 600;
@@ -12136,7 +12149,7 @@ nav[role="doc-toc"].slow > * {
   // Remove botoom margin from specific elements
   .footnotes ol,
   .footnotes ol li > p:last-of-type,
-  .quarto-resources-contents > p:last-of-type {
+  .quarto-appendix-contents > p:last-of-type {
     margin-bottom: 0;
   }
 
@@ -12144,11 +12157,11 @@ nav[role="doc-toc"].slow > * {
     margin-left: 0.5em;
   }
 
-  .quarto-resources-secondary-label {
+  .quarto-appendix-secondary-label {
     margin-bottom: 0.4em;
   }
 
-  .quarto-resources-bibtex {
+  .quarto-appendix-bibtex {
     font-size: 0.7em;
     padding: 1em;
     border: solid 1px $border-color;
@@ -12158,19 +12171,19 @@ nav[role="doc-toc"].slow > * {
     }
   }
 
-  .quarto-resources-citeas {
+  .quarto-appendix-citeas {
     font-size: 0.9em;
     padding: 1em;
     border: solid 1px $border-color;
     margin-bottom: 1em;
   }
 
-  .quarto-resources-heading {
+  .quarto-appendix-heading {
     font-size: 1em !important;
   }
 
   *[role="doc-endnotes"] > ol,
-  .quarto-resources-contents > *:not(h2) {
+  .quarto-appendix-contents > *:not(h2) {
     font-size: 0.9em;
   }
 
@@ -12819,6 +12832,25 @@ main.quarto-banner-title-block > section:first-child > h4 {
 .quarto-title-tools-only {
   display: flex;
   justify-content: right;
+}
+
+
+// CSS custom properties consumed by custom.css.
+// Add any custom.css hardcoded color here and reference
+// it with var(--ciesin-*) in custom.css.
+
+:root {
+  --ciesin-brand:        #1D4F91;   /* navbar, buttons, back-to-top      */
+  --ciesin-accent:       #1D4F91;   /* headings, links, borders, hr       */
+  --ciesin-muted:        #5D6D7E;   /* subtitle / secondary text          */
+  --ciesin-nav: #1D4F91;   /* sidebar nav text and icons         */
+  --ciesin-code-border:  #2C3E50;   /* code block left border             */
+  --ciesin-code-bg:      #f9fafb;   /* code block background              */
+  --ciesin-footer-rule:  rgba(0, 0, 0, 0.08);      /* footer top rule    */
+  --ciesin-shadow:       rgba(0, 0, 0, 0.14);       /* card shadow        */
+  --ciesin-shadow-hover: rgba(29, 79, 145, 0.28);   /* card hover shadow  */
+
+  --text-color
 }
 
 

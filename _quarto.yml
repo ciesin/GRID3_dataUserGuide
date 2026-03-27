@@ -32,8 +32,8 @@ website:
 
   navbar:
 
-    background: "#1D4F91"
-    foreground: "#ffffff"
+    # background: "#1D4F91"
+    # foreground: "#ffffff"
 
     logo: images/Columbia_University_Logo-Crown_white.png
     logo-href: /index.qmd
@@ -150,7 +150,9 @@ website:
 
 format:
   html:
-    theme: default
+    theme:
+      light: [default, theme-light.scss]
+      dark:  [default, theme-dark.scss]
     css: custom.css
     toc: true
     toc-location: right
@@ -168,8 +170,8 @@ format:
     fig-dpi: 300
     fig-alt-text: true
     lightbox: true
-    navbar:
-      type: default
+    # navbar:
+    #   type: default
     sidebar:
       collapse-level: 2
       float: false
