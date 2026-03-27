@@ -8,7 +8,7 @@ project:
     - "pages/analysis/*.qmd"
     - "pages/analysis/*.ipynb"
     - "pages/visualization/*.qmd"
-    - "pages/appendix/*.qmd"
+    - "pages/resources/*.qmd"
     - "!pages/analysis/colab/"
 
 
@@ -51,8 +51,8 @@ website:
             href: pages/analysis/index.qmd
           - text: "Visualization"
             href: pages/visualization/index.qmd
-      - text: "Appendix"
-        href: pages/appendix/index.qmd
+      - text: "Resources"
+        href: pages/resources/index.qmd
 
 
     right:
@@ -113,18 +113,18 @@ website:
             - pages/visualization/pmtiles/publish.qmd
 
 
-    - id: appendix
-      title: "Appendix"
+    - id: resources
+      title: "Resources"
       style: "docked"
       search: true
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: pages/appendix/index.qmd
+          href: pages/resources/index.qmd
         - text: "Links"
-          href: pages/appendix/links.qmd
-        - pages/appendix/glossary.qmd
-        - pages/appendix/user_guide_template.qmd
+          href: pages/resources/links.qmd
+        - pages/resources/glossary.qmd
+        - pages/resources/user_guide_template.qmd
 
 
 

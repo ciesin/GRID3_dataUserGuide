@@ -8009,7 +8009,7 @@ $valuebox-colors: (
     flex-direction: column;
   }
 
-  #quarto-appendix {
+  #quarto-resources {
     display: none;
   }
 
@@ -11650,11 +11650,11 @@ kbd,
 }
 
 // tweak pandoc default hanging indent
-.quarto-appendix-contents div.hanging-indent {
+.quarto-resources-contents div.hanging-indent {
   margin-left: 0em;
 }
 
-.quarto-appendix-contents div.hanging-indent div.csl-entry {
+.quarto-resources-contents div.hanging-indent div.csl-entry {
   margin-left: 1em;
   text-indent: -1em;
 }
@@ -12113,18 +12113,18 @@ nav[role="doc-toc"].slow > * {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#{colorToRGBA(theme-dim($body-color, 20%))}" class="bi bi-toggle-on" viewBox="0 0 16 16"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>');
 }
 
-// Quarto Appendix Treatment
-#quarto-appendix.default {
+// Quarto Resources Treatment
+#quarto-resources.default {
   border-top: 1px solid $border-color;
 }
 
-#quarto-appendix.default {
+#quarto-resources.default {
   background-color: $body-bg;
   padding-top: 1.5em;
   margin-top: 2em;
   z-index: $zindex-pagelayout;
 
-  .quarto-appendix-heading {
+  .quarto-resources-heading {
     margin-top: 0;
     line-height: 1.4em;
     font-weight: 600;
@@ -12136,7 +12136,7 @@ nav[role="doc-toc"].slow > * {
   // Remove botoom margin from specific elements
   .footnotes ol,
   .footnotes ol li > p:last-of-type,
-  .quarto-appendix-contents > p:last-of-type {
+  .quarto-resources-contents > p:last-of-type {
     margin-bottom: 0;
   }
 
@@ -12144,11 +12144,11 @@ nav[role="doc-toc"].slow > * {
     margin-left: 0.5em;
   }
 
-  .quarto-appendix-secondary-label {
+  .quarto-resources-secondary-label {
     margin-bottom: 0.4em;
   }
 
-  .quarto-appendix-bibtex {
+  .quarto-resources-bibtex {
     font-size: 0.7em;
     padding: 1em;
     border: solid 1px $border-color;
@@ -12158,19 +12158,19 @@ nav[role="doc-toc"].slow > * {
     }
   }
 
-  .quarto-appendix-citeas {
+  .quarto-resources-citeas {
     font-size: 0.9em;
     padding: 1em;
     border: solid 1px $border-color;
     margin-bottom: 1em;
   }
 
-  .quarto-appendix-heading {
+  .quarto-resources-heading {
     font-size: 1em !important;
   }
 
   *[role="doc-endnotes"] > ol,
-  .quarto-appendix-contents > *:not(h2) {
+  .quarto-resources-contents > *:not(h2) {
     font-size: 0.9em;
   }
 

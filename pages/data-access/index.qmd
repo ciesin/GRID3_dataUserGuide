@@ -20,4 +20,4 @@ This section covers how to locate GRID3 datasets, access them programmatically o
 
 ---
 
-[Click here to download data](../appendix/links.qmd){.btn .btn-primary}
+[Click here to download data](../resources/links.qmd){.btn .btn-primary}
