@@ -58,7 +58,7 @@ website:
     right:
       - icon: envelope-fill
         href: pages/contact.qmd
-      - text: "About"
+      - icon: info-circle-fill
         href: pages/about.qmd
 
 
