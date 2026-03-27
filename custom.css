@@ -41,7 +41,7 @@
 
 /* this will apply to all elements, overwritable below */
 .content {
-  font-family: Inter, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
   font-optical-sizing: auto;
 
@@ -81,8 +81,7 @@ h2 {
 }
 
 p {
-  line-height: 1.6;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 ul {
@@ -99,7 +98,7 @@ a {
 /* Navigation bar */
 
 .navbar a {
-  font-family: Inter, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   padding-right: 1rem;
 }
