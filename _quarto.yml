@@ -52,11 +52,7 @@ website:
           - text: "Visualization"
             href: notebooks/visualization/index.qmd
       - text: "Appendix"
-        menu:
-          - text: "Guide Template"
-            href: notebooks/appendix/user_guide_template.qmd
-          - text: "Glossary"
-            href: notebooks/appendix/glossary.qmd
+        href: notebooks/appendix/index.qmd
       - text: "About"
         href: notebooks/about.qmd
 
@@ -129,8 +125,10 @@ website:
       search: true
       collapse-level: 1
       contents:
-        - notebooks/appendix/user_guide_template.qmd
+        - text: "Overview"
+          href: notebooks/appendix/index.qmd
         - notebooks/appendix/glossary.qmd
+        - notebooks/appendix/user_guide_template.qmd
 
 
   search:

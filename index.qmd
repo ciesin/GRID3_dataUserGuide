@@ -4,6 +4,7 @@ title: "Home"
 sidebar: false
 format:
   html:
+    page-layout: full
     toc: false
     toc-depth: 0
     back-to-top-navigation: false
@@ -36,26 +37,45 @@ For more information, please visit the [GRID3 Data Catalog](https://data.grid3.o
 ::: {.cards-grid}
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/data-access/index.qmd)
-Data access
+<!-- img: <img class="card-img" src="images/card-data-access.jpg" alt="Data Access"> -->
+::: {.card-overlay}
+### Data Access
+Find, download, and initialize GRID3 datasets.
+
+[View guides →](notebooks/data-access/index.qmd){.stretched-link}
+:::
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/analysis/index.qmd)
-Data analysis
+<!-- img: <img class="card-img" src="images/card-analysis.jpg" alt="Analysis"> -->
+::: {.card-overlay}
+### Analysis
+Apply GRID3 data to spatial workflows.
+
+[View guides →](notebooks/analysis/index.qmd){.stretched-link}
+:::
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/visualization/index.qmd)
-Visualization and mapping
+<!-- img: <img class="card-img" src="images/card-visualization.jpg" alt="Visualization"> -->
+::: {.card-overlay}
+### Visualization
+Map and style GRID3 data.
+
+[View guides →](notebooks/visualization/index.qmd){.stretched-link}
+:::
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/appendix/index.qmd)
-Other resources
+<!-- img: <img class="card-img" src="images/card-appendix.jpg" alt="Appendix"> -->
+::: {.card-overlay}
+### Appendix
+Reference materials.
+
+[View appendix →](notebooks/appendix/index.qmd){.stretched-link}
+:::
+:::
+
 :::
 
 
-:::
-
- 

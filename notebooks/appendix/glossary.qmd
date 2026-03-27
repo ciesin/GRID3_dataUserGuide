@@ -1,6 +1,10 @@
 ---
 title: "Glossary"
 output: html_document
+order: 1
+format:
+  html:
+    toc: false
 ---
 ## Test:
 - Test
