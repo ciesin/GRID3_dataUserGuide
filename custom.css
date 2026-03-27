@@ -314,7 +314,7 @@ footer,
 
   /* place normally in flow, but ensure no overlap */
   position: relative !important;
-  z-index: 9999 !important;
+  z-index: 9998 !important;
 
   width: 100% !important;
   box-sizing: border-box !important;
@@ -357,4 +357,12 @@ nav.sidebar,
   border-top: 1px solid rgba(0,0,0,0.08) !important;
   text-align: center !important;
   font-size: 0.95rem !important;
+}
+
+/* override back to top popup, was getting covered by footer */
+#quarto-back-to-top {
+  position: fixed !important;
+  color: #ffffff !important;
+  background-color: #1D4F91 !important;
+  z-index: 9999 !important;
 }

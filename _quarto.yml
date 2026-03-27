@@ -25,7 +25,7 @@ website:
   description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
   site-url: https://tiles.ciesin.app/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
-  # repo-actions: [edit, issue]
+  # repo-actions: [source]
   favicon: images/favicon.ico
   bread-crumbs: false
   back-to-top-navigation: true
@@ -127,6 +127,7 @@ website:
         - pages/appendix/user_guide_template.qmd
 
 
+
   search:
     location: sidebar
     type: textbox
@@ -164,6 +165,8 @@ format:
     toc-title: "On this page"
     toccolor: "#1D4F91"
     linkcolor: "#1D4F91"
+    link-external-icon: true
+    link-external-newwindow: true
     smooth-scroll: true
     code-copy: true
     number-sections: false
