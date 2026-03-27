@@ -1,5 +1,5 @@
 ---
-title: "Mapping GRID3 Friction Surfaces by LGA in Nigeria"
+title: "Nigeria Friction Surface"
 order: 2
 output: html_document
 date: "2026-02-20"

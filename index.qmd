@@ -6,7 +6,6 @@ format:
   html:
     page-layout: full
     toc: false
-    toc-depth: 0
     back-to-top-navigation: false
     # include-in-header:
     #   text: |

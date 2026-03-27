@@ -56,10 +56,12 @@ website:
 
 
     right:
-      - icon: envelope-fill
-        href: pages/resources/contact.qmd
-      - icon: info-circle-fill
-        href: pages/resources/about.qmd
+      - text: "Contact"
+        icon: envelope-fill
+        href: pages/resources/#contact
+      - text: "About"
+        icon: info-circle-fill
+        href: pages/resources/#about-ciesin
 
 
 
@@ -75,56 +77,47 @@ website:
       title: "Data Access"
       style: "docked"
       search: true
-      collapse-level: 1
+      collapse-level: 2
       contents:
-        - text: "Overview"
-          href: pages/data-access/index.qmd
-        - pages/data-access/Roads_DRN_MD.qmd
-        - pages/data-access/accessing_friction_surface_by_lga.qmd
+        - section: "Accessing data"
+          contents: "pages/data-access/*"
 
     - id: analysis
       title: "Analysis"
       style: "docked"
       search: true
-      collapse-level: 1
+      collapse-level: 2
       contents:
-        - text: "Overview"
-          href: pages/analysis/index.qmd
-        - pages/analysis/api_nga_network.ipynb
+        - section: "Analyzing data"
+          contents: "pages/analysis/*"
 
     - id: visualization
       title: "Visualization"
       style: "docked"
       search: true
-      collapse-level: 1
+      collapse-level: 2
       contents:
-        - text: "Overview"
+        - text: Visualizing data
           href: pages/visualization/index.qmd
-        - section: "Visualization with QGIS"
-          contents:
-          - pages/visualization/qgis/qgis.qmd
-          - pages/visualization/qgis/map.qmd
-          - pages/visualization/qgis/layout.qmd
+        - section: "Making a map with QGIS"
+          contents: "pages/visualization/qgis/*.qmd"
         - section: "Creating an interactive webmap"
-          contents:
-            - pages/visualization/pmtiles/pmtiles.qmd
-            - pages/visualization/pmtiles/sources.qmd
-            - pages/visualization/pmtiles/styling.qmd
-            - pages/visualization/pmtiles/publish.qmd
+          contents: "pages/visualization/pmtiles/*.qmd"
 
 
     - id: resources
       title: "Resources"
       style: "docked"
       search: true
-      collapse-level: 1
+      collapse-level: 2
       contents:
-        - text: "Overview"
-          href: pages/resources/index.qmd
-        - text: "Links"
-          href: pages/resources/links.qmd
-        - pages/resources/glossary.qmd
-        - pages/resources/user_guide_template.qmd
+        - pages/resources/index.qmd
+        # - text: "Resources"
+        #   href: pages/resources/index.qmd
+        # - text: "Links"
+        #   href: pages/resources/links.qmd
+        # - pages/resources/glossary.qmd
+        # - pages/resources/user_guide_template.qmd
 
 
 

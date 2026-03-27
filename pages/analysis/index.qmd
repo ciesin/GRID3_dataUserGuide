@@ -5,6 +5,7 @@ format:
   html:
     toc: false
     back-to-top-navigation: false
+    page-layout: full
 ---
 
 This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.

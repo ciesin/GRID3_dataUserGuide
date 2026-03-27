@@ -3,9 +3,62 @@ title: "Resources"
 output: html_document
 format:
   html:
-    toc: false
+    # toc: false
     back-to-top-navigation: false
----
-## Test:
-- Test
+    page-layout: full
+    sidebar: false
 
+---
+
+## Links
+
+### Data downloads
+
+- [GRID3 on Columbia Academic Commons](https://academiccommons.columbia.edu/search?f%5Bseries_ssim%5D%5B%5D=GRID3&only_path=true)
+- [GRID3 Data Hub](https://data.grid3.org/)
+- [CIESIN STAC Index](https://ciesin.github.io/stac-browser/#/)
+
+### Maps
+
+- [CIESIN Map Tiles (alpha)](https://tiles.ciesin.app/)
+
+### Other documentation & resources
+
+- [Protomaps vector tile documentation](https://docs.protomaps.com/)
+- [PMTiles data viewer](https://pmtiles.io/)
+- [IPCC Data Distribution Centre](https://ipcc-data.climate.columbia.edu/content/data/)
+
+---
+
+## Glossary of terms
+
+### [Click here](glossary.qmd){.btn .btn-primary}
+
+---
+
+## About CIESIN
+
+The Center for Integrated Earth System Information (CIESIN), formerly known as the Center for International Earth Science Information Network, is a center within the Columbia Climate School. CIESIN's mission is to harness cutting edge geospatial technologies to support integrated analysis of the human-environment system and to empower decision-making through collaborative research, teaching, and data production, stewardship and dissemination. CIESIN values inclusive, impactful, and interdisciplinary teamwork. Our purpose is to build bridges among academics, practitioners, decision-makers, and communities globally to co-produce trustworthy geospatial data and analyses about interactions between humans and the environment. CIESIN envisions a world with equitable societal benefits and sustainable environmental outcomes through data, research, and teaching. Learn about our [Strategic Plan](https://ciesin.columbia.edu/sites/default/files/content/CIESIN-Strategic-Plan-2024-2027.pdf) for 2024-2027, download our [capabilities statement](https://ciesin.columbia.edu/sites/default/files/content/CIESIN-cap-statement-Sept2024.pdf), and read our [open data policy](https://ciesin.columbia.edu/sites/default/files/content/CIESINDataPolicy20240918.pdf).
+
+CIESIN’s multidisciplinary staff includes PhD social scientists (geography, public health, demography and political science) and information scientists; master’s level social and environmental scientists; experts in GIS, data management and data policy; systems engineers; and applications developers.
+
+---
+
+## Contact
+
+<div id="contact" class="container">
+
+
+<i class="bi bi-envelope-fill"></i> **Email**
+: [info@ciesin.columbia.edu](mailto:info@ciesin.columbia.edu)
+
+<i class="bi bi-globe"></i> **CIESIN Website**
+: [ciesin.columbia.edu](https://ciesin.columbia.edu){target="_blank" rel="noopener"}
+
+<i class="bi bi-database-fill"></i> **GRID3 Project**
+: [grid3.org](https://grid3.org/){target="_blank" rel="noopener"}
+
+<i class="bi bi-linkedin"></i> **LinkedIn**
+: [Center for Integrated Earth System Information](https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/){target="_blank" rel="noopener"}
+
+</div>
