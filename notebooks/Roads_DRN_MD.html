@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,9 +79,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-cf5dc2a60b9cf2b1fd22d8df2d42d32e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,9 +124,6 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
   gtag('config', 'G-45WWDMVLWW');
 </script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.css">
@@ -152,18 +146,26 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Guides</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../notebooks/accessing_friction_surface_by_lga.html">
- <span class="dropdown-text">Mapping GRID3 Friction Surfaces by LGA in Nigeria</span></a>
+    <a class="dropdown-item" href="../notebooks/data-access.html">
+ <span class="dropdown-text">Data Access</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/api_nga_network.html">
- <span class="dropdown-text">GRID3 Nigeria Road Network Analysis</span></a>
+    <a class="dropdown-item" href="../notebooks/analysis.html">
+ <span class="dropdown-text">Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/visualization/index.html">
+ <span class="dropdown-text">Visualization</span></a>
   </li>  
     </ul>
   </li>
@@ -174,7 +176,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix">    
         <li>
     <a class="dropdown-item" href="../notebooks/user_guide_template.html">
- <span class="dropdown-text">Data User Guide Template</span></a>
+ <span class="dropdown-text">Guide Template</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/appendix/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
   </li>  
     </ul>
   </li>
@@ -249,113 +255,22 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+  <a href="../notebooks/data-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Data Access</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/accessing_friction_surface_by_lga.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mapping GRID3 Friction Surfaces by LGA in Nigeria</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/Roads_DRN_MD.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GRID3 COD - Roads v1.0 Data Release Notes</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Analysis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/api_nga_network.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GRID3 Nigeria Road Network Analysis</span></a>
+  <a href="../notebooks/accessing_friction_surface_by_lga.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mapping GRID3 Friction Surfaces by LGA in Nigeria</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Visualization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/visualization/visualization-qgis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing GRID3 Data with QGIS</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Visualization with PMTiles</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/visualization/visualization-pmtiles-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">What are vector tiles?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/visualization/visualization-pmtiles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Customizing a stylesheet</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendix</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/user_guide_template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data User Guide Template</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/appendix/glossary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossary</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -839,12 +754,12 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <p>GRID3 data, including this Roads v1.0 dataset, can be accessed from the GRID3 Data Hub here: <a href="https://data.grid3.org/datasets/GRID3::grid3-cod-roads-v1-0/about" class="uri">https://data.grid3.org/datasets/GRID3::grid3-cod-roads-v1-0/about</a> This page allows the user to download the data in a variety of formats, including geopackage, shapefile, geoJSON, geodatabase, and KML. First, click the Download button: <img src="../Users/camillap/Documents/grid3/GRID3_dataUserGuide/Click-download.png" class="img-fluid" alt="Click “download” button"> A sidebar will open on the left side of the page allowing the user to choose their preferred file format: ![File format options] (/Users/camillap/Documents/grid3/GRID3_dataUserGuide/hub-download-options.png)</p>
 <p>If you have not used our spatial data before, we recommend that you choose to download the roads as a geopackage. This is a common, open file format for geospatial data (<a href="#0" class="uri">https://www.geopackage.org</a>).</p>
 <p>If you would prefer to access the Roads dataset from the command line, you can do so using the ArcGIS API. This requires using the ArcGIS Python package, which requires a local copy of ArcGIS Pro. If you do not have ArcGIS Pro on your computer, consider downloading the Roads dataset from the webpage.</p>
-<div id="2b419bd7" class="cell" data-execution_count="1">
+<div id="0f203b52" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install arcgis API for accessing data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check that arcgis is installed </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install arcgis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7fa72d1d" class="cell" data-execution_count="2">
+<div id="6db840dc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import arcgis</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arcgis.gis <span class="im">import</span> GIS </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
@@ -852,11 +767,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="577e024f" class="cell" data-execution_count="3">
+<div id="9f08f371" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymously authenticate arcgis API</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gis <span class="op">=</span> GIS()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a6f192d9" class="cell" data-execution_count="4">
+<div id="b26a7441" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_nga_roads(bbox, crs, record_limit, url):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.</span></span>
@@ -916,7 +831,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpd.GeoDataFrame.from_features(valid_features, crs<span class="op">=</span>crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The URL that you set here can be found by scrolling down on the dataset landing page until you find the right sidebar that reads “I want to…” One option reads “View API Resources.” Once you click here, the webpage provides the link to access the REST Endpoint where you can query the dataset, downloading all or just a subset of the data. In this case, we will set a bounding box.</p>
-<div id="c1a978fe" class="cell" data-execution_count="5">
+<div id="5da26ffd" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in service for NGA roads</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -932,150 +847,13 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> fetch_nga_roads(boundbox, crs<span class="op">=</span><span class="st">"EPSG:3857"</span>, record_limit<span class="op">=</span><span class="dv">500</span>, url<span class="op">=</span>url)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">geometry</th>
-<th data-quarto-table-cell-role="th">OBJECTID</th>
-<th data-quarto-table-cell-role="th">id</th>
-<th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">iso3</th>
-<th data-quarto-table-cell-role="th">source_id</th>
-<th data-quarto-table-cell-role="th">class</th>
-<th data-quarto-table-cell-role="th">speed_estimate</th>
-<th data-quarto-table-cell-role="th">speed_estimate_method</th>
-<th data-quarto-table-cell-role="th">road_surface</th>
-<th data-quarto-table-cell-role="th">names</th>
-<th data-quarto-table-cell-role="th">subclass</th>
-<th data-quarto-table-cell-role="th">speed_limits</th>
-<th data-quarto-table-cell-role="th">date</th>
-<th data-quarto-table-cell-role="th">source_acronym</th>
-<th data-quarto-table-cell-role="th">Shape__Length</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>LINESTRING (3.353 6.561, 3.352 6.564, 3.351 6....</td>
-<td>375</td>
-<td>0825887fffffffff047f4f4e7c46bb8d</td>
-<td>Nigeria</td>
-<td>NGA</td>
-<td>Overture / OSM</td>
-<td>unclassified</td>
-<td>40</td>
-<td>literature review</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>2025</td>
-<td>OVERTURE_OSM_001</td>
-<td>660.977176</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>LINESTRING (3.394 6.653, 3.395 6.653, 3.396 6....</td>
-<td>2121</td>
-<td>0835882fffffffff046f5d76209c94af</td>
-<td>Nigeria</td>
-<td>NGA</td>
-<td>Overture / OSM</td>
-<td>motorway</td>
-<td>80</td>
-<td>GPS</td>
-<td>paved</td>
-<td>Lagos-Ibadan Expressway</td>
-<td></td>
-<td></td>
-<td>2025</td>
-<td>OVERTURE_OSM_001</td>
-<td>4708.736787</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>LINESTRING (3.375 6.664, 3.375 6.665)</td>
-<td>2129</td>
-<td>0835882fffffffff046ffcc2abaf4fde</td>
-<td>Nigeria</td>
-<td>NGA</td>
-<td>Overture / OSM</td>
-<td>residential</td>
-<td>20</td>
-<td>literature review</td>
-<td>unpaved</td>
-<td></td>
-<td></td>
-<td></td>
-<td>2025</td>
-<td>OVERTURE_OSM_001</td>
-<td>65.118153</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>LINESTRING (3.39 6.68, 3.39 6.68, 3.39 6.679, ...</td>
-<td>2130</td>
-<td>0835882fffffffff046fff468b9d4a49</td>
-<td>Nigeria</td>
-<td>NGA</td>
-<td>Overture / OSM</td>
-<td>track</td>
-<td>10</td>
-<td>literature review</td>
-<td>unpaved</td>
-<td></td>
-<td></td>
-<td></td>
-<td>2025</td>
-<td>OVERTURE_OSM_001</td>
-<td>1929.374551</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>LINESTRING (3.414 6.689, 3.413 6.688, 3.413 6....</td>
-<td>2152</td>
-<td>0835882fffffffff047f5f6082b04656</td>
-<td>Nigeria</td>
-<td>NGA</td>
-<td>Overture / OSM</td>
-<td>motorway</td>
-<td>80</td>
-<td>GPS</td>
-<td>paved</td>
-<td>Lagos-Ibadan Expressway</td>
-<td></td>
-<td></td>
-<td>2025</td>
-<td>OVERTURE_OSM_001</td>
-<td>4815.947415</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
 </div>
 <p>Confirm that the Roads look as you expect with a basic plot.</p>
-<div id="43eadfcf" class="cell" data-execution_count="6">
+<div id="b5a673e4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot roads</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># size </span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">120</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<pre><code>&lt;Figure size 720x480 with 0 Axes&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="Roads_DRN_MD_files/figure-html/cell-7-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="Roads_DRN_MD_files/figure-html/cell-7-output-2.png" width="453" height="423" class="figure-img"></a></p>
-</figure>
-</div>
-</div>
 </div>
 <p>If you want to continue exploring the Roads dataset on the command line, proceed to the Roads network data processing notebook here: LINK.</p>
 <p>You can also add the Feature Service directly in QGIS or ArcGIS Pro.</p>
@@ -1542,38 +1320,6 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
