@@ -162,6 +162,13 @@
     ]
   },
   {
+    "objectID": "pages/resources/about.html",
+    "href": "pages/resources/about.html",
+    "title": "About",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
     "objectID": "pages/data-access/accessing_friction_surface_by_lga.html",
     "href": "pages/data-access/accessing_friction_surface_by_lga.html",
     "title": "Mapping GRID3 Friction Surfaces by LGA in Nigeria",
@@ -222,48 +229,6 @@
     ]
   },
   {
-    "objectID": "pages/contact.html",
-    "href": "pages/contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
-    "objectID": "pages/about.html",
-    "href": "pages/about.html",
-    "title": "About",
-    "section": "",
-    "text": "Lorem ipsum"
-  },
-  {
-    "objectID": "pages/about.html#test",
-    "href": "pages/about.html#test",
-    "title": "About",
-    "section": "Test",
-    "text": "Test\nLa la la"
-  },
-  {
-    "objectID": "pages/about.html#test-1",
-    "href": "pages/about.html#test-1",
-    "title": "About",
-    "section": "Test",
-    "text": "Test\nOk"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "Home",
-    "section": "Getting started",
-    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nResources\nReference materials.\nView resources →"
-  },
-  {
     "objectID": "pages/analysis/index.html",
     "href": "pages/analysis/index.html",
     "title": "Analysis",
@@ -282,6 +247,20 @@
     "crumbs": [
       "Overview"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Home",
+    "section": "Getting started",
+    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nView guides →\n\n\n\n\n\nResources\nLinks and other reference materials.\nView resources →"
   },
   {
     "objectID": "pages/data-access/Roads_DRN_MD.html",
@@ -362,6 +341,13 @@
     "crumbs": [
       "Overview"
     ]
+  },
+  {
+    "objectID": "pages/resources/contact.html",
+    "href": "pages/resources/contact.html",
+    "title": "Get in touch",
+    "section": "",
+    "text": "Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "pages/resources/index.html",
