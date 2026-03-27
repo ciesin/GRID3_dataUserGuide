@@ -7,7 +7,6 @@ project:
     - "!notebooks/colab/"
 
 
-
 execute:
   #enabled: false
   freeze: auto
@@ -24,6 +23,7 @@ website:
   # repo-actions: [edit, issue]
   favicon: images/favicon.ico
   bread-crumbs: false
+  back-to-top-navigation: true
 
   navbar:
 
@@ -46,27 +46,39 @@ website:
       - text: "About"
         href: notebooks/about.qmd
 
+
     right:
-      - icon: envelope-fill
-        href: mailto:info@ciesin.columbia.edu
-      - icon: database-fill
-        href: https://data.grid3.org
-      - icon: github
-        href: https://github.com/ciesin/GRID3_dataUserGuide 
-      - icon: linkedin
-        href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
-      - icon: globe
-        href: https://ciesin.columbia.edu
+      - text: "Contact"
+        menu:
+        - icon: envelope-fill
+          href: mailto:info@ciesin.columbia.edu
+        - icon: database-fill
+          href: https://data.grid3.org
+        - icon: github
+          href: https://github.com/ciesin/GRID3_dataUserGuide 
+        - icon: linkedin
+          href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
+        - icon: globe
+          href: https://ciesin.columbia.edu
 
-
+    #   - icon: envelope-fill
+    #     href: mailto:info@ciesin.columbia.edu
+    #   - icon: database-fill
+    #     href: https://data.grid3.org
+    #   - icon: github
+    #     href: https://github.com/ciesin/GRID3_dataUserGuide 
+    #   - icon: linkedin
+    #     href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
+    #   - icon: globe
+    #     href: https://ciesin.columbia.edu
 
   sidebar:
     style: "docked"
     search: true
     collapse-level: 1
+
     contents:
       - index.qmd
-
       - section: "Data Access"
         contents: 
           - notebooks/accessing_friction_surface_by_lga.qmd
@@ -92,6 +104,12 @@ website:
           - notebooks/user_guide_template.qmd
           - notebooks/appendix/glossary.qmd
 
+
+
+
+  search:
+    location: sidebar
+    type: textbox
 
   google-analytics: 
     tracking-id: "G-45WWDMVLWW"
@@ -124,6 +142,8 @@ format:
     toc-location: right
     toc-depth: 4
     toc-title: "On this page"
+    toccolor: "#1D4F91"
+    linkcolor: "#1D4F91"
     smooth-scroll: true
     code-copy: true
     number-sections: false

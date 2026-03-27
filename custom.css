@@ -92,6 +92,22 @@ a {
   font-weight: 500;
 }
 
+.dropdown-menu.show {
+  background-color: #1D4F91;
+  overflow-wrap: break-word;
+  border: none;
+}
+
+.dropdown-menu.show a {
+  color: white;
+  padding: 0.5rem 1rem;
+  overflow-wrap: break-word;
+}
+
+.dropdown-menu.show a:hover {
+  color: #1D4F91;
+}
+
 /* Code blocks */
 pre {
   border-left: 4px solid #2C3E50;
@@ -176,6 +192,15 @@ pre, code {
 
 .card:hover h3 {
   color: #0d2849;
+}
+
+
+/* mobile / responsive styling */
+
+h1.quarto-secondary-nav-title {
+  font-size: 0.9rem;
+  border-bottom: none;
+  margin-bottom: 0.3em; 
 }
 
 /* footer */

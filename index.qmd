@@ -5,13 +5,13 @@ format:
   html:
     toc: false
     toc-depth: 0
-    include-in-header:
-      text: |
-        <style>
-        .quarto-title {
-          display: none;
-        }
-        </style>
+    # include-in-header:
+    #   text: |
+    #     <style>
+    #     .quarto-title {
+    #       display: none;
+    #     }
+    #     </style>
 ---
 
 
