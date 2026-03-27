@@ -6,6 +6,7 @@ format:
   html:
     toc: false
     toc-depth: 0
+    back-to-top-navigation: false
     # include-in-header:
     #   text: |
     #     <style>
@@ -30,35 +31,30 @@ For more information, please visit the [GRID3 Data Catalog](https://data.grid3.o
 
 ---
 
-# How this guide is organized
-
-This Data User Guide is organized into three main sections:
-
-- **Data Access** → Where to find and access GRID3 datasets, and how to load them into GIS software and Python environments
-- **Analysis** → Tutorials for applying GRID3 datasets to spatial data workflows  
-- **Visualization** → Styling and mapping GRID3 for static and interactive use cases
- 
-
----
-
 ## Getting started
 
 ::: {.cards-grid}
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/Roads_DRN_MD.qmd)
-Access GRID3 Road Network data
+[{{< placeholder 400 400 format=svg >}}](notebooks/data-access/index.qmd)
+Data access
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/accessing_friction_surface_by_lga.qmd)
-Analyze GRID3 friction surfaces at the Local Government Area (LGA) level in Nigeria.
+[{{< placeholder 400 400 format=svg >}}](notebooks/analysis/index.qmd)
+Data analysis
 :::
 
 ::: {.card}
-[{{< placeholder 400 400 format=svg >}}](notebooks/visualization/visualization-pmtiles-intro.qmd)
-Use GRID3 data to create an interactive map.
+[{{< placeholder 400 400 format=svg >}}](notebooks/visualization/index.qmd)
+Visualization and mapping
 :::
+
+::: {.card}
+[{{< placeholder 400 400 format=svg >}}](notebooks/appendix/index.qmd)
+Other resources
+:::
+
 
 :::
 

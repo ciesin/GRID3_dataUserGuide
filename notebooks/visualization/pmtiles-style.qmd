@@ -1,6 +1,6 @@
 ---
-title: "What are vector tiles?"
-order: 2
+title: "Customizing a stylesheet"
+order: 5
 output: html_document
 ---
 # Visualization Tutorial Overview

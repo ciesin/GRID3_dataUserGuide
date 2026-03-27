@@ -4,10 +4,12 @@ project:
   render:
     - "*.qmd"
     - "notebooks/*.qmd"
-    - "notebooks/*.ipynb"
+    - "notebooks/data-access/*.qmd"
+    - "notebooks/analysis/*.qmd"
+    - "notebooks/analysis/*.ipynb"
     - "notebooks/visualization/*.qmd"
     - "notebooks/appendix/*.qmd"
-    - "!notebooks/colab/"
+    - "!notebooks/analysis/colab/"
 
 
 execute:
@@ -44,15 +46,15 @@ website:
       - text: "Guides"
         menu:
           - text: "Data Access"
-            href: notebooks/data-access.qmd
+            href: notebooks/data-access/index.qmd
           - text: "Analysis"
-            href: notebooks/analysis.qmd
+            href: notebooks/analysis/index.qmd
           - text: "Visualization"
             href: notebooks/visualization/index.qmd
       - text: "Appendix"
         menu:
           - text: "Guide Template"
-            href: notebooks/user_guide_template.qmd
+            href: notebooks/appendix/user_guide_template.qmd
           - text: "Glossary"
             href: notebooks/appendix/glossary.qmd
       - text: "About"
@@ -88,9 +90,9 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/data-access.qmd
-        - notebooks/Roads_DRN_MD.qmd
-        - notebooks/accessing_friction_surface_by_lga.qmd
+          href: notebooks/data-access/index.qmd
+        - notebooks/data-access/Roads_DRN_MD.qmd
+        - notebooks/data-access/accessing_friction_surface_by_lga.qmd
 
     - id: analysis
       title: "Analysis"
@@ -99,8 +101,8 @@ website:
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: notebooks/analysis.qmd
-        - notebooks/api_nga_network.ipynb
+          href: notebooks/analysis/index.qmd
+        - notebooks/analysis/api_nga_network.ipynb
 
     - id: visualization
       title: "Visualization"
@@ -110,11 +112,16 @@ website:
       contents:
         - text: "Overview"
           href: notebooks/visualization/index.qmd
-        - notebooks/visualization/visualization-qgis.qmd
-        - section: "Visualization with PMTiles"
+        - section: "Visualization with QGIS"
           contents:
-            - notebooks/visualization/visualization-pmtiles-intro.qmd
-            - notebooks/visualization/visualization-pmtiles.qmd
+          - notebooks/visualization/qgis-intro.qmd
+          - notebooks/visualization/qgis.qmd
+        - section: "Creating an interactive webmap"
+          contents:
+            - notebooks/visualization/pmtiles-intro.qmd
+            - notebooks/visualization/pmtiles-sources.qmd
+            - notebooks/visualization/pmtiles-style.qmd
+
 
     - id: appendix
       title: "Appendix"
@@ -122,7 +129,7 @@ website:
       search: true
       collapse-level: 1
       contents:
-        - notebooks/user_guide_template.qmd
+        - notebooks/appendix/user_guide_template.qmd
         - notebooks/appendix/glossary.qmd
 
 

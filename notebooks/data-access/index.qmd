@@ -4,6 +4,7 @@ subtitle: "Find, download, and load GRID3 datasets"
 format:
   html:
     toc: false
+    back-to-top-navigation: false
 ---
 
 This section covers how to locate GRID3 datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.

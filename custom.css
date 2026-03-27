@@ -222,7 +222,7 @@ footer,
 
   width: 100% !important;
   box-sizing: border-box !important;
-  padding: 1.25rem 1rem !important;
+  padding: 1.25rem 1rem 0rem 1rem !important;
   margin-top: 2rem !important;
   background: transparent !important;
   color: inherit !important;
