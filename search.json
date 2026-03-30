@@ -81,7 +81,7 @@
     "href": "pages/visualization/index.html",
     "title": "Visualization",
     "section": "",
-    "text": "This section covers methods for rendering GRID3 spatial data — from desktop GIS styling in QGIS to web-based interactive maps using PMTiles and Leaflet.",
+    "text": "This section covers methods for rendering GRID3 spatial data for end users.",
     "crumbs": [
       "Visualizing data"
     ]
@@ -91,7 +91,7 @@
     "href": "pages/visualization/index.html#guides-in-this-section",
     "title": "Visualization",
     "section": "Guides in this section",
-    "text": "Guides in this section\n\nVisualizing GRID3 Data with QGIS Design a static map with GRID3 layers in QGIS.\nCreating a dynamic webmap Build a browser-based interactive mapsusing GRID3 PMTiles data.",
+    "text": "Guides in this section\n\nVisualizing GRID3 Data with QGIS Design a static map with GRID3 layers in QGIS.\nCreating a dynamic webmap Build a browser-based interactive maps using GRID3 PMTiles and MapLibre.",
     "crumbs": [
       "Visualizing data"
     ]

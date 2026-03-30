@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../images/favicon.ico" rel="icon">
+<link href="../../images/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-4246efbc0e76e693ccbc747bf228ba4e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-8e490f70803ca0b55dd88b6ba2957056.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -96,6 +96,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../custom.css">
+<meta property="og:title" content="Visualization">
+<meta property="og:description" content="Creating a map using GRID3 data">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -448,12 +450,12 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<p>This section covers methods for rendering GRID3 spatial data — from desktop GIS styling in QGIS to web-based interactive maps using PMTiles and Leaflet.</p>
+<p>This section covers methods for rendering GRID3 spatial data for end users.</p>
 <section id="guides-in-this-section" class="level2">
 <h2 class="anchored" data-anchor-id="guides-in-this-section">Guides in this section</h2>
 <ul>
 <li><p><a href="../../pages/visualization/qgis/qgis.html">Visualizing GRID3 Data with QGIS</a> Design a static map with GRID3 layers in QGIS.</p></li>
-<li><p><a href="pmtiles/intro.qmd">Creating a dynamic webmap</a> Build a browser-based interactive mapsusing GRID3 PMTiles data.</p></li>
+<li><p><a href="pmtiles/intro.qmd">Creating a dynamic webmap</a> Build a browser-based interactive maps using GRID3 PMTiles and MapLibre.</p></li>
 </ul>
 
 
@@ -546,7 +548,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/tiles\.ciesin\.app\/");
+        var filterRegex = new RegExp("https:\/\/guides\.ciesin\.app\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -1,1 +1,1 @@
-Sitemap: https://tiles.ciesin.app/sitemap.xml
+Sitemap: https://guides.ciesin.app/sitemap.xml
