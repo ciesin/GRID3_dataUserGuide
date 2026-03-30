@@ -21,12 +21,13 @@ execute:
 
 
 website:
-
-  description: "Practical guides for accessing, analyzing, and visualizing GRID3 data"
-  site-url: https://tiles.ciesin.app/
+  # title: "CIESIN-GRID3 Spatial Data Science User Guide"
+  description: "Guides and resources for working with CIESIN-GRID3 geospatial data."
+  open-graph: true
+  site-url: https://guides.ciesin.app/
   repo-url: https://github.com/ciesin/GRID3_dataUserGuide
   # repo-actions: [source]
-  favicon: images/favicon.ico
+  favicon: images/favicon.svg
   bread-crumbs: false
   back-to-top-navigation: true
 

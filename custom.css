@@ -128,7 +128,7 @@ a {
   /* flush snap — removes the default 0.125rem Popper gap */
 
   /* colours */
-  --bs-dropdown-bg: var(--ciesin-brand);
+  --bs-dropdown-bg: var(--ciesin-nav);
   --bs-dropdown-color: rgba(255, 255, 255, 0.92);
   --bs-dropdown-link-color: rgba(255, 255, 255, 0.92);
   --bs-dropdown-link-hover-color: #ffffff;
@@ -174,16 +174,30 @@ a {
   }
 }
 
-/* Code blocks */
-pre {
-  border-left: 4px solid var(--ciesin-code-border);
-  background-color: var(--ciesin-code-bg);
+/* styling for code blocks */
 
+.sourceCode {
+  border-left: 0.2rem solid var(--ciesin-code-border);
+  background-color: var(--ciesin-code-bg);
+  max-width: 100%;
+  overflow-x: auto;
 }
 
-/* styling for code blocks */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 pre, code {
-    font-family: "IBM Plex Mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* scroll within the element if needed, not full viewport */
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* parenthesis after section numbers? */
@@ -335,6 +349,13 @@ h1.quarto-secondary-nav-title {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Theme-aware logo on home page */
+.ciesin-logo-dark  { display: none; }
+.ciesin-logo-light { display: block; }
+
+body.quarto-dark .ciesin-logo-light { display: none; }
+body.quarto-dark .ciesin-logo-dark  { display: block; }
+
 /* footer */
 
 .page-footer {
@@ -353,6 +374,6 @@ h1.quarto-secondary-nav-title {
 #quarto-back-to-top {
   position: fixed !important;
   color: #ffffff !important;
-  background-color: var(--ciesin-brand) !important;
+  background-color: var(--ciesin-nav) !important;
   z-index: 9999 !important;
 }
