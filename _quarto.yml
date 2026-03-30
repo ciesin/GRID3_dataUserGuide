@@ -132,7 +132,7 @@ website:
   # body-footer: _footer.html
   page-footer:
     left:
-      - "© 2026 <a href='https://ciesin.columbia.edu'>Center for Integrated Earth System Information</a> (CIESIN), Columbia University."
+      - "<a href='https://www.columbia.edu/content/copyright'>©2026 Columbia University</a>"
 
     right:
       - icon: envelope-fill
