@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Creating an interactive webmap"
 order: 1
 output: html_document
 ---

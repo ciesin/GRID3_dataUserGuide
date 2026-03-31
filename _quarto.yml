@@ -87,26 +87,26 @@ website:
       title: "Analysis"
       style: "docked"
       search: true
-      collapse-level: 2
+      collapse-level: 1
       contents:
         - text: Analyzing data
           href: pages/analysis/index.qmd
-        - section: "Travel time analysis"
+        - section: pages/analysis/FS_analysis.qmd
           contents: "pages/analysis/*friction*"
-        - section: "Road network analysis"
+        - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
 
     - id: visualization
       title: "Visualization"
       style: "docked"
       search: true
-      collapse-level: 2
+      collapse-level: 1
       contents:
         - text: Visualizing data
           href: pages/visualization/index.qmd
-        - section: "Making a map with QGIS"
+        - section: "pages/visualization/qgis.qmd"
           contents: "pages/visualization/qgis/*.qmd"
-        - section: "Creating an interactive webmap"
+        - section: "pages/visualization/pmtiles.qmd"
           contents: "pages/visualization/pmtiles/*.qmd"
 
 
