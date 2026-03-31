@@ -15,3 +15,7 @@ This section covers analytical workflows using GRID3 datasets — including netw
 
 - [Nigeria Road Network API](api_nga_network.ipynb)
   Query and analyze the GRID3 Nigeria road network via API using Python.
+
+
+- [Nigeria Friction Surface Shortest Path Analysis](friction_surface_analysis.qmd)
+  Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.

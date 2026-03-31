@@ -1,0 +1,59 @@
+---
+title: "Using QGIS to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface"
+date: "2026-03-31"
+author: "Matthew Walter"
+---
+
+In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using QGIS. We use the Nigeria mixed travel friction surface for  this demonstration. 
+
+---
+
+1. Obtain mixed travel clipped friction surface for Nigeria and add layer in QGIS. The friction surface can be downloaded and manually clipped from here: [https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98](https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98)
+
+    Or clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)
+
+*The friction surface can be better visualized using a Singleband pseudocolor ramp with a max value of .05*
+
+![](/images/friction_surface_images/friction_surface_qgis_image1.png){width=400px}
+
+*Re-visualized friction surface*
+
+![](/images/friction_surface_images/friction_surface_qgis_image2.png){width=500px}
+
+2. Ensure friction surface is projected to WGS84 - CRS “4326” using the Warp (Reproject) tool:
+
+![](/images/friction_surface_images/friction_surface_qgis_image3.png){width=400px}
+
+3. Run r.cost using the clipped and reprojected friction surface as the Unit Cost Layer and a start point: 7.515850,13.034015 and end point: 7.682362,12.923887:
+
+![](/images/friction_surface_images/friction_surface_qgis_image4.png){width=400px}
+
+4. To calculate the lowest cost path between the start and end point, run the r.drain tool using the Cumulative Cost raster and Movement direction raster from the previous step. Set the coordinates of the starting point as the end point coordinates from the previous step: 7.682362,12.923887:
+
+![](/images/friction_surface_images/friction_surface_qgis_image5.png){width=400px}
+
+*Output lowest cost path*
+
+![](/images/friction_surface_images/friction_surface_qgis_image6.png){width=500px}
+
+
+5. To calculate travel time, zoom in on the coordinate representing the end of the travel path (7.682362,12.923887). With the Cumulative Cost layer selected, select the Identify Features Icon in the toolbar, and click on the raster cell to determine its value.
+
+*Find the Identify Features button*
+
+![](/images/friction_surface_images/friction_surface_qgis_image7.png){width=400px}
+
+*Click the pixel representing the end of the travel path and find the result in the Identify Results popup under Band 1 = 1.3717…*
+
+![](/images/friction_surface_images/friction_surface_qgis_image8.png){width=400px}
+
+
+6. To get travel time in minutes, multiply the cumulative cost value by the friction surface pixel resolution (30 meters).
+
+**1.37 (accumulated friction surface value) * 30 (pixel resolution) = 41.1 minutes**
+
+---
+
+This workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.
+
+
