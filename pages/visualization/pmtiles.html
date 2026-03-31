@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction</title>
+<title>Creating an interactive webmap</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,28 +26,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../images/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-f20b306efae35fa13f2bc0fe0e866cde.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-f20b306efae35fa13f2bc0fe0e866cde.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,8 +95,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </script>
 
 
-<link rel="stylesheet" href="../../../custom.css">
-<meta property="og:title" content="Introduction">
+<link rel="stylesheet" href="../../custom.css">
+<meta property="og:title" content="Creating an interactive webmap">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -277,9 +277,9 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-sm " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/Columbia_University_Logo-Crown_white.png" alt="" class="navbar-logo light-content">
-    <img src="../../../images/Columbia_University_Logo-Crown_white.png" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/Columbia_University_Logo-Crown_white.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/Columbia_University_Logo-Crown_white.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -288,7 +288,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -297,32 +297,32 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../../../pages/data-access/index.html">
+    <a class="dropdown-item" href="../../pages/data-access/index.html">
  <span class="dropdown-text">Data Access</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../pages/analysis/index.html">
+    <a class="dropdown-item" href="../../pages/analysis/index.html">
  <span class="dropdown-text">Analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../pages/visualization/index.html">
+    <a class="dropdown-item" href="../../pages/visualization/index.html">
  <span class="dropdown-text">Visualization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/resources/index.html"> 
+    <a class="nav-link" href="../../pages/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/resources/#contact"> <i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="../../pages/resources/#contact"> <i class="bi bi-envelope-fill" role="img">
 </i> 
 <span class="menu-text">Contact</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/resources/#about-ciesin"> <i class="bi bi-info-circle-fill" role="img">
+    <a class="nav-link" href="../../pages/resources/#about-ciesin"> <i class="bi bi-info-circle-fill" role="img">
 </i> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -339,7 +339,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Introduction</h1>
+          <h1 class="quarto-secondary-nav-title">Creating an interactive webmap</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -360,34 +360,28 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualizing data</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a href="../../pages/visualization/qgis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making a map with QGIS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/qgis/qgis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/qgis/map.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/qgis/map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setting up a map project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/qgis/layout.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/qgis/layout.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating a print layout</span></a>
   </div>
 </li>
@@ -395,7 +389,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a href="../../pages/visualization/pmtiles.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Creating an interactive webmap</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -404,25 +398,19 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/pmtiles/pmtiles.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/pmtiles/sources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/pmtiles/sources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Adding PMTiles sources to a map project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/pmtiles/styling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/pmtiles/styling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Customizing a stylesheet</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../pages/visualization/pmtiles/publish.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/visualization/pmtiles/publish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing your map online</span></a>
   </div>
 </li>
@@ -451,7 +439,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Introduction</h1>
+<h1 class="title d-none d-lg-block">Creating an interactive webmap</h1>
 </div>
 
 
@@ -955,5 +943,5 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 
 
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
