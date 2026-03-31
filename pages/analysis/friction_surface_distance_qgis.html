@@ -367,10 +367,16 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyzing data</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing data</span></a>
+ <span class="menu-text">Travel time analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -378,14 +384,14 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/analysis/api_nga_network.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">GRID3 Nigeria Road Network Analysis</span></a>
+  <a href="../../pages/analysis/friction_surface_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/analysis/friction_surface_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Estimating Travel Times with the GRID3 Nigeria Friction Surface</span></a>
+  <a href="../../pages/analysis/friction_surface_lowest_cost_py.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -400,10 +406,21 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
  <span class="menu-text">Using QGIS to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Road network analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/analysis/friction_surface_lowest_cost_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</span></a>
+  <a href="../../pages/analysis/api_nga_network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GRID3 Nigeria Road Network Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -413,8 +430,19 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-1-add-friction-surface-to-the-project" id="toc-step-1-add-friction-surface-to-the-project" class="nav-link active" data-scroll-target="#step-1-add-friction-surface-to-the-project">Step 1: Add friction surface to the project</a></li>
+  <li><a href="#step-2-map-projection" id="toc-step-2-map-projection" class="nav-link" data-scroll-target="#step-2-map-projection">Step 2: Map projection</a></li>
+  <li><a href="#step-3-r.cost" id="toc-step-3-r.cost" class="nav-link" data-scroll-target="#step-3-r.cost">Step 3: R.cost</a></li>
+  <li><a href="#step-4-r.drain" id="toc-step-4-r.drain" class="nav-link" data-scroll-target="#step-4-r.drain">Step 4: R.drain</a></li>
+  <li><a href="#step-5-calculate-travel-time" id="toc-step-5-calculate-travel-time" class="nav-link" data-scroll-target="#step-5-calculate-travel-time">Step 5: Calculate travel time</a></li>
+  <li><a href="#step-6-travel-time-in-minutes" id="toc-step-6-travel-time-in-minutes" class="nav-link" data-scroll-target="#step-6-travel-time-in-minutes">Step 6: Travel time in minutes</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -453,43 +481,49 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 <p>In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using QGIS. We use the Nigeria mixed travel friction surface for this demonstration.</p>
 <hr>
-<ol type="1">
-<li><p>Obtain mixed travel clipped friction surface for Nigeria and add layer in QGIS. The friction surface can be downloaded and manually clipped from here: <a href="https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98">https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98</a></p>
-<p>Or clip and download using this tool (clipping to Katsina state for this example): <a href="https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing">https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing</a></p></li>
-</ol>
+<section id="step-1-add-friction-surface-to-the-project" class="level1">
+<h1>Step 1: Add friction surface to the project</h1>
+<p>Obtain mixed travel clipped friction surface for Nigeria and add layer in QGIS. The friction surface can be downloaded and manually clipped from here: <a href="https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98">https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98</a></p>
+<pre><code>Or clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)</code></pre>
 <p><em>The friction surface can be better visualized using a Singleband pseudocolor ramp with a max value of .05</em></p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../../images/friction_surface_images/friction_surface_qgis_image1.png" class="img-fluid" width="400"></a></p>
 <p><em>Re-visualized friction surface</em></p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../../images/friction_surface_images/friction_surface_qgis_image2.png" class="img-fluid" width="500"></a></p>
-<ol start="2" type="1">
-<li>Ensure friction surface is projected to WGS84 - CRS “4326” using the Warp (Reproject) tool:</li>
-</ol>
+</section>
+<section id="step-2-map-projection" class="level1">
+<h1>Step 2: Map projection</h1>
+<p>Ensure friction surface is projected to WGS84 - CRS “4326” using the Warp (Reproject) tool:</p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../../images/friction_surface_images/friction_surface_qgis_image3.png" class="img-fluid" width="400"></a></p>
-<ol start="3" type="1">
-<li>Run r.cost using the clipped and reprojected friction surface as the Unit Cost Layer and a start point: 7.515850,13.034015 and end point: 7.682362,12.923887:</li>
-</ol>
+</section>
+<section id="step-3-r.cost" class="level1">
+<h1>Step 3: R.cost</h1>
+<p>Run r.cost using the clipped and reprojected friction surface as the Unit Cost Layer and a start point: 7.515850,13.034015 and end point: 7.682362,12.923887:</p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../../images/friction_surface_images/friction_surface_qgis_image4.png" class="img-fluid" width="400"></a></p>
-<ol start="4" type="1">
-<li>To calculate the lowest cost path between the start and end point, run the r.drain tool using the Cumulative Cost raster and Movement direction raster from the previous step. Set the coordinates of the starting point as the end point coordinates from the previous step: 7.682362,12.923887:</li>
-</ol>
+</section>
+<section id="step-4-r.drain" class="level1">
+<h1>Step 4: R.drain</h1>
+<p>To calculate the lowest cost path between the start and end point, run the r.drain tool using the Cumulative Cost raster and Movement direction raster from the previous step. Set the coordinates of the starting point as the end point coordinates from the previous step: 7.682362,12.923887:</p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../../images/friction_surface_images/friction_surface_qgis_image5.png" class="img-fluid" width="400"></a></p>
 <p><em>Output lowest cost path</em></p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../../images/friction_surface_images/friction_surface_qgis_image6.png" class="img-fluid" width="500"></a></p>
-<ol start="5" type="1">
-<li>To calculate travel time, zoom in on the coordinate representing the end of the travel path (7.682362,12.923887). With the Cumulative Cost layer selected, select the Identify Features Icon in the toolbar, and click on the raster cell to determine its value.</li>
-</ol>
+</section>
+<section id="step-5-calculate-travel-time" class="level1">
+<h1>Step 5: Calculate travel time</h1>
+<p>To calculate travel time, zoom in on the coordinate representing the end of the travel path (7.682362,12.923887). With the Cumulative Cost layer selected, select the Identify Features Icon in the toolbar, and click on the raster cell to determine its value.</p>
 <p><em>Find the Identify Features button</em></p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image7.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../../images/friction_surface_images/friction_surface_qgis_image7.png" class="img-fluid" width="400"></a></p>
 <p><em>Click the pixel representing the end of the travel path and find the result in the Identify Results popup under Band 1 = 1.3717…</em></p>
 <p><a href="../../images/friction_surface_images/friction_surface_qgis_image8.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="../../images/friction_surface_images/friction_surface_qgis_image8.png" class="img-fluid" width="400"></a></p>
-<ol start="6" type="1">
-<li>To get travel time in minutes, multiply the cumulative cost value by the friction surface pixel resolution (30 meters).</li>
-</ol>
+</section>
+<section id="step-6-travel-time-in-minutes" class="level1">
+<h1>Step 6: Travel time in minutes</h1>
+<p>To get travel time in minutes, multiply the cumulative cost value by the friction surface pixel resolution (30 meters).</p>
 <p><strong>1.37 (accumulated friction surface value) * 30 (pixel resolution) = 41.1 minutes</strong></p>
 <hr>
 <p>This workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
