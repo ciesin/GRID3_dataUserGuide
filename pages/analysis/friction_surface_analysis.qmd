@@ -13,6 +13,6 @@ This guide provides three demonstrations for calculating the shortest travel tim
 
 - [**ArcGIS Pro Implementation**](friction_surface_distance_arcgis.qmd)
 
-- [**QGIS Implementation**](friction_surface_qgis.qmd)
+- [**QGIS Implementation**](friction_surface_distance_qgis.qmd)
 
 ::: 
