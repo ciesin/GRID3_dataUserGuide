@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-03-31">
 
-<title>Analysis</title>
+<title>Estimating Travel Times with the GRID3 Nigeria Friction Surface</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -96,8 +97,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../custom.css">
-<meta property="og:title" content="Analysis">
-<meta property="og:description" content="Apply GRID3 data to spatial workflows">
+<meta property="og:title" content="Estimating Travel Times with the GRID3 Nigeria Friction Surface">
+<meta property="og:description" content="Guides and resources for working with CIESIN-GRID3 geospatial data.">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -340,7 +341,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Analysis</h1>
+          <h1 class="quarto-secondary-nav-title">Estimating Travel Times with the GRID3 Nigeria Friction Surface</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -349,7 +350,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -361,7 +362,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analyzing data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -376,7 +377,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/analysis/friction_surface_analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/analysis/friction_surface_analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Estimating Travel Times with the GRID3 Nigeria Friction Surface</span></a>
   </div>
 </li>
@@ -405,22 +406,29 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Analysis</h1>
-<p class="subtitle lead">Apply GRID3 data to spatial workflows</p>
+<h1 class="title d-none d-lg-block">Estimating Travel Times with the GRID3 Nigeria Friction Surface</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 31, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -430,18 +438,26 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<p>This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.</p>
-<section id="guides-in-this-section" class="level2">
-<h2 class="anchored" data-anchor-id="guides-in-this-section">Guides in this section</h2>
+<p>This guide demonstrates how to use the GRID3 Nigeria Friction Surface to estimate travel times between two points. The friction surface represents the difficulty of traversing each cell, allowing for more realistic travel time calculations that account for terrain and land cover.</p>
+<p>This guide provides three demonstrations for calculating the shortest travel time between two points along the friction surface, one using Python, ArcGIS Pro, and QGIS:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><p><a href="../../pages/analysis/api_nga_network.html">Nigeria Road Network API</a> Query and analyze the GRID3 Nigeria road network via API using Python.</p></li>
-<li><p><a href="../../pages/analysis/friction_surface_analysis.html">Nigeria Friction Surface Shortest Path Analysis</a> Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.</p></li>
+<li><p><a href="../../pages/analysis/friction_surface_lowest_cost_py.html"><strong>Python Implementation</strong></a></p></li>
+<li><p><a href="../../pages/analysis/friction_surface_distance_arcgis.html"><strong>ArcGIS Pro Implementation</strong></a></p></li>
+<li><p><a href="friction_surface_qgis.qmd"><strong>QGIS Implementation</strong></a></p></li>
 </ul>
+</div>
+</div>
+</div>
 
 
-</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

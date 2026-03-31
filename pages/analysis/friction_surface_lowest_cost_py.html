@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Matthew Walter">
+<meta name="dcterms.date" content="2026-03-31">
 
-<title>Analysis</title>
+<title>Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -48,6 +85,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-f20b306efae35fa13f2bc0fe0e866cde.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-5a3f883a68bcf0cd4a2f1041f3edb899.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,8 +136,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../custom.css">
-<meta property="og:title" content="Analysis">
-<meta property="og:description" content="Apply GRID3 data to spatial workflows">
+<meta property="og:title" content="Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface">
+<meta property="og:description" content="Guides and resources for working with CIESIN-GRID3 geospatial data.">
+<meta property="og:image" content="https://guides.ciesin.app/pages/analysis/friction_surface_lowest_cost_py_files/figure-html/cell-8-output-2.png">
+<meta property="og:image:height" content="546">
+<meta property="og:image:width" content="740">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -340,7 +383,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Analysis</h1>
+          <h1 class="quarto-secondary-nav-title">Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -349,7 +392,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -361,7 +404,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../pages/analysis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analyzing data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -394,7 +437,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/analysis/friction_surface_lowest_cost_py.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/analysis/friction_surface_lowest_cost_py.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</span></a>
   </div>
 </li>
@@ -405,22 +448,35 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Analysis</h1>
-<p class="subtitle lead">Apply GRID3 data to spatial workflows</p>
+<h1 class="title d-none d-lg-block">Using Python to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matthew Walter </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 31, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -430,18 +486,150 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<p>This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.</p>
-<section id="guides-in-this-section" class="level2">
-<h2 class="anchored" data-anchor-id="guides-in-this-section">Guides in this section</h2>
-<ul>
-<li><p><a href="../../pages/analysis/api_nga_network.html">Nigeria Road Network API</a> Query and analyze the GRID3 Nigeria road network via API using Python.</p></li>
-<li><p><a href="../../pages/analysis/friction_surface_analysis.html">Nigeria Friction Surface Shortest Path Analysis</a> Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.</p></li>
-</ul>
+<p>In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using open source Python packages. For calculating the lowest cost path, we use route_through_array in skimage. We use the Nigeria mixed travel friction surface for this demonstration. If you already have the friction surface, a start and an end point, you can skip to Step 3.</p>
+<p>#Step 1: Set up libraries and file path</p>
+<div id="cell-3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.windows <span class="im">import</span> from_bounds</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.plot <span class="im">import</span> show</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.graph <span class="im">import</span> route_through_array</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the file path for storing and reading in the friction surface</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'/content/extracted_data'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>#Step 2: Read in and clip friction surface (skip to Step 3 if you have already downloaded the desired friction surface)</p>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="24b22adf-e889-4155-e607-dff59132f517">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the zip file for the mixed friction surface for Nigeria</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget {<span class="st">'https://academiccommons.columbia.edu/doi/10.7916/zvnx-2v35/download'</span>} <span class="op">-</span>O {<span class="st">'GRID3_NGA_mix_travel_time_friction_surface_v1_0.zip'</span>}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure directory exists</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>os.makedirs(path, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the zip file</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(<span class="st">'GRID3_NGA_mix_travel_time_friction_surface_v1_0.zip'</span>, <span class="st">'r'</span>) <span class="im">as</span> zip_ref:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    zip_ref.extractall(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2026-03-26 17:42:47--  https://academiccommons.columbia.edu/doi/10.7916/zvnx-2v35/download
+Resolving academiccommons.columbia.edu (academiccommons.columbia.edu)... 128.59.222.111
+Connecting to academiccommons.columbia.edu (academiccommons.columbia.edu)|128.59.222.111|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3224743565 (3.0G) [application/zip]
+Saving to: ‘GRID3_NGA_mix_travel_time_friction_surface_v1_0.zip’
+
+GRID3_NGA_mix_trave 100%[===================&gt;]   3.00G  49.1MB/s    in 63s     
+
+2026-03-26 17:43:51 (48.7 MB/s) - ‘GRID3_NGA_mix_travel_time_friction_surface_v1_0.zip’ saved [3224743565/3224743565]
+</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set bounding box lat and long for clipping</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> <span class="fl">7.503662</span>,<span class="fl">12.885811</span>,<span class="fl">7.767334</span>,<span class="fl">13.105382</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform CRS to UTM to match friction surface</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:32632"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> transformer.transform_bounds(<span class="op">*</span>bbox)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set bounding box corners</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>minx, miny, maxx, maxy <span class="op">=</span> bbox</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open and clip friction surface</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rasterio.<span class="bu">open</span>(<span class="ss">f'</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">/GRID3_NGA_mix_travel_time_friction_surface_v1_0/GRID3_NGA_mix_travel_time_friction_surface_v1_0.tif'</span>) <span class="im">as</span> src:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the window corresponding to the bounds in the raster's CRS</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    window <span class="op">=</span> from_bounds(minx, miny, maxx, maxy, src.transform)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the raster and metadata from that specific window</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    clipped_data <span class="op">=</span> src.read(<span class="dv">1</span>,window<span class="op">=</span>window)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>src.transform</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> src.meta</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the profile dictionary with the correct dimensions and transform for clipped_data</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>updated_profile <span class="op">=</span> profile.copy()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>updated_profile[<span class="st">'height'</span>] <span class="op">=</span> clipped_data.shape[<span class="dv">0</span>]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>updated_profile[<span class="st">'width'</span>] <span class="op">=</span> clipped_data.shape[<span class="dv">1</span>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalculate the transform for the clipped data</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>updated_profile[<span class="st">'transform'</span>] <span class="op">=</span> rasterio.transform.from_origin(bbox[<span class="dv">0</span>], bbox[<span class="dv">3</span>], <span class="bu">abs</span>(transform.a), <span class="bu">abs</span>(transform.e))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Set path for clipped friction surface</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>fs_path <span class="op">=</span> os.path.join(path, <span class="st">'fs_clip.tif'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Write out clipped data to file</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rasterio.<span class="bu">open</span>(fs_path, <span class="st">'w'</span>, <span class="op">**</span>updated_profile) <span class="im">as</span> dst:</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  dst.write(clipped_data, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>#Step 3: Calculate Distance Between Points</p>
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two points for distance calculation using lat and long</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pt1 <span class="op">=</span> <span class="fl">7.515850</span>,<span class="fl">13.034015</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pt2 <span class="op">=</span> <span class="fl">7.682362</span>,<span class="fl">12.923887</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform to UTM to match friction surface</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pt1 <span class="op">=</span> transformer.transform(<span class="op">*</span>pt1)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pt2 <span class="op">=</span> transformer.transform(<span class="op">*</span>pt2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:580}}" data-outputid="b59e0dfe-b79f-4621-a891-c6e519d90c64">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open clipped dataset and calculate distance between two points</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in clipped friction surface (replace fs_path with your friction surface path if desired)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> rasterio.<span class="bu">open</span>(fs_path)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add friction surface to map</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>show(fs, transform<span class="op">=</span>transform, cmap<span class="op">=</span><span class="st">'inferno'</span>, ax<span class="op">=</span>ax, percent_range<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">70</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> ax.get_images()[<span class="dv">0</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.colorbar(img, ax<span class="op">=</span>ax, fraction<span class="op">=</span><span class="fl">0.04</span>, label<span class="op">=</span><span class="st">"Cost"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add points to map</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>start_point <span class="op">=</span> ax.scatter(pt1[<span class="dv">0</span>], pt1[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"green"</span>, marker<span class="op">=</span><span class="st">"o"</span>, s<span class="op">=</span><span class="dv">100</span>,label<span class="op">=</span><span class="st">"Start point"</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>end_point <span class="op">=</span> ax.scatter(pt2[<span class="dv">0</span>], pt2[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"purple"</span>, marker<span class="op">=</span><span class="st">"o"</span>, s<span class="op">=</span><span class="dv">100</span>,label<span class="op">=</span><span class="st">"End point"</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  Get raster array index for start and end points</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>start_row_ix, start_col_ix <span class="op">=</span> fs.index(x<span class="op">=</span>pt1[<span class="dv">0</span>], y<span class="op">=</span>pt1[<span class="dv">1</span>])</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>end_row_ix, end_col_ix <span class="op">=</span> fs.index(x<span class="op">=</span>pt2[<span class="dv">0</span>], y<span class="op">=</span>pt2[<span class="dv">1</span>])</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate lowest cost path, Use geometric=True to correctly account for diagonal vs. non-diagonal distances in cost calculation</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>path, cost <span class="op">=</span> route_through_array(array<span class="op">=</span>clipped_data, start<span class="op">=</span>(start_row_ix, start_col_ix), end<span class="op">=</span>(end_row_ix, end_col_ix), geometric<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert row and column indexes to coordinates for plotting</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>row_ind <span class="op">=</span> [x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> path]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>path_ind <span class="op">=</span> [x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> path]</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>path_x_coords, path_y_coords <span class="op">=</span> fs.xy(row<span class="op">=</span>row_ind, col<span class="op">=</span>path_ind)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot shortest path</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>cost_path <span class="op">=</span> ax.plot(path_x_coords, path_y_coords, color<span class="op">=</span><span class="st">"red"</span>, lw<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Least cost path"</span>, zorder<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[start_point, end_point, cost_path], labelcolor<span class="op">=</span><span class="st">"white"</span>,facecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert accumulated cost time from minutes per meter to total travel time by multiplying accumulated cost by raster cell size</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>cell_resolution_meters <span class="op">=</span> fs.res[<span class="dv">0</span>]</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>travel_time <span class="op">=</span> <span class="bu">str</span>(<span class="bu">round</span>(cost <span class="op">*</span> cell_resolution_meters, <span class="dv">0</span>).astype(<span class="bu">int</span>))</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Add travel time as plot title</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Travel time = </span><span class="sc">{</span>travel_time<span class="sc">}</span><span class="ss"> minutes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>Text(0.5, 1.0, 'Travel time = 41 minutes')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="friction_surface_lowest_cost_py_files/figure-html/cell-8-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="friction_surface_lowest_cost_py_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -909,6 +1097,38 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
