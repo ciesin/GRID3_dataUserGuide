@@ -89,8 +89,12 @@ website:
       search: true
       collapse-level: 2
       contents:
-        - section: "Analyzing data"
-          contents: "pages/analysis/*"
+        - text: Analyzing data
+          href: pages/analysis/index.qmd
+        - section: "Travel time analysis"
+          contents: "pages/analysis/*friction*"
+        - section: "Road network analysis"
+          contents: "pages/analysis/*network*"
 
     - id: visualization
       title: "Visualization"

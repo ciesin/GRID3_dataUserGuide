@@ -1,6 +1,7 @@
 ---
-title: "Estimating Travel Times with the GRID3 Nigeria Friction Surface"
+title: "Introduction"
 date: "2026-03-31" 
+order: 1
 ---
 
 This guide demonstrates how to use the GRID3 Nigeria Friction Surface to estimate travel times between two points. The friction surface represents the difficulty of traversing each cell, allowing for more realistic travel time calculations that account for terrain and land cover.

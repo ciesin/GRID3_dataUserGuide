@@ -356,6 +356,36 @@ h1.quarto-secondary-nav-title {
 body.quarto-dark .ciesin-logo-light { display: none; }
 body.quarto-dark .ciesin-logo-dark  { display: block; }
 
+/* Sidebar nav hierarchy */
+
+/* top-level standalone items and section headers */
+.sidebar-item-section > .sidebar-item-container .sidebar-item-text {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bs-body-color);
+  opacity: 0.85;
+}
+
+/* child items nested inside a section */
+.sidebar-section .sidebar-item > .sidebar-item-container .sidebar-item-text {
+  font-weight: 400;
+  font-size: 0.82rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--bs-body-color);
+  opacity: 0.75;
+}
+
+/* active (currently viewed) sidebar item */
+.sidebar-item .sidebar-link.active .menu-text,
+.sidebar-item .sidebar-link.active {
+  font-weight: 600;
+  color: var(--ciesin-accent) !important;
+  opacity: 1;
+}
+
 /* footer */
 
 .page-footer {
