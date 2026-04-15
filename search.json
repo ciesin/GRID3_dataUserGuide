@@ -352,8 +352,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html",
-    "href": "pages/data-access/accessing_data_by_lga.html",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "",
     "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
@@ -363,8 +363,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html#overview",
-    "href": "pages/data-access/accessing_data_by_lga.html#overview",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#overview",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#overview",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "",
     "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
@@ -374,8 +374,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html#data",
-    "href": "pages/data-access/accessing_data_by_lga.html#data",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#data",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#data",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "Data",
     "text": "Data\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\nGRID3 major and all roads\nGRID3 settlement blocks\nAdministrative boundaries for Nigeria and DRC",
@@ -385,8 +385,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html#workflow-google-colab",
-    "href": "pages/data-access/accessing_data_by_lga.html#workflow-google-colab",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "Workflow (Google Colab)",
     "text": "Workflow (Google Colab)\nImplemented in Google Colab, the notebook shows how to:\n\nQuery administrative boundaries from ArcGIS FeatureLayers\n\nSelect a boundaries by name interactively\n\nDownload and extract GRID3 data selected\n\nSubset the data to the selected boundary\n\nExport data and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
@@ -396,8 +396,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html#learning-outcomes",
-    "href": "pages/data-access/accessing_data_by_lga.html#learning-outcomes",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "Learning Outcomes",
     "text": "Learning Outcomes\nBy the end, users will be able to:\n\nUnderstand GRID3 datasets\n\nExtract and subset GRDI3 data to an administrative boundary\n\nGenerate data outputs and visualizations for accessibility or analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
@@ -407,8 +407,8 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_data_by_lga.html#run-in-google-colab",
-    "href": "pages/data-access/accessing_data_by_lga.html#run-in-google-colab",
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
     "title": "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo",
     "section": "Run in Google Colab",
     "text": "Run in Google Colab\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
