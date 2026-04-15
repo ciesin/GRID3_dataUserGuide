@@ -9,7 +9,7 @@
 <meta name="author" content="Matthew Walter">
 <meta name="dcterms.date" content="2026-04-15">
 
-<title>Nigeria Friction Surface</title>
+<title>Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -98,7 +98,8 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../custom.css">
-<meta property="og:title" content="Nigeria Friction Surface">
+<meta property="og:title" content="Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo">
+<meta property="og:description" content="Guides and resources for working with CIESIN-GRID3 geospatial data.">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -341,7 +342,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Nigeria Friction Surface</h1>
+          <h1 class="quarto-secondary-nav-title">Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -378,7 +379,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/data-access/accessing_data_by_lga.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Nigeria Friction Surface</span></a>
+ <span class="menu-text">Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo</span></a>
   </div>
 </li>
       </ul>
@@ -393,14 +394,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#extracting-and-mapping-grid3-data-by-lga" id="toc-extracting-and-mapping-grid3-data-by-lga" class="nav-link active" data-scroll-target="#extracting-and-mapping-grid3-data-by-lga">Extracting and Mapping GRID3 Data by LGA</a>
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#workflow-google-colab" id="toc-workflow-google-colab" class="nav-link" data-scroll-target="#workflow-google-colab">Workflow (Google Colab)</a></li>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
   <li><a href="#run-in-google-colab" id="toc-run-in-google-colab" class="nav-link" data-scroll-target="#run-in-google-colab">Run in Google Colab</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -410,7 +408,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Nigeria Friction Surface</h1>
+<h1 class="title d-none d-lg-block">Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo</h1>
 </div>
 
 
@@ -439,11 +437,9 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<section id="extracting-and-mapping-grid3-data-by-lga" class="level1">
-<h1>Extracting and Mapping GRID3 Data by LGA</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data, friction surfaces, roads, or settlement blocks, at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected LGA in a reproducible workflow.</p>
+<p>This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.</p>
 <p><a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/main/pages/analysis/colab/GRID3_data_extraction_tool_ver2.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 </section>
 <section id="data" class="level2">
@@ -453,20 +449,20 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <li>GRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.</li>
 <li>GRID3 major and all roads</li>
 <li>GRID3 settlement blocks</li>
-<li>Administrative boundaries for Nigerian states and LGAs</li>
+<li>Administrative boundaries for Nigeria and DRC</li>
 </ul>
 </section>
 <section id="workflow-google-colab" class="level2">
 <h2 class="anchored" data-anchor-id="workflow-google-colab">Workflow (Google Colab)</h2>
 <p>Implemented in <strong>Google Colab</strong>, the notebook shows how to:</p>
 <ol type="1">
-<li>Query state and LGA boundaries from ArcGIS FeatureLayers<br>
+<li>Query administrative boundaries from ArcGIS FeatureLayers<br>
 </li>
-<li>Select a state and LGA interactively<br>
+<li>Select a boundaries by name interactively<br>
 </li>
 <li>Download and extract GRID3 data selected<br>
 </li>
-<li>Subset the data to the selected LGA<br>
+<li>Subset the data to the selected boundary<br>
 </li>
 <li>Export data and create publication-ready plots</li>
 </ol>
@@ -478,7 +474,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <ul>
 <li>Understand GRID3 datasets<br>
 </li>
-<li>Extract and subset GRDI3 data to an LGA<br>
+<li>Extract and subset GRDI3 data to an administrative boundary<br>
 </li>
 <li>Generate data outputs and visualizations for accessibility or analysis</li>
 </ul>
@@ -490,7 +486,6 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <p>Open the lesson in Google Colab to execute the code and follow along with the analysis: <a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/main/pages/analysis/colab/GRID3_data_extraction_tool_ver2.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
