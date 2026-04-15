@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Matthew Walter">
-<meta name="dcterms.date" content="2026-02-20">
+<meta name="dcterms.date" content="2026-04-15">
 
 <title>Nigeria Friction Surface</title>
 <style>
@@ -377,7 +377,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/data-access/accessing_friction_surface_by_lga.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../pages/data-access/accessing_data_by_lga.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Nigeria Friction Surface</span></a>
   </div>
 </li>
@@ -393,7 +393,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mapping-grid3-friction-surfaces-by-lga" id="toc-mapping-grid3-friction-surfaces-by-lga" class="nav-link active" data-scroll-target="#mapping-grid3-friction-surfaces-by-lga">Mapping GRID3 Friction Surfaces by LGA</a>
+  <li><a href="#extracting-and-mapping-grid3-data-by-lga" id="toc-extracting-and-mapping-grid3-data-by-lga" class="nav-link active" data-scroll-target="#extracting-and-mapping-grid3-data-by-lga">Extracting and Mapping GRID3 Data by LGA</a>
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
@@ -427,7 +427,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 20, 2026</p>
+      <p class="date">April 15, 2026</p>
     </div>
   </div>
   
@@ -439,21 +439,22 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<section id="mapping-grid3-friction-surfaces-by-lga" class="level1">
-<h1>Mapping GRID3 Friction Surfaces by LGA</h1>
+<section id="extracting-and-mapping-grid3-data-by-lga" class="level1">
+<h1>Extracting and Mapping GRID3 Data by LGA</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.</p>
+<p>This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data, friction surfaces, roads, or settlement blocks, at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected LGA in a reproducible workflow.</p>
 <p><a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/main/pages/analysis/colab/GRID3_data_extraction_tool_ver2.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>The lesson uses:</p>
 <ul>
-<li>GRID3 high-resolution friction surfaces (walking and mixed-mode)</li>
+<li>GRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.</li>
+<li>GRID3 major and all roads</li>
+<li>GRID3 settlement blocks</li>
 <li>Administrative boundaries for Nigerian states and LGAs</li>
 </ul>
-<p>Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.</p>
 </section>
 <section id="workflow-google-colab" class="level2">
 <h2 class="anchored" data-anchor-id="workflow-google-colab">Workflow (Google Colab)</h2>
@@ -463,11 +464,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </li>
 <li>Select a state and LGA interactively<br>
 </li>
-<li>Download and extract GRID3 friction rasters<br>
+<li>Download and extract GRID3 data selected<br>
 </li>
-<li>Clip the raster to the selected LGA<br>
+<li>Subset the data to the selected LGA<br>
 </li>
-<li>Export a GeoTIFF and create publication-ready plots</li>
+<li>Export data and create publication-ready plots</li>
 </ol>
 <p>Clear helper functions and comments make it easy to adapt for other regions or batch processing.</p>
 </section>
@@ -475,11 +476,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
 <p>By the end, users will be able to:</p>
 <ul>
-<li>Understand GRID3 friction datasets<br>
+<li>Understand GRID3 datasets<br>
 </li>
-<li>Extract and crop friction rasters to an LGA<br>
+<li>Extract and subset GRDI3 data to an LGA<br>
 </li>
-<li>Generate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis</li>
+<li>Generate data outputs and visualizations for accessibility or analysis</li>
 </ul>
 <p>Common issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.</p>
 <hr>

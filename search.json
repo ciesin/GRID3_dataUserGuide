@@ -214,7 +214,7 @@
     "href": "pages/data-access/index.html#guides-in-this-section",
     "title": "Data Access",
     "section": "Guides in this section",
-    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nMapping GRID3 Friction Surfaces by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.\n\n\nClick here to download data",
+    "text": "Guides in this section\n\nGRID3 COD Roads v1.0 — Data Release Notes Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.\nExtracting and Mapping GRID3 Data by LGA Access GRID3 raster friction surface and administrative boundary data for Nigeria.\n\n\nClick here to download data",
     "crumbs": [
       "Accessing data"
     ]
@@ -352,63 +352,63 @@
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html",
+    "objectID": "pages/data-access/accessing_data_by_lga.html",
+    "href": "pages/data-access/accessing_data_by_lga.html",
     "title": "Nigeria Friction Surface",
     "section": "",
-    "text": "This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.\n  \n\n\n\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode)\nAdministrative boundaries for Nigerian states and LGAs\n\nFriction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\n\n\n\nImplemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 friction rasters\n\nClip the raster to the selected LGA\n\nExport a GeoTIFF and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.\n\n\n\nBy the end, users will be able to:\n\nUnderstand GRID3 friction datasets\n\nExtract and crop friction rasters to an LGA\n\nGenerate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.\n\n\n\n\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
+    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data, friction surfaces, roads, or settlement blocks, at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected LGA in a reproducible workflow.\n  \n\n\n\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\nGRID3 major and all roads\nGRID3 settlement blocks\nAdministrative boundaries for Nigerian states and LGAs\n\n\n\n\nImplemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 data selected\n\nSubset the data to the selected LGA\n\nExport data and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.\n\n\n\nBy the end, users will be able to:\n\nUnderstand GRID3 datasets\n\nExtract and subset GRDI3 data to an LGA\n\nGenerate data outputs and visualizations for accessibility or analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.\n\n\n\n\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
     "crumbs": [
       "Accessing data",
       "Nigeria Friction Surface"
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html#overview",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html#overview",
+    "objectID": "pages/data-access/accessing_data_by_lga.html#overview",
+    "href": "pages/data-access/accessing_data_by_lga.html#overview",
     "title": "Nigeria Friction Surface",
     "section": "",
-    "text": "This lesson demonstrates how to use GRID3 data to map and analyze friction surfaces at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 Raster Friction Surface and administrative boundaries data, then clipping and visualizing a friction surface for a selected LGA in a reproducible workflow.",
+    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data, friction surfaces, roads, or settlement blocks, at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected LGA in a reproducible workflow.",
     "crumbs": [
       "Accessing data",
       "Nigeria Friction Surface"
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html#data",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html#data",
+    "objectID": "pages/data-access/accessing_data_by_lga.html#data",
+    "href": "pages/data-access/accessing_data_by_lga.html#data",
     "title": "Nigeria Friction Surface",
     "section": "",
-    "text": "The lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode)\nAdministrative boundaries for Nigerian states and LGAs\n\nFriction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.",
+    "text": "The lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\nGRID3 major and all roads\nGRID3 settlement blocks\nAdministrative boundaries for Nigerian states and LGAs",
     "crumbs": [
       "Accessing data",
       "Nigeria Friction Surface"
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html#workflow-google-colab",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html#workflow-google-colab",
+    "objectID": "pages/data-access/accessing_data_by_lga.html#workflow-google-colab",
+    "href": "pages/data-access/accessing_data_by_lga.html#workflow-google-colab",
     "title": "Nigeria Friction Surface",
     "section": "",
-    "text": "Implemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 friction rasters\n\nClip the raster to the selected LGA\n\nExport a GeoTIFF and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
+    "text": "Implemented in Google Colab, the notebook shows how to:\n\nQuery state and LGA boundaries from ArcGIS FeatureLayers\n\nSelect a state and LGA interactively\n\nDownload and extract GRID3 data selected\n\nSubset the data to the selected LGA\n\nExport data and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
     "crumbs": [
       "Accessing data",
       "Nigeria Friction Surface"
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html#learning-outcomes",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html#learning-outcomes",
+    "objectID": "pages/data-access/accessing_data_by_lga.html#learning-outcomes",
+    "href": "pages/data-access/accessing_data_by_lga.html#learning-outcomes",
     "title": "Nigeria Friction Surface",
     "section": "",
-    "text": "By the end, users will be able to:\n\nUnderstand GRID3 friction datasets\n\nExtract and crop friction rasters to an LGA\n\nGenerate GeoTIFF outputs and visualizations for accessibility or infrastructure analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
+    "text": "By the end, users will be able to:\n\nUnderstand GRID3 datasets\n\nExtract and subset GRDI3 data to an LGA\n\nGenerate data outputs and visualizations for accessibility or analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
     "crumbs": [
       "Accessing data",
       "Nigeria Friction Surface"
     ]
   },
   {
-    "objectID": "pages/data-access/accessing_friction_surface_by_lga.html#run-in-google-colab",
-    "href": "pages/data-access/accessing_friction_surface_by_lga.html#run-in-google-colab",
+    "objectID": "pages/data-access/accessing_data_by_lga.html#run-in-google-colab",
+    "href": "pages/data-access/accessing_data_by_lga.html#run-in-google-colab",
     "title": "Nigeria Friction Surface",
     "section": "",
     "text": "Open the lesson in Google Colab to execute the code and follow along with the analysis:",
