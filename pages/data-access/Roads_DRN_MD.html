@@ -903,12 +903,12 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <p>GRID3 data, including this Roads v1.0 dataset, can be accessed from the GRID3 Data Hub here: <a href="https://data.grid3.org/datasets/GRID3::grid3-cod-roads-v1-0/about" class="uri">https://data.grid3.org/datasets/GRID3::grid3-cod-roads-v1-0/about</a> This page allows the user to download the data in a variety of formats, including geopackage, shapefile, geoJSON, geodatabase, and KML. First, click the Download button: <img src="../../Users/camillap/Documents/grid3/GRID3_dataUserGuide/Click-download.png" class="img-fluid" alt="Click “download” button"> A sidebar will open on the left side of the page allowing the user to choose their preferred file format: ![File format options] (/Users/camillap/Documents/grid3/GRID3_dataUserGuide/hub-download-options.png)</p>
 <p>If you have not used our spatial data before, we recommend that you choose to download the roads as a geopackage. This is a common, open file format for geospatial data (<a href="#0" class="uri">https://www.geopackage.org</a>).</p>
 <p>If you would prefer to access the Roads dataset from the command line, you can do so using the ArcGIS API. This requires using the ArcGIS Python package, which requires a local copy of ArcGIS Pro. If you do not have ArcGIS Pro on your computer, consider downloading the Roads dataset from the webpage.</p>
-<div id="3741a28e" class="cell">
+<div id="0f0b225b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install arcgis API for accessing data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check that arcgis is installed </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install arcgis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e5eb4370" class="cell">
+<div id="a3b80aed" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import arcgis</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arcgis.gis <span class="im">import</span> GIS </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
@@ -916,11 +916,11 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="86ffd4ac" class="cell">
+<div id="cea5e235" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymously authenticate arcgis API</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gis <span class="op">=</span> GIS()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="9fe0cd97" class="cell">
+<div id="b1e80afb" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_nga_roads(bbox, crs, record_limit, url):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fetch NGA roads from an ArcGIS FeatureServer within a bounding box.</span></span>
@@ -980,7 +980,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpd.GeoDataFrame.from_features(valid_features, crs<span class="op">=</span>crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The URL that you set here can be found by scrolling down on the dataset landing page until you find the right sidebar that reads “I want to…” One option reads “View API Resources.” Once you click here, the webpage provides the link to access the REST Endpoint where you can query the dataset, downloading all or just a subset of the data. In this case, we will set a bounding box.</p>
-<div id="3e87ea10" class="cell">
+<div id="d614ec18" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in service for NGA roads</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_roads/FeatureServer/0/query"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -998,7 +998,7 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Confirm that the Roads look as you expect with a basic plot.</p>
-<div id="68becdcf" class="cell">
+<div id="d7f5db54" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot roads</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># size </span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">120</span>)</span>
