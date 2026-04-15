@@ -1,15 +1,14 @@
 ---
-title: "Nigeria Friction Surface"
+title: "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo"
 order: 2
 output: html_document
 date: "2026-04-15"
 author: "Matthew Walter"
----
-# Extracting and Mapping GRID3 Data by LGA 
+--- 
 
 ## Overview
 
-This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data, friction surfaces, roads, or settlement blocks,  at the Local Government Area (LGA) level in Nigeria. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected LGA in a reproducible workflow.
+This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.
 
 <a target="_blank" href="https://colab.research.google.com/github/ciesin/GRID3_dataUserGuide/blob/main/pages/analysis/colab/GRID3_data_extraction_tool_ver2.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -22,18 +21,17 @@ The lesson uses:
 - GRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.
 - GRID3 major and all roads
 - GRID3 settlement blocks
-- Administrative boundaries for Nigerian states and LGAs
-
+- Administrative boundaries for Nigeria and DRC
 
 
 ## Workflow (Google Colab)
 
 Implemented in **Google Colab**, the notebook shows how to:
 
-1. Query state and LGA boundaries from ArcGIS FeatureLayers  
-2. Select a state and LGA interactively  
+1. Query administrative boundaries from ArcGIS FeatureLayers  
+2. Select a boundaries by name interactively  
 3. Download and extract GRID3 data selected  
-4. Subset the data to the selected LGA  
+4. Subset the data to the selected boundary  
 5. Export data and create publication-ready plots  
 
 Clear helper functions and comments make it easy to adapt for other regions or batch processing.
@@ -43,7 +41,7 @@ Clear helper functions and comments make it easy to adapt for other regions or b
 By the end, users will be able to:
 
 - Understand GRID3  datasets  
-- Extract and subset GRDI3 data to an LGA  
+- Extract and subset GRDI3 data to an administrative boundary  
 - Generate data outputs and visualizations for accessibility or analysis  
 
 Common issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.
