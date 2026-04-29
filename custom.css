@@ -178,9 +178,10 @@ a {
 
 .sourceCode {
   border-left: 0.2rem solid var(--ciesin-code-border);
-  background-color: var(--ciesin-code-bg);
+  /* background-color: var(--ciesin-code-bg); */
   max-width: 100%;
   overflow-x: auto;
+  background-color: none;
 }
 
 pre {
@@ -191,6 +192,7 @@ pre {
 pre, code {
   font-family: "IBM Plex Mono", monospace;
 }
+
 
 /* scroll within the element if needed, not full viewport */
 table {
