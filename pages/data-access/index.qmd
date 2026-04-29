@@ -13,9 +13,6 @@ This section covers how to locate GRID3 datasets, access them programmatically o
 
 ## Guides in this section
 
-- [GRID3 COD Roads v1.0 — Data Release Notes](Roads_DRN_MD.qmd)
-  Methodology, sources, and access instructions for the Democratic Republic of the Congo road network dataset.
-
 - [Extracting and Mapping GRID3 Data by Administrative Units](accessing_data_by_admin_unit.qmd)
   Access GRID3 raster friction surface and administrative boundary data for Nigeria and Democratic Republic of Congo. 
 

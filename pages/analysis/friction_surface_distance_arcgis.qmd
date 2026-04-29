@@ -1,5 +1,5 @@
 ---
-title: "Using ArcGIS Pro to Calculate Shortest Travel Time with the GRID3 Nigeria Friction Surface"
+title: "ArcGIS Pro"
 date: "2026-03-31"
 author: "Matthew Walter"
 order: 2

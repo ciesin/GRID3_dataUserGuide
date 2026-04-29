@@ -6,14 +6,4 @@ order: 1
 
 This guide demonstrates how to use the GRID3 Nigeria Friction Surface to estimate travel times between two points. The friction surface represents the difficulty of traversing each cell, allowing for more realistic travel time calculations that account for terrain and land cover.
 
-This guide provides three demonstrations for calculating the shortest travel time between two points along the friction surface, one using Python, ArcGIS Pro, and QGIS:
-
-:::{.callout}   
-
-- [**Python Implementation**](friction_surface_lowest_cost_py.ipynb)
-
-- [**ArcGIS Pro Implementation**](friction_surface_distance_arcgis.qmd)
-
-- [**QGIS Implementation**](friction_surface_distance_qgis.qmd)
-
-::: 
+This guide provides three demonstrations for calculating the shortest travel time between two points along the friction surface, one using Python, ArcGIS Pro, and QGIS.

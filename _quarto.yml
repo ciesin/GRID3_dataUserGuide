@@ -7,7 +7,7 @@ project:
     - "pages/data-access/*.qmd"
     - "pages/analysis/*.qmd"
     - "pages/analysis/*.ipynb"
-    - "pages/visualization/*.qmd"
+    # - "pages/visualization/*.qmd"
     - "pages/resources/*.qmd"
     - "!pages/analysis/colab/"
 
@@ -30,6 +30,7 @@ website:
   favicon: images/favicon.svg
   bread-crumbs: false
   back-to-top-navigation: true
+  page-navigation: true
 
   navbar:
 
@@ -50,8 +51,8 @@ website:
             href: pages/data-access/index.qmd
           - text: "Analysis"
             href: pages/analysis/index.qmd
-          - text: "Visualization"
-            href: pages/visualization/index.qmd
+          # - text: "Visualization"
+          #   href: pages/visualization/index.qmd
       - text: "Resources"
         href: pages/resources/index.qmd
 
@@ -96,18 +97,18 @@ website:
         - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
 
-    - id: visualization
-      title: "Visualization"
-      style: "docked"
-      search: true
-      collapse-level: 1
-      contents:
-        - text: Visualizing data
-          href: pages/visualization/index.qmd
-        - section: "pages/visualization/qgis.qmd"
-          contents: "pages/visualization/qgis/*.qmd"
-        - section: "pages/visualization/pmtiles.qmd"
-          contents: "pages/visualization/pmtiles/*.qmd"
+    # - id: visualization
+    #   title: "Visualization"
+    #   style: "docked"
+    #   search: true
+    #   collapse-level: 1
+    #   contents:
+    #     - text: Visualizing data
+    #       href: pages/visualization/index.qmd
+    #     - section: "pages/visualization/qgis.qmd"
+    #       contents: "pages/visualization/qgis/*.qmd"
+    #     - section: "pages/visualization/pmtiles.qmd"
+    #       contents: "pages/visualization/pmtiles/*.qmd"
 
 
     - id: resources
