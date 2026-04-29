@@ -62,7 +62,8 @@ Apply GRID3 data to spatial workflows.
 ### Visualization
 Map and style GRID3 data.
 
-[View guides →](pages/visualization/index.qmd){.stretched-link}
+[Coming soon...](..){.stretched-link}
+<!-- [View guides →](pages/visualization/index.qmd){.stretched-link} -->
 :::
 :::
 
