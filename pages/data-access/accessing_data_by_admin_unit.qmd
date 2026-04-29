@@ -1,5 +1,5 @@
 ---
-title: "Extracting and Mapping GRID3 Data by administrative units in Nigeria and Democratic Republic of Congo"
+title: "Extracting and Mapping GRID3 Data by administrative units"
 order: 2
 output: html_document
 date: "2026-04-15"
