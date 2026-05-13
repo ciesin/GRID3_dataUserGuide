@@ -58,12 +58,12 @@ website:
 
 
     right:
-      - text: "Contact"
-        icon: envelope-fill
-        href: pages/resources/#contact
+      # - text: "Contact"
+      #   icon: envelope-fill
+      #   href: pages/resources/#contact
       - text: "About"
         icon: info-circle-fill
-        href: pages/resources/#about-ciesin
+        href: pages/resources/about.qmd
 
 
 
@@ -135,9 +135,11 @@ website:
     tracking-id: "G-45WWDMVLWW"
     anonymize-ip: true
 
-  # body-footer: _footer.html
   page-footer:
     left:
+      - "<em>Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 4.0 International license.</em>"
+
+    center:
       - "<a href='https://www.columbia.edu/content/copyright'>©2026 Columbia University</a>"
 
     right:
@@ -151,7 +153,6 @@ website:
         href: https://www.linkedin.com/company/center-for-integrated-earth-system-information-ciesin/
       - icon: globe
         href: https://ciesin.columbia.edu
-
 
 
 format:

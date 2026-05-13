@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "CIESIN Data User Guide"
 sidebar: false
 # title-block-banner: images/CIESIN_TransparentBackground_BlueText.png
 format:
@@ -17,8 +17,8 @@ format:
 ---
 
 
-<img src="images/CIESIN_logo-blue.png"  class="ciesin-logo-light" width="90%" alt="CIESIN logo">
-<img src="images/CIESIN_logo-white.png" class="ciesin-logo-dark"  width="90%" alt="CIESIN logo">
+<img src="images/CIESIN_logo-blue.png"  class="ciesin-logo-light" width="30%" alt="CIESIN logo">
+<img src="images/CIESIN_logo-white.png" class="ciesin-logo-dark"  width="30%" alt="CIESIN logo">
 
  
 This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.
