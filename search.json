@@ -109,11 +109,32 @@
     "text": "Cartography"
   },
   {
-    "objectID": "pages/resources/!contact.html",
-    "href": "pages/resources/!contact.html",
-    "title": "Contact",
+    "objectID": "pages/resources/!links.html",
+    "href": "pages/resources/!links.html",
+    "title": "Links",
     "section": "",
-    "text": "Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information\n\n\n\n\n\n\n Back to top"
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
+  },
+  {
+    "objectID": "pages/resources/!links.html#data-downloads",
+    "href": "pages/resources/!links.html#data-downloads",
+    "title": "Links",
+    "section": "",
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
+  },
+  {
+    "objectID": "pages/resources/!links.html#maps",
+    "href": "pages/resources/!links.html#maps",
+    "title": "Links",
+    "section": "Maps",
+    "text": "Maps\n\nCIESIN Map Tiles (Alpha)"
+  },
+  {
+    "objectID": "pages/resources/!links.html#other-documentation-resources",
+    "href": "pages/resources/!links.html#other-documentation-resources",
+    "title": "Links",
+    "section": "Other documentation & resources",
+    "text": "Other documentation & resources\n\nProtomaps vector tile documentation\nPMTiles data viewer\nIPCC Data Distribution Centre"
   },
   {
     "objectID": "pages/data-access/index.html",
@@ -169,14 +190,14 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Home",
+    "title": "CIESIN Data User Guide",
     "section": "",
     "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
   },
   {
     "objectID": "index.html#getting-started",
     "href": "index.html#getting-started",
-    "title": "Home",
+    "title": "CIESIN Data User Guide",
     "section": "Getting started",
     "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nVisualization\nMap and style GRID3 data.\nComing soon… \n\n\n\n\n\nResources\nLinks and other reference materials.\nView resources →"
   },
@@ -268,39 +289,25 @@
     ]
   },
   {
-    "objectID": "pages/resources/!about.html",
-    "href": "pages/resources/!about.html",
-    "title": "About",
+    "objectID": "pages/resources/!contact.html",
+    "href": "pages/resources/!contact.html",
+    "title": "Contact",
     "section": "",
-    "text": "Back to top"
+    "text": "Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information\n\n\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "pages/resources/!links.html",
-    "href": "pages/resources/!links.html",
-    "title": "Links",
+    "objectID": "pages/resources/about.html",
+    "href": "pages/resources/about.html",
+    "title": "About CIESIN",
     "section": "",
-    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
+    "text": "The Center for Integrated Earth System Information (CIESIN), formerly known as the Center for International Earth Science Information Network, is a center within the Columbia Climate School. CIESIN’s mission is to harness cutting edge geospatial technologies to support integrated analysis of the human-environment system and to empower decision-making through collaborative research, teaching, and data production, stewardship and dissemination. CIESIN values inclusive, impactful, and interdisciplinary teamwork. Our purpose is to build bridges among academics, practitioners, decision-makers, and communities globally to co-produce trustworthy geospatial data and analyses about interactions between humans and the environment. CIESIN envisions a world with equitable societal benefits and sustainable environmental outcomes through data, research, and teaching. Learn about our Strategic Plan for 2024-2027, download our capabilities statement, and read our open data policy.\nCIESIN’s multidisciplinary staff includes PhD social scientists (geography, public health, demography and political science) and information scientists; master’s level social and environmental scientists; experts in GIS, data management and data policy; systems engineers; and applications developers."
   },
   {
-    "objectID": "pages/resources/!links.html#data-downloads",
-    "href": "pages/resources/!links.html#data-downloads",
-    "title": "Links",
-    "section": "",
-    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
-  },
-  {
-    "objectID": "pages/resources/!links.html#maps",
-    "href": "pages/resources/!links.html#maps",
-    "title": "Links",
-    "section": "Maps",
-    "text": "Maps\n\nCIESIN Map Tiles (Alpha)"
-  },
-  {
-    "objectID": "pages/resources/!links.html#other-documentation-resources",
-    "href": "pages/resources/!links.html#other-documentation-resources",
-    "title": "Links",
-    "section": "Other documentation & resources",
-    "text": "Other documentation & resources\n\nProtomaps vector tile documentation\nPMTiles data viewer\nIPCC Data Distribution Centre"
+    "objectID": "pages/resources/about.html#contact",
+    "href": "pages/resources/about.html#contact",
+    "title": "About CIESIN",
+    "section": "Contact",
+    "text": "Contact\n\n\n Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n LinkedIn\n\nCenter for Integrated Earth System Information"
   },
   {
     "objectID": "pages/resources/index.html",
@@ -338,26 +345,6 @@
     "title": "Resources",
     "section": "Glossary of terms",
     "text": "Glossary of terms\n\nClick here",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/index.html#about-ciesin",
-    "href": "pages/resources/index.html#about-ciesin",
-    "title": "Resources",
-    "section": "About CIESIN",
-    "text": "About CIESIN\nThe Center for Integrated Earth System Information (CIESIN), formerly known as the Center for International Earth Science Information Network, is a center within the Columbia Climate School. CIESIN’s mission is to harness cutting edge geospatial technologies to support integrated analysis of the human-environment system and to empower decision-making through collaborative research, teaching, and data production, stewardship and dissemination. CIESIN values inclusive, impactful, and interdisciplinary teamwork. Our purpose is to build bridges among academics, practitioners, decision-makers, and communities globally to co-produce trustworthy geospatial data and analyses about interactions between humans and the environment. CIESIN envisions a world with equitable societal benefits and sustainable environmental outcomes through data, research, and teaching. Learn about our Strategic Plan for 2024-2027, download our capabilities statement, and read our open data policy.\nCIESIN’s multidisciplinary staff includes PhD social scientists (geography, public health, demography and political science) and information scientists; master’s level social and environmental scientists; experts in GIS, data management and data policy; systems engineers; and applications developers.",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/index.html#contact",
-    "href": "pages/resources/index.html#contact",
-    "title": "Resources",
-    "section": "Contact",
-    "text": "Contact\n\n\n Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information",
     "crumbs": [
       "Resources"
     ]
