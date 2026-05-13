@@ -1,6 +1,6 @@
 ---
 title: "Analysis"
-subtitle: "Apply GRID3 data to spatial workflows"
+subtitle: "Apply CIESIN data to spatial workflows"
 format:
   html:
     toc: false

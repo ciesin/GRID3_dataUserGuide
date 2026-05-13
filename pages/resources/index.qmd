@@ -14,21 +14,22 @@ format:
 
 ### Data downloads
 
-- [GRID3 on Columbia Academic Commons](https://academiccommons.columbia.edu/search?f%5Bseries_ssim%5D%5B%5D=GRID3&only_path=true)
+- [Columbia Academic Commons](https://academiccommons.columbia.edu/search?f%5Bseries_ssim%5D%5B%5D=GRID3&only_path=true)
 - [GRID3 Data Hub](https://data.grid3.org/)
 - [CIESIN STAC Index](https://ciesin.github.io/stac-browser/#/)
+- [IPCC Data Distribution Centre](https://ipcc-data.climate.columbia.edu/content/data-catalog)
 
 ### Maps
 
+- [CIESIN Static Map Archive (alpha)](https://maps.ciesin.app/)
 - [CIESIN Map Tiles (alpha)](https://tiles.ciesin.app/)
 
-### Other documentation & resources
+<!-- ### Other documentation & resources -->
+
+## Tools & libraries
 
 - [Protomaps vector tile documentation](https://docs.protomaps.com/)
 - [PMTiles data viewer](https://pmtiles.io/)
-- [IPCC Data Distribution Centre](https://ipcc-data.climate.columbia.edu/content/data/)
-
----
 
 ## Glossary of terms
 

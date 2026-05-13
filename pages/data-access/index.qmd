@@ -1,6 +1,6 @@
 ---
 title: "Data Access"
-subtitle: "Find, download, and load GRID3 datasets"
+subtitle: "Find, download, and load CIESIN datasets"
 format:
   html:
     toc: false
@@ -8,13 +8,14 @@ format:
     page-layout: full
 ---
 
-This section covers how to locate GRID3 datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.
+This section covers how to locate CIESIN datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.
 
 
 ## Guides in this section
 
 - [Extracting and Mapping GRID3 Data by Administrative Units](accessing_data_by_admin_unit.qmd)
-  Access GRID3 raster friction surface and administrative boundary data for Nigeria and Democratic Republic of Congo. 
+<br>
+  Access GRID3 raster friction surface and administrative boundary data for Nigeria and the Democratic Republic of Congo. 
 
 ---
 

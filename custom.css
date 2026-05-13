@@ -364,7 +364,7 @@ body.quarto-dark .ciesin-logo-dark  { display: block; }
 .sidebar-item-section > .sidebar-item-container .sidebar-item-text {
   font-weight: 600;
   font-size: 0.8rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: 0.04em;
   color: var(--bs-body-color);
   opacity: 0.85;

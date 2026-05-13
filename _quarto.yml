@@ -88,7 +88,7 @@ website:
       title: "Analysis"
       style: "docked"
       search: true
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - text: Analyzing data
           href: pages/analysis/index.qmd
