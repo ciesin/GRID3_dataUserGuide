@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(grep -rn \"setAttribute\\\\|data-bs-theme\" /Users/matthewheaton/GitHub/0_CIESIN/GRID3_dataUserGuide/docs/site_libs/quarto-html/ --include=*.js)",
-      "WebFetch(domain:stackoverflow.com)"
-    ]
-  }
-}
