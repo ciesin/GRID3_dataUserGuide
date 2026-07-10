@@ -314,7 +314,7 @@
     "href": "pages/resources/index.html",
     "title": "Resources",
     "section": "",
-    "text": "Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index\nIPCC Data Distribution Centre\n\n\n\n\n\nCIESIN Static Map Archive (alpha)\nCIESIN Map Tiles (alpha)",
+    "text": "Welcome to the Resources page! Here you will find links to data downloads, maps, tools, and other resources related to GRID3 and CIESIN.",
     "crumbs": [
       "Resources"
     ]
@@ -323,8 +323,8 @@
     "objectID": "pages/resources/index.html#links",
     "href": "pages/resources/index.html#links",
     "title": "Resources",
-    "section": "",
-    "text": "Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index\nIPCC Data Distribution Centre\n\n\n\n\n\nCIESIN Static Map Archive (alpha)\nCIESIN Map Tiles (alpha)",
+    "section": "Links",
+    "text": "Links\n\nData downloads\n\nColumbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index\nIPCC Data Distribution Centre\n\n\n\nMaps\n\nCIESIN Static Map Archive (alpha)\nCIESIN Map Tiles (alpha)",
     "crumbs": [
       "Resources"
     ]
