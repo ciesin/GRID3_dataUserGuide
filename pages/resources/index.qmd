@@ -10,6 +10,10 @@ format:
 
 ---
 
+Welcome to the Resources page! Here you will find links to data downloads, maps, tools, and other resources related to GRID3 and CIESIN. 
+
+
+
 ## Links
 
 ### Data downloads
