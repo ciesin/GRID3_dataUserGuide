@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,14 +43,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-39103d6389c41e7dee7870e74ada06a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-93768febb543057ddeeea9bdf662e73e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-39103d6389c41e7dee7870e74ada06a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-1c49beb0aa4a1f30164fe47764bc5bd7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3a92838df7937bbe489b0d58ff4e9f3e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-1c49beb0aa4a1f30164fe47764bc5bd7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -335,9 +338,26 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#general-gis" id="toc-general-gis" class="nav-link active" data-scroll-target="#general-gis">General GIS</a></li>
-  <li><a href="#data-science" id="toc-data-science" class="nav-link" data-scroll-target="#data-science">Data science</a></li>
-  <li><a href="#cartography" id="toc-cartography" class="nav-link" data-scroll-target="#cartography">Cartography</a></li>
+  <li><a href="#general-gis" id="toc-general-gis" class="nav-link active" data-scroll-target="#general-gis">General GIS</a>
+  <ul>
+  <li><a href="#crs-coordinate-reference-system" id="toc-crs-coordinate-reference-system" class="nav-link" data-scroll-target="#crs-coordinate-reference-system">CRS (Coordinate Reference System)</a></li>
+  <li><a href="#administrative-boundary" id="toc-administrative-boundary" class="nav-link" data-scroll-target="#administrative-boundary">Administrative boundary</a></li>
+  <li><a href="#ward-lga" id="toc-ward-lga" class="nav-link" data-scroll-target="#ward-lga">Ward / LGA</a></li>
+  <li><a href="#health-zone-health-area" id="toc-health-zone-health-area" class="nav-link" data-scroll-target="#health-zone-health-area">Health zone / health area</a></li>
+  <li><a href="#friction-surface" id="toc-friction-surface" class="nav-link" data-scroll-target="#friction-surface">Friction surface</a></li>
+  <li><a href="#settlement-extent-vs.-settlement-point" id="toc-settlement-extent-vs.-settlement-point" class="nav-link" data-scroll-target="#settlement-extent-vs.-settlement-point">Settlement extent vs.&nbsp;settlement point</a></li>
+  </ul></li>
+  <li><a href="#data-science" id="toc-data-science" class="nav-link" data-scroll-target="#data-science">Data science</a>
+  <ul>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a></li>
+  <li><a href="#geojson" id="toc-geojson" class="nav-link" data-scroll-target="#geojson">GeoJSON</a></li>
+  <li><a href="#pmtiles" id="toc-pmtiles" class="nav-link" data-scroll-target="#pmtiles">PMTiles</a></li>
+  </ul></li>
+  <li><a href="#cartography" id="toc-cartography" class="nav-link" data-scroll-target="#cartography">Cartography</a>
+  <ul>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a></li>
+  <li><a href="#symbology" id="toc-symbology" class="nav-link" data-scroll-target="#symbology">Symbology</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -364,18 +384,62 @@ gtag('config', 'G-45WWDMVLWW', { 'anonymize_ip': true});
 </header>
 
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>This glossary explains common GIS and mapping terms used throughout the guides on this site.</p>
 <hr>
 <section id="general-gis" class="level2">
 <h2 class="anchored" data-anchor-id="general-gis">General GIS</h2>
+<section id="crs-coordinate-reference-system" class="level3">
+<h3 class="anchored" data-anchor-id="crs-coordinate-reference-system">CRS (Coordinate Reference System)</h3>
+<p>A way of pinning down locations on the earth with coordinates, so that different datasets actually line up when you put them on the same map. The guides here use WGS84, a CRS used all over the world.</p>
+</section>
+<section id="administrative-boundary" class="level3">
+<h3 class="anchored" data-anchor-id="administrative-boundary">Administrative boundary</h3>
+<p>The line marking where one administrative area ends and another begins, like a state, province, or district. GRID3 data uses these boundaries to organize population, settlement, and health information by region.</p>
+</section>
+<section id="ward-lga" class="level3">
+<h3 class="anchored" data-anchor-id="ward-lga">Ward / LGA</h3>
+<p>Local administrative units used in Nigeria. An LGA (Local Government Area) is the larger of the two, and a ward is a smaller area within it. You’ll see GRID3 data organized at the ward level in several guides here.</p>
+</section>
+<section id="health-zone-health-area" class="level3">
+<h3 class="anchored" data-anchor-id="health-zone-health-area">Health zone / health area</h3>
+<p>Administrative units used to plan health services in the Democratic Republic of Congo. A health zone is the bigger area, made up of several smaller health areas.</p>
+</section>
+<section id="friction-surface" class="level3">
+<h3 class="anchored" data-anchor-id="friction-surface">Friction surface</h3>
+<p>A dataset used to estimate travel time and travel difficulty across a landscape, taking roads, terrain, and land cover into account. The guides here use friction surfaces to work out realistic travel times between places.</p>
+</section>
+<section id="settlement-extent-vs.-settlement-point" class="level3">
+<h3 class="anchored" data-anchor-id="settlement-extent-vs.-settlement-point">Settlement extent vs.&nbsp;settlement point</h3>
+<p>A settlement extent is the outline of a populated area on the map, while a settlement point is a single coordinate marking where a settlement sits, often with its name attached. GRID3 gives you both, and using them together helps make sure no populated areas get missed.</p>
+</section>
 </section>
 <section id="data-science" class="level2">
 <h2 class="anchored" data-anchor-id="data-science">Data science</h2>
+<section id="api" class="level3">
+<h3 class="anchored" data-anchor-id="api">API</h3>
+<p>A way for one piece of software to ask another for data or functionality. A few guides here use APIs to pull GRID3 data straight into Python, instead of downloading files by hand.</p>
+</section>
+<section id="geojson" class="level3">
+<h3 class="anchored" data-anchor-id="geojson">GeoJSON</h3>
+<p>A common format for storing geographic features like points, lines, and polygons, along with information about them. Many of the datasets in these guides can be downloaded or converted to GeoJSON.</p>
+</section>
+<section id="pmtiles" class="level3">
+<h3 class="anchored" data-anchor-id="pmtiles">PMTiles</h3>
+<p>A format for packing map tiles into a single file that can be hosted almost anywhere, no dedicated map server needed. Used in this site’s guidance on building interactive webmaps.</p>
+</section>
 </section>
 <section id="cartography" class="level2">
 <h2 class="anchored" data-anchor-id="cartography">Cartography</h2>
+<section id="legend" class="level3">
+<h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<p>The part of a map that tells you what its colors, symbols, or shading actually mean. A clear legend is often what separates a map that’s easy to read from one that isn’t.</p>
+</section>
+<section id="symbology" class="level3">
+<h3 class="anchored" data-anchor-id="symbology">Symbology</h3>
+<p>How features on a map are styled, through color, size, or pattern, to show what they are or what they mean. Good symbology makes a map’s story clear at a glance.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
