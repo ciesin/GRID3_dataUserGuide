@@ -9,14 +9,56 @@ format:
     back-to-top-navigation: false
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This glossary explains common GIS and mapping terms used throughout the guides on this site.
 
 ---
 
 ## General GIS
 
+### CRS (Coordinate Reference System)
+
+A way of pinning down locations on the earth with coordinates, so that different datasets actually line up when you put them on the same map. The guides here use WGS84, a CRS used all over the world.
+
+### Administrative boundary
+
+The line marking where one administrative area ends and another begins, like a state, province, or district. GRID3 data uses these boundaries to organize population, settlement, and health information by region.
+
+### Ward / LGA
+
+Local administrative units used in Nigeria. An LGA (Local Government Area) is the larger of the two, and a ward is a smaller area within it. You'll see GRID3 data organized at the ward level in several guides here.
+
+### Health zone / health area
+
+Administrative units used to plan health services in the Democratic Republic of Congo. A health zone is the bigger area, made up of several smaller health areas.
+
+### Friction surface
+
+A dataset used to estimate travel time and travel difficulty across a landscape, taking roads, terrain, and land cover into account. The guides here use friction surfaces to work out realistic travel times between places.
+
+### Settlement extent vs. settlement point
+
+A settlement extent is the outline of a populated area on the map, while a settlement point is a single coordinate marking where a settlement sits, often with its name attached. GRID3 gives you both, and using them together helps make sure no populated areas get missed.
 
 ## Data science
 
+### API
+
+A way for one piece of software to ask another for data or functionality. A few guides here use APIs to pull GRID3 data straight into Python, instead of downloading files by hand.
+
+### GeoJSON
+
+A common format for storing geographic features like points, lines, and polygons, along with information about them. Many of the datasets in these guides can be downloaded or converted to GeoJSON.
+
+### PMTiles
+
+A format for packing map tiles into a single file that can be hosted almost anywhere, no dedicated map server needed. Used in this site's guidance on building interactive webmaps.
 
 ## Cartography
+
+### Legend
+
+The part of a map that tells you what its colors, symbols, or shading actually mean. A clear legend is often what separates a map that's easy to read from one that isn't.
+
+### Symbology
+
+How features on a map are styled, through color, size, or pattern, to show what they are or what they mean. Good symbology makes a map's story clear at a glance.

@@ -41,7 +41,7 @@ Clear helper functions and comments make it easy to adapt for other regions or b
 By the end, users will be able to:
 
 - Understand GRID3  datasets  
-- Extract and subset GRDI3 data to an administrative boundary  
+- Extract and subset GRID3 data to an administrative boundary  
 - Generate data outputs and visualizations for accessibility or analysis  
 
 Common issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.
