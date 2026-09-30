@@ -219,7 +219,7 @@
     "href": "pages/analysis/index.html#guides-in-this-section",
     "title": "Analysis",
     "section": "Guides in this section",
-    "text": "Guides in this section\n\nNigeria Road Network API Query and analyze the GRID3 Nigeria road network via API using Python.\nNigeria Friction Surface Shortest Path Analysis Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.",
+    "text": "Guides in this section\n\nRoad Network Analysis Query and analyze the GRID3 Nigeria road network via API using Python.\nTravel Time Analysis Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.\nSettlement Extent v4 Blocks Perform greenspace suitability analysis on GRID3 Settlement Extent Blocks v4.",
     "crumbs": [
       "Analyzing data"
     ]
