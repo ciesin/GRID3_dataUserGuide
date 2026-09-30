@@ -13,9 +13,12 @@ This section covers analytical workflows using GRID3 datasets — including netw
 
 ## Guides in this section
 
-- [Nigeria Road Network API](api_nga_network.ipynb)
+- [Road Network Analysis](api_nga_network.ipynb)
   Query and analyze the GRID3 Nigeria road network via API using Python.
 
 
-- [Nigeria Friction Surface Shortest Path Analysis](FS_analysis.qmd)
+- [Travel Time Analysis](FS_analysis.qmd)
   Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.
+
+- [Settlement Extent v4 Blocks](Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb)
+  Perform greenspace suitability analysis on GRID3 Settlement Extent Blocks v4.
