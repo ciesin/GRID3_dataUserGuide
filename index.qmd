@@ -59,10 +59,10 @@ Apply GRID3 data to spatial workflows.
 <img class="card-img" src="images/visualization-preview.jpg" alt="Visualization">
 
 ::: {.card-overlay}
-### Visualization
-Map and style GRID3 data.
+### CIESIN Map Gallery
+Maps created with GRID3 data.
 
-[Coming soon...](..){.stretched-link}
+[Go to the gallery →](https://maps.ciesin.columbia.edu/){.stretched-link}
 <!-- [View guides →](pages/visualization/index.qmd){.stretched-link} -->
 :::
 :::
