@@ -11,296 +11,6 @@
     ]
   },
   {
-    "objectID": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html",
-    "href": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html",
-    "title": "Nigeria_Settlement_Block_GreenSpace_Analysis",
-    "section": "",
-    "text": "Settlement Extents v4 are geographic data products that have been produced by CIESIN and GRID3 for both Nigeria and the Democratic Republic of the Congo. The major innovation over v3 is the inclusion of Settlement Blocks, which represent small homogeneous spatial units split by linear features such as roads and rivers. Blocks include a number of block-level variables to describe urban morphology, including building characteristics, settlement characteristics, and green space.\nThis notebook demonstrates how to import Settlement Extents v4 and utilize their spatial information by attempting to answer the following question from the perspective of an urban planner:\nWhat areas of Lagos should be targeted for urban greening given limited resources to have the largest impact?\nTo answer this question we identify blocks that are: 1. Likely residential 2. Likely to contain the most residents 3. Contain the least green space\nThe Settlement Extent Blocks contain a variety of variables including block-level building characteristics, extent type, building height, vegetation indices, and classifications based on building characteristics. All of the block-level variables are described in the table below."
-  },
-  {
-    "objectID": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html#block-settlement-extent-building-classification-and-remote-sensing-variables",
-    "href": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html#block-settlement-extent-building-classification-and-remote-sensing-variables",
-    "title": "Nigeria_Settlement_Block_GreenSpace_Analysis",
-    "section": "Block, Settlement Extent, Building, Classification, and Remote-Sensing Variables",
-    "text": "Block, Settlement Extent, Building, Classification, and Remote-Sensing Variables\n\n\n\n\n\n\n\nField Name\nDescription\n\n\n\n\nBlock Characteristics\nBlock-level geographic and building characteristics.\n\n\nblock_id\nUnique identifier for each block.\n\n\ncountry\nCountry name.\n\n\niso3\nThree-letter ISO country code.\n\n\nblock_area_sqm\nBlock area in square meters.\n\n\nblock_perimeter\nBlock perimeter in meters.\n\n\nblock_neighbor_count\nNumber of neighboring blocks.\n\n\nbuilding_count\nTotal count of buildings, taken at the center point, within the block.\n\n\nbuilding_area_min\nArea of the smallest building whose centroid falls within the block, measured in square meters.\n\n\nbuilding_area_max\nArea of the largest building whose centroid falls within the block, measured in square meters.\n\n\nbuilding_area_sum\nSum of building area values within the block, measured in square meters. Unlike building count and the minimum, maximum, median, and standard deviation metrics, this field is calculated using the building area contained within the block rather than buildings whose centroids fall within the block.\n\n\nbuilding_area_median\nMedian building footprint area for buildings whose centroids fall within the block, measured in square meters.\n\n\nbuilding_area_stdev\nStandard deviation of building footprint area for buildings whose centroids fall within the block, measured in square meters.\n\n\nbuilding_area_percentage\nSum of building area values within the block, as described in building_area_sum, divided by the block area and expressed as a percentage.\n\n\nbuilding_count_density\nBuilding count, taken at the center point, divided by block area, expressed per hectare.\n\n\nbuilding_count_density_quantile_rank\nQuantile rank of building count density across all blocks.\n\n\nbuilding_area_sum_quantile_rank\nQuantile rank of total building area across all blocks.\n\n\nSettlement Extent\nVariables describing the original settlement extent associated with each block.\n\n\nextent_type\nCategorical settlement classification for the block: Built-up Area (BUA), Small Settlement Area (SSA), or Hamlet.\n\n\nmgrs_code\nMilitary Grid Reference System (MGRS) code of the settlement for which the block belongs.\n\n\nblocks_per_settl_extent\nNumber of blocks within the extent of the settled area based on mgrs_code.\n\n\nGoogle 2.5D Building Footprints\nBuilding height summaries derived from Google Open Buildings 2.5D data.\n\n\ngbuilding_max_height\nMaximum building height per block, measured in meters, with the temporal maximum taken across 2021–2023.\n\n\ngbuilding_mean_height\nMean building height per block, measured in meters, averaged across 2021–2023.\n\n\nRemote-Sensing Indices\nRemote-sensing indices summarized within each block using cloud-free composites and zonal statistics.\n\n\nevi_mean\nAverage Enhanced Vegetation Index (EVI) pixel value within a block, calculated from a cloud-free median composite of Sentinel-2 Surface Reflectance imagery collected during 2024.\n\n\nndvi_mean\nAverage Normalized Difference Vegetation Index (NDVI) pixel value within a block, calculated from a cloud-free median composite of Sentinel-2 Surface Reflectance imagery collected during 2024.\n\n\nClassification Variables\nCategorical variables derived from building density and building size characteristics.\n\n\nbd_class\nCategorical classification of building count density. Defined as Low when building_count_density is ≤ 25 and High when building_count_density is &gt; 25.\n\n\nma_class\nCategorical classification of maximum building area, measured in square meters. Defined as Low when building_area_max is ≤ 700 m² and High when building_area_max is &gt; 700 m².\n\n\ncomposite_class\nComposite classification derived from bd_class and ma_class, with additional classifications for areas identified as Open Space or Airport."
-  },
-  {
-    "objectID": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html#building-and-green-space-analysis",
-    "href": "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html#building-and-green-space-analysis",
-    "title": "Nigeria_Settlement_Block_GreenSpace_Analysis",
-    "section": "Building and green space analysis",
-    "text": "Building and green space analysis\nInstall and import libraries\n\n# install arcgis API for accessing data\n!pip install arcgis\n!pip install contextily\n\nimport contextily as cx\nfrom pyproj import Transformer\nfrom arcgis.gis import GIS\nfrom arcgis.features import FeatureLayer\nfrom arcgis.geometry.filters import contains\nimport json\nimport arcgis\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\n\nimport pandas as pd\nimport geopandas as gpd\n\nimport zipfile\nimport os\n\n\nCollecting arcgis\n\n  Downloading arcgis-2.4.3-py3-none-any.whl.metadata (3.5 kB)\n\nRequirement already satisfied: pillow in /usr/local/lib/python3.13/dist-packages (from arcgis) (11.3.0)\n\nRequirement already satisfied: urllib3&lt;3,&gt;=2.1.0 in /usr/local/lib/python3.13/dist-packages (from arcgis) (2.5.0)\n\nRequirement already satisfied: cachetools in /usr/local/lib/python3.13/dist-packages (from arcgis) (6.2.6)\n\nRequirement already satisfied: lxml in /usr/local/lib/python3.13/dist-packages (from arcgis) (6.1.2)\n\nRequirement already satisfied: cryptography in /usr/local/lib/python3.13/dist-packages (from arcgis) (50.0.1)\n\nCollecting pandas&lt;4.0.0,&gt;=2.3.0 (from arcgis)\n\n  Downloading pandas-3.0.6-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)\n\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 2.7 MB/s eta 0:00:00\n\nCollecting numpy&lt;3,&gt;=2.3.0 (from arcgis)\n\n  Downloading numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)\n\nRequirement already satisfied: matplotlib in /usr/local/lib/python3.13/dist-packages (from arcgis) (3.10.0)\n\nRequirement already satisfied: keyring&gt;=23.3.0 in /usr/local/lib/python3.13/dist-packages (from arcgis) (25.7.0)\n\nCollecting pylerc (from arcgis)\n\n  Downloading pylerc-4.2.0-py3-none-manylinux_2_28_x86_64.whl.metadata (5.2 kB)\n\nCollecting ujson&gt;=3 (from arcgis)\n\n  Downloading ujson-6.0.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (10.0 kB)\n\nRequirement already satisfied: truststore&gt;=0.10.0 in /usr/local/lib/python3.13/dist-packages (from arcgis) (0.10.4)\n\nCollecting geomet&gt;=1.0.0 (from arcgis)\n\n  Downloading geomet-1.1.0-py3-none-any.whl.metadata (11 kB)\n\nRequirement already satisfied: requests&lt;3,&gt;=2.32.3 in /usr/local/lib/python3.13/dist-packages (from arcgis) (2.32.4)\n\nRequirement already satisfied: requests-oauthlib in /usr/local/lib/python3.13/dist-packages (from arcgis) (2.0.0)\n\nRequirement already satisfied: requests_toolbelt in /usr/local/lib/python3.13/dist-packages (from arcgis) (1.0.0)\n\nCollecting pyspnego&gt;=0.8.0 (from arcgis)\n\n  Downloading pyspnego-0.12.2-py3-none-any.whl.metadata (4.2 kB)\n\nCollecting dask&lt;2025.3,&gt;=2024.12.1 (from dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis)\n\n  Downloading dask-2025.2.0-py3-none-any.whl.metadata (3.8 kB)\n\nRequirement already satisfied: matplotlib-inline in /usr/local/lib/python3.13/dist-packages (from arcgis) (0.2.2)\n\nRequirement already satisfied: pyarrow&lt;24,&gt;=17 in /usr/local/lib/python3.13/dist-packages (from arcgis) (23.0.1)\n\nCollecting puremagic&lt;2,&gt;=1.15 (from arcgis)\n\n  Downloading puremagic-1.30-py3-none-any.whl.metadata (5.8 kB)\n\nRequirement already satisfied: pydantic&lt;3,&gt;=2.8.2 in /usr/local/lib/python3.13/dist-packages (from arcgis) (2.13.5)\n\nRequirement already satisfied: networkx&lt;4,&gt;=3.3 in /usr/local/lib/python3.13/dist-packages (from arcgis) (3.6.1)\n\nRequirement already satisfied: websocket-client&lt;2.0.0,&gt;=1.2.3 in /usr/local/lib/python3.13/dist-packages (from arcgis) (1.9.2)\n\nRequirement already satisfied: click&gt;=8.1 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (8.5.0)\n\nRequirement already satisfied: cloudpickle&gt;=3.0.0 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (3.1.2)\n\nRequirement already satisfied: fsspec&gt;=2021.09.0 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (2025.12.0)\n\nRequirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (26.3)\n\nRequirement already satisfied: partd&gt;=1.4.0 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (1.4.2)\n\nRequirement already satisfied: pyyaml&gt;=5.3.1 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (6.0.3)\n\nRequirement already satisfied: toolz&gt;=0.10.0 in /usr/local/lib/python3.13/dist-packages (from dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (0.12.1)\n\nRequirement already satisfied: SecretStorage&gt;=3.2 in /usr/local/lib/python3.13/dist-packages (from keyring&gt;=23.3.0-&gt;arcgis) (3.5.0)\n\nRequirement already satisfied: jeepney&gt;=0.4.2 in /usr/local/lib/python3.13/dist-packages (from keyring&gt;=23.3.0-&gt;arcgis) (0.9.0)\n\nRequirement already satisfied: jaraco.classes in /usr/local/lib/python3.13/dist-packages (from keyring&gt;=23.3.0-&gt;arcgis) (3.4.0)\n\nRequirement already satisfied: jaraco.functools in /usr/local/lib/python3.13/dist-packages (from keyring&gt;=23.3.0-&gt;arcgis) (4.6.0)\n\nRequirement already satisfied: jaraco.context in /usr/local/lib/python3.13/dist-packages (from keyring&gt;=23.3.0-&gt;arcgis) (6.1.2)\n\nRequirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.13/dist-packages (from pandas&lt;4.0.0,&gt;=2.3.0-&gt;arcgis) (2.9.0.post0)\n\nRequirement already satisfied: annotated-types&gt;=0.6.0 in /usr/local/lib/python3.13/dist-packages (from pydantic&lt;3,&gt;=2.8.2-&gt;arcgis) (0.8.0)\n\nRequirement already satisfied: pydantic-core==2.46.5 in /usr/local/lib/python3.13/dist-packages (from pydantic&lt;3,&gt;=2.8.2-&gt;arcgis) (2.46.5)\n\nRequirement already satisfied: typing-extensions&gt;=4.14.1 in /usr/local/lib/python3.13/dist-packages (from pydantic&lt;3,&gt;=2.8.2-&gt;arcgis) (4.16.0)\n\nRequirement already satisfied: typing-inspection&gt;=0.4.2 in /usr/local/lib/python3.13/dist-packages (from pydantic&lt;3,&gt;=2.8.2-&gt;arcgis) (0.4.4)\n\nRequirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.13/dist-packages (from requests&lt;3,&gt;=2.32.3-&gt;arcgis) (3.4.9)\n\nRequirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.13/dist-packages (from requests&lt;3,&gt;=2.32.3-&gt;arcgis) (3.19)\n\nRequirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.13/dist-packages (from requests&lt;3,&gt;=2.32.3-&gt;arcgis) (2026.7.22)\n\nRequirement already satisfied: cffi&gt;=2.0.0 in /usr/local/lib/python3.13/dist-packages (from cryptography-&gt;arcgis) (2.1.1)\n\nRequirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;arcgis) (1.3.3)\n\nRequirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;arcgis) (0.12.1)\n\nRequirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;arcgis) (4.64.0)\n\nRequirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;arcgis) (1.5.1)\n\nRequirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;arcgis) (3.3.2)\n\nRequirement already satisfied: traitlets in /usr/local/lib/python3.13/dist-packages (from matplotlib-inline-&gt;arcgis) (5.7.1)\n\nRequirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.13/dist-packages (from requests-oauthlib-&gt;arcgis) (3.3.1)\n\nRequirement already satisfied: pycparser in /usr/local/lib/python3.13/dist-packages (from cffi&gt;=2.0.0-&gt;cryptography-&gt;arcgis) (3.0)\n\nRequirement already satisfied: locket in /usr/local/lib/python3.13/dist-packages (from partd&gt;=1.4.0-&gt;dask&lt;2025.3,&gt;=2024.12.1-&gt;dask[dataframe]&lt;2025.3,&gt;=2024.12.1-&gt;arcgis) (1.0.0)\n\nRequirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.13/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&lt;4.0.0,&gt;=2.3.0-&gt;arcgis) (1.17.0)\n\nRequirement already satisfied: more-itertools in /usr/local/lib/python3.13/dist-packages (from jaraco.classes-&gt;keyring&gt;=23.3.0-&gt;arcgis) (10.8.0)\n\nDownloading arcgis-2.4.3-py3-none-any.whl (13.3 MB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.3/13.3 MB 75.7 MB/s eta 0:00:00\n\nDownloading dask-2025.2.0-py3-none-any.whl (1.4 MB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 56.5 MB/s eta 0:00:00\n\nDownloading geomet-1.1.0-py3-none-any.whl (31 kB)\n\nDownloading numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 68.1 MB/s eta 0:00:00\n\nDownloading pandas-3.0.6-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.8 MB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.8/10.8 MB 84.9 MB/s eta 0:00:00\n\nDownloading puremagic-1.30-py3-none-any.whl (43 kB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.3/43.3 kB 2.3 MB/s eta 0:00:00\n\nDownloading pyspnego-0.12.2-py3-none-any.whl (130 kB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.2/130.2 kB 7.3 MB/s eta 0:00:00\n\nDownloading ujson-6.0.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (56 kB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.4/56.4 kB 3.3 MB/s eta 0:00:00\n\nDownloading pylerc-4.2.0-py3-none-manylinux_2_28_x86_64.whl (265 kB)\n\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 265.9/265.9 kB 14.5 MB/s eta 0:00:00\n\nInstalling collected packages: puremagic, ujson, numpy, geomet, pylerc, pandas, dask, pyspnego, arcgis\n\n  Attempting uninstall: numpy\n\n    Found existing installation: numpy 2.1.3\n\n    Uninstalling numpy-2.1.3:\n\n      Successfully uninstalled numpy-2.1.3\n\n  Attempting uninstall: pandas\n\n    Found existing installation: pandas 2.2.3\n\n    Uninstalling pandas-2.2.3:\n\n      Successfully uninstalled pandas-2.2.3\n\n  Attempting uninstall: dask\n\n    Found existing installation: dask 2026.8.0\n\n    Uninstalling dask-2026.8.0:\n\n      Successfully uninstalled dask-2026.8.0\n\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n\ngoogle-colab 1.0.0 requires pandas==2.2.3, but you have pandas 3.0.6 which is incompatible.\n\nnumba 0.61.2 requires numpy&lt;2.3,&gt;=1.24, but you have numpy 2.5.3 which is incompatible.\n\nSuccessfully installed arcgis-2.4.3 dask-2025.2.0 geomet-1.1.0 numpy-2.5.3 pandas-3.0.6 puremagic-1.30 pylerc-4.2.0 pyspnego-0.12.2 ujson-6.0.0\n\n\n\n\nUnable to display output for mime type(s): application/vnd.colab-display-data+json\n\n\nCollecting contextily\n  Downloading contextily-1.7.1-py3-none-any.whl.metadata (3.1 kB)\nRequirement already satisfied: geopy in /usr/local/lib/python3.13/dist-packages (from contextily) (2.4.1)\nRequirement already satisfied: matplotlib in /usr/local/lib/python3.13/dist-packages (from contextily) (3.10.0)\nCollecting mercantile (from contextily)\n  Downloading mercantile-1.2.1-py3-none-any.whl.metadata (4.8 kB)\nRequirement already satisfied: pillow in /usr/local/lib/python3.13/dist-packages (from contextily) (11.3.0)\nRequirement already satisfied: rasterio in /usr/local/lib/python3.13/dist-packages (from contextily) (1.5.1)\nRequirement already satisfied: requests in /usr/local/lib/python3.13/dist-packages (from contextily) (2.32.4)\nRequirement already satisfied: joblib in /usr/local/lib/python3.13/dist-packages (from contextily) (1.6.0)\nRequirement already satisfied: xyzservices in /usr/local/lib/python3.13/dist-packages (from contextily) (2026.3.0)\nRequirement already satisfied: geographiclib&lt;3,&gt;=1.52 in /usr/local/lib/python3.13/dist-packages (from geopy-&gt;contextily) (2.1)\nRequirement already satisfied: cloudpickle&gt;=3.0 in /usr/local/lib/python3.13/dist-packages (from joblib-&gt;contextily) (3.1.2)\nRequirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (1.3.3)\nRequirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (0.12.1)\nRequirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (4.64.0)\nRequirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (1.5.1)\nRequirement already satisfied: numpy&gt;=1.23 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (2.5.3)\nRequirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (26.3)\nRequirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (3.3.2)\nRequirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.13/dist-packages (from matplotlib-&gt;contextily) (2.9.0.post0)\nRequirement already satisfied: click&gt;=3.0 in /usr/local/lib/python3.13/dist-packages (from mercantile-&gt;contextily) (8.5.0)\nRequirement already satisfied: affine in /usr/local/lib/python3.13/dist-packages (from rasterio-&gt;contextily) (3.0.1)\nRequirement already satisfied: attrs in /usr/local/lib/python3.13/dist-packages (from rasterio-&gt;contextily) (26.1.0)\nRequirement already satisfied: certifi in /usr/local/lib/python3.13/dist-packages (from rasterio-&gt;contextily) (2026.7.22)\nRequirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.13/dist-packages (from requests-&gt;contextily) (3.4.9)\nRequirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.13/dist-packages (from requests-&gt;contextily) (3.19)\nRequirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.13/dist-packages (from requests-&gt;contextily) (2.5.0)\nRequirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.13/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;contextily) (1.17.0)\nDownloading contextily-1.7.1-py3-none-any.whl (18 kB)\nDownloading mercantile-1.2.1-py3-none-any.whl (14 kB)\nInstalling collected packages: mercantile, contextily\nSuccessfully installed contextily-1.7.1 mercantile-1.2.1\n\n\nFirst, we need to read in the settlement blocks for Nigeria from ArcGIS Online and filter down from millions of blocks throughout the countries to just those in Lagos.\n\n# Import roads layer from ArcGIS REST and clip to bounding box\n# Read in service for NGA settlements v4.0\nlayer_url = \"https://services3.arcgis.com/BU6Aadhn6tbBEdyk/arcgis/rest/services/GRID3_NGA_settlement_extents_v4_1/FeatureServer/0\"\nfeature_layer = FeatureLayer(layer_url)\n\n# Set bbox in coordinates\nbbox = [3.374863,6.392771,3.476830,6.483568]\n\n# transform CRS\ntransformer = Transformer.from_crs('4326', '3857', always_xy=True)\nxmin, ymin = transformer.transform(bbox[0], bbox[1])\nxmax, ymax = transformer.transform(bbox[2], bbox[3])\n\n# Create bounding box\nquery_extent = {\"xmin\": xmin, \"ymin\": ymin, \"xmax\": xmax, \"ymax\": ymax, \"spatialReference\": {\"wkid\": 3857},}\n\n# Write spatial query\nquery_filter = contains(query_extent, sr=3857)\n\n# Convert to feature set and subset by bounding box\nfeat = feature_layer.query(geometry_filter=query_filter)\n\n# Convert to geojson\ngeojson_data = json.loads(feat.to_geojson)\n\n# Convert to geodataframe\ngdf = gpd.GeoDataFrame.from_features(geojson_data['features'], crs=\"3857\")\n\ngdf = gdf.to_crs('4326')\n\ngdf.head()\n\n\n\n\n\n\n\n\ngeometry\nfid\nblock_id\ncountry\niso3\nblock_area_sqm\nblock_perimeter\nblock_neighbor_count\nbuilding_count\nbuilding_area_min\n...\ngbuilding_mean_height\nblocks_per_settl_extent\nbuilding_count_density_quantile_rank\nbuilding_max_area_quantile_rank\nbuilding_count_density\nbd_class\nma_class\ncomposite_class\nShape__Area\nShape__Length\n\n\n\n\n0\nPOLYGON ((3.39849 6.44807, 3.39854 6.448, 3.39...\n2271313\nblk_75224\nNigeria\nNGA\n20492.454318\n584.349263\n7\n43\n6.347303\n...\n11.945839\n8169\n0.747112\n0.986734\n20.983333\nlow\nhigh\nbd_low_ma_high\n20890.554199\n588.748424\n\n\n1\nPOLYGON ((3.38985 6.4286, 3.3898 6.42857, 3.38...\n2269779\nblk_75086\nNigeria\nNGA\n41557.714573\n1153.059272\n5\n29\n25.141318\n...\n6.303385\n29\n0.469059\n0.999790\n6.978247\nlow\nhigh\nbd_low_ma_high\n42362.010590\n1163.560647\n\n\n2\nPOLYGON ((3.39526 6.45403, 3.39531 6.45403, 3....\n2272235\nblk_75307\nNigeria\nNGA\n3946.548713\n249.272061\n6\n10\n40.507396\n...\n5.919763\n8169\n0.790755\n0.890610\n25.338595\nhigh\nlow\nbd_high_ma_low\n4023.305267\n252.333716\n\n\n3\nPOLYGON ((3.38572 6.45356, 3.38576 6.45353, 3....\n2272023\nblk_75288\nNigeria\nNGA\n9289.630859\n501.971218\n7\n5\n28.049438\n...\n4.488005\n8169\n0.393623\n0.965696\n5.382345\nlow\nlow\nbd_low_ma_low\n9470.278763\n503.470326\n\n\n4\nPOLYGON ((3.38678 6.4528, 3.38683 6.45277, 3.3...\n2271923\nblk_75279\nNigeria\nNGA\n66722.971868\n1652.990319\n12\n51\n8.833626\n...\n4.065922\n8169\n0.494185\n0.996199\n7.643544\nlow\nhigh\nbd_low_ma_high\n68019.926620\n1690.264861\n\n\n\n\n5 rows × 30 columns\n\n\n\nBefore we pull out the high building density blocks, we want to make sure non-residential blocks are filtered out. The composite_class variable has a value “bd_low_ma_high” which are blocks with a low number of buildings, but high maxiumum building area. These often represent industrial areas, and thus will be filtered out from the analysis. Open spaces and airports are also non-residential so they will be filtered out as well.\n\n# Convert the crs of our data to match Google Imagery\ngdf = gdf.to_crs(epsg=3857)\n\n# Filter out non-residential calsses\nexclude_classes = [\n    \"bd_low_ma_high\",\n    \"open space\",\n    \"airport\"\n]\n\ngdf_res = gdf[\n    ~gdf[\"composite_class\"].isin(exclude_classes)\n]\n\n\n# Plot data\nfig, axes = plt.subplots(1, 2, figsize=(22, 10))\n\n\n# Map the composite classification\n\ngdf.plot(\n    ax=axes[0],\n    column=\"composite_class\",\n    categorical=True,\n    legend=True,\n    cmap=\"Set2\",\n    edgecolor=\"none\"\n)\n\ncx.add_basemap(\n    axes[0],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[0].set_title(\n    \"Composite Building Classification\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[0].set_axis_off()\n\n\n# Non-residential filtered out\ngdf_res.plot(\n    ax=axes[1],\n    facecolor=\"none\",\n    edgecolor=\"red\",\n    linewidth=2.5\n)\n\ncx.add_basemap(\n    axes[1],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[1].set_title(\n    \"Filtered out Non-Residential\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[1].set_axis_off()\n\n\n# Create layout\nplt.subplots_adjust(\n    left=0.01,\n    right=0.99,\n    bottom=0.01,\n    top=0.92,\n    wspace=0.03\n)\n\nplt.show()\n\n\n\n\n\n\n\n\nNow that we have filtered out some non-residential areas, we can find the blocks that are likely to have higher populations. building_count_density is the number of buildings / area. This is likely to return low values for blocks dominated by large apartment buildings. Instead we will use building_area_density which is the total building area / block area. We will keep only buildings in the top 75th percentile of this variable.\n\n# Get top 25% of building area percentage\nthresh = gdf_res[\"building_area_percentage\"].quantile(0.75)\ngdf_dense = gdf_res[\n    gdf_res[\"building_area_percentage\"] &gt;= thresh\n].copy()\n\n# Create side-by-side plots\nfig, axes = plt.subplots(\n    1, 2,\n    figsize=(22, 10)\n)\n\n# Plot building area percentage\ngdf.plot(\n    column=\"building_area_percentage\",\n    ax=axes[0],\n    cmap=\"turbo\",\n    legend=True,\n    legend_kwds={\n        \"label\": \"Building Area (%)\",\n        \"shrink\": 0.5\n    },\n    linewidth=0\n)\n\ncx.add_basemap(\n    axes[0],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[0].set_title(\n    \"Building Area Percentage\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[0].set_axis_off()\n\n\n# Plot top 25% of building area percentage\ngdf_dense.plot(\n    ax=axes[1],\n    facecolor=\"none\",\n    edgecolor=\"red\",\n    linewidth=2.5\n)\n\ncx.add_basemap(\n    axes[1],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[1].set_title(\n    \"Top 25%: Building Area Percentage\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[1].set_axis_off()\n\n\n# Create layout\nplt.subplots_adjust(\n    left=0.01,\n    right=0.99,\n    bottom=0.01,\n    top=0.92,\n    wspace=0.03\n)\n\nplt.show()\n\n\n\n\n\n\n\n\nThere is one limitation with our previous selection of blocks is while we selected those with the most area covered by buildings, that does not account for vertical space that may be inhabited such as high rise apartment buildings. To improve our selection and capture vertical space, we can multiply the building_area_percentage by the gbuilding_mean_height.\n\n# Get top 25% of building mean height x building area percentage\ngdf_res[\"density_height\"] = (\n    gdf_res[\"gbuilding_mean_height\"] *\n    gdf_res[\"building_area_percentage\"]\n)\n\nthresh = gdf_res[\"density_height\"].quantile(0.75)\ngdf_dense_height = gdf_res[gdf_res[\"density_height\"] &gt;= thresh].copy()\n\n# Create plot\nfig, axes = plt.subplots(\n    1, 2,\n    figsize=(22, 10)\n)\n\n# Plot mean height\ngdf.plot(\n    column=\"gbuilding_mean_height\",\n    ax=axes[0],\n    cmap=\"turbo\",\n    legend=True,\n    legend_kwds={\n        \"label\": \"Mean Building Height (m)\",\n        \"shrink\": 0.5\n    },\n    linewidth=0\n)\n\ncx.add_basemap(\n    axes[0],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[0].set_title(\n    \"Mean Building Height\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[0].set_axis_off()\n\n\n# Plot blocks in top 25%\ngdf_dense_height.plot(\n    ax=axes[1],\n    facecolor=\"none\",\n    edgecolor=\"red\",\n    linewidth=2.5\n)\n\ncx.add_basemap(\n    axes[1],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[1].set_title(\n    \"Top 25%: Building Height × Building Area\",\n    fontsize=17,\n    fontweight=\"bold\"\n)\n\naxes[1].set_axis_off()\n\n# Create layout\nplt.subplots_adjust(\n    left=0.01,\n    right=0.99,\n    bottom=0.01,\n    top=0.92,\n    wspace=0.03\n)\n\nplt.show()\n\n\n\n\n\n\n\n\nNow that we have narrowed down our blocks to those with the most building space, it is time to target the 20 blocks with the lowest vegetation. For this selection, we have two options: NDVI which is a normalized vegetation index and EVI which is an enhanced vegetation index. Both of the indices work similarly, capture the amount of healthy green vegetation. EVI was designed to work in some environments where NDVI had limitations such as heavy biomass areas like rainforests. Both are widely used measures of greeness, and thus we can compare them both in this setting by selecting the filtered blocks with the lowest NDVI and EVI values.\n\n# Get 10 blocks with lowest NDVI\ngdf_sorted = gdf_dense_height.sort_values(\"ndvi_mean\")\ngdf_low_ndvi = gdf_sorted.head(20)\n\n# Get 10 blocks with lowest EVI\ngdf_sorted = gdf_dense_height.sort_values(\"evi_mean\")\ngdf_low_evi = gdf_sorted.head(20)\n\n\nfig, axes = plt.subplots(1, 2, figsize=(15, 7))\n\n\ngdf_low_ndvi.plot(\n    ax=axes[0],\n    facecolor=\"none\",\n    edgecolor=\"red\",\n    linewidth=2.5\n)\n\ncx.add_basemap(\n    axes[0],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[0].set_title(\"20 Blocks with Lowest NDVI\", fontsize=16)\naxes[0].set_axis_off()\n\n\ngdf_low_evi.plot(\n    ax=axes[1],\n    facecolor=\"none\",\n    edgecolor=\"red\",\n    linewidth=2.5\n)\n\ncx.add_basemap(\n    axes[1],\n    source=cx.providers.Esri.WorldImagery\n)\n\naxes[1].set_title(\"20 Blocks with Lowest EVI\", fontsize=16)\naxes[1].set_axis_off()\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nThe comparison between NDVI and EVI match pretty closely in this context, with the exception of a couple of blocks which appear in one and not the other. Now lets print out a table with these blocks and their location to identify the target locations for urban greening.\n\n# Get all unique block IDs from both datasets\nblock_ids = sorted(\n    set(gdf_low_ndvi[\"block_id\"]) |\n    set(gdf_low_evi[\"block_id\"])\n)\n\n# Create comparison table\ncomparison = pd.DataFrame({\"block_id\": block_ids})\n\n# Whether block appears in each dataset\ncomparison[\"Identified by NDVI\"] = comparison[\"block_id\"].isin(\n    gdf_low_ndvi[\"block_id\"]\n)\n\ncomparison[\"Identified by EVI\"] = comparison[\"block_id\"].isin(\n    gdf_low_evi[\"block_id\"]\n)\n\n# Get geometries from either dataset\ngeometry_lookup = pd.concat([\n    gdf_low_ndvi[[\"block_id\", \"geometry\"]],\n    gdf_low_evi[[\"block_id\", \"geometry\"]]\n]).drop_duplicates(\"block_id\")\n\n# Convert to WGS84 for latitude/longitude\ngeometry_lookup = geometry_lookup.to_crs(epsg=4326)\n\n# Calculate polygon centroids\ngeometry_lookup[\"longitude\"] = geometry_lookup.geometry.centroid.x\ngeometry_lookup[\"latitude\"] = geometry_lookup.geometry.centroid.y\n\n# Add coordinates to comparison table\ncomparison = comparison.merge(\n    geometry_lookup[[\"block_id\", \"latitude\", \"longitude\"]],\n    on=\"block_id\",\n    how=\"left\"\n)\n\ncomparison\n\n\n\n\n\n\n\n\nblock_id\nIdentified by NDVI\nIdentified by EVI\nlatitude\nlongitude\n\n\n\n\n0\nblk_75282\nFalse\nTrue\n6.452827\n3.392308\n\n\n1\nblk_75321\nTrue\nTrue\n6.454447\n3.390650\n\n\n2\nblk_75335\nTrue\nTrue\n6.454796\n3.394436\n\n\n3\nblk_75346\nFalse\nTrue\n6.455229\n3.394763\n\n\n4\nblk_75363\nTrue\nTrue\n6.455622\n3.386639\n\n\n5\nblk_75440\nTrue\nFalse\n6.455711\n3.392847\n\n\n6\nblk_75969\nTrue\nFalse\n6.457184\n3.386050\n\n\n7\nblk_75971\nTrue\nTrue\n6.457086\n3.380601\n\n\n8\nblk_75999\nFalse\nTrue\n6.456229\n3.396431\n\n\n9\nblk_76000\nTrue\nTrue\n6.457215\n3.381782\n\n\n10\nblk_76013\nTrue\nTrue\n6.462447\n3.389003\n\n\n11\nblk_76045\nTrue\nTrue\n6.458188\n3.381412\n\n\n12\nblk_76054\nTrue\nFalse\n6.457647\n3.380988\n\n\n13\nblk_76074\nTrue\nTrue\n6.463938\n3.389132\n\n\n14\nblk_76081\nTrue\nTrue\n6.457761\n3.389766\n\n\n15\nblk_76113\nTrue\nTrue\n6.464982\n3.390013\n\n\n16\nblk_76149\nTrue\nTrue\n6.464695\n3.388141\n\n\n17\nblk_76167\nTrue\nTrue\n6.463271\n3.388977\n\n\n18\nblk_76168\nTrue\nTrue\n6.464931\n3.388687\n\n\n19\nblk_76202\nTrue\nTrue\n6.465125\n3.389451\n\n\n20\nblk_76220\nTrue\nTrue\n6.464418\n3.387826\n\n\n21\nblk_76286\nTrue\nTrue\n6.462284\n3.392613\n\n\n22\nblk_76449\nTrue\nTrue\n6.465426\n3.391504"
-  },
-  {
-    "objectID": "pages/resources/index.html",
-    "href": "pages/resources/index.html",
-    "title": "Resources",
-    "section": "",
-    "text": "Welcome to the Resources page! Here you will find links to data downloads, maps, tools, and other resources related to GRID3 and CIESIN. This page is intended to serve as a central hub for accessing various resources that can support your research and analysis.",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/index.html#links",
-    "href": "pages/resources/index.html#links",
-    "title": "Resources",
-    "section": "Links",
-    "text": "Links\n\nData downloads\n\nColumbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index\nIPCC Data Distribution Centre\n\n\n\nMaps\n\nCIESIN Static Map Archive (alpha)\nCIESIN Map Tiles (alpha)",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/index.html#tools-libraries",
-    "href": "pages/resources/index.html#tools-libraries",
-    "title": "Resources",
-    "section": "Tools & libraries",
-    "text": "Tools & libraries\n\nProtomaps vector tile documentation\nPMTiles data viewer",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/index.html#glossary-of-terms",
-    "href": "pages/resources/index.html#glossary-of-terms",
-    "title": "Resources",
-    "section": "Glossary of terms",
-    "text": "Glossary of terms\n\nClick here",
-    "crumbs": [
-      "Resources"
-    ]
-  },
-  {
-    "objectID": "pages/resources/about.html",
-    "href": "pages/resources/about.html",
-    "title": "About CIESIN",
-    "section": "",
-    "text": "The Center for Integrated Earth System Information (CIESIN), formerly known as the Center for International Earth Science Information Network, is a center within the Columbia Climate School. CIESIN’s mission is to harness cutting edge geospatial technologies to support integrated analysis of the human-environment system and to empower decision-making through collaborative research, teaching, and data production, stewardship and dissemination. CIESIN values inclusive, impactful, and interdisciplinary teamwork. Our purpose is to build bridges among academics, practitioners, decision-makers, and communities globally to co-produce trustworthy geospatial data and analyses about interactions between humans and the environment. CIESIN envisions a world with equitable societal benefits and sustainable environmental outcomes through data, research, and teaching. Learn about our Strategic Plan for 2024-2027, download our capabilities statement, and read our open data policy.\nCIESIN’s multidisciplinary staff includes PhD social scientists (geography, public health, demography and political science) and information scientists; master’s level social and environmental scientists; experts in GIS, data management and data policy; systems engineers; and applications developers."
-  },
-  {
-    "objectID": "pages/resources/about.html#contact",
-    "href": "pages/resources/about.html#contact",
-    "title": "About CIESIN",
-    "section": "Contact",
-    "text": "Contact\n\n\n Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n LinkedIn\n\nCenter for Integrated Earth System Information"
-  },
-  {
-    "objectID": "pages/resources/!contact.html",
-    "href": "pages/resources/!contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html",
-    "title": "Data Extraction",
-    "section": "",
-    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#overview",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html#overview",
-    "title": "Data Extraction",
-    "section": "",
-    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#data",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html#data",
-    "title": "Data Extraction",
-    "section": "Data",
-    "text": "Data\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\nGRID3 major and all roads\nGRID3 settlement blocks\nAdministrative boundaries for Nigeria and DRC",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
-    "title": "Data Extraction",
-    "section": "Workflow (Google Colab)",
-    "text": "Workflow (Google Colab)\nImplemented in Google Colab, the notebook shows how to:\n\nQuery administrative boundaries from ArcGIS FeatureLayers\n\nSelect a boundaries by name interactively\n\nDownload and extract GRID3 data selected\n\nSubset the data to the selected boundary\n\nExport data and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
-    "title": "Data Extraction",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end, users will be able to:\n\nUnderstand GRID3 datasets\n\nExtract and subset GRID3 data to an administrative boundary\n\nGenerate data outputs and visualizations for accessibility or analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
-    "href": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
-    "title": "Data Extraction",
-    "section": "Run in Google Colab",
-    "text": "Run in Google Colab\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
-    "crumbs": [
-      "Accessing data",
-      "Data Extraction"
-    ]
-  },
-  {
-    "objectID": "pages/analysis/friction_surface_distance_qgis.html",
-    "href": "pages/analysis/friction_surface_distance_qgis.html",
-    "title": "QGIS",
-    "section": "",
-    "text": "In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using QGIS. We use the Nigeria mixed travel friction surface for this demonstration.\n\n\nStep 1: Add friction surface to the project\nObtain mixed travel clipped friction surface for Nigeria and add layer in QGIS. The friction surface can be downloaded and manually clipped from here: https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98\nOr clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)\nThe friction surface can be better visualized using a Singleband pseudocolor ramp with a max value of .05\n\nRe-visualized friction surface\n\n\n\nStep 2: Map projection\nEnsure friction surface is projected to WGS84 - CRS “4326” using the Warp (Reproject) tool:\n\n\n\nStep 3: R.cost\nRun r.cost using the clipped and reprojected friction surface as the Unit Cost Layer and a start point: 7.515850,13.034015 and end point: 7.682362,12.923887:\n\n\n\nStep 4: R.drain\nTo calculate the lowest cost path between the start and end point, run the r.drain tool using the Cumulative Cost raster and Movement direction raster from the previous step. Set the coordinates of the starting point as the end point coordinates from the previous step: 7.682362,12.923887:\n\nOutput lowest cost path\n\n\n\nStep 5: Calculate travel time\nTo calculate travel time, zoom in on the coordinate representing the end of the travel path (7.682362,12.923887). With the Cumulative Cost layer selected, select the Identify Features Icon in the toolbar, and click on the raster cell to determine its value.\nFind the Identify Features button\n\nClick the pixel representing the end of the travel path and find the result in the Identify Results popup under Band 1 = 1.3717…\n\n\n\nStep 6: Travel time in minutes\nTo get travel time in minutes, multiply the cumulative cost value by the friction surface pixel resolution (30 meters).\n1.37 (accumulated friction surface value) * 30 (pixel resolution) = 41.1 minutes\n\nThis workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Travel Time Analysis",
-      "QGIS"
-    ]
-  },
-  {
-    "objectID": "pages/analysis/FS_analysis.html",
-    "href": "pages/analysis/FS_analysis.html",
-    "title": "Travel Time Analysis",
-    "section": "",
-    "text": "This guide demonstrates how to use the GRID3 Nigeria Friction Surface to estimate travel times between two points. The friction surface represents the difficulty of traversing each cell, allowing for more realistic travel time calculations that account for terrain and land cover.\nThis guide provides three demonstrations for calculating the shortest travel time between two points along the friction surface, one using Python, ArcGIS Pro, and QGIS.\n\n\n\n Back to top",
-    "crumbs": [
-      "Travel Time Analysis"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CIESIN Data User Guide",
-    "section": "",
-    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "CIESIN Data User Guide",
-    "section": "Getting started",
-    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nCIESIN Map Gallery\nMaps created with GRID3 data.\nGo to the gallery → \n\n\n\n\n\nResources\nLinks and other reference materials.\nView resources →"
-  },
-  {
-    "objectID": "pages/analysis/friction_surface_distance_arcgis.html",
-    "href": "pages/analysis/friction_surface_distance_arcgis.html",
-    "title": "ArcGIS Pro",
-    "section": "",
-    "text": "In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using ArcGIS Pro. We use the Nigeria mixed travel friction surface for this demonstration. If you already have the friction surface, a start and an end point, you can skip to Step 3.\n\n\nStep 1: Add friction surface to the project\nObtain mixed travel clipped friction surface for Nigeria and add layer in ArcGIS Pro. The friction surface can be downloaded and manually clipped from here: https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98\nOr clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)\nThe friction surface can be better visualized using a max value of .05:\n\nRe-visualized friction surface:\n\n\n\nStep 2: Add start and end points\nAdd the start and end points from ArcGIS Online. Go to Catalog &gt; Portal &gt; ArcGIS Online and search for NGA_Friction_Surface_Example. From the results, add both the start and end points to the map\n\n\n\nStep 3: Distances\nRun the distance accumulation tool to calculate the distance between each raster cell and the starting point. Make sure to output both a Distance Accumulation and Back Direction raster:\n\n\n\nStep 4: Cost paths\nRun the Optimal Path As Line tool to calculate the lowest cost path along the friction surface from the start point to the end point. Use the end point as the Feature Destination and the Distance Accumulation and Back Direction rasters from the previous step.\n\n\n\nStep 5: Calculate travel time\nView the resulting path and travel time between points in minutes from the output Optimal Path attribute “PathCost”\nOptimal Path\n\nOpen the shortest_path attribute table to find the travel time in minutes\n\n\nThis workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Travel Time Analysis",
-      "ArcGIS Pro"
-    ]
-  },
-  {
-    "objectID": "pages/analysis/index.html",
-    "href": "pages/analysis/index.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
-    "crumbs": [
-      "Analyzing data"
-    ]
-  },
-  {
-    "objectID": "pages/analysis/index.html#guides-in-this-section",
-    "href": "pages/analysis/index.html#guides-in-this-section",
-    "title": "Analysis",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nRoad Network Analysis Query and analyze the GRID3 Nigeria road network via API using Python.\nTravel Time Analysis Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.\nSettlement Extent v4 Blocks Perform greenspace suitability analysis on GRID3 Settlement Extent Blocks v4.",
-    "crumbs": [
-      "Analyzing data"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/index.html",
-    "href": "pages/data-access/index.html",
-    "title": "Data Access",
-    "section": "",
-    "text": "This section covers how to locate CIESIN datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.",
-    "crumbs": [
-      "Accessing data"
-    ]
-  },
-  {
-    "objectID": "pages/data-access/index.html#guides-in-this-section",
-    "href": "pages/data-access/index.html#guides-in-this-section",
-    "title": "Data Access",
-    "section": "Guides in this section",
-    "text": "Guides in this section\n\nExtracting and Mapping GRID3 Data by Administrative Units  Access GRID3 raster friction surface and administrative boundary data for Nigeria and the Democratic Republic of Congo.\n\n\nClick here to access data for download",
-    "crumbs": [
-      "Accessing data"
-    ]
-  },
-  {
-    "objectID": "pages/resources/!links.html",
-    "href": "pages/resources/!links.html",
-    "title": "Links",
-    "section": "",
-    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
-  },
-  {
-    "objectID": "pages/resources/!links.html#data-downloads",
-    "href": "pages/resources/!links.html#data-downloads",
-    "title": "Links",
-    "section": "",
-    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
-  },
-  {
-    "objectID": "pages/resources/!links.html#maps",
-    "href": "pages/resources/!links.html#maps",
-    "title": "Links",
-    "section": "Maps",
-    "text": "Maps\n\nCIESIN Map Tiles (Alpha)"
-  },
-  {
-    "objectID": "pages/resources/!links.html#other-documentation-resources",
-    "href": "pages/resources/!links.html#other-documentation-resources",
-    "title": "Links",
-    "section": "Other documentation & resources",
-    "text": "Other documentation & resources\n\nProtomaps vector tile documentation\nPMTiles data viewer\nIPCC Data Distribution Centre"
-  },
-  {
-    "objectID": "pages/resources/glossary.html",
-    "href": "pages/resources/glossary.html",
-    "title": "Glossary",
-    "section": "",
-    "text": "This glossary explains common GIS and mapping terms used throughout the guides on this site."
-  },
-  {
-    "objectID": "pages/resources/glossary.html#general-gis",
-    "href": "pages/resources/glossary.html#general-gis",
-    "title": "Glossary",
-    "section": "General GIS",
-    "text": "General GIS\n\nCRS (Coordinate Reference System)\nA way of pinning down locations on the earth with coordinates, so that different datasets actually line up when you put them on the same map. The guides here use WGS84, a CRS used all over the world.\n\n\nAdministrative boundary\nThe line marking where one administrative area ends and another begins, like a state, province, or district. GRID3 data uses these boundaries to organize population, settlement, and health information by region.\n\n\nWard / LGA\nLocal administrative units used in Nigeria. An LGA (Local Government Area) is the larger of the two, and a ward is a smaller area within it. You’ll see GRID3 data organized at the ward level in several guides here.\n\n\nHealth zone / health area\nAdministrative units used to plan health services in the Democratic Republic of Congo. A health zone is the bigger area, made up of several smaller health areas.\n\n\nFriction surface\nA dataset used to estimate travel time and travel difficulty across a landscape, taking roads, terrain, and land cover into account. The guides here use friction surfaces to work out realistic travel times between places.\n\n\nSettlement extent vs. settlement point\nA settlement extent is the outline of a populated area on the map, while a settlement point is a single coordinate marking where a settlement sits, often with its name attached. GRID3 gives you both, and using them together helps make sure no populated areas get missed."
-  },
-  {
-    "objectID": "pages/resources/glossary.html#data-science",
-    "href": "pages/resources/glossary.html#data-science",
-    "title": "Glossary",
-    "section": "Data science",
-    "text": "Data science\n\nAPI\nA way for one piece of software to ask another for data or functionality. A few guides here use APIs to pull GRID3 data straight into Python, instead of downloading files by hand.\n\n\nGeoJSON\nA common format for storing geographic features like points, lines, and polygons, along with information about them. Many of the datasets in these guides can be downloaded or converted to GeoJSON.\n\n\nPMTiles\nA format for packing map tiles into a single file that can be hosted almost anywhere, no dedicated map server needed. Used in this site’s guidance on building interactive webmaps."
-  },
-  {
-    "objectID": "pages/resources/glossary.html#cartography",
-    "href": "pages/resources/glossary.html#cartography",
-    "title": "Glossary",
-    "section": "Cartography",
-    "text": "Cartography\n\nLegend\nThe part of a map that tells you what its colors, symbols, or shading actually mean. A clear legend is often what separates a map that’s easy to read from one that isn’t.\n\n\nSymbology\nHow features on a map are styled, through color, size, or pattern, to show what they are or what they mean. Good symbology makes a map’s story clear at a glance."
-  },
-  {
     "objectID": "pages/resources/templates/user_guide_template.html",
     "href": "pages/resources/templates/user_guide_template.html",
     "title": "User Guide Sample Page",
@@ -369,6 +79,275 @@
     "title": "User Guide Sample Page",
     "section": "",
     "text": "R (which packages?)\nPython (which packages?)\nArcGIS Pro / QGIS\nExcel / Google Sheets\nLocal computing requirements (if any) - provide alternatives to local processing\n\nJupyterLab/CoLab\n\n\n\n\n\n\n\n\n\nSubset to year or area of interest\n\n\n\n\n\nCalculate summary statistics"
+  },
+  {
+    "objectID": "pages/resources/glossary.html",
+    "href": "pages/resources/glossary.html",
+    "title": "Glossary",
+    "section": "",
+    "text": "This glossary explains common GIS and mapping terms used throughout the guides on this site."
+  },
+  {
+    "objectID": "pages/resources/glossary.html#general-gis",
+    "href": "pages/resources/glossary.html#general-gis",
+    "title": "Glossary",
+    "section": "General GIS",
+    "text": "General GIS\n\nCRS (Coordinate Reference System)\nA way of pinning down locations on the earth with coordinates, so that different datasets actually line up when you put them on the same map. The guides here use WGS84, a CRS used all over the world.\n\n\nAdministrative boundary\nThe line marking where one administrative area ends and another begins, like a state, province, or district. GRID3 data uses these boundaries to organize population, settlement, and health information by region.\n\n\nWard / LGA\nLocal administrative units used in Nigeria. An LGA (Local Government Area) is the larger of the two, and a ward is a smaller area within it. You’ll see GRID3 data organized at the ward level in several guides here.\n\n\nHealth zone / health area\nAdministrative units used to plan health services in the Democratic Republic of Congo. A health zone is the bigger area, made up of several smaller health areas.\n\n\nFriction surface\nA dataset used to estimate travel time and travel difficulty across a landscape, taking roads, terrain, and land cover into account. The guides here use friction surfaces to work out realistic travel times between places.\n\n\nSettlement extent vs. settlement point\nA settlement extent is the outline of a populated area on the map, while a settlement point is a single coordinate marking where a settlement sits, often with its name attached. GRID3 gives you both, and using them together helps make sure no populated areas get missed."
+  },
+  {
+    "objectID": "pages/resources/glossary.html#data-science",
+    "href": "pages/resources/glossary.html#data-science",
+    "title": "Glossary",
+    "section": "Data science",
+    "text": "Data science\n\nAPI\nA way for one piece of software to ask another for data or functionality. A few guides here use APIs to pull GRID3 data straight into Python, instead of downloading files by hand.\n\n\nGeoJSON\nA common format for storing geographic features like points, lines, and polygons, along with information about them. Many of the datasets in these guides can be downloaded or converted to GeoJSON.\n\n\nPMTiles\nA format for packing map tiles into a single file that can be hosted almost anywhere, no dedicated map server needed. Used in this site’s guidance on building interactive webmaps."
+  },
+  {
+    "objectID": "pages/resources/glossary.html#cartography",
+    "href": "pages/resources/glossary.html#cartography",
+    "title": "Glossary",
+    "section": "Cartography",
+    "text": "Cartography\n\nLegend\nThe part of a map that tells you what its colors, symbols, or shading actually mean. A clear legend is often what separates a map that’s easy to read from one that isn’t.\n\n\nSymbology\nHow features on a map are styled, through color, size, or pattern, to show what they are or what they mean. Good symbology makes a map’s story clear at a glance."
+  },
+  {
+    "objectID": "pages/resources/!links.html",
+    "href": "pages/resources/!links.html",
+    "title": "Links",
+    "section": "",
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
+  },
+  {
+    "objectID": "pages/resources/!links.html#data-downloads",
+    "href": "pages/resources/!links.html#data-downloads",
+    "title": "Links",
+    "section": "",
+    "text": "GRID3 on Columbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index"
+  },
+  {
+    "objectID": "pages/resources/!links.html#maps",
+    "href": "pages/resources/!links.html#maps",
+    "title": "Links",
+    "section": "Maps",
+    "text": "Maps\n\nCIESIN Map Tiles (Alpha)"
+  },
+  {
+    "objectID": "pages/resources/!links.html#other-documentation-resources",
+    "href": "pages/resources/!links.html#other-documentation-resources",
+    "title": "Links",
+    "section": "Other documentation & resources",
+    "text": "Other documentation & resources\n\nProtomaps vector tile documentation\nPMTiles data viewer\nIPCC Data Distribution Centre"
+  },
+  {
+    "objectID": "pages/data-access/index.html",
+    "href": "pages/data-access/index.html",
+    "title": "Data Access",
+    "section": "",
+    "text": "This section covers how to locate CIESIN datasets, access them programmatically or through a browser, and load them into GIS software and Python environments.",
+    "crumbs": [
+      "Accessing data"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/index.html#guides-in-this-section",
+    "href": "pages/data-access/index.html#guides-in-this-section",
+    "title": "Data Access",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nExtracting and Mapping GRID3 Data by Administrative Units  Access GRID3 raster friction surface and administrative boundary data for Nigeria and the Democratic Republic of Congo.\n\n\nClick here to access data for download",
+    "crumbs": [
+      "Accessing data"
+    ]
+  },
+  {
+    "objectID": "pages/analysis/index.html",
+    "href": "pages/analysis/index.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This section covers analytical workflows using GRID3 datasets — including network analysis, spatial statistics, and Python-based processing pipelines.",
+    "crumbs": [
+      "Analyzing data"
+    ]
+  },
+  {
+    "objectID": "pages/analysis/index.html#guides-in-this-section",
+    "href": "pages/analysis/index.html#guides-in-this-section",
+    "title": "Analysis",
+    "section": "Guides in this section",
+    "text": "Guides in this section\n\nRoad Network Analysis Query and analyze the GRID3 Nigeria road network via API using Python.\nTravel Time Analysis Use the GRID3 Nigeria Friction Surface to calculate the shortest travel time between two points.\nSettlement Extent v4 Blocks Perform greenspace suitability analysis on GRID3 Settlement Extent Blocks v4.",
+    "crumbs": [
+      "Analyzing data"
+    ]
+  },
+  {
+    "objectID": "pages/analysis/friction_surface_distance_arcgis.html",
+    "href": "pages/analysis/friction_surface_distance_arcgis.html",
+    "title": "ArcGIS Pro",
+    "section": "",
+    "text": "In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using ArcGIS Pro. We use the Nigeria mixed travel friction surface for this demonstration. If you already have the friction surface, a start and an end point, you can skip to Step 3.\n\n\nStep 1: Add friction surface to the project\nObtain mixed travel clipped friction surface for Nigeria and add layer in ArcGIS Pro. The friction surface can be downloaded and manually clipped from here: https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98\nOr clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)\nThe friction surface can be better visualized using a max value of .05:\n\nRe-visualized friction surface:\n\n\n\nStep 2: Add start and end points\nAdd the start and end points from ArcGIS Online. Go to Catalog &gt; Portal &gt; ArcGIS Online and search for NGA_Friction_Surface_Example. From the results, add both the start and end points to the map\n\n\n\nStep 3: Distances\nRun the distance accumulation tool to calculate the distance between each raster cell and the starting point. Make sure to output both a Distance Accumulation and Back Direction raster:\n\n\n\nStep 4: Cost paths\nRun the Optimal Path As Line tool to calculate the lowest cost path along the friction surface from the start point to the end point. Use the end point as the Feature Destination and the Distance Accumulation and Back Direction rasters from the previous step.\n\n\n\nStep 5: Calculate travel time\nView the resulting path and travel time between points in minutes from the output Optimal Path attribute “PathCost”\nOptimal Path\n\nOpen the shortest_path attribute table to find the travel time in minutes\n\n\nThis workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Travel Time Analysis",
+      "ArcGIS Pro"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CIESIN Data User Guide",
+    "section": "",
+    "text": "This website is a collection of user guides demonstrating ways to access, analyze, and visualize CIESIN GRID3 datasets.\nThese guides support CIESIN’s effort to strengthen GRID3 sustainability by making spatial data more findable, reproducible, interoperable, and accessible in alignment with open science principles. Designed for users ranging from beginners to advanced practitioners, the guides cover key topics in spatial data workflows, including data access, analysis, and visualization. Each guide is delivered as a Jupyter Notebook and includes code examples, explanations, and visualizations to help users effectively work with GRID3 spatial data in a variety of contexts.\nFor more information, please visit the GRID3 Data Catalog and the CIESIN, Columbia Climate School websites."
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "CIESIN Data User Guide",
+    "section": "Getting started",
+    "text": "Getting started\n\n\n\n\nData Access\nFind, download, and initialize GRID3 datasets.\nView guides →\n\n\n\n\n\nAnalysis\nApply GRID3 data to spatial workflows.\nView guides →\n\n\n\n\n\nCIESIN Map Gallery\nMaps created with GRID3 data.\nGo to the gallery → \n\n\n\n\n\nResources\nLinks and other reference materials.\nView resources →"
+  },
+  {
+    "objectID": "pages/analysis/FS_analysis.html",
+    "href": "pages/analysis/FS_analysis.html",
+    "title": "Travel Time Analysis",
+    "section": "",
+    "text": "This guide demonstrates how to use the GRID3 Nigeria Friction Surface to estimate travel times between two points. The friction surface represents the difficulty of traversing each cell, allowing for more realistic travel time calculations that account for terrain and land cover.\nThis guide provides three demonstrations for calculating the shortest travel time between two points along the friction surface, one using Python, ArcGIS Pro, and QGIS.\n\n\n\n Back to top",
+    "crumbs": [
+      "Travel Time Analysis"
+    ]
+  },
+  {
+    "objectID": "pages/analysis/friction_surface_distance_qgis.html",
+    "href": "pages/analysis/friction_surface_distance_qgis.html",
+    "title": "QGIS",
+    "section": "",
+    "text": "In this guide we demonstrate how to use GRID3’s friction surface to calculate the shortest travel time between two points using QGIS. We use the Nigeria mixed travel friction surface for this demonstration.\n\n\nStep 1: Add friction surface to the project\nObtain mixed travel clipped friction surface for Nigeria and add layer in QGIS. The friction surface can be downloaded and manually clipped from here: https://academiccommons.columbia.edu/doi/10.7916/tw5k-ys98\nOr clip and download using this tool (clipping to Katsina state for this example): [https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing](https://colab.research.google.com/drive/1WS4cDlm6ER0BKtntXXhNlLOWmsOW9qP8?usp=sharing)\nThe friction surface can be better visualized using a Singleband pseudocolor ramp with a max value of .05\n\nRe-visualized friction surface\n\n\n\nStep 2: Map projection\nEnsure friction surface is projected to WGS84 - CRS “4326” using the Warp (Reproject) tool:\n\n\n\nStep 3: R.cost\nRun r.cost using the clipped and reprojected friction surface as the Unit Cost Layer and a start point: 7.515850,13.034015 and end point: 7.682362,12.923887:\n\n\n\nStep 4: R.drain\nTo calculate the lowest cost path between the start and end point, run the r.drain tool using the Cumulative Cost raster and Movement direction raster from the previous step. Set the coordinates of the starting point as the end point coordinates from the previous step: 7.682362,12.923887:\n\nOutput lowest cost path\n\n\n\nStep 5: Calculate travel time\nTo calculate travel time, zoom in on the coordinate representing the end of the travel path (7.682362,12.923887). With the Cumulative Cost layer selected, select the Identify Features Icon in the toolbar, and click on the raster cell to determine its value.\nFind the Identify Features button\n\nClick the pixel representing the end of the travel path and find the result in the Identify Results popup under Band 1 = 1.3717…\n\n\n\nStep 6: Travel time in minutes\nTo get travel time in minutes, multiply the cumulative cost value by the friction surface pixel resolution (30 meters).\n1.37 (accumulated friction surface value) * 30 (pixel resolution) = 41.1 minutes\n\nThis workflow can be applied to any of the GRID3 friction surfaces to calculate the shortest travel time between any two points.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Travel Time Analysis",
+      "QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html",
+    "title": "Data Extraction",
+    "section": "",
+    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#overview",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#overview",
+    "title": "Data Extraction",
+    "section": "",
+    "text": "This lesson demonstrates how to use GRID3 data to map and analyze GRID3 data for specific administrative units, such as states, local government areas (LGAs), or wards in Nigeria and provinces, antenne, or zonesante in Democratic Republic of Congo (DRC). It focuses on extracting and visualizing key GRID3 datasets, including friction surfaces, roads, or settlement blocks. It walks through accessing GRID3 data, then subsetting and visualizing data for a selected administrative unit in a reproducible workflow.",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#data",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#data",
+    "title": "Data Extraction",
+    "section": "Data",
+    "text": "Data\nThe lesson uses:\n\nGRID3 high-resolution friction surfaces (walking and mixed-mode). Friction surfaces represent travel difficulty or cost across space, enabling realistic travel-time and accessibility modeling beyond road-network-only approaches.\nGRID3 major and all roads\nGRID3 settlement blocks\nAdministrative boundaries for Nigeria and DRC",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#workflow-google-colab",
+    "title": "Data Extraction",
+    "section": "Workflow (Google Colab)",
+    "text": "Workflow (Google Colab)\nImplemented in Google Colab, the notebook shows how to:\n\nQuery administrative boundaries from ArcGIS FeatureLayers\n\nSelect a boundaries by name interactively\n\nDownload and extract GRID3 data selected\n\nSubset the data to the selected boundary\n\nExport data and create publication-ready plots\n\nClear helper functions and comments make it easy to adapt for other regions or batch processing.",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#learning-outcomes",
+    "title": "Data Extraction",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end, users will be able to:\n\nUnderstand GRID3 datasets\n\nExtract and subset GRID3 data to an administrative boundary\n\nGenerate data outputs and visualizations for accessibility or analysis\n\nCommon issues (e.g., CRS mismatches, empty queries, file extraction steps) are also highlighted.",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
+    "href": "pages/data-access/accessing_data_by_admin_unit.html#run-in-google-colab",
+    "title": "Data Extraction",
+    "section": "Run in Google Colab",
+    "text": "Run in Google Colab\nOpen the lesson in Google Colab to execute the code and follow along with the analysis:",
+    "crumbs": [
+      "Accessing data",
+      "Data Extraction"
+    ]
+  },
+  {
+    "objectID": "pages/resources/!contact.html",
+    "href": "pages/resources/!contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n GRID3 Project\n\ngrid3.org\n\n LinkedIn\n\nCenter for Integrated Earth System Information\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "pages/resources/about.html",
+    "href": "pages/resources/about.html",
+    "title": "About CIESIN",
+    "section": "",
+    "text": "The Center for Integrated Earth System Information (CIESIN), formerly known as the Center for International Earth Science Information Network, is a center within the Columbia Climate School. CIESIN’s mission is to harness cutting edge geospatial technologies to support integrated analysis of the human-environment system and to empower decision-making through collaborative research, teaching, and data production, stewardship and dissemination. CIESIN values inclusive, impactful, and interdisciplinary teamwork. Our purpose is to build bridges among academics, practitioners, decision-makers, and communities globally to co-produce trustworthy geospatial data and analyses about interactions between humans and the environment. CIESIN envisions a world with equitable societal benefits and sustainable environmental outcomes through data, research, and teaching. Learn about our Strategic Plan for 2024-2027, download our capabilities statement, and read our open data policy.\nCIESIN’s multidisciplinary staff includes PhD social scientists (geography, public health, demography and political science) and information scientists; master’s level social and environmental scientists; experts in GIS, data management and data policy; systems engineers; and applications developers."
+  },
+  {
+    "objectID": "pages/resources/about.html#contact",
+    "href": "pages/resources/about.html#contact",
+    "title": "About CIESIN",
+    "section": "Contact",
+    "text": "Contact\n\n\n Email\n\ninfo@ciesin.columbia.edu\n\n CIESIN Website\n\nciesin.columbia.edu\n\n LinkedIn\n\nCenter for Integrated Earth System Information"
+  },
+  {
+    "objectID": "pages/resources/index.html",
+    "href": "pages/resources/index.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Welcome to the Resources page! Here you will find links to data downloads, maps, tools, and other resources related to GRID3 and CIESIN. This page is intended to serve as a central hub for accessing various resources that can support your research and analysis.",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "pages/resources/index.html#links",
+    "href": "pages/resources/index.html#links",
+    "title": "Resources",
+    "section": "Links",
+    "text": "Links\n\nData downloads\n\nColumbia Academic Commons\nGRID3 Data Hub\nCIESIN STAC Index\nIPCC Data Distribution Centre\n\n\n\nMaps\n\nCIESIN Static Map Archive (alpha)\nCIESIN Map Tiles (alpha)",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "pages/resources/index.html#tools-libraries",
+    "href": "pages/resources/index.html#tools-libraries",
+    "title": "Resources",
+    "section": "Tools & libraries",
+    "text": "Tools & libraries\n\nProtomaps vector tile documentation\nPMTiles data viewer",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "pages/resources/index.html#glossary-of-terms",
+    "href": "pages/resources/index.html#glossary-of-terms",
+    "title": "Resources",
+    "section": "Glossary of terms",
+    "text": "Glossary of terms\n\nClick here",
+    "crumbs": [
+      "Resources"
+    ]
   },
   {
     "objectID": "pages/analysis/api_nga_network.html",
