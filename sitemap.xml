@@ -2,62 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://guides.ciesin.app/pages/analysis/friction_surface_lowest_cost_py.html</loc>
-    <lastmod>2026-09-30T15:15:27.318Z</lastmod>
+    <lastmod>2026-09-30T15:17:38.609Z</lastmod>
   </url>
   <url>
-    <loc>https://guides.ciesin.app/pages/resources/templates/user_guide_template.html</loc>
-    <lastmod>2026-09-30T15:15:27.320Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/resources/glossary.html</loc>
-    <lastmod>2026-09-30T15:15:27.320Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/resources/!links.html</loc>
-    <lastmod>2026-09-30T15:15:27.320Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/data-access/index.html</loc>
-    <lastmod>2026-09-30T15:15:27.319Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/analysis/index.html</loc>
-    <lastmod>2026-09-30T15:15:27.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/analysis/friction_surface_distance_arcgis.html</loc>
-    <lastmod>2026-09-30T15:15:27.314Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/index.html</loc>
-    <lastmod>2026-09-30T15:15:27.298Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/analysis/FS_analysis.html</loc>
-    <lastmod>2026-09-30T15:15:27.300Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/analysis/friction_surface_distance_qgis.html</loc>
-    <lastmod>2026-09-30T15:15:27.314Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/data-access/accessing_data_by_admin_unit.html</loc>
-    <lastmod>2026-09-30T15:15:27.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/resources/!contact.html</loc>
-    <lastmod>2026-09-30T15:15:27.319Z</lastmod>
-  </url>
-  <url>
-    <loc>https://guides.ciesin.app/pages/resources/about.html</loc>
-    <lastmod>2026-09-30T15:15:27.320Z</lastmod>
+    <loc>https://guides.ciesin.app/pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.html</loc>
+    <lastmod>2026-09-30T15:17:38.590Z</lastmod>
   </url>
   <url>
     <loc>https://guides.ciesin.app/pages/resources/index.html</loc>
-    <lastmod>2026-09-30T15:15:27.320Z</lastmod>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/resources/about.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/resources/!contact.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/data-access/accessing_data_by_admin_unit.html</loc>
+    <lastmod>2026-09-30T15:17:38.609Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/analysis/friction_surface_distance_qgis.html</loc>
+    <lastmod>2026-09-30T15:17:38.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/analysis/FS_analysis.html</loc>
+    <lastmod>2026-09-30T15:17:38.549Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/index.html</loc>
+    <lastmod>2026-09-30T15:17:38.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/analysis/friction_surface_distance_arcgis.html</loc>
+    <lastmod>2026-09-30T15:17:38.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/analysis/index.html</loc>
+    <lastmod>2026-09-30T15:17:38.609Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/data-access/index.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/resources/!links.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/resources/glossary.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guides.ciesin.app/pages/resources/templates/user_guide_template.html</loc>
+    <lastmod>2026-09-30T15:17:38.610Z</lastmod>
   </url>
   <url>
     <loc>https://guides.ciesin.app/pages/analysis/api_nga_network.html</loc>
-    <lastmod>2026-09-30T15:15:27.306Z</lastmod>
+    <lastmod>2026-09-30T15:17:38.597Z</lastmod>
   </url>
 </urlset>
