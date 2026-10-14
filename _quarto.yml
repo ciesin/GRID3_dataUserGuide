@@ -96,8 +96,8 @@ website:
           contents: "pages/analysis/*friction*"
         - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
-        - text: "Block Analysis"
-          section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb
+        - section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb
+          text: "Block Analysis"
           contents: "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb"
         
         
