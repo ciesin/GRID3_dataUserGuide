@@ -97,7 +97,7 @@ website:
         - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
         - section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb
-          contents: "pages/analysis/*green_space*"
+          contents: "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb"
         
         
 
