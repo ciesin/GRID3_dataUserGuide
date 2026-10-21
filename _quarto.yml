@@ -90,17 +90,14 @@ website:
       search: true
       collapse-level: 2
       contents:
-        - text: "Analyzing data"
+        - text: Analyzing data
           href: pages/analysis/index.qmd
-
-        - section: "Friction Surface Analysis"
+        - section: pages/analysis/FS_analysis.qmd
           contents: "pages/analysis/*friction*"
-
-        - section: "Network Analysis"
+        - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
-
-        - section: "Settlement Block Analysis"
-          contents: "pages/analysis/*block*"
+        - section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb 
+          contents: "pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb"
         
         
 
