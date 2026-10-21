@@ -92,13 +92,10 @@ website:
       contents:
         - text: Analyzing data
           href: pages/analysis/index.qmd
-
         - section: pages/analysis/FS_analysis.qmd
           contents: "pages/analysis/*friction*"
-
         - section: pages/analysis/api_nga_network.ipynb
           contents: "pages/analysis/*network*"
-
         - section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb 
           contents: "pages/analysis/*block*"
         
