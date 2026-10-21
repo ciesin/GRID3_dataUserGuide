@@ -93,7 +93,7 @@ website:
         - text: "Analyzing data"
           href: pages/analysis/index.qmd
 
-        - section: "Flood Susceptibility Analysis"
+        - section: "Friction Surface Analysis"
           contents: "pages/analysis/*friction*"
 
         - section: "Network Analysis"
