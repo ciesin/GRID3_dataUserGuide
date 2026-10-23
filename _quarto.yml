@@ -92,11 +92,11 @@ website:
       contents:
         - text: Analyzing data
           href: pages/analysis/index.qmd
-        - section: pages/analysis/FS_analysis.qmd
+        - section: "Friction Surface"
           contents: "pages/analysis/*friction*"
-        - section: pages/analysis/api_nga_network.ipynb
+        - section: "Road Network"
           contents: "pages/analysis/*network*"
-        - section: pages/analysis/Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb 
+        - section: "Settlement Blocks"
           contents: "pages/analysis/*GreenSpace*"        
         
 
