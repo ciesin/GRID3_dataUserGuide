@@ -22,3 +22,6 @@ This section covers analytical workflows using GRID3 datasets — including netw
 
 - [Settlement Extent v4 Blocks](Nigeria_Settlement_Block_GreenSpace_Analysis.ipynb)
   Perform greenspace suitability analysis on GRID3 Settlement Extent Blocks v4.
+
+- [Demographic Changes in GUDD dataset](gudd_demographic_changes.ipynb)
+  Explore global, regional, and local demographic changes between 2000 and 2020 in the GUDD dataset.

@@ -97,7 +97,9 @@ website:
         - section: "Road Network"
           contents: "pages/analysis/*network*"
         - section: "Settlement Blocks"
-          contents: "pages/analysis/*GreenSpace*"        
+          contents: "pages/analysis/*GreenSpace*"    
+        - section: "GUDD Demographic Changes"
+          contents: "pages/analysis/*demographic*"    
         
 
     # - id: visualization
